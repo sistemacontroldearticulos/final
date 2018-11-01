@@ -1,0 +1,32 @@
+LOGIN -> Si ingresa				     
+--------------------------------------------------
+BD -> se cambia a nulo la ubicacion ambiente
+--------------------------------------------------
+AMBIENTES -> SI agrega
+	  -> si cambia todo los campos edita, si falta el campo de ubicacion no hace nada// Arreglado   
+	  -> SI elimina
+--------------------------------------------------
+CATEGORIAS ->Si agrega	
+	   ->Si edita
+	   ->Si elimina
+--------------------------------------------------
+ARTICULOS -> Si agrega
+	  -> para editar no aparece el equipo con el que se agrego y edita equipo vacio// Arreglado   
+	  -> Si elimina
+--------------------------------------------------
+PROGRAMAS  ->Si agrega	
+	   ->Si edita
+	   ->Si elimina
+--------------------------------------------------
+USUARIOS   ->Si agrega	
+	   ->para editar deja que ela dministrador eliga programa
+	   ->Si elimina
+--------------------------------------------------
+FICHAS     ->Si agrega	
+	   ->Si edita
+	   ->Si elimina
+--------------------------------------------------
+EQUIPOS    ->Si agrega	
+	   ->Si edita
+	   ->Si elimina
+--------------------------------------------------
