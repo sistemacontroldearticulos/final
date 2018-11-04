@@ -64,9 +64,8 @@ function buscarFicha($response)
     $route       = $response->getAttribute('route');
     $args        = $route->getArguments();
     $numeroFicha = $args['numeroFicha'];
-    $sql         = "SELECT ficha.numeroficha, articulo.tipoarticulo,  articulo.idarticulo, equipo.idequipo, ambiente.idambiente
+    $sql         = "SELECT ficha.numeroficha, articulo.tipoarticulo,  articulo.idarticulo, equipo.idequipo, ambiente.idambiente, ficha.idprograma
     FROM ficha
-
     join ambiente on (ficha.idambiente=ambiente.idambiente)
     join articulo on (articulo.idambiente=ambiente.idambiente)
     left join equipo on (articulo.idequipo=equipo.idequipo)
@@ -120,22 +119,62 @@ function buscarAmbiente($response)
 }
 
 function crearNovedad($request) {
-    $emp = json_decode($request->getBody());
+    // $emp = json_decode($request->getBody());
+    $emp = $request->getParams();
+
+
+    var_dump($emp["numdocumentousuario"]);
+
     
     $sql = "INSERT INTO novedad (numdocumentousuario, usuarionovedad, numeroficha, fechanovedad, articulo, estado) VALUES (:numdocumentousuario, :usuarionovedad, :numeroficha, :fechanovedad, :articulo, :estado)";
     try {
         $db = getConnection();
         $stmt = $db->prepare($sql);
-        $stmt->bindParam(":numdocumentousuario", $emp->numdocumentousuario);
-        $stmt->bindParam(":usuarionovedad", $emp->nombreusuario);
-        $stmt->bindParam(":numerofcha", $emp->numeroficha);
-        $stmt->bindParam(":fechanovedad ", $emp->fechanovedad);
-        $stmt->bindParam(":articulo", $emp->articulo);
-        $stmt->bindParam(":estado", $emp->estado);
+        $stmt->bindParam('numdocumentousuario', $emp["numdocumentousuario"]);
+        $stmt->bindParam(":usuarionovedad", $emp["usuarionovedad"]);
+        $stmt->bindParam(":numeroficha", $emp["numeroficha"]);
+        $stmt->bindParam(":fechanovedad", $emp["fechanovedad"]);
+        $stmt->bindParam(":articulo", $emp["articulo"]);
+        $stmt->bindParam(":estado", $emp["estado"]);
         $stmt->execute();
-        echo json_encode($emp);
     } catch(PDOException $e) {
         echo '{"error":{"text":'. $e->getMessage() .'}}';
+    }
+}
+
+function articuloNovedad($request) {
+    // $emp = json_decode($request->getBody());
+    $emp = $request->getParams();
+    
+    $sql = "INSERT INTO articulonovedad (idarticulo, idnovedad, tiponovedad, observacionnovedad) VALUES (:idarticulo, :idnovedad, :tiponovedad, :observacionnovedad)";
+    try {
+        $db = getConnection();
+        $stmt = $db->prepare($sql);
+        $stmt->bindParam(":idarticulo", $emp["idarticulo"]);
+        $stmt->bindParam(":idnovedad", $emp["idnovedad"]);
+        $stmt->bindParam(":tiponovedad", $emp["tiponovedad"]);
+        $stmt->bindParam(":observacionnovedad", $emp["observacionnovedad"]);
+        $stmt->execute();
+    } catch(PDOException $e) {
+        echo '{"error":{"text":'. $e->getMessage() .'}}';
+    }
+}
+
+function buscarNovedad($response)
+{
+    $route      = $response->getAttribute('route');
+    $args       = $route->getArguments();
+    $idArticulo = $args['idArticulo'];
+    $sql        = "SELECT idnovedad FROM novedad where articulo= '$idArticulo '";
+    try {
+        $stmt      = getConnection()->query($sql);
+        $productos = $stmt->fetchAll(PDO::FETCH_OBJ);
+        $db        = null;
+        $arreglo   = (array) $productos;
+        $retorno   = array_map('utf8', $arreglo);
+        return json_encode($retorno);
+    } catch (PDOException $e) {
+        echo '{"error":{"text":' . $e->getMessage() . '}}';
     }
 }
 
