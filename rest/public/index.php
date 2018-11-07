@@ -162,10 +162,10 @@ function articuloNovedad($request)
 
 function buscarNovedad($response)
 {
-    $route      = $response->getAttribute('route');
-    $args       = $route->getArguments();
-    $idArticulo = $args['idArticulo'];
-    $sql        = "SELECT idnovedad FROM novedad where articulo= '$idArticulo '";
+    $route = $response->getAttribute('route');
+    $args  = $route->getArguments();
+
+    $sql = "SELECT MAX(idnovedad) FROM novedad";
     try {
         $stmt      = getConnection()->query($sql);
         $productos = $stmt->fetchAll(PDO::FETCH_OBJ);
