@@ -18,6 +18,7 @@ $app->group('/api', function () use ($app) {
     $app->get('/login/{numDocumento}&{contra}', 'login');
     $app->get('/ficha/{numeroFicha}', 'buscarFicha');
     $app->get('/ficha2', 'Ficha');
+    $app->get('/buscarArticulo/{idArticulo}', 'buscarArticulo');
     $app->get('/idNovedad/{idArticulo}', 'buscarNovedad');
     $app->post('/crearNovedad', 'crearNovedad');
     $app->post('/articuloNovedad', 'articuloNovedad');

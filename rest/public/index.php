@@ -34,11 +34,11 @@ function login($response)
 
     $sql = "SELECT usuario.contraseniausuario, usuario.numdocumentousuario, usuario.nombreusuario, usuario.idprograma, rolusuario, novedad.idnovedad,fechanovedad, nombreambiente, tipoarticulo, tiponovedad, equipo.idequipo, jornadaficha
 FROM usuario
-JOIN novedad ON (usuario.numdocumentousuario=novedad.numdocumentousuario)
-JOIN articulonovedad on (articulonovedad.idnovedad=novedad.idnovedad)
-JOIN ficha ON (novedad.numeroficha=ficha.numeroficha)
-JOIN ambiente ON (ficha.idambiente=ambiente.idambiente)
-JOIN articulo ON(articulonovedad.idarticulo=articulo.idarticulo)
+LEFT OUTER JOIN novedad ON (usuario.numdocumentousuario=novedad.numdocumentousuario)
+LEFT OUTER JOIN articulonovedad on (articulonovedad.idnovedad=novedad.idnovedad)
+LEFT OUTER JOIN ficha ON (novedad.numeroficha=ficha.numeroficha)
+LEFT OUTER JOIN ambiente ON (ficha.idambiente=ambiente.idambiente)
+LEFT OUTER JOIN articulo ON(articulonovedad.idarticulo=articulo.idarticulo)
 LEFT OUTER JOIN equipo ON(articulo.idequipo=equipo.idequipo)
 WHERE usuario.numdocumentousuario=$numDocumento AND usuario.contraseniausuario='$contra1'";
 
@@ -118,17 +118,16 @@ function buscarAmbiente($response)
     }
 }
 
-function crearNovedad($request) {
+function crearNovedad($request)
+{
     // $emp = json_decode($request->getBody());
     $emp = $request->getParams();
 
-
     var_dump($emp["numdocumentousuario"]);
 
-    
     $sql = "INSERT INTO novedad (numdocumentousuario, usuarionovedad, numeroficha, fechanovedad, articulo, estado) VALUES (:numdocumentousuario, :usuarionovedad, :numeroficha, :fechanovedad, :articulo, :estado)";
     try {
-        $db = getConnection();
+        $db   = getConnection();
         $stmt = $db->prepare($sql);
         $stmt->bindParam('numdocumentousuario', $emp["numdocumentousuario"]);
         $stmt->bindParam(":usuarionovedad", $emp["usuarionovedad"]);
@@ -137,26 +136,27 @@ function crearNovedad($request) {
         $stmt->bindParam(":articulo", $emp["articulo"]);
         $stmt->bindParam(":estado", $emp["estado"]);
         $stmt->execute();
-    } catch(PDOException $e) {
-        echo '{"error":{"text":'. $e->getMessage() .'}}';
+    } catch (PDOException $e) {
+        echo '{"error":{"text":' . $e->getMessage() . '}}';
     }
 }
 
-function articuloNovedad($request) {
+function articuloNovedad($request)
+{
     // $emp = json_decode($request->getBody());
     $emp = $request->getParams();
-    
+
     $sql = "INSERT INTO articulonovedad (idarticulo, idnovedad, tiponovedad, observacionnovedad) VALUES (:idarticulo, :idnovedad, :tiponovedad, :observacionnovedad)";
     try {
-        $db = getConnection();
+        $db   = getConnection();
         $stmt = $db->prepare($sql);
         $stmt->bindParam(":idarticulo", $emp["idarticulo"]);
         $stmt->bindParam(":idnovedad", $emp["idnovedad"]);
         $stmt->bindParam(":tiponovedad", $emp["tiponovedad"]);
         $stmt->bindParam(":observacionnovedad", $emp["observacionnovedad"]);
         $stmt->execute();
-    } catch(PDOException $e) {
-        echo '{"error":{"text":'. $e->getMessage() .'}}';
+    } catch (PDOException $e) {
+        echo '{"error":{"text":' . $e->getMessage() . '}}';
     }
 }
 
@@ -166,6 +166,24 @@ function buscarNovedad($response)
     $args       = $route->getArguments();
     $idArticulo = $args['idArticulo'];
     $sql        = "SELECT idnovedad FROM novedad where articulo= '$idArticulo '";
+    try {
+        $stmt      = getConnection()->query($sql);
+        $productos = $stmt->fetchAll(PDO::FETCH_OBJ);
+        $db        = null;
+        $arreglo   = (array) $productos;
+        $retorno   = array_map('utf8', $arreglo);
+        return json_encode($retorno);
+    } catch (PDOException $e) {
+        echo '{"error":{"text":' . $e->getMessage() . '}}';
+    }
+}
+
+function buscarArticulo($response)
+{
+    $route      = $response->getAttribute('route');
+    $args       = $route->getArguments();
+    $idArticulo = $args['idArticulo'];
+    $sql        = "SELECT idArticulo FROM articulonovedad where idarticulo= '$idArticulo'";
     try {
         $stmt      = getConnection()->query($sql);
         $productos = $stmt->fetchAll(PDO::FETCH_OBJ);
