@@ -19,40 +19,40 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de datos: `proyectofinal`
+-- Base de datos: 'proyectofinal'
 --
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `acta_responsabilidad`
+-- Estructura de tabla para la tabla 'acta_responsabilidad'
 --
 
-CREATE TABLE `acta_responsabilidad` (
-  `IdActa` int(50) NOT NULL,
-  `NumDocumentoAprendiz` int(50) NOT NULL,
-  `IdEquipo` int(50) NOT NULL,
-  `FechaActa` datetime NOT NULL
+CREATE TABLE 'acta_responsabilidad' (
+  'IdActa' int(50) NOT NULL,
+  'NumDocumentoAprendiz' int(50) NOT NULL,
+  'IdEquipo' int(50) NOT NULL,
+  'FechaActa' datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `ambiente`
+-- Estructura de tabla para la tabla 'ambiente'
 --
 
-CREATE TABLE `ambiente` (
-  `IdAmbiente` int(50) NOT NULL,
-  `IdPrograma` int(50) DEFAULT NULL,
-  `NombreAmbiente` varchar(50) COLLATE utf8_spanish_ci NOT NULL,
-  `UbicacionAmbiente` varchar(100) COLLATE utf8_spanish_ci DEFAULT NULL
+CREATE TABLE 'ambiente' (
+  'IdAmbiente' int(50) NOT NULL,
+  'IdPrograma' int(50) DEFAULT NULL,
+  'NombreAmbiente' varchar(50) COLLATE utf8_spanish_ci NOT NULL,
+  'UbicacionAmbiente' varchar(100) COLLATE utf8_spanish_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
--- Volcado de datos para la tabla `ambiente`
+-- Volcado de datos para la tabla 'ambiente'
 --
 
-INSERT INTO `ambiente` (`IdAmbiente`, `IdPrograma`, `NombreAmbiente`, `UbicacionAmbiente`) VALUES
+INSERT INTO 'ambiente' ('IdAmbiente', 'IdPrograma', 'NombreAmbiente', 'UbicacionAmbiente') VALUES
 (3, NULL, 'ADSI 3', 'L'),
 (4, 39, 'CASA SOLAR', 'ASDASD'),
 (6, NULL, 'L', 'FRENTE A TBT'),
@@ -63,22 +63,22 @@ INSERT INTO `ambiente` (`IdAmbiente`, `IdPrograma`, `NombreAmbiente`, `Ubicacion
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `aprendiz`
+-- Estructura de tabla para la tabla 'aprendiz'
 --
 
-CREATE TABLE `aprendiz` (
-  `NumDocumentoAprendiz` int(50) NOT NULL,
-  `NumeroFicha` int(50) NOT NULL,
-  `NombreAprendiz` varchar(50) COLLATE utf8_spanish_ci NOT NULL,
-  `TelefonoAprendiz` int(10) NOT NULL,
-  `EmailAprendiz` varchar(50) COLLATE utf8_spanish_ci NOT NULL
+CREATE TABLE 'aprendiz' (
+  'NumDocumentoAprendiz' int(50) NOT NULL,
+  'NumeroFicha' int(50) NOT NULL,
+  'NombreAprendiz' varchar(50) COLLATE utf8_spanish_ci NOT NULL,
+  'TelefonoAprendiz' int(10) NOT NULL,
+  'EmailAprendiz' varchar(50) COLLATE utf8_spanish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
--- Volcado de datos para la tabla `aprendiz`
+-- Volcado de datos para la tabla 'aprendiz'
 --
 
-INSERT INTO `aprendiz` (`NumDocumentoAprendiz`, `NumeroFicha`, `NombreAprendiz`, `TelefonoAprendiz`, `EmailAprendiz`) VALUES
+INSERT INTO 'aprendiz' ('NumDocumentoAprendiz', 'NumeroFicha', 'NombreAprendiz', 'TelefonoAprendiz', 'EmailAprendiz') VALUES
 (1232132, 11111, 'Melany Alejandra Rojas Troyano ', 2147483647, 'sakdjhaskdjs@gmail.com'),
 (11234352, 11111, 'Daniel Yordanier Valencia Troyano ', 2147483647, 'sakdjhaskdjs@gmail.com'),
 (54665757, 11111, ' Danny Peña ', 2147483647, 'sakdjhaskdjs@gmail.com'),
@@ -92,28 +92,28 @@ INSERT INTO `aprendiz` (`NumDocumentoAprendiz`, `NumeroFicha`, `NombreAprendiz`,
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `articulo`
+-- Estructura de tabla para la tabla 'articulo'
 --
 
-CREATE TABLE `articulo` (
-  `IdArticulo` int(50) NOT NULL,
-  `IdAmbiente` int(50) NOT NULL,
-  `IdEquipo` int(50) DEFAULT NULL,
-  `IdCategoria` int(50) NOT NULL,
-  `TipoArticulo` varchar(50) COLLATE utf8_spanish_ci NOT NULL,
-  `ModeloArticulo` varchar(50) COLLATE utf8_spanish_ci NOT NULL,
-  `MarcaArticulo` varchar(50) COLLATE utf8_spanish_ci DEFAULT NULL,
-  `CaracteristicaArticulo` text COLLATE utf8_spanish_ci,
-  `EstadoArticulo` varchar(10) COLLATE utf8_spanish_ci DEFAULT NULL,
-  `NumInventarioSena` varchar(50) COLLATE utf8_spanish_ci DEFAULT NULL,
-  `SerialArticulo` varchar(50) COLLATE utf8_spanish_ci DEFAULT NULL
+CREATE TABLE 'articulo' (
+  'IdArticulo' int(50) NOT NULL,
+  'IdAmbiente' int(50) NOT NULL,
+  'IdEquipo' int(50) DEFAULT NULL,
+  'IdCategoria' int(50) NOT NULL,
+  'TipoArticulo' varchar(50) COLLATE utf8_spanish_ci NOT NULL,
+  'ModeloArticulo' varchar(50) COLLATE utf8_spanish_ci NOT NULL,
+  'MarcaArticulo' varchar(50) COLLATE utf8_spanish_ci DEFAULT NULL,
+  'CaracteristicaArticulo' text COLLATE utf8_spanish_ci,
+  'EstadoArticulo' varchar(10) COLLATE utf8_spanish_ci DEFAULT NULL,
+  'NumInventarioSena' varchar(50) COLLATE utf8_spanish_ci DEFAULT NULL,
+  'SerialArticulo' varchar(50) COLLATE utf8_spanish_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
--- Volcado de datos para la tabla `articulo`
+-- Volcado de datos para la tabla 'articulo'
 --
 
-INSERT INTO `articulo` (`IdArticulo`, `IdAmbiente`, `IdEquipo`, `IdCategoria`, `TipoArticulo`, `ModeloArticulo`, `MarcaArticulo`, `CaracteristicaArticulo`, `EstadoArticulo`, `NumInventarioSena`, `SerialArticulo`) VALUES
+INSERT INTO 'articulo' ('IdArticulo', 'IdAmbiente', 'IdEquipo', 'IdCategoria', 'TipoArticulo', 'ModeloArticulo', 'MarcaArticulo', 'CaracteristicaArticulo', 'EstadoArticulo', 'NumInventarioSena', 'SerialArticulo') VALUES
 (9, 3, 1, 2, 'MOUSE', 'FGDFG', 'SDFSF', '234324SDFSDF', 'ACTIVO', '343', '232'),
 (12, 4, 1, 3, 'TECLADO', 'SDFS', 'HP', 'LAKSDJAKSDM ASDASD ASDK534 XCV', 'DAÑADO', '', 'hm6f'),
 (17, 3, 3, 3, 'ADASD', 'ASDASD', 'ASDASD', 'ASDASD', 'ACTIVO', 'asdasd', 'asda'),
@@ -125,40 +125,40 @@ INSERT INTO `articulo` (`IdArticulo`, `IdAmbiente`, `IdEquipo`, `IdCategoria`, `
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `articulonovedad`
+-- Estructura de tabla para la tabla 'articulonovedad'
 --
 
-CREATE TABLE `articulonovedad` (
-  `IdArticulo` int(50) NOT NULL,
-  `IdNovedad` int(50) NOT NULL,
-  `TipoNovedad` varchar(50) COLLATE utf8_spanish_ci NOT NULL,
-  `ObservacionNovedad` text COLLATE utf8_spanish_ci
+CREATE TABLE 'articulonovedad' (
+  'IdArticulo' int(50) NOT NULL,
+  'IdNovedad' int(50) NOT NULL,
+  'TipoNovedad' varchar(50) COLLATE utf8_spanish_ci NOT NULL,
+  'ObservacionNovedad' text COLLATE utf8_spanish_ci
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
--- Volcado de datos para la tabla `articulonovedad`
+-- Volcado de datos para la tabla 'articulonovedad'
 --
 
-INSERT INTO `articulonovedad` (`IdArticulo`, `IdNovedad`, `TipoNovedad`, `ObservacionNovedad`) VALUES
+INSERT INTO 'articulonovedad' ('IdArticulo', 'IdNovedad', 'TipoNovedad', 'ObservacionNovedad') VALUES
 (9, 52, 'DAÑADO', ''),
 (17, 53, 'DAÑADO', 'asdasda');
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `categoria`
+-- Estructura de tabla para la tabla 'categoria'
 --
 
-CREATE TABLE `categoria` (
-  `IdCategoria` int(50) NOT NULL,
-  `NombreCategoria` varchar(50) COLLATE utf8_spanish_ci NOT NULL
+CREATE TABLE 'categoria' (
+  'IdCategoria' int(50) NOT NULL,
+  'NombreCategoria' varchar(50) COLLATE utf8_spanish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
--- Volcado de datos para la tabla `categoria`
+-- Volcado de datos para la tabla 'categoria'
 --
 
-INSERT INTO `categoria` (`IdCategoria`, `NombreCategoria`) VALUES
+INSERT INTO 'categoria' ('IdCategoria', 'NombreCategoria') VALUES
 (2, 'IMPLEMENTOS DE DASDASDA'),
 (3, 'TECNOLOGíAS'),
 (4, 'EQUIPOS DE CONSTRUCCION');
@@ -166,23 +166,23 @@ INSERT INTO `categoria` (`IdCategoria`, `NombreCategoria`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `equipo`
+-- Estructura de tabla para la tabla 'equipo'
 --
 
-CREATE TABLE `equipo` (
-  `IdEquipo` int(50) NOT NULL,
-  `NombreEquipo` varchar(50) COLLATE utf8_spanish_ci NOT NULL,
-  `EstadoEquipo` text COLLATE utf8_spanish_ci NOT NULL,
-  `NumArticulosEquipo` varchar(50) COLLATE utf8_spanish_ci NOT NULL,
-  `ObservacionEquipo` varchar(200) COLLATE utf8_spanish_ci NOT NULL,
-  `NumArticulosAgregados` varchar(50) COLLATE utf8_spanish_ci DEFAULT NULL
+CREATE TABLE 'equipo' (
+  'IdEquipo' int(50) NOT NULL,
+  'NombreEquipo' varchar(50) COLLATE utf8_spanish_ci NOT NULL,
+  'EstadoEquipo' text COLLATE utf8_spanish_ci NOT NULL,
+  'NumArticulosEquipo' varchar(50) COLLATE utf8_spanish_ci NOT NULL,
+  'ObservacionEquipo' varchar(200) COLLATE utf8_spanish_ci NOT NULL,
+  'NumArticulosAgregados' varchar(50) COLLATE utf8_spanish_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
--- Volcado de datos para la tabla `equipo`
+-- Volcado de datos para la tabla 'equipo'
 --
 
-INSERT INTO `equipo` (`IdEquipo`, `NombreEquipo`, `EstadoEquipo`, `NumArticulosEquipo`, `ObservacionEquipo`, `NumArticulosAgregados`) VALUES
+INSERT INTO 'equipo' ('IdEquipo', 'NombreEquipo', 'EstadoEquipo', 'NumArticulosEquipo', 'ObservacionEquipo', 'NumArticulosAgregados') VALUES
 (1, 'PC DE MESA', 'DESACTIVADO', '4', 'ME LA PELA EL HIJUEPUTA PHP', '1'),
 (3, 'ASDASD', 'ACTIVADO', '3', 'WEGEGWEGWE', '3'),
 (5, 'ASDA', 'ACTIVADO', '4', 'FSDFSDF', '0');
@@ -190,67 +190,67 @@ INSERT INTO `equipo` (`IdEquipo`, `NombreEquipo`, `EstadoEquipo`, `NumArticulosE
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `ficha`
+-- Estructura de tabla para la tabla 'ficha'
 --
 
-CREATE TABLE `ficha` (
-  `NumeroFicha` int(50) NOT NULL,
-  `IdPrograma` int(50) DEFAULT NULL,
-  `IdAmbiente` int(50) NOT NULL,
-  `FechaInicio` varchar(50) COLLATE utf8_spanish_ci NOT NULL,
-  `FechaFin` varchar(50) COLLATE utf8_spanish_ci NOT NULL,
-  `JornadaFicha` varchar(50) COLLATE utf8_spanish_ci NOT NULL
+CREATE TABLE 'ficha' (
+  'NumeroFicha' int(50) NOT NULL,
+  'IdPrograma' int(50) DEFAULT NULL,
+  'IdAmbiente' int(50) NOT NULL,
+  'FechaInicio' varchar(50) COLLATE utf8_spanish_ci NOT NULL,
+  'FechaFin' varchar(50) COLLATE utf8_spanish_ci NOT NULL,
+  'JornadaFicha' varchar(50) COLLATE utf8_spanish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
--- Volcado de datos para la tabla `ficha`
+-- Volcado de datos para la tabla 'ficha'
 --
 
-INSERT INTO `ficha` (`NumeroFicha`, `IdPrograma`, `IdAmbiente`, `FechaInicio`, `FechaFin`, `JornadaFicha`) VALUES
+INSERT INTO 'ficha' ('NumeroFicha', 'IdPrograma', 'IdAmbiente', 'FechaInicio', 'FechaFin', 'JornadaFicha') VALUES
 (11111, 39, 4, '11/11/2011', '11/11/2011', 'TARDE'),
 (123123123, NULL, 3, '11/11/2011', '22/02/2022', 'MAñANA');
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `novedad`
+-- Estructura de tabla para la tabla 'novedad'
 --
 
-CREATE TABLE `novedad` (
-  `IdNovedad` int(50) NOT NULL,
-  `NumDocumentoUsuario` int(50) NOT NULL,
-  `UsuarioNovedad` varchar(50) COLLATE utf8_spanish_ci NOT NULL,
-  `NumeroFicha` int(50) NOT NULL,
-  `FechaNovedad` text COLLATE utf8_spanish_ci NOT NULL,
-  `Articulo` varchar(50) COLLATE utf8_spanish_ci NOT NULL
+CREATE TABLE 'novedad' (
+  'IdNovedad' int(50) NOT NULL,
+  'NumDocumentoUsuario' int(50) NOT NULL,
+  'UsuarioNovedad' varchar(50) COLLATE utf8_spanish_ci NOT NULL,
+  'NumeroFicha' int(50) NOT NULL,
+  'FechaNovedad' text COLLATE utf8_spanish_ci NOT NULL,
+  'Articulo' varchar(50) COLLATE utf8_spanish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
--- Volcado de datos para la tabla `novedad`
+-- Volcado de datos para la tabla 'novedad'
 --
 
-INSERT INTO `novedad` (`IdNovedad`, `NumDocumentoUsuario`, `UsuarioNovedad`, `NumeroFicha`, `FechaNovedad`, `Articulo`) VALUES
+INSERT INTO 'novedad' ('IdNovedad', 'NumDocumentoUsuario', 'UsuarioNovedad', 'NumeroFicha', 'FechaNovedad', 'Articulo') VALUES
 (52, 123, 'ADMINISTRADOR', 123123123, '2018-10-11 18:17:47', '9'),
 (53, 123, 'ADMINISTRADOR', 123123123, '2018-10-11 18:18:12', '17');
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `programa`
+-- Estructura de tabla para la tabla 'programa'
 --
 
-CREATE TABLE `programa` (
-  `IdPrograma` int(50) NOT NULL,
-  `NombrePrograma` varchar(50) COLLATE utf8_spanish_ci NOT NULL,
-  `DuracionPrograma` varchar(50) COLLATE utf8_spanish_ci NOT NULL,
-  `TipoPrograma` varchar(50) COLLATE utf8_spanish_ci DEFAULT NULL
+CREATE TABLE 'programa' (
+  'IdPrograma' int(50) NOT NULL,
+  'NombrePrograma' varchar(50) COLLATE utf8_spanish_ci NOT NULL,
+  'DuracionPrograma' varchar(50) COLLATE utf8_spanish_ci NOT NULL,
+  'TipoPrograma' varchar(50) COLLATE utf8_spanish_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
--- Volcado de datos para la tabla `programa`
+-- Volcado de datos para la tabla 'programa'
 --
 
-INSERT INTO `programa` (`IdPrograma`, `NombrePrograma`, `DuracionPrograma`, `TipoPrograma`) VALUES
+INSERT INTO 'programa' ('IdPrograma', 'NombrePrograma', 'DuracionPrograma', 'TipoPrograma') VALUES
 (39, 'ANIMACIóN 3D', '24 MESES', 'TECNOLOGO'),
 (43, 'ADSI', '24 MESES', 'TECNOLOGO'),
 (44, 'ADMINISTRACION', '12 MESES', 'TECNICO'),
@@ -259,23 +259,23 @@ INSERT INTO `programa` (`IdPrograma`, `NombrePrograma`, `DuracionPrograma`, `Tip
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `usuario`
+-- Estructura de tabla para la tabla 'usuario'
 --
 
-CREATE TABLE `usuario` (
-  `NumDocumentoUsuario` int(50) NOT NULL,
-  `IdPrograma` int(50) DEFAULT NULL,
-  `NombreUsuario` varchar(50) COLLATE utf8_spanish_ci NOT NULL,
-  `ContraseniaUsuario` varchar(200) COLLATE utf8_spanish_ci NOT NULL,
-  `RolUsuario` varchar(50) COLLATE utf8_spanish_ci NOT NULL,
-  `FotoUsuario` text COLLATE utf8_spanish_ci
+CREATE TABLE 'usuario' (
+  'NumDocumentoUsuario' int(50) NOT NULL,
+  'IdPrograma' int(50) DEFAULT NULL,
+  'NombreUsuario' varchar(50) COLLATE utf8_spanish_ci NOT NULL,
+  'ContraseniaUsuario' varchar(200) COLLATE utf8_spanish_ci NOT NULL,
+  'RolUsuario' varchar(50) COLLATE utf8_spanish_ci NOT NULL,
+  'FotoUsuario' text COLLATE utf8_spanish_ci
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
--- Volcado de datos para la tabla `usuario`
+-- Volcado de datos para la tabla 'usuario'
 --
 
-INSERT INTO `usuario` (`NumDocumentoUsuario`, `IdPrograma`, `NombreUsuario`, `ContraseniaUsuario`, `RolUsuario`, `FotoUsuario`) VALUES
+INSERT INTO 'usuario' ('NumDocumentoUsuario', 'IdPrograma', 'NombreUsuario', 'ContraseniaUsuario', 'RolUsuario', 'FotoUsuario') VALUES
 (123, NULL, 'ADMINISTRADOR', 'c7ad44cbad762a5da0a452f9e854fdc1e0e7a52a38015f23f3eab1d80b931dd472634dfac71cd34ebc35d16ab7fb8a90c81f975113d6c7538dc69dd8de9077ec', 'ADMINISTRADOR', ''),
 (321, 45, 'PEPO', '44607f62869d34f038c48474ba6311e9787aaf37b8117b4c45e882352602d0c24f9b16c0691a9af5a587895675310ee859b6242a91056d4acb59b2ed5b8875e1', 'INSTRUCTOR', 'vistas/img/usuarios/321/488.png');
 
@@ -284,180 +284,180 @@ INSERT INTO `usuario` (`NumDocumentoUsuario`, `IdPrograma`, `NombreUsuario`, `Co
 --
 
 --
--- Indices de la tabla `acta_responsabilidad`
+-- Indices de la tabla 'acta_responsabilidad'
 --
-ALTER TABLE `acta_responsabilidad`
-  ADD PRIMARY KEY (`IdActa`),
-  ADD KEY `NumDocumentoAprendiz` (`NumDocumentoAprendiz`),
-  ADD KEY `IdEquipo` (`IdEquipo`);
+ALTER TABLE 'acta_responsabilidad'
+  ADD PRIMARY KEY ('IdActa'),
+  ADD KEY 'NumDocumentoAprendiz' ('NumDocumentoAprendiz'),
+  ADD KEY 'IdEquipo' ('IdEquipo');
 
 --
--- Indices de la tabla `ambiente`
+-- Indices de la tabla 'ambiente'
 --
-ALTER TABLE `ambiente`
-  ADD PRIMARY KEY (`IdAmbiente`),
-  ADD KEY `IdPrograma` (`IdPrograma`);
+ALTER TABLE 'ambiente'
+  ADD PRIMARY KEY ('IdAmbiente'),
+  ADD KEY 'IdPrograma' ('IdPrograma');
 
 --
--- Indices de la tabla `aprendiz`
+-- Indices de la tabla 'aprendiz'
 --
-ALTER TABLE `aprendiz`
-  ADD PRIMARY KEY (`NumDocumentoAprendiz`),
-  ADD KEY `NumeroFicha` (`NumeroFicha`);
+ALTER TABLE 'aprendiz'
+  ADD PRIMARY KEY ('NumDocumentoAprendiz'),
+  ADD KEY 'NumeroFicha' ('NumeroFicha');
 
 --
--- Indices de la tabla `articulo`
+-- Indices de la tabla 'articulo'
 --
-ALTER TABLE `articulo`
-  ADD PRIMARY KEY (`IdArticulo`),
-  ADD KEY `IdAmbiente` (`IdAmbiente`),
-  ADD KEY `IdEquipo` (`IdEquipo`),
-  ADD KEY `IdCategoria` (`IdCategoria`);
+ALTER TABLE 'articulo'
+  ADD PRIMARY KEY ('IdArticulo'),
+  ADD KEY 'IdAmbiente' ('IdAmbiente'),
+  ADD KEY 'IdEquipo' ('IdEquipo'),
+  ADD KEY 'IdCategoria' ('IdCategoria');
 
 --
--- Indices de la tabla `articulonovedad`
+-- Indices de la tabla 'articulonovedad'
 --
-ALTER TABLE `articulonovedad`
-  ADD PRIMARY KEY (`IdArticulo`,`IdNovedad`),
-  ADD KEY `IdNovedad` (`IdNovedad`);
+ALTER TABLE 'articulonovedad'
+  ADD PRIMARY KEY ('IdArticulo','IdNovedad'),
+  ADD KEY 'IdNovedad' ('IdNovedad');
 
 --
--- Indices de la tabla `categoria`
+-- Indices de la tabla 'categoria'
 --
-ALTER TABLE `categoria`
-  ADD PRIMARY KEY (`IdCategoria`);
+ALTER TABLE 'categoria'
+  ADD PRIMARY KEY ('IdCategoria');
 
 --
--- Indices de la tabla `equipo`
+-- Indices de la tabla 'equipo'
 --
-ALTER TABLE `equipo`
-  ADD PRIMARY KEY (`IdEquipo`);
+ALTER TABLE 'equipo'
+  ADD PRIMARY KEY ('IdEquipo');
 
 --
--- Indices de la tabla `ficha`
+-- Indices de la tabla 'ficha'
 --
-ALTER TABLE `ficha`
-  ADD PRIMARY KEY (`NumeroFicha`),
-  ADD KEY `IdPrograma` (`IdPrograma`),
-  ADD KEY `IdAmbiente` (`IdAmbiente`);
+ALTER TABLE 'ficha'
+  ADD PRIMARY KEY ('NumeroFicha'),
+  ADD KEY 'IdPrograma' ('IdPrograma'),
+  ADD KEY 'IdAmbiente' ('IdAmbiente');
 
 --
--- Indices de la tabla `novedad`
+-- Indices de la tabla 'novedad'
 --
-ALTER TABLE `novedad`
-  ADD PRIMARY KEY (`IdNovedad`),
-  ADD KEY `NumDocumentoUsuario` (`NumDocumentoUsuario`),
-  ADD KEY `NumeroFicha` (`NumeroFicha`);
+ALTER TABLE 'novedad'
+  ADD PRIMARY KEY ('IdNovedad'),
+  ADD KEY 'NumDocumentoUsuario' ('NumDocumentoUsuario'),
+  ADD KEY 'NumeroFicha' ('NumeroFicha');
 
 --
--- Indices de la tabla `programa`
+-- Indices de la tabla 'programa'
 --
-ALTER TABLE `programa`
-  ADD PRIMARY KEY (`IdPrograma`);
+ALTER TABLE 'programa'
+  ADD PRIMARY KEY ('IdPrograma');
 
 --
--- Indices de la tabla `usuario`
+-- Indices de la tabla 'usuario'
 --
-ALTER TABLE `usuario`
-  ADD PRIMARY KEY (`NumDocumentoUsuario`),
-  ADD KEY `IdPrograma` (`IdPrograma`);
+ALTER TABLE 'usuario'
+  ADD PRIMARY KEY ('NumDocumentoUsuario'),
+  ADD KEY 'IdPrograma' ('IdPrograma');
 
 --
 -- AUTO_INCREMENT de las tablas volcadas
 --
 
 --
--- AUTO_INCREMENT de la tabla `acta_responsabilidad`
+-- AUTO_INCREMENT de la tabla 'acta_responsabilidad'
 --
-ALTER TABLE `acta_responsabilidad`
-  MODIFY `IdActa` int(50) NOT NULL AUTO_INCREMENT;
+ALTER TABLE 'acta_responsabilidad'
+  MODIFY 'IdActa' int(50) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT de la tabla `ambiente`
+-- AUTO_INCREMENT de la tabla 'ambiente'
 --
-ALTER TABLE `ambiente`
-  MODIFY `IdAmbiente` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+ALTER TABLE 'ambiente'
+  MODIFY 'IdAmbiente' int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
--- AUTO_INCREMENT de la tabla `articulo`
+-- AUTO_INCREMENT de la tabla 'articulo'
 --
-ALTER TABLE `articulo`
-  MODIFY `IdArticulo` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+ALTER TABLE 'articulo'
+  MODIFY 'IdArticulo' int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
--- AUTO_INCREMENT de la tabla `categoria`
+-- AUTO_INCREMENT de la tabla 'categoria'
 --
-ALTER TABLE `categoria`
-  MODIFY `IdCategoria` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+ALTER TABLE 'categoria'
+  MODIFY 'IdCategoria' int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT de la tabla `equipo`
+-- AUTO_INCREMENT de la tabla 'equipo'
 --
-ALTER TABLE `equipo`
-  MODIFY `IdEquipo` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+ALTER TABLE 'equipo'
+  MODIFY 'IdEquipo' int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- AUTO_INCREMENT de la tabla `novedad`
+-- AUTO_INCREMENT de la tabla 'novedad'
 --
-ALTER TABLE `novedad`
-  MODIFY `IdNovedad` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
+ALTER TABLE 'novedad'
+  MODIFY 'IdNovedad' int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
 
 --
--- AUTO_INCREMENT de la tabla `programa`
+-- AUTO_INCREMENT de la tabla 'programa'
 --
-ALTER TABLE `programa`
-  MODIFY `IdPrograma` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
+ALTER TABLE 'programa'
+  MODIFY 'IdPrograma' int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
 
 --
 -- Restricciones para tablas volcadas
 --
 
 --
--- Filtros para la tabla `acta_responsabilidad`
+-- Filtros para la tabla 'acta_responsabilidad'
 --
-ALTER TABLE `acta_responsabilidad`
-  ADD CONSTRAINT `acta_responsabilidad_ibfk_1` FOREIGN KEY (`NumDocumentoAprendiz`) REFERENCES `aprendiz` (`NumDocumentoAprendiz`),
-  ADD CONSTRAINT `acta_responsabilidad_ibfk_2` FOREIGN KEY (`IdEquipo`) REFERENCES `equipo` (`IdEquipo`);
+ALTER TABLE 'acta_responsabilidad'
+  ADD CONSTRAINT 'acta_responsabilidad_ibfk_1' FOREIGN KEY ('NumDocumentoAprendiz') REFERENCES 'aprendiz' ('NumDocumentoAprendiz'),
+  ADD CONSTRAINT 'acta_responsabilidad_ibfk_2' FOREIGN KEY ('IdEquipo') REFERENCES 'equipo' ('IdEquipo');
 
 --
--- Filtros para la tabla `ambiente`
+-- Filtros para la tabla 'ambiente'
 --
-ALTER TABLE `ambiente`
-  ADD CONSTRAINT `ambiente_ibfk_1` FOREIGN KEY (`IdPrograma`) REFERENCES `programa` (`IdPrograma`);
+ALTER TABLE 'ambiente'
+  ADD CONSTRAINT 'ambiente_ibfk_1' FOREIGN KEY ('IdPrograma') REFERENCES 'programa' ('IdPrograma');
 
 --
--- Filtros para la tabla `aprendiz`
+-- Filtros para la tabla 'aprendiz'
 --
-ALTER TABLE `aprendiz`
-  ADD CONSTRAINT `aprendiz_ibfk_1` FOREIGN KEY (`NumeroFicha`) REFERENCES `ficha` (`NumeroFicha`);
+ALTER TABLE 'aprendiz'
+  ADD CONSTRAINT 'aprendiz_ibfk_1' FOREIGN KEY ('NumeroFicha') REFERENCES 'ficha' ('NumeroFicha');
 
 --
--- Filtros para la tabla `articulo`
+-- Filtros para la tabla 'articulo'
 --
-ALTER TABLE `articulo`
-  ADD CONSTRAINT `articulo_ibfk_1` FOREIGN KEY (`IdAmbiente`) REFERENCES `ambiente` (`IdAmbiente`),
-  ADD CONSTRAINT `articulo_ibfk_2` FOREIGN KEY (`IdEquipo`) REFERENCES `equipo` (`IdEquipo`),
-  ADD CONSTRAINT `articulo_ibfk_3` FOREIGN KEY (`IdCategoria`) REFERENCES `categoria` (`IdCategoria`);
+ALTER TABLE 'articulo'
+  ADD CONSTRAINT 'articulo_ibfk_1' FOREIGN KEY ('IdAmbiente') REFERENCES 'ambiente' ('IdAmbiente'),
+  ADD CONSTRAINT 'articulo_ibfk_2' FOREIGN KEY ('IdEquipo') REFERENCES 'equipo' ('IdEquipo'),
+  ADD CONSTRAINT 'articulo_ibfk_3' FOREIGN KEY ('IdCategoria') REFERENCES 'categoria' ('IdCategoria');
 
 --
--- Filtros para la tabla `articulonovedad`
+-- Filtros para la tabla 'articulonovedad'
 --
-ALTER TABLE `articulonovedad`
-  ADD CONSTRAINT `articulonovedad_ibfk_1` FOREIGN KEY (`IdArticulo`) REFERENCES `articulo` (`IdArticulo`),
-  ADD CONSTRAINT `articulonovedad_ibfk_2` FOREIGN KEY (`IdNovedad`) REFERENCES `novedad` (`IdNovedad`);
+ALTER TABLE 'articulonovedad'
+  ADD CONSTRAINT 'articulonovedad_ibfk_1' FOREIGN KEY ('IdArticulo') REFERENCES 'articulo' ('IdArticulo'),
+  ADD CONSTRAINT 'articulonovedad_ibfk_2' FOREIGN KEY ('IdNovedad') REFERENCES 'novedad' ('IdNovedad');
 
 --
--- Filtros para la tabla `ficha`
+-- Filtros para la tabla 'ficha'
 --
-ALTER TABLE `ficha`
-  ADD CONSTRAINT `ficha_ibfk_1` FOREIGN KEY (`IdPrograma`) REFERENCES `programa` (`IdPrograma`),
-  ADD CONSTRAINT `ficha_ibfk_2` FOREIGN KEY (`IdAmbiente`) REFERENCES `ambiente` (`IdAmbiente`);
+ALTER TABLE 'ficha'
+  ADD CONSTRAINT 'ficha_ibfk_1' FOREIGN KEY ('IdPrograma') REFERENCES 'programa' ('IdPrograma'),
+  ADD CONSTRAINT 'ficha_ibfk_2' FOREIGN KEY ('IdAmbiente') REFERENCES 'ambiente' ('IdAmbiente');
 
 --
--- Filtros para la tabla `usuario`
+-- Filtros para la tabla 'usuario'
 --
-ALTER TABLE `usuario`
-  ADD CONSTRAINT `usuario_ibfk_1` FOREIGN KEY (`IdPrograma`) REFERENCES `programa` (`IdPrograma`);
+ALTER TABLE 'usuario'
+  ADD CONSTRAINT 'usuario_ibfk_1' FOREIGN KEY ('IdPrograma') REFERENCES 'programa' ('IdPrograma');
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
