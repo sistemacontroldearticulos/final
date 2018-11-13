@@ -52,28 +52,28 @@ $(".tablas").on("click", ".btnEditarUsuario", function(){
             $("#editarNombre").html(respuesta["nombreusuario"]);
             $("#editarNombre").val(respuesta["nombreusuario"]);
             $("#editarDocumento").val(respuesta["numdocumentousuario"]);
-            $("#editarPerfil").html(respuesta["rolusuario"]);
+            // $("#editarPerfil").html(respuesta["rolusuario"]);
             $("#editarPerfil").val(respuesta["rolusuario"]);
             $("#fotoActual").val(respuesta["fotousuario"]);
-            var datosPrograma = new FormData();
-            datosPrograma.append("idPrograma", respuesta["idprograma"]);
-            $.ajax({
-                url: "ajax/programas.ajax.php",
-                method: "POST",
-                data: datosPrograma,
-                cache: false,
-                contentType: false,
-                processData: false,
-                dataType: "json",
-                success: function(respuesta) {
-                    if (respuesta == false) {
-                        $("#editarPrograma").prop('disabled', true)
-                    } else {
-                        $("#editarPrograma").html(respuesta["nombreprograma"]);
-                        $("#editarPrograma").val(respuesta["idprograma"]);
-                    }
-                }
-            })
+            // var datosPrograma = new FormData();
+            // datosPrograma.append("idPrograma", respuesta["idprograma"]);
+            // $.ajax({
+            //     url: "ajax/programas.ajax.php",
+            //     method: "POST",
+            //     data: datosPrograma,
+            //     cache: false,
+            //     contentType: false,
+            //     processData: false,
+            //     dataType: "json",
+            //     success: function(respuesta) {
+            //         if (respuesta == false) {
+            //             $("#editarPrograma").prop('disabled', true)
+            //         } else {
+            //             // $("#editarPrograma").html(respuesta["nombreprograma"]);
+            //             $("#editarPrograma").val(respuesta["idprograma"]);
+            //         }
+            //     }
+            // })
             $("#passwordActual").val(respuesta["contraseniausuario"]);
             if (respuesta["fotousuario"] != "") {
                 $(".previsualizar").attr("src", respuesta["fotousuario"]);
@@ -99,7 +99,7 @@ $("#nuevoDocumento").change(function() {
         dataType: "json",
         success: function(respuesta) {
             if (respuesta) {
-                $("#nuevoDocumento").parent().after('<div class="alert alert-warning">Este numero de documento ya existe en la base de datos</div>');
+                $("#editarDocumento").parent().after('<div class="alert alert-warning">Este numero de documento ya existe en la base de datos</div>');
                 $("#nuevoDocumento").val("");
             }
         }
@@ -133,5 +133,15 @@ function rolUsuario(sel) {
         $("#nuevoPrograma").prop('disabled', true);
     } else {
         $("#nuevoPrograma").prop('disabled', false);
+    }
+}
+
+function rolUsuario2(sel) {
+    debugger;
+    if (sel == "ADMINISTRADOR") {
+        $("#editarPrograma").val("");
+        $("#editarPrograma").prop('disabled', true);
+    } else {
+        $("#editarPrograma").prop('disabled', false);
     }
 }

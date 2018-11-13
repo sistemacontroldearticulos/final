@@ -20,7 +20,7 @@ class ControladorNovedades
             $datos = array("NumDocumentoUsuario" => $_POST["numUsuario"],
                 "UsuarioNovedad"                     => $_POST["usuarioNovedad"],
                 "NumeroFicha"                        => $_POST["nuevaFicha1"],
-                "articulo"                           => $_POST["articulo"],
+                "articulo"                           => null,
                 "FechaNovedad"                       => $fechaActual,
                 "Estado"                       => "1");
 
@@ -35,11 +35,13 @@ class ControladorNovedades
                     $observacion = null;
                 }
 
-                $item1  = "Articulo";
-                $valor1 = $_POST["articulo"];
+                $item1  = "fechanovedad";
+                $valor1 = $fechaActual;
                 $tabla1 = "novedad";
 
                 $respuesta1 = ModeloNovedades::mdlMostrarNovedades($tabla1, $item1, $valor1);
+
+                // var_dump($respuesta1[0]["idnovedad"]);
 
                 $arreglo = $_POST["listaArticulos"];
 
@@ -51,68 +53,87 @@ class ControladorNovedades
                     $id          = $key->id;
                     $tipo        = $key->tipo;
                     $descripcion = $key->descripcion;
-                    $tabla       = "articulonovedad";
-                    $datos       = array('IdArticulo' => $id,
+
+                    $tabla5      = "articulonovedad";
+
+                    $datos5       = array('IdArticulo' => $id,
                         'TipoNovedad'                     => $tipo,
                         'ObservacionNovedad'              => $descripcion,
-                        'IdNovedad'                       => $respuesta1["idnovedad"],
+                        'IdNovedad'                       => $respuesta1[0]["idnovedad"],
                     );
 
-                    $respuesta = ModeloNovedades::mdlCrearNovedadArticulo($tabla, $datos);
+                    // var_dump($datos);
 
+                    // $respuesta2 = ModeloNovedades::mdlCrearNovedadArticulo($tabla, $datos);
+                    $tabla3 = "articulonovedad";
+                    $item3 = "idarticulo";
+                    $valor3 = $id;
+ 
+                    $respuesta3 = ModeloArticulos::mdlMostrarArticulos($tabla3, $item3, $valor3);
+                    // var_dump($respuesta3);
+
+                    if ($respuesta3 != "") {
+
+                        // $a = ModeloNovedades::idnovedad();
+                        // var_dump($a[0]);
+
+                        $tabla8 = "novedad";
+                        $datos8 = $a[0]; 
+
+                        $respuesta7 = ModeloNovedades::mdlBorrarNovedad($tabla8, $datos8);
+
+                        // var_dump($respuesta7);
+
+                         echo '<script>
+
+                             swal({
+
+                                    type: "error",
+                                    title: "¡El artículo ya se encuentra registrado en una novedad!",
+                                    showConfirmButton: true,
+                                    confirmButtonText: "Cerrar"
+
+                                }).then(function(result){
+
+                                    if(result.value){
+
+                                        window.location = "crear-novedad";
+
+                                    }
+
+                                });
+
+                            </script>';
+                    }else{
+                        $respuesta2 = ModeloNovedades::mdlCrearNovedadArticulo($tabla5, $datos5);
+
+                        // var_dump($respuesta2);
+
+                        if ($respuesta2 == "ok") {
+                            echo '<script>
+
+                                 swal({
+
+                                         type: "success",
+                                         title: "¡La novedad ha sido registrada correctamente!",
+                                         showConfirmButton: true,
+                                         confirmButtonText: "Cerrar"
+
+                                     }).then(function(result){
+
+                                         if(result.value){
+
+                                             window.location = "crear-novedad";
+
+                                         }
+
+                                     });
+
+                                 </script>';
+                        }
+                    }
                 }
-                // var_dump($respuesta);
-
-                if ($respuesta == "error") {
-                    echo '<script>
-
-                        swal({
-
-                            type: "error",
-                            title: "¡El artículo ya se encuentra registrado en esta novedad!",
-                            showConfirmButton: true,
-                            confirmButtonText: "Cerrar"
-
-                        }).then(function(result){
-
-                            if(result.value){
-
-                                window.location = "crear-novedad";
-
-                            }
-
-                        });
-
-                    </script>';
-                } else {
-                    echo '<script>
-
-                        swal({
-
-                            type: "success",
-                            title: "¡La novedad ha sido registrada correctamente!",
-                            showConfirmButton: true,
-                            confirmButtonText: "Cerrar"
-
-                        }).then(function(result){
-
-                            if(result.value){
-
-                                window.location = "crear-novedad";
-
-                            }
-
-                        });
-
-                    </script>';
-
-                }
-
             }
-            /*=============================================
-        =ARRIBA DE ESTO AGREGA NOVEDAD (RESPUESTA OK)=
-        =============================================*/
-
         }
     }
 
