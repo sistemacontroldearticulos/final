@@ -127,11 +127,11 @@ foreach ($usuario as $key => $value) {
       <form role="form" method="post" enctype="multipart/form-data">
 
         <!-- CABEZA DEL MODAL -->
-        <div class="modal-header" style="background:#3c8dbc; color:white">
+        <div class="modal-header cabeza-modal">
 
           <button type="button" class="close" data-dismiss="modal">&times;</button>
 
-          <h4 class="modal-title">Agregar usuario</h4>
+          <h4 class="modal-title">Agregar Usuario</h4>
 
         </div>
 
@@ -148,7 +148,7 @@ foreach ($usuario as $key => $value) {
 
                 <span class="input-group-addon"><i class="fa fa-user"></i></span>
 
-                <input type="text" class="form-control input-lg" name="nuevoNombre" placeholder="Ingresar nombre" required>
+                <input type="text" class="form-control input-lg" name="nuevoNombre" placeholder="Ingrese Nombre" required>
 
               </div>
 
@@ -161,7 +161,7 @@ foreach ($usuario as $key => $value) {
 
                 <span class="input-group-addon"><i class="fa fa-key"></i></span>
 
-                <input type="number" class="form-control input-lg" name="nuevoDocumento" id="nuevoDocumento" min="0" placeholder="Numero de documento" required>
+                <input type="number" class="form-control input-lg" name="nuevoDocumento" id="nuevoDocumento" min="0" placeholder="Numero de Documento" required>
 
               </div>
 
@@ -174,7 +174,7 @@ foreach ($usuario as $key => $value) {
 
                 <span class="input-group-addon"><i class="fa fa-lock"></i></span>
 
-                <input type="password" class="form-control input-lg" name="nuevaContrasenia" placeholder="Ingresar contraseña" required>
+                <input type="password" class="form-control input-lg" name="nuevaContrasenia" placeholder="***********" readonly>
 
               </div>
 
@@ -189,7 +189,7 @@ foreach ($usuario as $key => $value) {
 
                 <select class="form-control input-lg" name="nuevoPerfil" onchange="rolUsuario(this.value)" required>
 
-                  <option value="">Selecionar perfil</option>
+                  <option value="">Seleccionar Perfil</option>
                   <option value="Administrador">Administrador</option>
                   <option value="Instructor">Instructor</option>
                   <option value="Especial">Especial</option>
@@ -209,7 +209,7 @@ foreach ($usuario as $key => $value) {
 
                 <select class="form-control input-lg" name="nuevoPrograma" id="nuevoPrograma">
 
-                  <option value="">Selecionar Programa</option>
+                  <option value="">Seleccionar Programa</option>
                   <?php
 
 $item  = null;
@@ -253,7 +253,7 @@ foreach ($programa as $key => $value) {
 
           <button type="button" class="btn btn-default" data-dismiss="modal">Salir</button>
 
-          <button type="submit" class="btn btn-primary">Guardar usuario</button>
+          <button type="submit" class="btn btn-primary">Guardar Usuario</button>
         </div>
 
         <?php
@@ -278,11 +278,11 @@ $crearUsuario->ctrCrearUsuario();
       <form role="form" method="post" enctype="multipart/form-data">
 
         <!-- CABEZA DEL MODAL -->
-        <div class="modal-header" style="background:#3c8dbc; color:white">
+        <div class="modal-header cabeza-modal">
 
           <button type="button" class="close" data-dismiss="modal">&times;</button>
 
-          <h4 class="modal-title">Editar usuario</h4>
+          <h4 class="modal-title">Editar Usuario</h4>
 
         </div>
 
@@ -297,7 +297,7 @@ $crearUsuario->ctrCrearUsuario();
 
                 <span class="input-group-addon"><i class="fa fa-user"></i></span>
 
-                <input type="text" class="form-control input-lg" id="editarNombre" name="editarNombre" value="" required>
+                <input type="text" class="form-control input-lg" id="editarNombre" name="editarNombre" value="" required placeholder="Ingrese Nombre">
 
               </div>
 
@@ -323,7 +323,7 @@ $crearUsuario->ctrCrearUsuario();
 
                 <span class="input-group-addon"><i class="fa fa-lock"></i></span>
 
-                <input type="password" class="form-control input-lg" id="editarContrasenia" name="editarContrasenia" placeholder="Escriba la nueva contraseña">
+                <input type="password" class="form-control input-lg" id="editarContrasenia" name="editarContrasenia" placeholder="Ingrese Contraseña">
 
                 <input type="hidden" id="passwordActual" name="passwordActual">
 
@@ -338,9 +338,9 @@ $crearUsuario->ctrCrearUsuario();
 
                 <span class="input-group-addon"><i class="fa fa-users"></i></span>
 
-                <select class="form-control input-lg" name="editarPerfil" onchange="rolUsuario2(this.value)">
+                <select class="form-control input-lg" name="editarPerfil" onchange="rolUsuario2(this.value)" id="editarPerfil">
 
-                  <option id="editarPerfil"></option>
+                  <!-- <option id="editarPerfil"></option> -->
                   <option value="ADMINISTRADOR">Administrador</option>
                   <option value="INSTRUCTOR">Instructor</option>
                   <option value="ESPECIAL">Especial</option>
@@ -358,11 +358,11 @@ $crearUsuario->ctrCrearUsuario();
 
                 <span class="input-group-addon"><i class="fa fa-product-hunt"></i></span>
 
-                <select class="form-control input-lg"  name="editarPrograma">
+                <select class="form-control input-lg"  name="editarPrograma"  id="editarPrograma">
 
 
-                   <option id="editarPrograma" value=""></option>
-                   <option value="">Seleccione Programa</option>
+                   <!-- <option id="editarPrograma" value=""></option> -->
+                   <option value="">Sin Programa</option>
 
                     <?php
                     $item  = null;
@@ -408,7 +408,7 @@ $crearUsuario->ctrCrearUsuario();
 
           <button type="button" class="btn btn-default" data-dismiss="modal">Salir</button>
 
-          <button type="submit" class="btn btn-primary">Guardar cambios</button>
+          <button type="submit" class="btn btn-primary">Guardar Cambios</button>
         </div>
 
         <?php

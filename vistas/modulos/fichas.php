@@ -135,7 +135,7 @@ MODAL AGREGAR FICHA
         CABEZA DEL MODAL
         ======================================-->
 
-        <div class="modal-header" style="background:#3c8dbc; color:white">
+        <div class="modal-header cabeza-modal">
 
           <button type="button" class="close" data-dismiss="modal">&times;</button>
 
@@ -159,7 +159,7 @@ MODAL AGREGAR FICHA
 
                 <span class="input-group-addon"><i class="fa fa-user"></i></span>
 
-                <input type="number" class="form-control input-lg" name="nuevaFicha" id="nuevaFicha" placeholder="Ingresar Numero De Ficha" required>
+                <input type="number" class="form-control input-lg" name="nuevaFicha" id="nuevaFicha" placeholder="Ingrese Numero de Ficha" required>
 
               </div>
 
@@ -173,9 +173,9 @@ MODAL AGREGAR FICHA
 
                 <span class="input-group-addon"><i class="fa fa-th"></i></span>
 
-                <select class="form-control input-lg" name="nuevoPrograma" required>
+                <select class="form-control input-lg" name="nuevoPrograma" required onchange="programa(this.value)">
 
-                  <option value="">Selecionar programa</option>
+                  <option value="">Seleccionar Programa</option>
 
                   <?php
 
@@ -207,7 +207,7 @@ foreach ($programa as $key => $value) {
 
                  <select class="form-control input-lg" name="nuevoAmbiente" required>
 
-                  <option value="">Selecionar ambiente</option>
+                  <option value="">Seleccionar Ambiente</option>
 
                   <?php
 
@@ -238,7 +238,7 @@ foreach ($ambiente as $key => $value) {
 
                     <select class="form-control input-lg" name="nuevaJornada" required>
 
-                  <option value="">Selecionar Jornada</option>
+                  <option value="">Seleccionar Jornada</option>
                   <option value="Mañana">Mañana</option>
                   <option value="Tarde">Tarde</option>
                   <option value="Noche">Noche</option>
@@ -249,14 +249,16 @@ foreach ($ambiente as $key => $value) {
 
             </div>
 
+            <div class="form-group row">
+
             <!-- ENTRADA PARA LA FECHA DE INICIO -->
-            <div class="form-group">
+            <div class="col-xs-6">
 
               <div class="input-group">
 
                 <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
 
-                <input type="text" class="form-control input-lg" name="nuevaFechaInicio" placeholder="Ingresar fecha inicio" data-inputmask="'alias': 'dd/mm/yyyy'" data-mask required>
+                <input type="text" class="form-control input-lg" name="nuevaFechaInicio" placeholder="Ingrese Fecha Inicio" data-inputmask="'alias': 'dd/mm/yyyy'" data-mask required onchange="tiempo(this.value)">
 
               </div>
 
@@ -264,16 +266,17 @@ foreach ($ambiente as $key => $value) {
 
             <!-- ENTRADA PARA LA FECHA DE FIN -->
 
-            <div class="form-group">
+            <div class="col-xs-6">
 
               <div class="input-group">
 
                 <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
 
-                <input type="text" class="form-control input-lg" name="nuevaFechaFin" placeholder="Ingresar fecha fin" data-inputmask="'alias': 'dd/mm/yyyy'" data-mask required>
+                <input type="text" class="form-control input-lg" id="fin" name="nuevaFechaFin" placeholder="Ingrese Fecha Fin" data-inputmask="'alias': 'dd/mm/yyyy'" data-mask >
 
               </div>
 
+            </div>
             </div>
 
             <div class="form-group">
@@ -328,7 +331,7 @@ MODAL EDITAR FICHA
         CABEZA DEL MODAL
         ======================================-->
 
-        <div class="modal-header" style="background:#3c8dbc; color:white">
+        <div class="modal-header cabeza-modal">
 
           <button type="button" class="close" data-dismiss="modal">&times;</button>
 
@@ -352,7 +355,7 @@ MODAL EDITAR FICHA
 
                 <span class="input-group-addon"><i class="fa fa-user"></i></span>
 
-                <input type="number" class="form-control input-lg" name="editarFicha" id="editarFicha" placeholder="Ingresar Numero De Ficha" readonly>
+                <input type="number" class="form-control input-lg" name="editarFicha" id="editarFicha" placeholder="Ingrese Numero de Ficha" readonly>
 
                 <input type="hidden" id="idFicha">
 
@@ -430,7 +433,7 @@ foreach ($mostrarAmbientes as $key => $value) {
 
                     <select class="form-control input-lg" name="editarJornada" required>
 
-                  <option value="" id="editarJornada" >Selecionar Jornada</option>
+                  <option value="" id="editarJornada" >Seleccionar Jornada</option>
                   <option value="Mañana">Mañana</option>
                   <option value="Tarde">Tarde</option>
                   <option value="Noche">Noche</option>
@@ -440,16 +443,16 @@ foreach ($mostrarAmbientes as $key => $value) {
               </div>
 
             </div>
+            <div class="form-group row">
 
             <!-- ENTRADA PARA LA FECHA DE INICIO -->
-
-            <div class="form-group">
+            <div class="col-xs-6">
 
               <div class="input-group">
 
                 <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
 
-                <input type="text" class="form-control input-lg" name="editarFechaInicio" id="editarFechaInicio" placeholder="Ingresar fecha inicio" data-inputmask="'alias': 'dd/mm/yyyy'" data-mask required>
+                <input type="text" class="form-control input-lg" name="editarFechaInicio"  id="editarFechaInicio" placeholder="Ingrese Fecha Inicio" data-inputmask="'alias': 'dd/mm/yyyy'" data-mask required">
 
               </div>
 
@@ -457,17 +460,21 @@ foreach ($mostrarAmbientes as $key => $value) {
 
             <!-- ENTRADA PARA LA FECHA DE FIN -->
 
-            <div class="form-group">
+            <div class="col-xs-6">
 
               <div class="input-group">
 
                 <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
 
-                <input type="text" class="form-control input-lg" name="editarFechaFin" id="editarFechaFin" placeholder="Ingresar fecha fin" data-inputmask="'alias': 'dd/mm/yyyy'" data-mask required>
+                <input type="text" class="form-control input-lg" id="editarFechaFin" name="editarFechaFin" placeholder="Ingrese Fecha Fin" data-inputmask="'alias': 'dd/mm/yyyy'" data-mask required>
 
               </div>
 
             </div>
+            </div>
+
+
+            
 
           </div>
 

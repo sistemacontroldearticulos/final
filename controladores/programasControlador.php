@@ -154,7 +154,7 @@ class ControladorProgramas
                             "IdAmbiente"                        => $value[0],
                         );
                         $tablaAmbiente      = "ambiente";
-                        var_dump($datosAmbiente);
+                        // var_dump($datosAmbiente);
                         $respuestaAmbiente2 = ModeloAmbientes::mdlEditarAmbientes($tablaAmbiente, $datosAmbiente);
 
                     }

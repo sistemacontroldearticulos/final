@@ -20,29 +20,42 @@ class AjaxEquipo
 
 		echo json_encode($respuesta);
 	}
+
 	public function ajaxEquipoArticulo(){
 
         $item = "IdEquipo";
-        $valor = $this->idEquipo;
+        $valor = $this->idEquipos;
 
         $respuesta = ControladorEquipos::ctrMostrarEquipos($item, $valor);
 
 		echo json_encode($respuesta);
 
     }
-}
+    // VALIDAR EQUIPO
+    public $nombreequipo;
 
-if(isset($_POST["idEquipo"])){
+	public function ajaxValidarEquipo()
+	{
+		$item = "nombreequipo";
+		$valor = $this->nombreequipo;
+
+		$respuesta = ControladorEquipos::ctrMostrarEquipos($item, $valor);
+
+		echo json_encode($respuesta);
+	}
+}
+// VALIDAR EQUIPO
+if(isset($_POST["nombreEquipo"])){
 
 	$equipo = new AjaxEquipo();
-	$equipo -> idEquipo = $_POST["idEquipo"];
-	$equipo -> ajaxEditarEquipo();
+	$equipo -> nombreequipo = strtoupper($_POST["nombreEquipo"]);
+	$equipo -> ajaxValidarEquipo();
 }
 
 if(isset($_POST["sel"])){
 
     $equipo = new AjaxEquipo();
-    $equipo -> idEquipo = $_POST["sel"];
+    $equipo -> idEquipos = $_POST["sel"];
     $equipo -> ajaxEquipoArticulo();
 }
 

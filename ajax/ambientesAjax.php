@@ -35,6 +35,19 @@ class AjaxAmbientes{
         echo json_encode($respuesta);
 
     }
+
+    // VALIDAR AMBIENTE
+    public $nombreAmbiente;
+
+    public function ajaxValidarAmbiente(){
+
+        $item = "nombreambiente";
+        $valor = $this->nombreAmbiente;
+
+        $respuesta = ControladorAmbientes::ctrMostrarAmbientes($item, $valor);
+        echo json_encode($respuesta);
+
+    }
 }
 
 // // EDITAR AMBIENTE
@@ -53,4 +66,11 @@ if(isset($_POST["idAmbiente1"])){
     $mostrar -> ajaxVerArticulos();
 }
 
+// VALIDAR AMBIENTE
+if(isset($_POST["nombreAmbiente"])){
+
+    $mostrar = new AjaxAmbientes();
+    $mostrar -> nombreAmbiente = strtoupper($_POST["nombreAmbiente"]);
+    $mostrar -> ajaxValidarAmbiente();
+}
 

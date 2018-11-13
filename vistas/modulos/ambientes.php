@@ -113,7 +113,7 @@
       <form role="form" method="post" enctype="multipart/form-data">
 
         <!-- CABEZA DEL MODAL -->
-        <div class="modal-header" style="background:#3c8dbc; color:white">
+        <div class="modal-header cabeza-modal">
 
           <button type="button" class="close" data-dismiss="modal">&times;</button>
 
@@ -134,7 +134,7 @@
 
                 <span class="input-group-addon"><i class="fa fa-user"></i></span>
 
-                <input type="text" class="form-control input-lg" name="nuevoAmbiente" id="nuevoAmbiente" placeholder="Ingresar Nombre del Ambiente" required>
+                <input type="text" class="form-control input-lg" name="nuevoAmbiente" id="nuevoAmbiente" placeholder="Ingrese Nombre de Ambiente" required>
 
               </div>
 
@@ -147,7 +147,7 @@
 
                 <span class="input-group-addon"><i class="fa fa-map-marker"></i></span>
 
-                <input type="text" class="form-control input-lg" name="nuevaUbicacion"  id="nuevaUbicacion" placeholder="Ingresar Ubicacion del Ambiente">
+                <input type="text" class="form-control input-lg" name="nuevaUbicacion"  id="nuevaUbicacion" placeholder="Ingrese Ubicacion de Ambiente">
 
               </div>
 
@@ -213,7 +213,7 @@
       <form role="form" method="post" enctype="multipart/form-data">
 
         <!-- CABEZA DEL MODAL -->
-        <div class="modal-header" style="background:#3c8dbc; color:white">
+        <div class="modal-header cabeza-modal">
 
           <button type="button" class="close" data-dismiss="modal">&times;</button>
 
@@ -263,8 +263,8 @@
 
                 <span class="input-group-addon"><i class="fa fa-map-marker"></i></span>
 
-                <select class="form-control input-lg" name="idPrograma">
-                  <option id="EditarPrograma"></option>
+                <select class="form-control input-lg" name="idPrograma" id="EditarPrograma">
+                  
 
                     <?php
                     $item  = null;

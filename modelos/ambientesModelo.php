@@ -127,5 +127,7 @@ class ModeloAmbientes
     $stmt -> close();
 
     $stmt = null;
-}
+    }
+
+    
 }

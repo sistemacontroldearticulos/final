@@ -157,7 +157,7 @@ class ControladorEquipos
                         "NuevoEstado"           => $nuevoEstado,
                         "NuevaObservacion"      => $nuevaObservacion,
                         "NumArticulosEquipo"    => $_POST["editarCantidad"],
-                        "NumArticulosAgregados" => 0,
+                        "NumArticulosAgregados" => $_POST["agregados"],
                     );
 
                     $respuesta = ModeloEquipos::mdlEditarEquipo($tabla, $datos);

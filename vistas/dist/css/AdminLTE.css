@@ -10,6 +10,11 @@
  * -------------------------
  */
 
+.cabeza-modal {
+    background: #25476a;
+    color: white;
+}
+
 .btn-circle {
   width: 30px;
   height: 30px;
@@ -2380,7 +2385,7 @@ a:focus {
   background-color: #e7e7e7;
 }
 .btn-primary {
-  background-color: #3c8dbc;
+  background-color: #25476a;
   border-color: #367fa9;
 }
 .btn-primary:hover,

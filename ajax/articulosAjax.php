@@ -7,11 +7,38 @@ class AjaxArticulos{
     // EDITAR ARTICULOS
     public $idArticulo;
 
-
     public function ajaxEditarArticulos(){
 
         $item = "IdArticulo";
         $valor = $this->idArticulo;
+
+        $respuesta = ControladorArticulos::ctrMostrarArticulos($item, $valor);
+
+        echo json_encode($respuesta);
+
+    }
+
+    // VALIDAR SERIAL ARTICULO
+    public $serialarticulo;
+
+    public function ajaxValidarSerial(){
+
+        $item = "serialarticulo";
+        $valor = $this->serialarticulo;
+
+        $respuesta = ControladorArticulos::ctrMostrarArticulos($item, $valor);
+
+        echo json_encode($respuesta);
+
+    }
+
+    // VALIDAR NUMERO INVENTARIO ARTICULO
+    public $numinventario;
+
+    public function ajaxValidarInventario(){
+
+        $item = "numinventariosena";
+        $valor = $this->numinventario;
 
         $respuesta = ControladorArticulos::ctrMostrarArticulos($item, $valor);
 
@@ -29,3 +56,18 @@ if(isset($_POST["idArticulo"])){
     $articulo -> ajaxEditarArticulos();
 }
 
+// VALIDAR SERIAL ARTICULO
+if(isset($_POST["serialArticulo"])){
+
+    $articulo = new AjaxArticulos();
+    $articulo -> serialarticulo = strtoupper($_POST["serialArticulo"]);
+    $articulo -> ajaxValidarSerial();
+}
+
+// VALIDAR NUMERO INVENTARIO ARTICULO
+if(isset($_POST["numInventario"])){
+
+    $articulo = new AjaxArticulos();
+    $articulo -> numinventario = strtoupper($_POST["numInventario"]);
+    $articulo -> ajaxValidarInventario();
+}
