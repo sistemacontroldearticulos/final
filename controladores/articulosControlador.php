@@ -113,56 +113,82 @@ class ControladorArticulos
 
         if (isset($_GET["idArticulo"])) {
 
-            $tabla = "articulo";
-            $datos = $_GET["idArticulo"];
-            $item  = "IdArticulo";
+            $valor = $_GET["idArticulo"];
+            $tabla = "articulonovedad";
+            $item = "idarticulo";
 
-            
-
-            $articulo = ModeloArticulos::mdlMostrarArticulos($tabla, $item, $datos);
-
-            $tablaEquipo = "equipo";
-            $valorEquipo = $articulo["idequipo"];
-            $itemEquipo  = "IdEquipo";
-
-            $equipo    = ModeloEquipos::mdlMostrarEquipos($tablaEquipo, $itemEquipo, $valorEquipo);
+            $respuesta = ModeloArticulos::mdlMostrarArticulos($tabla, $item, $valor);
+            // var_dump($respuesta);
 
 
-            $agregados = $equipo["numarticulosagregados"] - 1;
+            if ($respuesta == false) {
+                $tabla = "articulo";
+                $datos = $_GET["idArticulo"];
+                $item  = "IdArticulo";
 
-            $datosEquipo = array
-                (
-                "IdEquipo"              => $equipo["idequipo"],
-                "NuevoEquipo"           => $equipo["nombreequipo"],
-                "NuevoEstado"           => $equipo["estadoequipo"],
-                "NuevaObservacion"      => $equipo["observacionequipo"],
-                "NumArticulosEquipo"    => $equipo["numarticulosequipo"],
-                "NumArticulosAgregados" => $agregados,
-            );
+                $articulo = ModeloArticulos::mdlMostrarArticulos($tabla, $item, $datos);
 
-            $respuestaAmbiente2 = ModeloEquipos::mdlEditarEquipo($tablaEquipo, $datosEquipo);
+                $tablaEquipo = "equipo";
+                $valorEquipo = $articulo["idequipo"];
+                $itemEquipo  = "IdEquipo";
 
-            $respuesta = ModeloArticulos::mdlBorrarArticulos($tabla, $datos);
-// var_dump($respuesta);            
-            if ($respuesta == "ok") {
+                $equipo    = ModeloEquipos::mdlMostrarEquipos($tablaEquipo, $itemEquipo, $valorEquipo);
 
+
+                $agregados = $equipo["numarticulosagregados"] - 1;
+
+                $datosEquipo = array
+                    (
+                    "IdEquipo"              => $equipo["idequipo"],
+                    "NuevoEquipo"           => $equipo["nombreequipo"],
+                    "NuevoEstado"           => $equipo["estadoequipo"],
+                    "NuevaObservacion"      => $equipo["observacionequipo"],
+                    "NumArticulosEquipo"    => $equipo["numarticulosequipo"],
+                    "NumArticulosAgregados" => $agregados,
+                );
+
+                $respuestaAmbiente2 = ModeloEquipos::mdlEditarEquipo($tablaEquipo, $datosEquipo);
+
+                $respuesta = ModeloArticulos::mdlBorrarArticulos($tabla, $datos);
+    // var_dump($respuesta);            
+                if ($respuesta == "ok") {
+
+                    echo '<script>
+
+                     swal({
+                           type: "success",
+                           title: "El articulo ha sido borrado correctamente",
+                           showConfirmButton: true,
+                           confirmButtonText: "Cerrar"
+                           }).then(function(result){
+                                     if (result.value) {
+
+                                     window.location = "articulos";
+
+                                     }
+                                 })
+
+                     </script>';
+                }
+            }else{
                 echo '<script>
 
-					swal({
-						  type: "success",
-						  title: "El articulo ha sido borrado correctamente",
-						  showConfirmButton: true,
-						  confirmButtonText: "Cerrar"
-						  }).then(function(result){
-									if (result.value) {
+                     swal({
+                           type: "error",
+                           title: "Error",
+                           text: "El articulo se encuentra registrado en una novedad",
+                           showConfirmButton: true,
+                           confirmButtonText: "Cerrar"
+                           }).then(function(result){
+                                     if (result.value) {
 
-									window.location = "articulos";
+                                     window.location = "articulos";
 
-									}
-								})
+                                     }
+                                 })
 
-					</script>';
-            }
+                     </script>';
+            }           
         }
     }
 
@@ -176,9 +202,20 @@ class ControladorArticulos
                 $editarModelo         = strtoupper($_POST["editarModelo"]);
                 $editarSerial         = strtoupper($_POST["editarSerial"]);
                 $editarCaracteristica = strtoupper($_POST["editarCaracteristica"]);
-                $idEquipo             = $_POST["idEquipo"];
+
+                $idEquipo = $_POST["idEquipo"];
                 if ($idEquipo == "") {
                     $idEquipo = null;
+                }
+
+                $idCategoria = $_POST["idCategoria"];
+                if ($idCategoria == "") {
+                    $idCategoria = null;
+                }
+
+                $idAmbiente = $_POST["idAmbiente"];
+                if ($idAmbiente == "") {
+                    $idAmbiente = null;
                 }
 
                 $tabla = "articulo";
@@ -189,8 +226,8 @@ class ControladorArticulos
                     "NumInventarioSena"         => $_POST["editarInventario"],
                     "SerialArticulo"            => $_POST["editarSerial"],
                     "EstadoArticulo"            => $_POST["editarEstado"],
-                    "IdAmbiente"                => $_POST["idAmbiente"],
-                    "IdCategoria"               => $_POST["idCategoria"],
+                    "IdAmbiente"                => $idAmbiente,
+                    "IdCategoria"               => $idCategoria,
                     "CaracteristicaArticulo"    => $editarCaracteristica,
                     "IdEquipo"                  => $idEquipo);
 
@@ -200,23 +237,23 @@ class ControladorArticulos
 
                 $itemEquipo          = "IdEquipo";
                 $tablaEquipo         = "equipo";
-                $idEquipoValidar     = $registroArticulo["IdEquipo"];
+                $idEquipoValidar     = $registroArticulo["idequipo"];
                 $registroEquipoViejo = ModeloEquipos::mdlMostrarEquipos($tablaEquipo, $itemEquipo, $idEquipoValidar);
 
-                if ($registroEquipoViejo["IdEquipo"] != $idEquipo) {
+                if ($registroEquipoViejo["idequipo"] != $idEquipo) {
 
                     // var_dump($idEquipoValidar);
                     // var_dump($idEquipo);
 
-                    $agregados1 = $registroEquipoViejo["NumArticulosAgregados"] - 1;
+                    $agregados1 = $registroEquipoViejo["numarticulosagregados"] - 1;
 
                     $datosEquipo1 = array
                         (
-                        "IdEquipo"              => $registroEquipoViejo["IdEquipo"],
-                        "NuevoEquipo"           => $registroEquipoViejo["NombreEquipo"],
-                        "NuevoEstado"           => $registroEquipoViejo["EstadoEquipo"],
-                        "NuevaObservacion"      => $registroEquipoViejo["ObservacionEquipo"],
-                        "NumArticulosEquipo"    => $registroEquipoViejo["NumArticulosEquipo"],
+                        "IdEquipo"              => $registroEquipoViejo["idequipo"],
+                        "NuevoEquipo"           => $registroEquipoViejo["nombreequipo"],
+                        "NuevoEstado"           => $registroEquipoViejo["estadoequipo"],
+                        "NuevaObservacion"      => $registroEquipoViejo["observacionequipo"],
+                        "NumArticulosEquipo"    => $registroEquipoViejo["numarticulosequipo"],
                         "NumArticulosAgregados" => $agregados1,
                     );
                     $respuestaEquipo1 = ModeloEquipos::mdlEditarEquipo($tablaEquipo, $datosEquipo1);
@@ -224,15 +261,15 @@ class ControladorArticulos
                     $idEquipoValidar2    = $idEquipo;
                     $registroEquipoNuevo = ModeloEquipos::mdlMostrarEquipos($tablaEquipo, $itemEquipo, $idEquipoValidar2);
 
-                    $agregados2 = $registroEquipoNuevo["NumArticulosAgregados"] + 1;
+                    $agregados2 = $registroEquipoNuevo["numarticulosagregados"] + 1;
 
                     $datosEquipo2 = array
                         (
-                        "IdEquipo"              => $registroEquipoNuevo["IdEquipo"],
-                        "NuevoEquipo"           => $registroEquipoNuevo["NombreEquipo"],
-                        "NuevoEstado"           => $registroEquipoNuevo["EstadoEquipo"],
-                        "NuevaObservacion"      => $registroEquipoNuevo["ObservacionEquipo"],
-                        "NumArticulosEquipo"    => $registroEquipoNuevo["NumArticulosEquipo"],
+                        "IdEquipo"              => $registroEquipoNuevo["idequipo"],
+                        "NuevoEquipo"           => $registroEquipoNuevo["nombreequipo"],
+                        "NuevoEstado"           => $registroEquipoNuevo["estadoequipo"],
+                        "NuevaObservacion"      => $registroEquipoNuevo["observacionequipo"],
+                        "NumArticulosEquipo"    => $registroEquipoNuevo["numarticulosequipo"],
                         "NumArticulosAgregados" => $agregados2,
                     );
 

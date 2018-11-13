@@ -93,5 +93,24 @@ class ModeloAprendiz
         $stmt = null;
     }
 
+    public function mdlEliminarAprendizFicha($tabla, $datos)
+    {
+        $stmt = Conexion::conectar()->prepare("DELETE FROM $tabla WHERE numeroficha=:numeroficha");
+
+        $stmt->bindParam(":numeroficha", $datos, PDO::PARAM_STR);
+
+        if ($stmt->execute()) {
+
+            return "ok";
+
+        } else {
+
+            return "error";
+        }
+
+        $stmt->close();
+        $stmt = null;
+    }
+
 }
 

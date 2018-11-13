@@ -1,5 +1,5 @@
 function duracion2(sel) {
-    
+
     if (sel == "TECNICO") {
         $("#EditarDuracion").val("12 MESES");
         $("#EditarDuracion").prop('readonly', true);
@@ -14,3 +14,4 @@ function duracion2(sel) {
         $("#EditarDuracion").prop('disabled', true);
     }
 }
+

@@ -39,3 +39,30 @@ $(".tablas").on("click", ".btnEliminarCategoria", function(){
         }
     })
 })
+
+/*=========================
+=    VALIDAR CATEGORIA    =
+=========================*/
+$("#nuevaCategoria").change(function() {
+    // debugger;   
+    $(".alert").remove();
+    var nombreCategoria = $(this).val();
+    var datos = new FormData();
+    datos.append("nombreCategoria", nombreCategoria);
+    $.ajax({
+        url: "ajax/categoriasAjax.php",
+        method: "POST",
+        data: datos,
+        cache: false,
+        contentType: false,
+        processData: false,
+        dataType: "json",
+        success: function(respuesta) {
+            console.log("respuesta", respuesta);
+            if (respuesta) {
+                $("#nuevaCategoria").parent().after('<div class="alert" style="height: 20px; text-align="center"><font color="#f39c12"><strong>ESTA CATEGORIA YA SE ENCUENTRA REGISTRADA</strong></font></div>');
+                $("#nuevaCategoria").val("");
+            }
+        }
+    })
+})

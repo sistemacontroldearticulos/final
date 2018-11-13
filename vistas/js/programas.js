@@ -45,6 +45,7 @@ $(".tablas").on("click", ".btnEliminarPrograma", function(){
 =    VALIDAR PROGRAMA     =
 =========================*/
 $("#NuevoPrograma").change(function() {
+    // debugger;
     $(".alert").remove();
     var programa = $(this).val();
     var datos = new FormData();
@@ -58,6 +59,7 @@ $("#NuevoPrograma").change(function() {
         processData: false,
         dataType: "json",
         success: function(respuesta) {
+            console.log("respuesta", respuesta);
             if (respuesta) {
                 $("#NuevoPrograma").parent().after('<div class="alert" style="height: 20px; text-align="center"><font color="#f39c12"><strong>ESTE PROGRAMA YA SE ENCUENTRA REGISTRADO</strong></font></div>');
                 $("#NuevoPrograma").val("");

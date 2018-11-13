@@ -62,12 +62,26 @@
           <?php 
 
           $item = "numdocumentousuario";
-            $valor = $_SESSION["NumDocumentoUsuario"];
+              $valor = $_SESSION["NumDocumentoUsuario"];
+            $rol = ControladorUsuarios::ctrMostrarUsuarios($item ,$valor);
+            // var_dump($rol["rolusuario"]);
+
+            if ($rol["rolusuario"] == "ADMINISTRADOR") {
+
+              $item = null;
+              $valor = null;
+$respuesta = ControladorNovedades::ctrMostrarNovedades($item, $valor);
+            }else{
+
+              $item = "numdocumentousuario";
+              $valor = $_SESSION["NumDocumentoUsuario"];
+$respuesta = ControladorNovedades::ctrMostrarNovedades($item, $valor);
+            }
 
             // $item = null;
             // $valor = null;
 
-            $respuesta = ControladorNovedades::ctrMostrarNovedades($item, $valor);
+            
 
             // var_dump($respuesta);
             foreach ($respuesta as $key => $value) {
@@ -133,7 +147,7 @@
       <form role="form" method="post" enctype="multipart/form-data">
 
         <!-- CABEZA DEL MODAL -->
-        <div class="modal-header" style="background:#3c8dbc; color:white">
+        <div class="modal-header cabeza-modal">
 
           <button type="button" onclick=" location.href='novedades' " class="close" data-dismiss="modal">&times;</button>
 

@@ -69,7 +69,7 @@ $(".tablas").on("click", ".btnEliminarFicha", function(){
         confirmButtonColor: '#3085d6',
         cancelButtonColor: '#d33',
         cancelButtonText: 'Cancelar',
-        confirmButtonText: 'Eliminar Ficha'
+        confirmButtonText: 'Si, borrar ficha'
     }).then((result) => {
         if (result.value) {
             window.location = "index.php?ruta=fichas&idFicha=" + idFicha;

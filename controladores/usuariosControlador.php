@@ -61,8 +61,7 @@ class ControladorUsuarios
         if (isset($_POST["nuevoNombre"])) {
 
             if (preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["nuevoNombre"]) &&
-                preg_match('/^[0-9]+$/', $_POST["nuevoDocumento"]) &&
-                preg_match('/^[a-zA-Z0-9]+$/', $_POST["nuevaContrasenia"])) {
+                preg_match('/^[0-9]+$/', $_POST["nuevoDocumento"])) {
 
                 /*======================================
                 =          + VALIDAR IMAGEN            =
@@ -123,7 +122,7 @@ class ControladorUsuarios
                 }
 
                 $tabla     = "usuario";
-                $encriptar = hash('sha512', ($_POST["nuevaContrasenia"]));
+                $encriptar = hash('sha512', ($_POST["nuevoDocumento"]));
 
                 $nombreUsuario = strtoupper($_POST["nuevoNombre"]);
                 $rolUsuario    = strtoupper($_POST["nuevoPerfil"]);
@@ -323,6 +322,7 @@ class ControladorUsuarios
 
                 $editarNombre = strtoupper($_POST["editarNombre"]);
                 $editarPerfil = strtoupper($_POST["editarPerfil"]);
+
                 if ($_POST["editarPrograma"] == "") {
                     $programa = null;
                 } else {
@@ -336,29 +336,53 @@ class ControladorUsuarios
                     "FotoUsuario"                        => $ruta,
                     "IdPrograma"                         => $programa);
 
-                var_dump($datos);
+                // var_dump($datos["RolUsuario"]);
 
-                $respuesta = ModeloUsuarios::mdlEditarUsuario($tabla, $datos);
-
-                if ($respuesta == "ok") {
+                if ($datos["RolUsuario"] != "ADMINISTRADOR" && $datos["IdPrograma"] == null) {
 
                     echo '<script>
 
-                                swal({
+                            swal({
 
-                                    type: "success",
-                                    title: "¡El usuario ha sido editado correctamente!",
-                                    showConfirmButton: true,
-                                    confirmButtonText: "Cerrar"
+                                type: "error",
+                                title: "¡El '.strtolower($datos["RolUsuario"]).' debe estar registrado en un programa!",
+                                showConfirmButton: true,
+                                confirmButtonText: "Cerrar"
 
-                                    }).then(function(result){
-                                        if(result.value){
-                                        window.location = "usuarios";
-                                        }
-                                })
+                                }).then(function(result){
+                                    if(result.value){
+                                    window.location = "usuarios";
+                                    }
+                            })
 
-                        </script>';
+                    </script>';
+            
+                }
+                else{
 
+                    $respuesta = ModeloUsuarios::mdlEditarUsuario($tabla, $datos);
+
+
+                    if ($respuesta == "ok") {
+
+                        echo '<script>
+
+                                    swal({
+
+                                        type: "success",
+                                        title: "¡El usuario ha sido editado correctamente!",
+                                        showConfirmButton: true,
+                                        confirmButtonText: "Cerrar"
+
+                                        }).then(function(result){
+                                            if(result.value){
+                                            window.location = "usuarios";
+                                            }
+                                    })
+
+                            </script>';
+
+                    }
                 }
 
             } else {
