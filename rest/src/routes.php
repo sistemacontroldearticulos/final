@@ -17,11 +17,14 @@ $app->group('/api', function () use ($app) {
     // Version group
     $app->get('/login/{numDocumento}&{contra}', 'login');
     $app->get('/ficha/{numeroFicha}', 'buscarFicha');
+    $app->get('/fichaActas/{numeroFicha}', 'buscarFichaActas');
     $app->get('/ficha2', 'Ficha');
-    $app->get('/idNovedad/{idArticulo}', 'buscarNovedad');
+    $app->get('/idNovedad', 'buscarNovedad');
     $app->post('/crearNovedad', 'crearNovedad');
     $app->post('/articuloNovedad', 'articuloNovedad');
-    $app->get('/ambiente/{idAmbiente}', 'buscarAmbiente');
+    $app->post('/actas', 'registrarActas');
+    $app->get('/buscarArticulo/{idArticulo}', 'buscarArticulo');
+    $app->get('/loginActas/{numDocumento}', 'loginActas');
     $id = '{id}';
 
 });
