@@ -10,12 +10,12 @@ if (PHP_SAPI == 'cli-server') {
     }
 }
 
-function getConnection()
-{
-    $dbh = new PDO("pgsql:user=jvdwioghpjqleb dbname=d42v3gmecvlgdd ;password=ecb8e26902751ca156b5727322ab14f814d520244e2b6be875af2605cf6f4724;host=ec2-23-21-171-249.compute-1.amazonaws.com");
-    $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    return $dbh;
- }
+// function getConnection()
+// {
+//     $dbh = new PDO("pgsql:user=jvdwioghpjqleb dbname=d42v3gmecvlgdd ;password=ecb8e26902751ca156b5727322ab14f814d520244e2b6be875af2605cf6f4724;host=ec2-23-21-171-249.compute-1.amazonaws.com");
+//     $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+//     return $dbh;
+//  }
 
 function getConnection()
 {
@@ -33,14 +33,50 @@ function login($response)
     // $contrasenia  = hash('sha512', $contra1);
 
     $sql = "SELECT usuario.contraseniausuario, usuario.numdocumentousuario, usuario.nombreusuario, usuario.idprograma, rolusuario, novedad.idnovedad,fechanovedad, nombreambiente, tipoarticulo, tiponovedad, equipo.idequipo, jornadaficha
-FROM usuario
-LEFT OUTER JOIN novedad ON (usuario.numdocumentousuario=novedad.numdocumentousuario)
-LEFT OUTER JOIN articulonovedad on (articulonovedad.idnovedad=novedad.idnovedad)
-LEFT OUTER JOIN ficha ON (novedad.numeroficha=ficha.numeroficha)
-LEFT OUTER JOIN ambiente ON (ficha.idambiente=ambiente.idambiente)
-LEFT OUTER JOIN articulo ON(articulonovedad.idarticulo=articulo.idarticulo)
-LEFT OUTER JOIN equipo ON(articulo.idequipo=equipo.idequipo)
-WHERE usuario.numdocumentousuario=$numDocumento AND usuario.contraseniausuario='$contra1'";
+
+        FROM usuario
+        LEFT OUTER JOIN novedad ON (usuario.numdocumentousuario=novedad.numdocumentousuario)
+        LEFT OUTER JOIN articulonovedad on (articulonovedad.idnovedad=novedad.idnovedad)
+        LEFT OUTER JOIN ficha ON (novedad.numeroficha=ficha.numeroficha)
+        LEFT OUTER JOIN ambiente ON (ficha.idambiente=ambiente.idambiente)
+        LEFT OUTER JOIN articulo ON(articulonovedad.idarticulo=articulo.idarticulo)
+        LEFT OUTER JOIN equipo ON(articulo.idequipo=equipo.idequipo)
+        WHERE usuario.numdocumentousuario=$numDocumento AND usuario.contraseniausuario='$contra1'";
+
+    try {
+        $stmt    = getConnection()->query($sql);
+        $usuario = array();
+        $usuario = $stmt->fetchAll(PDO::FETCH_OBJ);
+        // $arreglo        = (array) $usuario;
+        // $retorno        = array_map('utf8', $arreglo);
+        $arrayCrudo     = json_encode($usuario);
+        $JsonSinSlash   = str_replace("\/", "/", $arrayCrudo);
+        $ArrayRespuesta = json_decode($JsonSinSlash, true);
+        return $JsonSinSlash;
+        $db = null;
+
+    } catch (PDOException $e) {
+        echo '{"error":{"text":' . $e->getMessage() . '}}';
+    }
+}
+
+
+function loginActas($response)
+{
+    $route        = $response->getAttribute('route');
+    $args         = $route->getArguments();
+    $numDocumento = $args['numDocumento'];
+
+
+    $sql = "SELECT aprendiz.nombreaprendiz, acta_responsabilidad.fechaacta, equipo.nombreequipo,
+    aprendiz.numeroficha, ambiente.nombreambiente, numdocumentoinstructor, acta_responsabilidad.idacta
+        FROM aprendiz
+        LEFT OUTER JOIN acta_responsabilidad on (aprendiz.numdocumentoaprendiz=acta_responsabilidad.numdocumentoaprendiz)
+        LEFT OUTER JOIN ficha ON (aprendiz.numeroficha=ficha.numeroficha)
+        LEFT OUTER JOIN ambiente ON (ficha.idambiente=ambiente.idambiente)
+        LEFT OUTER JOIN equipo ON(acta_responsabilidad.idequipo=equipo.idequipo)
+        LEFT OUTER JOIN usuario ON(acta_responsabilidad.numdocumentoinstructor=usuario.numdocumentousuario)
+        WHERE usuario.numdocumentousuario=$numDocumento";
 
     try {
         $stmt    = getConnection()->query($sql);
@@ -64,12 +100,12 @@ function buscarFicha($response)
     $route       = $response->getAttribute('route');
     $args        = $route->getArguments();
     $numeroFicha = $args['numeroFicha'];
-    $sql         = "SELECT ficha.numeroficha, articulo.tipoarticulo,  articulo.idarticulo, equipo.idequipo, ambiente.idambiente, ficha.idprograma
-    FROM ficha
-    join ambiente on (ficha.idambiente=ambiente.idambiente)
-    join articulo on (articulo.idambiente=ambiente.idambiente)
-    left join equipo on (articulo.idequipo=equipo.idequipo)
-    where numeroficha= $numeroFicha";
+    $sql         = "SELECT ficha.numeroficha, articulo.tipoarticulo,  articulo.idarticulo, equipo.nombreequipo, equipo.idequipo, ambiente.idambiente, ficha.idprograma, ambiente.nombreambiente, ficha.jornadaficha
+           FROM ficha
+           join ambiente on (ficha.idambiente=ambiente.idambiente)
+           join articulo on (articulo.idambiente=ambiente.idambiente)
+           left join equipo on (articulo.idequipo=equipo.idequipo)
+           where numeroficha= $numeroFicha";
     try {
         $stmt      = getConnection()->query($sql);
         $productos = $stmt->fetchAll(PDO::FETCH_OBJ);
@@ -100,12 +136,35 @@ function Ficha($response)
     }
 }
 
-function buscarAmbiente($response)
+function buscarArticulo($response)
 {
     $route      = $response->getAttribute('route');
     $args       = $route->getArguments();
-    $idAmbiente = $args['idAmbiente'];
-    $sql        = "SELECT nombreambiente FROM ambiente where idambiente= $idAmbiente";
+    $idAmbiente = $args['idArticulo'];
+    $sql        = "SELECT idarticulo FROM articulonovedad where idarticulo= $idAmbiente";
+    try {
+        $stmt      = getConnection()->query($sql);
+        $productos = $stmt->fetchAll(PDO::FETCH_OBJ);
+        $db        = null;
+        $arreglo   = (array) $productos;
+        $retorno   = array_map('utf8', $arreglo);
+        return json_encode($retorno);
+    } catch (PDOException $e) {
+        echo '{"error":{"text":' . $e->getMessage() . '}}';
+    }
+}
+function buscarFichaActas($response)
+{
+    $route      = $response->getAttribute('route');
+    $args       = $route->getArguments();
+    $idAmbiente = $args['numeroFicha'];
+    $sql        = "SELECT numdocumentoaprendiz, nombreaprendiz, equipo.idequipo, nombreequipo
+    FROM aprendiz
+    LEFT OUTER JOIN ficha on (aprendiz.numeroficha=ficha.numeroficha)
+    LEFT OUTER JOIN ambiente on (ficha.idambiente=ambiente.idambiente)
+    LEFT OUTER JOIN articulo on (articulo.idambiente=ambiente.idambiente)
+    LEFT OUTER JOIN equipo on (equipo.idequipo=articulo.idequipo)
+    where ficha.numeroficha= $idAmbiente";
     try {
         $stmt      = getConnection()->query($sql);
         $productos = $stmt->fetchAll(PDO::FETCH_OBJ);
@@ -160,12 +219,33 @@ function articuloNovedad($request)
     }
 }
 
+function registrarActas($request) {
+    // $emp = json_decode($request->getBody());
+    $emp = $request->getParams();
+    
+    $sql = "INSERT INTO acta_responsabilidad ( numdocumentoaprendiz, idequipo, fechaacta, numdocumentoinstructor ) VALUES (:numdocumentoaprendiz, :idequipo, :fechaacta, :numdocumentoinstructor)";
+    try {
+        $db = getConnection();
+        $stmt = $db->prepare($sql);
+
+        $stmt->bindParam(":numdocumentoaprendiz", $emp["numdocumentoaprendiz"]);
+        $stmt->bindParam(":idequipo", $emp["idequipo"]);
+        $stmt->bindParam(":fechaacta", $emp["fechaacta"]);
+        $stmt->bindParam(":numdocumentoinstructor", $emp["numdocumentoinstructor"]);
+        $stmt->execute();
+    } catch(PDOException $e) {
+        echo '{"error":{"text":'. $e->getMessage() .'}}';
+    }
+}
+
+
+
 function buscarNovedad($response)
 {
     $route      = $response->getAttribute('route');
     $args       = $route->getArguments();
-    $idArticulo = $args['idArticulo'];
-    $sql        = "SELECT idnovedad FROM novedad where articulo= '$idArticulo '";
+    
+    $sql        = "SELECT MAX(idnovedad) FROM novedad";
     try {
         $stmt      = getConnection()->query($sql);
         $productos = $stmt->fetchAll(PDO::FETCH_OBJ);
