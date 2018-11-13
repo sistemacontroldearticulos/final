@@ -17,12 +17,12 @@ if (PHP_SAPI == 'cli-server') {
 //     return $dbh;
 //  }
 
-function getConnection()
-{
-    $dbh = new PDO("pgsql:user=postgres dbname=proyectofinal ;password=123");
-    $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    return $dbh;
-}
+// function getConnection()
+// {
+//     $dbh = new PDO("pgsql:user=postgres dbname=proyectofinal ;password=123");
+//     $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+//     return $dbh;
+// }
 
 function login($response)
 {
