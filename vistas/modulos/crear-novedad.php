@@ -46,7 +46,9 @@
 
                   <div class="input-group">
 
-                    <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                    <span class="input-group-addon">
+                  <img src="vistas/img/plantilla/modal/usuarios.png" width="15px">
+                </span>
 
                     <input type="text" class="form-control" name="usuarioNovedad" value="<?php echo $_SESSION["NombreUsuario"]; ?>" readonly>
 
@@ -61,7 +63,9 @@
 
                   <div class="input-group">
 
-                    <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                    <span class="input-group-addon">
+                  <img src="vistas/img/plantilla/modal/ficha.png" width="15px">
+                </span>
 
                     <input type="number" class="form-control input-lg" id="nuevaFicha1" name="nuevaFicha1" placeholder="Ingrese numero de ficha"  required>
 
@@ -76,7 +80,9 @@
 
                   <div class="input-group">
 
-                    <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                    <span class="input-group-addon">
+                  <img src="vistas/img/plantilla/modal/ambientes.png" width="15px">
+                </span>
 
                       <input type="text" class="form-control input-lg" id="nuevoAmbiente1" value name="nuevoAmbiente1" readonly placeholder="Ambiente">
 
@@ -172,7 +178,7 @@ $crearNovedad->ctrCrearNovedad();
       <form role="form" method="post">
 
        <!-- CABEZA DEL MODAL -->
-        <div class="modal-header" style="background:#3c8dbc; color:white">
+        <div class="modal-header cabeza-modal">
 
           <button type="button" class="close" data-dismiss="modal">&times;</button>
           <h4 class="modal-title">Descripción articulo</h4>
@@ -183,27 +189,30 @@ $crearNovedad->ctrCrearNovedad();
         <div class="modal-body">
 
           <div class="box-body">
-            <div class="row" style="padding: 5px 15px">
-                     <div class="col-xs-4" style="padding-right:0px">
+
+            <div class=" form-group row">
+
+                     <div class="col-xs-6" >
 
                          <div class="input-group">
 
                           <!--  <span class="input-group-addon"><button type="button" class="btn btn-danger quitarNovedad btn-xs" idArticulo="idArticulo"><i class="fa fa-times"></i></button></span> -->
 
-                           <input type="text" class="form-control agregarArticulo" idArticulo="idArticulo" name="agregarArticulo" id="agregarArticulo" required readonly>
+                           <input type="text" class="form-control input-lg agregarArticulo" idArticulo="idArticulo" name="agregarArticulo" id="agregarArticulo" required readonly>
                            <input type="hidden" id="idArticulo" >
 
                          </div>
 
                      </div>
+                     
 
-                     <div class="form-group col-xs-4"  style="padding-left:5px; padding-right: 0px">
+                     <div class="col-xs-6" >
 
                          <div class="input-group">
 
-                           <span class="input-group-addon"><i class="fa fa-th"></i></span>
+                           <span class="input-group-addon "><i class="fa fa-th"></i></span>
 
-                           <select class="form-control tipoNovedadArticulo" id="tipoNovedadArticulo">
+                           <select class="form-control tipoNovedadArticulo input-lg" id="tipoNovedadArticulo">
 
                              <option id="tipoNovedadArticulo" value="">Tipo</option>
 
@@ -217,18 +226,21 @@ $crearNovedad->ctrCrearNovedad();
 
                      </div>
 
-                     <div class="col-xs-4" style="padding-left:5px">
+                     </div>
+
+                     <div class="form-group" >
 
                          <div class="input-group">
+                          <span class="input-group-addon"><i class="fa fa-lock"></i></span>
 
-                             <input type="text" class="form-control nuevaDescripcion" name="nuevaDescripcion" placeholder="Descripción" required>
+
+                             <textarea class="form-control nuevaDescripcion rounded-5" name="nuevaDescripcion" row="3" placeholder="Descripción" required></textarea>
+
                              <input type="hidden" id="articulo" name="articulo" value="">
 
                          </div>
 
                      </div>
-
-                 </div>
 
  <!-- PIE DEL MODAL -->
         <div class="modal-footer">

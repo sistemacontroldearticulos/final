@@ -47,7 +47,7 @@
            <th>Marca Articulo</th>
            <th>Estado</th>
            <th>Ambiente</th>
-           <th>Categorias</th>
+           <th>Categoría</th>
            <th>Equipo</th>
            <th>Numero Inventario Sena</th>
            <th>Serial Articulo</th>
@@ -142,11 +142,11 @@
       <form role="form" method="post" enctype="multipart/form-data">
 
         <!-- CABEZA DEL MODAL -->
-        <div class="modal-header" style="background:#3c8dbc; color:white">
+        <div class="modal-header cabeza-modal" >
 
           <button type="button" class="close" data-dismiss="modal">&times;</button>
 
-          <h4 class="modal-title">Agregar articulo</h4>
+          <h4 class="modal-title">Agregar Articulo</h4>
 
         </div>
 
@@ -156,68 +156,99 @@
           <!-- CUERPO DEL MODAL -->
           <div class="box-body">
 
-            <!-- ENTRADA PARA EL TIPO ARTICULO -->
-            <div class="form-group">
 
-              <div class="input-group">
+            <div class="form-group row">
 
-                <span class="input-group-addon"><i class="fa fa-user"></i></span>
+              <!-- ENTRADA PARA EL TIPO ARTICULO -->
+              <div class="col-xs-6 ">
 
-                <input type="text" class="form-control input-lg" name="nuevoTipo" placeholder="Tipo articulo" required>
+                <div class="input-group">
+
+                  <span class="input-group-addon">
+                  <img src="vistas/img/plantilla/modal/articulos.png" width="15px">
+                </span>
+
+                  <input type="text" class="form-control input-lg" name="nuevoTipo" placeholder="Tipo Articulo" required>
+
+                </div>
+
+              </div>
+
+              <!-- ENTRADA PARA EL MODELO ARTICULO -->
+              <div class="col-xs-6">
+
+                <div class="input-group">
+
+                  <span class="input-group-addon">
+                  <img src="vistas/img/plantilla/modal/modelos1.png" width="15px">
+                </span>
+
+                  <input type="text" class="form-control input-lg" name="nuevoModelo"placeholder="Modelo Articulo" required>
+
+                </div>
+
+              </div>
+              <br>
+              <br>
+              <br>
+
+              <!-- ENTRADA PARA LA MARCA -->
+              <div class="col-xs-6">
+
+                <div class="input-group">
+
+                  <span class="input-group-addon">
+                  <img src="vistas/img/plantilla/modal/marca.png" width="15px">
+                </span>
+
+                  <input type="text" class="form-control input-lg" name="nuevaMarca" placeholder="Marca Articulo" required>
+
+                </div>
+
+              </div>
+
+              <!-- ENTRADA PARA EL SERIAL ARTICULO -->
+              <div class="col-xs-6">
+
+                <div class="input-group">
+
+                  <span class="input-group-addon">
+                  <img src="vistas/img/plantilla/modal/serial1.png" width="15px">
+                </span>
+
+                  <input type="text" class="form-control input-lg" name="nuevoSerial" id="nuevoSerial" placeholder="Serial del Articulo">
+
+                </div>
 
               </div>
 
             </div>
-
-            <!-- ENTRADA PARA EL MODELO ARTICULO -->
-            <div class="form-group">
-
-              <div class="input-group">
-
-                <span class="input-group-addon"><i class="fa fa-key"></i></span>
-
-                <input type="text" class="form-control input-lg" name="nuevoModelo"placeholder="Modelo Articulo" required>
-
-              </div>
-
-            </div>
-
-            <!-- ENTRADA PARA LA MARCA -->
-            <div class="form-group">
-
-              <div class="input-group">
-
-                <span class="input-group-addon"><i class="fa fa-lock"></i></span>
-
-                <input type="text" class="form-control input-lg" name="nuevaMarca" placeholder="Ingresar marca" required>
-
-              </div>
-
-            </div>
-
+  
             <!-- ENTRADA PARA SELECCIONAR AMBIENTE -->
             <div class="form-group">
 
               <div class="input-group">
 
-                <span class="input-group-addon"><i class="fa fa-users"></i></span>
+                <span class="input-group-addon">
+                  <img src="vistas/img/plantilla/modal/ambientes.png" width="15px">
+                </span>
 
                 <select class="form-control input-lg" name="nuevoAmbiente" required>
 
-                  <option value="">Selecionar Ambiente</option>
+                  <option value="">Seleccionar Ambiente</option>
                   <?php
 
-$item  = null;
-$valor = null;
+                    $item  = null;
+                    $valor = null;
 
-$ambiente = ControladorAmbientes::ctrMostrarAmbientes($item, $valor);
+                    $ambiente = ControladorAmbientes::ctrMostrarAmbientes($item, $valor);
 
-foreach ($ambiente as $key => $value) {
+                    foreach ($ambiente as $key => $value) {
 
-    echo '<option value="' . $value["idambiente"] . '">' . $value["nombreambiente"] . '</option>';
-}
+                      echo '<option value="' . $value["idambiente"] . '">' . $value["nombreambiente"] . '</option>';
+                    }
 
-?>
+                  ?>
                 </select> 
 
               </div>
@@ -229,14 +260,16 @@ foreach ($ambiente as $key => $value) {
 
               <div class="input-group">
 
-                <span class="input-group-addon"><i class="fa fa-users"></i></span>
+                <span class="input-group-addon">
+                  <img src="vistas/img/plantilla/modal/equipos.png" width="15px">
+                </span>
 
                 <input type="hidden" name="equipo" id="equipo">
 
                 <select class="form-control input-lg" name="nuevoEquipo" id="nuevoEquipo"onchange="equipoFuncion(this.value)">
 
 
-                  <option value="">Selecionar Equipo</option>
+                  <option value="">Seleccionar Equipo</option>
                   <?php
 
 $item  = null;
@@ -262,11 +295,13 @@ foreach ($equipos as $key => $value) {
 
               <div class="input-group">
 
-                <span class="input-group-addon"><i class="fa fa-users"></i></span>
+                <span class="input-group-addon">
+                  <img src="vistas/img/plantilla/modal/categorias.png" width="15px">
+                </span>
 
                 <select class="form-control input-lg" name="nuevaCategoria" required>
 
-                  <option value="">Selecionar Categoria</option>
+                  <option value="">Seleccionar Categoria</option>
                   <?php
 
 $item  = null;
@@ -288,57 +323,56 @@ foreach ($ambiente as $key => $value) {
 
             </div>
 
-            <!-- ENTRADA PARA EL INVENTARIO SENA -->
-            <div class="form-group">
+            <div class="form-group row">
 
-              <div class="input-group">
+              <!-- ENTRADA PARA EL INVENTARIO SENA -->
+              <div class="col-xs-6">
 
-                <span class="input-group-addon"><i class="fa fa-key"></i></span>
+                <div class="input-group">
 
-                <input type="text" class="form-control input-lg" name="nuevoInventario" min="0" placeholder="Ingrese el numero del inventario sena">
+                  <span class="input-group-addon">
+                  <img src="vistas/img/plantilla/modal/codigo.png" width="15px">
+                </span>
 
-              </div>
+                  <input type="text" class="form-control input-lg" name="nuevoInventario" id="nuevoInventario" min="0" placeholder="Numero Inventario SENA">
 
-            </div>
-
-
-            <!-- ENTRADA PARA EL SERIAL ARTICULO -->
-            <div class="form-group">
-
-              <div class="input-group">
-
-                <span class="input-group-addon"><i class="fa fa-key"></i></span>
-
-                <input type="text" class="form-control input-lg" name="nuevoSerial" placeholder="Ingrese el serial del articulo">
+                </div>
 
               </div>
 
-            </div>
-            <div class="form-group">
+              <div class="col-xs-6">
 
-              <div class="input-group">
+                <div class="input-group">
 
-                <span class="input-group-addon"><i class="fa fa-users"></i></span>
+                  <span class="input-group-addon">
+                  <img src="vistas/img/plantilla/modal/estado.png" width="15px">
+                </span>
 
-                <select class="form-control input-lg" name="nuevoEstado" required>
+                  <select class="form-control input-lg" name="nuevoEstado" required>
 
-                  <option value="">Selecionar Estado</option>
-                  <option value="ACTIVO">Activo</option>
-                  <option value="DAÑADO">Dañado</option>
-                  <option value="PERDIDO">Perdido</option>
+                    <option value="">Seleccionar Estado</option>
+                    <option value="ACTIVO">Activo</option>
+                    <option value="DAÑADO">Dañado</option>
+                    <option value="PERDIDO">Perdido</option>
 
-                </select>
+                  </select>
+
+                </div>
 
               </div>
-
+              
             </div>
+
+            
              <div class="form-group">
 
               <div class="input-group">
 
-                <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+                <span class="input-group-addon">
+                  <img src="vistas/img/plantilla/modal/observaciones.png" width="15px">
+                </span>
 
-                 <textarea class="form-control rounded-5" name="nuevaCaracteristica" rows="3" placeholder="INGRESAR CARACTERÍSTICAS DEL ARTICULO"></textarea>
+                 <textarea class="form-control rounded-5" name="nuevaCaracteristica" rows="3" placeholder="INGRESE CARACTERÍSTICAS DEL ARTICULO"></textarea>
                  <!-- <input type="text" class="form-control input-lg" name="nuevaCaracteristica" min="0" placeholder="Ingrese la característica del artículo"> -->
 
               </div>
@@ -346,8 +380,6 @@ foreach ($ambiente as $key => $value) {
             </div>
           </div>
         </div>
-
-
         <!-- PIE DEL MODAL -->
         <div class="modal-footer">
 
@@ -381,11 +413,11 @@ $crearArticulo->ctrCrearArticulos();
       <form role="form" method="post" enctype="multipart/form-data">
 
         <!-- CABEZA DEL MODAL -->
-        <div class="modal-header" style="background:#3c8dbc; color:white">
+        <div class="modal-header cabeza-modal" >
 
           <button type="button" class="close" data-dismiss="modal">&times;</button>
 
-          <h4 class="modal-title">Editar articulo</h4>
+          <h4 class="modal-title">Editar Articulo</h4>
 
         </div>
 
@@ -395,14 +427,18 @@ $crearArticulo->ctrCrearArticulos();
           <!-- CUERPO DEL MODAL -->
           <div class="box-body">
 
+            <div class="form-group row">
+              
             <!-- ENTRADA PARA EL TIPO ARTICULO -->
-            <div class="form-group">
+            <div class="col-xs-6">
 
               <div class="input-group">
 
-                <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                <span class="input-group-addon">
+                  <img src="vistas/img/plantilla/modal/articulos.png" width="15px">
+                </span>
 
-                <input type="text" class="form-control input-lg" name="editarTipo" id="editarTipo" placeholder="Tipo articulo" required>
+                <input type="text" class="form-control input-lg" name="editarTipo" id="editarTipo" placeholder="Tipo Articulo" required>
 
                 <input type="hidden" name="idArticulo" id="idArticulo">
 
@@ -411,54 +447,81 @@ $crearArticulo->ctrCrearArticulos();
             </div>
 
             <!-- ENTRADA PARA EL MODELO ARTICULO -->
-            <div class="form-group">
+            <div class="col-xs-6">
 
               <div class="input-group">
 
-                <span class="input-group-addon"><i class="fa fa-key"></i></span>
+                <span class="input-group-addon">
+                  <img src="vistas/img/plantilla/modal/modelo.png" width="15px">
+                </span>
 
                 <input type="text" class="form-control input-lg" name="editarModelo" id="editarModelo" min="0" placeholder="Modelo Articulo" required>
 
               </div>
 
             </div>
+            <br>
+            <br>
+            <br>
 
             <!-- ENTRADA PARA LA MARCA -->
-            <div class="form-group">
+            <div class="col-xs-6">
 
               <div class="input-group">
 
-                <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+                <span class="input-group-addon">
+                  <img src="vistas/img/plantilla/modal/marca.png" width="15px">
+                </span>
 
-                <input type="text" class="form-control input-lg" name="editarMarca" id="editarMarca" placeholder="Ingresar marca" required>
+                <input type="text" class="form-control input-lg" name="editarMarca" id="editarMarca" placeholder="Marca Articulo" required>
 
               </div>
 
             </div>
+
+            <!-- ENTRADA PARA EL SERIAL ARTICULO -->
+            <div class="col-xs-6">
+
+              <div class="input-group">
+
+                <span class="input-group-addon">
+                  <img src="vistas/img/plantilla/modal/serial1.png" width="15px">
+                </span>
+
+                <input type="text" class="form-control input-lg" name="editarSerial" id="editarSerial" min="0" placeholder="Serial del Articulo">
+
+              </div>
+
+            </div>
+
+          </div>
 
             <!-- ENTRADA PARA SELECCIONAR AMBIENTE -->
             <div class="form-group">
 
               <div class="input-group">
 
-                <span class="input-group-addon"><i class="fa fa-users"></i></span>
+                <span class="input-group-addon">
+                  <img src="vistas/img/plantilla/modal/ambientes.png" width="15px">
+                </span>
 
-                <select class="form-control input-lg" name="idAmbiente" >
+                <select class="form-control input-lg" name="idAmbiente" id="editarAmbiente">
 
-                  <option id="editarAmbiente"></option>
+                  <!-- <option id="editarAmbiente"></option> -->
+                   <option value="">Sin Ambiente</option>
                   <?php
 
-$item  = null;
-$valor = null;
+                    $item  = null;
+                    $valor = null;
 
-$ambiente = ControladorAmbientes::ctrMostrarAmbientes($item, $valor);
+                    $ambiente = ControladorAmbientes::ctrMostrarAmbientes($item, $valor);
 
-foreach ($ambiente as $key => $value) {
+                    foreach ($ambiente as $key => $value) {
 
-    echo '<option value="' . $value["idambiente"] . '">' . $value["nombreambiente"] . '</option>';
-}
+                        echo '<option value="' . $value["idambiente"] . '">' . $value["nombreambiente"] . '</option>';
+                    }
 
-?>
+                    ?>
                 </select>
 
               </div>
@@ -470,13 +533,16 @@ foreach ($ambiente as $key => $value) {
 
               <div class="input-group">
 
-                <span class="input-group-addon"><i class="fa fa-users"></i></span>
+                <span class="input-group-addon">
+                  <img src="vistas/img/plantilla/modal/equipos.png" width="15px">
+                </span>
 
                 <input type="hidden" name="equipo" id="equipo">
 
-                <select class="form-control input-lg" name="idEquipo" id="editarEquipoValidar" onchange="equipoFuncion1(this.value)">
+                <select class="form-control input-lg" name="idEquipo" id="editarEquipo" onchange="equipoFuncion1(this.value)">
 
-                  <option id="editarEquipo"></option>
+                  <!-- <option id="editarEquipo"></option> -->
+                  <option value="">Sin Equipo</option>
                   <?php
 
 $item  = null;
@@ -503,11 +569,14 @@ foreach ($equipos as $key => $value) {
 
               <div class="input-group">
 
-                <span class="input-group-addon"><i class="fa fa-users"></i></span>
+                <span class="input-group-addon">
+                  <img src="vistas/img/plantilla/modal/categorias.png" width="15px">
+                </span>
 
-                <select class="form-control input-lg" name="idCategoria">
+                <select class="form-control input-lg" name="idCategoria" id="editarCategoria">
 
-                  <option id="editarCategoria"></option>
+                  <!-- <option id="editarCategoria"></option> -->
+                  <option value="">Sin Categoria</option>
                   <?php
 
 $item  = null;
@@ -528,41 +597,34 @@ foreach ($ambiente as $key => $value) {
 
             </div>
 
+            <div class="form-group row">
+
             <!-- ENTRADA PARA EL INVENTARIO SENA -->
-            <div class="form-group">
+            <div class="col-xs-6">
 
               <div class="input-group">
 
-                <span class="input-group-addon"><i class="fa fa-key"></i></span>
+                <span class="input-group-addon">
+                  <img src="vistas/img/plantilla/modal/codigo.png" width="15px">
+                </span>
 
-                <input type="number" class="form-control input-lg" name="editarInventario" id="editarInventario" min="0" placeholder="Ingrese el numero del inventario sena">
+                <input type="text" class="form-control input-lg" name="editarInventario" id="editarInventario"  placeholder="Numero Inventario SENA">
 
               </div>
 
             </div>
 
-
-            <!-- ENTRADA PARA EL SERIAL ARTICULO -->
-            <div class="form-group">
+            <div class="col-xs-6">
 
               <div class="input-group">
 
-                <span class="input-group-addon"><i class="fa fa-key"></i></span>
+                <span class="input-group-addon">
+                  <img src="vistas/img/plantilla/modal/estado.png" width="15px">
+                </span>
 
-                <input type="text" class="form-control input-lg" name="editarSerial" id="editarSerial" min="0" placeholder="Ingrese el serial del articulo">
+                <select class="form-control input-lg" name="editarEstado" id="editarEstado">
 
-              </div>
-
-            </div>
-            <div class="form-group">
-
-              <div class="input-group">
-
-                <span class="input-group-addon"><i class="fa fa-users"></i></span>
-
-                <select class="form-control input-lg" name="editarEstado">
-
-                  <option id="editarEstado">Selecionar Estado</option>
+                  <!-- <option id="editarEstado">Selecionar Estado</option> -->
                   <option value="ACTIVO">Activo</option>
                   <option value="DAÑADO">Dañado</option>
                   <option value="PERDIDO">Perdido</option>
@@ -572,13 +634,17 @@ foreach ($ambiente as $key => $value) {
               </div>
 
             </div>
+          </div>
+
              <div class="form-group">
 
               <div class="input-group">
 
-                <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+                <span class="input-group-addon">
+                  <img src="vistas/img/plantilla/modal/observaciones.png" width="15px">
+                </span>
 
-                 <textarea class="form-control rounded-5" name="editarCaracteristica" id="editarCaracteristica" rows="3" placeholder="INGRESAR CARACTERÍSTICAS DEL ARTICULO"></textarea>
+                 <textarea class="form-control rounded-5" name="editarCaracteristica" id="editarCaracteristica" rows="3" placeholder="INGRESE CARACTERÍSTICAS DEL ARTICULO"></textarea>
                  <!-- <input type="text" class="form-control input-lg" name="nuevaCaracteristica" min="0" placeholder="Ingrese la característica del artículo"> -->
 
               </div>
@@ -587,13 +653,12 @@ foreach ($ambiente as $key => $value) {
           </div>
         </div>
 
-
         <!-- PIE DEL MODAL -->
         <div class="modal-footer">
 
           <button type="button" class="btn btn-default " data-dismiss="modal">Salir</button>
 
-          <button type="submit" class="btn btn-primary" id="actualizarArticulo">Guardar cambios</button>
+          <button type="submit" class="btn btn-primary" id="actualizarArticulo">Guardar Cambios</button>
 
         </div>
         <?php

@@ -157,7 +157,7 @@ class ControladorEquipos
                         "NuevoEstado"           => $nuevoEstado,
                         "NuevaObservacion"      => $nuevaObservacion,
                         "NumArticulosEquipo"    => $_POST["editarCantidad"],
-                        "NumArticulosAgregados" => 0,
+                        "NumArticulosAgregados" => $_POST["agregados"],
                     );
 
                     $respuesta = ModeloEquipos::mdlEditarEquipo($tabla, $datos);
@@ -168,7 +168,7 @@ class ControladorEquipos
 
           swal({
               type: "success",
-              title: "El equipo ha sido cambiado correctamente",
+              title: "El equipo ha sido editado correctamente",
               showConfirmButton: true,
               confirmButtonText: "Cerrar"
               }).then(function(result){

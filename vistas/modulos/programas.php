@@ -97,9 +97,9 @@
         <div class="modal-content">
             <form enctype="multipart/form-data" method="post" role="form">
                 <!-- CABEZA DEL MODAL -->
-                <div class="modal-header" style="background:#3c8dbc; color:white">
+                <div class="modal-header cabeza-modal">
                     <button class="close" data-dismiss="modal" type="button">
-                        ×
+                        x
                     </button>
                     <h4 class="modal-title">
                         Agregar Programa
@@ -112,7 +112,7 @@
                         <div class="form-group">
                             <div class="input-group">
                                 <span class="input-group-addon">
-                                    <i class="fa fa-user">
+                                    <img src="vistas/img/plantilla/iconos/programas.png" width="15px">
                                     </i>
                                 </span>
                                 <input class="form-control input-lg" name="NuevoPrograma" id="NuevoPrograma"
@@ -124,12 +124,11 @@
                         <div class="form-group">
                             <div class="input-group">
                                 <span class="input-group-addon">
-                                    <i class="fa fa-users">
-                                    </i>
-                                </span>
+                  <img src="vistas/img/plantilla/modal/programa.png" width="15px">
+                </span>
                                 <select class="form-control input-lg" name="TipoPrograma" id="TipoPrograma" required onchange="duracion(this.value)">
                                     <option value="">
-                                        Seleccione el Programa
+                                        Seleccione Tipo de Programa
                                     </option>
                                     <option value="TÉCNICO">
                                         Técnico
@@ -146,10 +145,9 @@
                         <div class="form-group">
                             <div class="input-group">
                                 <span class="input-group-addon">
-                                    <i class="fa fa-user">
-                                    </i>
-                                </span>
-                                <input class="form-control input-lg" name="nuevaDuracion"  id="nuevaDuracion" placeholder="Duracion del Programa" type="text" required>
+                  <img src="vistas/img/plantilla/modal/calendario.png" width="15px">
+                </span>
+                                <input class="form-control input-lg" name="nuevaDuracion"  id="nuevaDuracion" placeholder="Duración del Programa" type="text" required>
                                 </input>
                             </div>
                         </div>
@@ -178,7 +176,7 @@ $crearPrograma->ctrCrearProgramas();
         <div class="modal-content">
             <form enctype="multipart/form-data" method="post" role="form">
                 <!-- CABEZA DEL MODAL -->
-                <div class="modal-header" style="background:#3c8dbc; color:white">
+                <div class="modal-header cabeza-modal">
                     <button class="close" data-dismiss="modal" type="button">
                         ×
                     </button>
@@ -193,9 +191,8 @@ $crearPrograma->ctrCrearProgramas();
                         <div class="form-group">
                             <div class="input-group">
                                 <span class="input-group-addon">
-                                    <i class="fa fa-user">
-                                    </i>
-                                </span>
+                  <img src="vistas/img/plantilla/modal/programas.png" width="15px">
+                </span>
                                 <input class="form-control input-lg" name="EditarPrograma" id="EditarPrograma" required="" type="text">
                                 </input>
                                 <input class="form-control input-lg" name="idPrograma" id="idPrograma" type="hidden">
@@ -206,13 +203,12 @@ $crearPrograma->ctrCrearProgramas();
                         <div class="form-group">
                             <div class="input-group">
                                 <span class="input-group-addon">
-                                    <i class="fa fa-users">
-                                    </i>
-                                </span>
+                  <img src="vistas/img/plantilla/modal/programa.png" width="15px">
+                </span>
                                 <select class="form-control input-lg" name="EditarTipoPrograma" id="EditarTipoPrograma" required onchange="duracion(this.value)" >
-                                    <option value="" id="EditarTipoPrograma2">
+                                    <!-- <option value="" id="EditarTipoPrograma2">
                                         Selecionar Tipo de Programa
-                                    </option>
+                                    </option> -->
                                     <option value="TÉCNICO">
                                         Técnico
                                     </option>
@@ -228,9 +224,8 @@ $crearPrograma->ctrCrearProgramas();
                         <div class="form-group">
                             <div class="input-group">
                                 <span class="input-group-addon">
-                                    <i class="fa fa-user">
-                                    </i>
-                                </span>
+                  <img src="vistas/img/plantilla/modal/calendario.png" width="15px">
+                </span>
                                 <input class="form-control input-lg" name="EditarDuracion" id="EditarDuracion" required="" type="text">
                                 </input>
                             </div>
@@ -243,7 +238,7 @@ $crearPrograma->ctrCrearProgramas();
                         Salir
                     </button>
                     <button class="btn btn-primary" type="submit">
-                        Guardar cambios
+                        Guardar Cambios
                     </button>
                 </div>
 <?php

@@ -17,12 +17,12 @@ if (PHP_SAPI == 'cli-server') {
 //     return $dbh;
 //  }
 
-function getConnection()
-{
-    $dbh = new PDO("pgsql:user=postgres dbname=proyectofinal ;password=123");
-    $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    return $dbh;
-}
+// function getConnection()
+// {
+//     $dbh = new PDO("pgsql:user=postgres dbname=proyectofinal ;password=123");
+//     $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+//     return $dbh;
+// }
 
 function login($response)
 {
@@ -60,13 +60,11 @@ function login($response)
     }
 }
 
-
 function loginActas($response)
 {
     $route        = $response->getAttribute('route');
     $args         = $route->getArguments();
     $numDocumento = $args['numDocumento'];
-
 
     $sql = "SELECT aprendiz.nombreaprendiz, acta_responsabilidad.fechaacta, equipo.nombreequipo,
     aprendiz.numeroficha, ambiente.nombreambiente, numdocumentoinstructor, acta_responsabilidad.idacta
@@ -263,13 +261,14 @@ function articuloNovedad($request)
     }
 }
 
-function registrarActas($request) {
+function registrarActas($request)
+{
     // $emp = json_decode($request->getBody());
     $emp = $request->getParams();
-    
+
     $sql = "INSERT INTO acta_responsabilidad ( numdocumentoaprendiz, idequipo, fechaacta, numdocumentoinstructor ) VALUES (:numdocumentoaprendiz, :idequipo, :fechaacta, :numdocumentoinstructor)";
     try {
-        $db = getConnection();
+        $db   = getConnection();
         $stmt = $db->prepare($sql);
 
         $stmt->bindParam(":numdocumentoaprendiz", $emp["numdocumentoaprendiz"]);
@@ -277,19 +276,19 @@ function registrarActas($request) {
         $stmt->bindParam(":fechaacta", $emp["fechaacta"]);
         $stmt->bindParam(":numdocumentoinstructor", $emp["numdocumentoinstructor"]);
         $stmt->execute();
-    } catch(PDOException $e) {
-        echo '{"error":{"text":'. $e->getMessage() .'}}';
+    } catch (PDOException $e) {
+        echo '{"error":{"text":' . $e->getMessage() . '}}';
     }
 }
 
-
-
 function buscarNovedad($response)
 {
-    $route      = $response->getAttribute('route');
-    $args       = $route->getArguments();
-    
-    $sql        = "SELECT MAX(idnovedad) FROM novedad";
+
+    $route = $response->getAttribute('route');
+    $args  = $route->getArguments();
+
+    $sql = "SELECT MAX(idnovedad) FROM novedad";
+
     try {
         $stmt      = getConnection()->query($sql);
         $productos = $stmt->fetchAll(PDO::FETCH_OBJ);

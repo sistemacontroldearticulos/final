@@ -114,4 +114,32 @@ class ModeloFichas{
         $stmt->close();
         $stmt = null;
     }
+
+    static public function mdlMostrarFichaAmbiente($tabla, $item, $valor){
+            
+        if ($item != null) {
+            $stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item=:$item");
+
+            $stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
+
+            $stmt->execute();
+
+            return $stmt->fetchAll();
+
+        }
+    }
+
+    static public function mdlMostrarFichaAprendiz($tabla, $item, $valor){
+            
+        if ($item != null) {
+            $stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item=:$item");
+
+            $stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
+
+            $stmt->execute();
+
+            return $stmt->fetchAll();
+
+        }
+    }
 }

@@ -133,7 +133,7 @@ MODAL AGREGAR EQUIPO
         CABEZA DEL MODAL
         ======================================-->
 
-        <div class="modal-header" style="background:#3c8dbc; color:white">
+        <div class="modal-header cabeza-modal">
 
           <button type="button" class="close" data-dismiss="modal">&times;</button>
 
@@ -154,9 +154,11 @@ MODAL AGREGAR EQUIPO
 
               <div class="input-group">
 
-                <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                <span class="input-group-addon">
+                  <img src="vistas/img/plantilla/modal/equipos.png" width="15px">
+                </span>
 
-                <input type="text" class="form-control input-lg" name="nuevoEquipo" placeholder="Ingresar nombre del equipo" required>
+                <input type="text" class="form-control input-lg" name="nuevoEquipo" id="nuevoEquipo" placeholder="Ingrese Nombre de Equipo" required>
 
               </div>
 
@@ -167,9 +169,11 @@ MODAL AGREGAR EQUIPO
 
               <div class="input-group">
 
-                <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                <span class="input-group-addon">
+                  <img src="vistas/img/plantilla/modal/cantidad.png" width="15px">
+                </span>
 
-                <input type="number" class="form-control input-lg" name="nuevaCantidad" placeholder="Ingresar cantidad articulos" required>
+                <input type="number" class="form-control input-lg" name="nuevaCantidad" placeholder="Ingrese Cantidad Articulos" required>
 
               </div>
 
@@ -180,11 +184,13 @@ MODAL AGREGAR EQUIPO
 
               <div class="input-group">
 
-                <span class="input-group-addon"><i class="fa fa-th"></i></span>
+                <span class="input-group-addon">
+                  <img src="vistas/img/plantilla/modal/estado.png" width="15px">
+                </span>
 
                   <select class="form-control input-lg" name="nuevoEstado" required>
 
-                    <option value="">Selecionar Estado</option>
+                    <option value="">Seleccionar Estado</option>
                     <option value="ACTIVADO">Activado</option>
                     <option value="DESACTIVADO">Desactivado</option>
 
@@ -199,9 +205,11 @@ MODAL AGREGAR EQUIPO
 
               <div class="input-group">
 
-                <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+                <span class="input-group-addon">
+                  <img src="vistas/img/plantilla/modal/observaciones.png" width="15px">
+                </span>
 
-                 <textarea class="form-control rounded-5" name="nuevaObservacion" rows="3" placeholder="INGRESAR OBSERVACIONES DEL EQUIPO"></textarea>
+                 <textarea class="form-control rounded-5" name="nuevaObservacion" rows="3" placeholder="INGRESE OBSERVACIONES DEL EQUIPO"></textarea>
 
               </div>
 
@@ -253,7 +261,7 @@ MODAL EDITAR EQUIPO
         CABEZA DEL MODAL
         ======================================-->
 
-        <div class="modal-header" style="background:#3c8dbc; color:white">
+        <div class="modal-header cabeza-modal">
 
           <button type="button" class="close" data-dismiss="modal">&times;</button>
 
@@ -274,11 +282,15 @@ MODAL EDITAR EQUIPO
 
               <div class="input-group">
 
-                <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                <span class="input-group-addon">
+                  <img src="vistas/img/plantilla/modal/equipos.png" width="15px">
+                </span>
 
-                <input type="text" class="form-control input-lg" name="editarEquipo" id="editarEquipo" placeholder="Ingresar nombre del equipo" required>
+                <input type="text" class="form-control input-lg" name="editarEquipo" id="editarEquipo" placeholder="Ingrese Nombre del Equipo" required>
 
                 <input type="hidden" name="idEquipo" id="idEquipo">
+
+                <input type=hidden name="agregados" id="agregados">
 
               </div>
 
@@ -289,9 +301,11 @@ MODAL EDITAR EQUIPO
 
               <div class="input-group">
 
-                <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                <span class="input-group-addon">
+                  <img src="vistas/img/plantilla/modal/cantidad.png" width="15px">
+                </span>
 
-                <input type="text" class="form-control input-lg" name="editarCantidad" id="editarCantidad" placeholder="Ingresar cantidad articulos" required>
+                <input type="text" class="form-control input-lg" name="editarCantidad" id="editarCantidad" placeholder="Ingrese Cantidad Articulos" required>
 
               </div>
 
@@ -302,11 +316,12 @@ MODAL EDITAR EQUIPO
 
               <div class="input-group">
 
-                <span class="input-group-addon"><i class="fa fa-th"></i></span>
+                <span class="input-group-addon">
+                  <img src="vistas/img/plantilla/modal/estado.png" width="15px">
+                </span>
 
                   <select class="form-control input-lg" name="editarEstado"id="editarEstado" required>
 
-                    <option value="" >Selecionar Estado</option>
                     <option value="ACTIVADO">Activado</option>
                     <option value="DESACTIVADO">Desactivado</option>
 
@@ -321,9 +336,11 @@ MODAL EDITAR EQUIPO
 
               <div class="input-group">
 
-                <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+                <span class="input-group-addon">
+                  <img src="vistas/img/plantilla/modal/observaciones.png" width="15px">
+                </span>
 
-                 <textarea class="form-control rounded-5" name="editarObservacion" id="editarObservacion" rows="3" placeholder="INGRESAR OBSERVACIONES DEL EQUIPO"></textarea>
+                 <textarea class="form-control rounded-5" name="editarObservacion" id="editarObservacion" rows="3" placeholder="INGRESE OBSERVACIONES DEL EQUIPO"></textarea>
 
               </div>
 

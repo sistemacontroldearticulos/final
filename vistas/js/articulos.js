@@ -1,5 +1,5 @@
 $(".tablas").on("click", ".btnEliminarArticulo", function(){
-    debugger;
+    // debugger;
     var idArticulo = $(this).attr("idArticulo");
     swal({
         title: '¿Desea eliminar el articulo?',
@@ -37,6 +37,7 @@ $(".tablas").on("click", ".btnEditarArticulo", function(){
             $("#editarTipo").val(respuesta["tipoarticulo"]);
             $("#editarModelo").val(respuesta["modeloarticulo"]);
             $("#editarMarca").val(respuesta["marcaarticulo"]);
+            $("#editarInventario").val(respuesta["numinventariosena"]);
             var idAmbiente = $(this).attr("idAmbiente");
             var datosAmbiente = new FormData();
             datosAmbiente.append("idAmbiente", respuesta["idambiente"]);
@@ -50,7 +51,7 @@ $(".tablas").on("click", ".btnEditarArticulo", function(){
                 dataType: "json",
                 success: function(respuesta) {
                     $("#editarAmbiente").val(respuesta["idambiente"]);
-                    $("#editarAmbiente").html(respuesta["nombreambiente"]);
+                    // $("#editarAmbiente").html(respuesta["nombreambiente"]);
                 }
             })
             var idEquipo = $(this).attr("idEquipo");
@@ -67,7 +68,7 @@ $(".tablas").on("click", ".btnEditarArticulo", function(){
                 success: function(respuesta) {
                     // console.log("respuesta", respuesta);
                     $("#editarEquipo").val(respuesta["idequipo"]);
-                    $("#editarEquipo").html(respuesta["nombreequipo"]);
+                    // $("#editarEquipo").html(respuesta["nombreequipo"]);
                 }
             })
             var idCategorias = $(this).attr("idCategoria");
@@ -83,14 +84,68 @@ $(".tablas").on("click", ".btnEditarArticulo", function(){
                 dataType: "json",
                 success: function(respuesta) {
                     $("#editarCategoria").val(respuesta["idcategoria"]);
-                    $("#editarCategoria").html(respuesta["nombrecategoria"]);
+                    // $("#editarCategoria").html(respuesta["nombrecategoria"]);
                 }
             })
             $("#editarInventario").val(respuesta["numinventariosena"]);
             $("#editarSerial").val(respuesta["serialarticulo"]);
             $("#editarEstado").val(respuesta["estadoarticulo"]);
-            $("#editarEstado").html(respuesta["estadoarticulo"]);
+            // $("#editarEstado").html(respuesta["estadoarticulo"]);
             $("#editarCaracteristica").val(respuesta["caracteristicaarticulo"]);
+        }
+    })
+})
+
+/*=========================
+=    VALIDAR SERIAL ARTICULO    =
+=========================*/
+$("#nuevoSerial").change(function() {
+    // debugger;   
+    $(".alert").remove();
+    var serialArticulo = $(this).val();
+    var datos = new FormData();
+    datos.append("serialArticulo", serialArticulo);
+    $.ajax({
+        url: "ajax/articulosAjax.php",
+        method: "POST",
+        data: datos,
+        cache: false,
+        contentType: false,
+        processData: false,
+        dataType: "json",
+        success: function(respuesta) {
+            console.log("respuesta", respuesta);
+            if (respuesta) {
+                $("#nuevoSerial").parent().after('<div class="alert" style="height: 20px; text-align="center"><font color="#f39c12"><strong>ESTE SERIAL YA SE ENCUENTRA REGISTRADO</strong></font></div>');
+                $("#nuevoSerial").val("");
+            }
+        }
+    })
+})
+
+/*=========================
+=    VALIDAR INEVTARIO SENA ARTICULO    =
+=========================*/
+$("#nuevoInventario").change(function() {
+    // debugger;   
+    $(".alert").remove();
+    var numInventario = $(this).val();
+    var datos = new FormData();
+    datos.append("numInventario", numInventario);
+    $.ajax({
+        url: "ajax/articulosAjax.php",
+        method: "POST",
+        data: datos,
+        cache: false,
+        contentType: false,
+        processData: false,
+        dataType: "json",
+        success: function(respuesta) {
+            console.log("respuesta", respuesta);
+            if (respuesta) {
+                $("#nuevoInventario").parent().after('<div class="alert" style="height: 20px; text-align="center"><font color="#f39c12"><strong>ESTE NUMERO DE INVENTARIO YA SE ENCUENTRA REGISTRADO</strong></font></div>');
+                $("#nuevoInventario").val("");
+            }
         }
     })
 })

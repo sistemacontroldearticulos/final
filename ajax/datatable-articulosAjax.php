@@ -25,8 +25,9 @@ class TablaArticulos{
     $valor = null;
 
     $respuesta = ControladorAmbientes::ctrMostrarArticulos1($item, $valor);
-    // var_dump($respuesta);
-    echo '{
+    
+    if( sizeof($respuesta) == 0 ){ 
+      echo '{
             "data": [';
 
             for($i = 0; $i < count($respuesta)-1; $i++){
@@ -51,32 +52,59 @@ class TablaArticulos{
                 ],';
 
             }
-
-            $item = "idequipo";
-            $valor = $respuesta[count($respuesta)-1]["idequipo"];
-
-            $equipo = ControladorEquipos::ctrMostrarEquipos($item, $valor);
-
-            $item1 = "idambiente";
-            $valor1 = $respuesta[count($respuesta)-1]["idambiente"];
-
-            $ambientes = ControladorAmbientes::ctrMostrarAmbientes($item1, $valor1);
-
-           echo'[
-                  "'.$respuesta[$i]["idarticulo"].'",
-                  "'.$respuesta[count($respuesta)-1]["tipoarticulo"].'",
-                  "'.$respuesta[count($respuesta)-1]["numinventariosena"].'",
-                  
-                  "'.$equipo["nombreequipo"].' '.$equipo["idequipo"].'",
-                  "'.$ambientes["nombreambiente"].'"
-                ]
-            ]
+            echo']
         }';
+    } else{
 
+        echo '{
+            "data": [';
 
-  }
+              for($i = 0; $i < count($respuesta)-1; $i++){
 
+                  $item = "idequipo";
+                  $valor = $respuesta[$i]["idequipo"];
 
+                  $equipo = ControladorEquipos::ctrMostrarEquipos($item, $valor);
+
+                  $item1 = "idambiente";        
+                  $valor1 = $respuesta[$i]["idambiente"];
+
+                  $ambientes = ControladorAmbientes::ctrMostrarAmbientes($item1, $valor1);
+
+                   echo '[
+                    "'.$respuesta[$i]["idarticulo"].'",
+                    "'.$respuesta[$i]["tipoarticulo"].'",
+                    "'.$respuesta[$i]["numinventariosena"].'",
+                    
+                    "'.$equipo["nombreequipo"].' '.$equipo["idequipo"].'",
+                    "'.$ambientes["nombreambiente"].'"
+                  ],';
+
+              }
+
+              $item = "idequipo";
+              $valor = $respuesta[count($respuesta)-1]["idequipo"];
+
+              $equipo = ControladorEquipos::ctrMostrarEquipos($item, $valor);
+
+              $item1 = "idambiente";
+              $valor1 = $respuesta[count($respuesta)-1]["idambiente"];
+
+              $ambientes = ControladorAmbientes::ctrMostrarAmbientes($item1, $valor1);
+
+             echo'[
+                    "'.$respuesta[$i]["idarticulo"].'",
+                    "'.$respuesta[count($respuesta)-1]["tipoarticulo"].'",
+                    "'.$respuesta[count($respuesta)-1]["numinventariosena"].'",
+                    
+                    "'.$equipo["nombreequipo"].' '.$equipo["idequipo"].'",
+                    "'.$ambientes["nombreambiente"].'"
+                  ]
+
+              ]
+          }';
+      } 
+    }
 }
 
 /*=============================================

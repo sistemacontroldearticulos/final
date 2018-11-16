@@ -33,7 +33,7 @@ $(".tablas").on("click", ".btnEditarAmbiente", function(){
                 dataType: "json",
                 success: function(respuesta) {
                     $("#EditarPrograma").val(respuesta["idprograma"]);
-                    $("#EditarPrograma").html(respuesta["nombreprograma"]);
+                    // $("#EditarPrograma").html(respuesta["nombreprograma"]);
                 }
             })
         }
@@ -60,4 +60,30 @@ $(".tablas").on("click", ".btnEliminarAmbiente", function(){
     })
 })
 
+/*=========================
+=    VALIDAR AMBIENTE     =
+=========================*/
+$("#nuevoAmbiente").change(function() {
+    // debugger;   
+    $(".alert").remove();
+    var nombreAmbiente = $(this).val();
+    var datos = new FormData();
+    datos.append("nombreAmbiente", nombreAmbiente);
+    $.ajax({
+        url: "ajax/ambientesAjax.php",
+        method: "POST",
+        data: datos,
+        cache: false,
+        contentType: false,
+        processData: false,
+        dataType: "json",
+        success: function(respuesta) {
+            console.log("respuesta", respuesta);
+            if (respuesta) {
+                $("#nuevoAmbiente").parent().after('<div class="alert" style="height: 20px; text-align="center"><font color="#f39c12"><strong>ESTE AMBIENTE YA SE ENCUENTRA REGISTRADO</strong></font></div>');
+                $("#nuevoAmbiente").val("");
+            }
+        }
+    })
+})
 
