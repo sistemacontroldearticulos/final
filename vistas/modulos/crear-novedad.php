@@ -46,7 +46,9 @@
 
                   <div class="input-group">
 
-                    <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                    <span class="input-group-addon">
+                  <img src="vistas/img/plantilla/modal/usuarios.png" width="15px">
+                </span>
 
                     <input type="text" class="form-control" name="usuarioNovedad" value="<?php echo $_SESSION["NombreUsuario"]; ?>" readonly>
 
@@ -61,7 +63,9 @@
 
                   <div class="input-group">
 
-                    <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                    <span class="input-group-addon">
+                  <img src="vistas/img/plantilla/modal/ficha.png" width="15px">
+                </span>
 
                     <input type="number" class="form-control input-lg" id="nuevaFicha1" name="nuevaFicha1" placeholder="Ingrese numero de ficha"  required>
 
@@ -76,7 +80,9 @@
 
                   <div class="input-group">
 
-                    <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                    <span class="input-group-addon">
+                  <img src="vistas/img/plantilla/modal/ambientes.png" width="15px">
+                </span>
 
                       <input type="text" class="form-control input-lg" id="nuevoAmbiente1" value name="nuevoAmbiente1" readonly placeholder="Ambiente">
 

@@ -132,7 +132,9 @@
 
               <div class="input-group">
 
-                <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                <span class="input-group-addon">
+                  <img src="vistas/img/plantilla/modal/ambientes.png" width="15px">
+                </span>
 
                 <input type="text" class="form-control input-lg" name="nuevoAmbiente" id="nuevoAmbiente" placeholder="Ingrese Nombre de Ambiente" required>
 
@@ -145,7 +147,9 @@
 
               <div class="input-group">
 
-                <span class="input-group-addon"><i class="fa fa-map-marker"></i></span>
+                <span class="input-group-addon">
+                  <img src="vistas/img/plantilla/modal/ubi.png" width="15px">
+                </span>
 
                 <input type="text" class="form-control input-lg" name="nuevaUbicacion"  id="nuevaUbicacion" placeholder="Ingrese Ubicacion de Ambiente">
 
@@ -159,7 +163,9 @@
 
               <div class="input-group">
 
-                <span class="input-group-addon"><i class="fa fa-map-marker"></i></span>
+                <span class="input-group-addon">
+                  <img src="vistas/img/plantilla/modal/programas.png" width="15px">
+                </span>
 
                 <select class="form-control input-lg" name="idPrograma" id="idPrograma" required>
                   <option value="">Seleccionar Programa</option>
@@ -232,7 +238,9 @@
 
               <div class="input-group">
 
-                <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                <span class="input-group-addon">
+                  <img src="vistas/img/plantilla/modal/ambientes.png" width="15px">
+                </span>
 
                 <input type="text" class="form-control input-lg" name="editarAmbiente" id="editarAmbiente"required>
 
@@ -247,7 +255,9 @@
 
               <div class="input-group">
 
-                <span class="input-group-addon"><i class="fa fa-map-marker"></i></span>
+                <span class="input-group-addon">
+                  <img src="vistas/img/plantilla/modal/ubi.png" width="15px">
+                </span>
 
                 <input type="text" class="form-control input-lg" name="editarUbicacion"  id="editarUbicacion">
 
@@ -261,7 +271,9 @@
 
               <div class="input-group">
 
-                <span class="input-group-addon"><i class="fa fa-map-marker"></i></span>
+                <span class="input-group-addon">
+                  <img src="vistas/img/plantilla/modal/programas.png" width="15px">
+                </span>
 
                 <select class="form-control input-lg" name="idPrograma" id="EditarPrograma">
                   

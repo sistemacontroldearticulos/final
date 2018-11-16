@@ -146,7 +146,9 @@ foreach ($usuario as $key => $value) {
 
               <div class="input-group">
 
-                <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                <span class="input-group-addon">
+                  <img src="vistas/img/plantilla/modal/usuarios.png" width="15px">
+                </span>
 
                 <input type="text" class="form-control input-lg" name="nuevoNombre" placeholder="Ingrese Nombre" required>
 
@@ -159,7 +161,9 @@ foreach ($usuario as $key => $value) {
 
               <div class="input-group">
 
-                <span class="input-group-addon"><i class="fa fa-key"></i></span>
+                <span class="input-group-addon">
+                  <img src="vistas/img/plantilla/modal/ndocumentos.png" width="15px">
+                </span>
 
                 <input type="number" class="form-control input-lg" name="nuevoDocumento" id="nuevoDocumento" min="0" placeholder="Numero de Documento" required>
 
@@ -172,7 +176,9 @@ foreach ($usuario as $key => $value) {
 
               <div class="input-group">
 
-                <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+                <span class="input-group-addon">
+                  <img src="vistas/img/plantilla/modal/contraseña.png" width="15px">
+                </span>
 
                 <input type="password" class="form-control input-lg" name="nuevaContrasenia" placeholder="***********" readonly>
 
@@ -185,7 +191,9 @@ foreach ($usuario as $key => $value) {
 
               <div class="input-group">
 
-                <span class="input-group-addon"><i class="fa fa-users"></i></span>
+                <span class="input-group-addon">
+                  <img src="vistas/img/plantilla/modal/perfil.png" width="15px">
+                </span>
 
                 <select class="form-control input-lg" name="nuevoPerfil" onchange="rolUsuario(this.value)" required>
 
@@ -205,7 +213,9 @@ foreach ($usuario as $key => $value) {
 
               <div class="input-group">
 
-                <span class="input-group-addon"><i class="fa fa-product-hunt"></i></span>
+                <span class="input-group-addon">
+                  <img src="vistas/img/plantilla/modal/programas.png" width="15px">
+                </span>
 
                 <select class="form-control input-lg" name="nuevoPrograma" id="nuevoPrograma">
 
@@ -295,7 +305,9 @@ $crearUsuario->ctrCrearUsuario();
 
               <div class="input-group">
 
-                <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                <span class="input-group-addon">
+                  <img src="vistas/img/plantilla/modal/usuarios.png" width="15px">
+                </span>
 
                 <input type="text" class="form-control input-lg" id="editarNombre" name="editarNombre" value="" required placeholder="Ingrese Nombre">
 
@@ -308,7 +320,9 @@ $crearUsuario->ctrCrearUsuario();
 
               <div class="input-group">
 
-                <span class="input-group-addon"><i class="fa fa-key"></i></span>
+                <<span class="input-group-addon">
+                  <img src="vistas/img/plantilla/modal/ndocumentos.png" width="15px">
+                </span>span class="input-group-addon"><i class="fa fa-key"></i></span>
 
                 <input type="numer" class="form-control input-lg" id="editarDocumento" name="editarDocumento" min="0" value="" readonly>
 
@@ -321,7 +335,9 @@ $crearUsuario->ctrCrearUsuario();
 
               <div class="input-group">
 
-                <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+                <span class="input-group-addon">
+                  <img src="vistas/img/plantilla/modal/contraseña.png" width="15px">
+                </span>
 
                 <input type="password" class="form-control input-lg" id="editarContrasenia" name="editarContrasenia" placeholder="Ingrese Contraseña">
 
@@ -336,7 +352,9 @@ $crearUsuario->ctrCrearUsuario();
 
               <div class="input-group">
 
-                <span class="input-group-addon"><i class="fa fa-users"></i></span>
+                <span class="input-group-addon">
+                  <img src="vistas/img/plantilla/modal/perfil.png" width="15px">
+                </span>
 
                 <select class="form-control input-lg" name="editarPerfil" onchange="rolUsuario2(this.value)" id="editarPerfil">
 
@@ -356,7 +374,9 @@ $crearUsuario->ctrCrearUsuario();
 
               <div class="input-group">
 
-                <span class="input-group-addon"><i class="fa fa-product-hunt"></i></span>
+                <span class="input-group-addon">
+                  <img src="vistas/img/plantilla/modal/programas.png" width="15px">
+                </span>
 
                 <select class="form-control input-lg"  name="editarPrograma"  id="editarPrograma">
 

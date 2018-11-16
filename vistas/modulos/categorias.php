@@ -124,7 +124,9 @@
               
               <div class="input-group">
               
-                <span class="input-group-addon"><i class="fa fa-th"></i></span> 
+                <span class="input-group-addon">
+                  <img src="vistas/img/plantilla/modal/categoria.png" width="15px">
+                </span>
 
                 <input type="text" class="form-control input-lg" name="nuevaCategoria" id="nuevaCategoria" placeholder="Ingrese Nombre de Categoría" required>
 
@@ -198,7 +200,9 @@ MODAL EDITAR CATEGORÍA
               
               <div class="input-group">
               
-                <span class="input-group-addon"><i class="fa fa-th"></i></span> 
+                <span class="input-group-addon">
+                  <img src="vistas/img/plantilla/modal/categoria.png" width="15px">
+                </span>
 
                 <input type="text" class="form-control input-lg" name="editarCategoria" id="editarCategoria" required>
 

@@ -1,5 +1,5 @@
 $(".tablas").on("click", ".btnEliminarArticulo", function(){
-    debugger;
+    // debugger;
     var idArticulo = $(this).attr("idArticulo");
     swal({
         title: '¿Desea eliminar el articulo?',
