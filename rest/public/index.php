@@ -17,12 +17,12 @@ if (PHP_SAPI == 'cli-server') {
 //     return $dbh;
 //  }
 
-// function getConnection()
-// {
-//     $dbh = new PDO("pgsql:user=postgres dbname=proyectofinal ;password=123");
-//     $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-//     return $dbh;
-// }
+function getConnection()
+{
+    $dbh = new PDO("pgsql:user=postgres dbname=proyectofinal ;password=123");
+    $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    return $dbh;
+}
 
 function login($response)
 {
@@ -134,23 +134,6 @@ function Ficha($response)
     }
 }
 
-function buscarArticulo($response)
-{
-    $route      = $response->getAttribute('route');
-    $args       = $route->getArguments();
-    $idAmbiente = $args['idArticulo'];
-    $sql        = "SELECT idarticulo FROM articulonovedad where idarticulo= $idAmbiente";
-    try {
-        $stmt      = getConnection()->query($sql);
-        $productos = $stmt->fetchAll(PDO::FETCH_OBJ);
-        $db        = null;
-        $arreglo   = (array) $productos;
-        $retorno   = array_map('utf8', $arreglo);
-        return json_encode($retorno);
-    } catch (PDOException $e) {
-        echo '{"error":{"text":' . $e->getMessage() . '}}';
-    }
-}
 function buscarFichaActas($response)
 {
     $route      = $response->getAttribute('route');
