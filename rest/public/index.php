@@ -17,12 +17,12 @@ if (PHP_SAPI == 'cli-server') {
 //     return $dbh;
 //  }
 
-// function getConnection()
-// {
-//     $dbh = new PDO("pgsql:user=postgres dbname=proyectofinal ;password=123");
-//     $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-//     return $dbh;
-// }
+function getConnection()
+{
+    $dbh = new PDO("pgsql:user=postgres dbname=proyectofinal ;password=123");
+    $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    return $dbh;
+}
 
 function login($response)
 {
@@ -151,6 +151,50 @@ function buscarArticulo($response)
         echo '{"error":{"text":' . $e->getMessage() . '}}';
     }
 }
+function verificarActasEquipo($response)
+{
+    $route      = $response->getAttribute('route');
+    $args       = $route->getArguments();
+    $idAmbiente = $args['idEquipo'];
+    $sql        = "SELECT nombreequipo, nombreaprendiz
+    FROM acta_responsabilidad
+    join equipo on (acta_responsabilidad.idequipo=equipo.idequipo)
+    join aprendiz on (acta_responsabilidad.numdocumentoaprendiz=aprendiz.numdocumentoaprendiz)
+     where acta_responsabilidad.idequipo= $idAmbiente";
+    try {
+        $stmt      = getConnection()->query($sql);
+        $productos = $stmt->fetchAll(PDO::FETCH_OBJ);
+        $db        = null;
+        $arreglo   = (array) $productos;
+        $retorno   = array_map('utf8', $arreglo);
+        return json_encode($retorno);
+    } catch (PDOException $e) {
+        echo '{"error":{"text":' . $e->getMessage() . '}}';
+    }
+}
+
+function verificarActasAprendiz($response)
+{
+    $route      = $response->getAttribute('route');
+    $args       = $route->getArguments();
+    $idAmbiente = $args['numdocumentoaprendiz'];
+    $sql        = "SELECT nombreequipo, nombreaprendiz
+     FROM acta_responsabilidad
+     join equipo on (acta_responsabilidad.idequipo=equipo.idequipo)
+     join aprendiz on (acta_responsabilidad.numdocumentoaprendiz=aprendiz.numdocumentoaprendiz)
+     where acta_responsabilidad.numdocumentoaprendiz= $idAmbiente";
+    try {
+        $stmt      = getConnection()->query($sql);
+        $productos = $stmt->fetchAll(PDO::FETCH_OBJ);
+        $db        = null;
+        $arreglo   = (array) $productos;
+        $retorno   = array_map('utf8', $arreglo);
+        return json_encode($retorno);
+    } catch (PDOException $e) {
+        echo '{"error":{"text":' . $e->getMessage() . '}}';
+    }
+}
+
 function buscarFichaActas($response)
 {
     $route      = $response->getAttribute('route');
@@ -245,24 +289,6 @@ function buscarNovedad($response)
 
     $sql = "SELECT MAX(idnovedad) FROM novedad";
 
-    try {
-        $stmt      = getConnection()->query($sql);
-        $productos = $stmt->fetchAll(PDO::FETCH_OBJ);
-        $db        = null;
-        $arreglo   = (array) $productos;
-        $retorno   = array_map('utf8', $arreglo);
-        return json_encode($retorno);
-    } catch (PDOException $e) {
-        echo '{"error":{"text":' . $e->getMessage() . '}}';
-    }
-}
-
-function buscarArticulo($response)
-{
-    $route      = $response->getAttribute('route');
-    $args       = $route->getArguments();
-    $idArticulo = $args['idArticulo'];
-    $sql        = "SELECT idArticulo FROM articulonovedad where idarticulo= '$idArticulo'";
     try {
         $stmt      = getConnection()->query($sql);
         $productos = $stmt->fetchAll(PDO::FETCH_OBJ);
