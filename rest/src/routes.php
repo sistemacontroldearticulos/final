@@ -20,6 +20,8 @@ $app->group('/api', function () use ($app) {
     $app->get('/fichaActas/{numeroFicha}', 'buscarFichaActas');
     $app->get('/ficha2', 'Ficha');
     $app->get('/idNovedad', 'buscarNovedad');
+    $app->get('/verificarActasEquipo/{idEquipo}', 'verificarActasEquipo');
+    $app->get('/verificarActasAprendiz/{numdocumentoaprendiz}', 'verificarActasAprendiz');
     $app->post('/crearNovedad', 'crearNovedad');
     $app->post('/articuloNovedad', 'articuloNovedad');
     $app->post('/actas', 'registrarActas');

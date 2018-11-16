@@ -2,6 +2,8 @@
 require_once "../controladores/fichasControlador.php";
 require_once "../modelos/fichasModelo.php";
 
+require_once "../controladores/aprendizControlador.php";
+require_once "../modelos/aprendizModelo.php";
 class AjaxFichas{
 
     // EDITAR FICHA
@@ -44,6 +46,19 @@ class AjaxFichas{
         echo json_encode($respuesta);
 
     }
+
+    // MOSTRAR FICHA APRENDIZ
+    public $ficha;
+    public function ajaxMostrarFichaAprendiz(){
+
+        $item = "NumeroFicha";
+        $valor = $this->ficha;
+
+        $respuesta = ControladorAprendiz::ctrMostrarAprendiz($item, $valor);
+
+        echo json_encode($respuesta);
+
+    }
 }
 // EDITAR FICHA
 if(isset($_POST["idFicha"])){
@@ -69,3 +84,10 @@ if(isset($_POST["validarFicha"])){
     $valFicha -> ajaxValidarFicha();
 }
 
+// MOSTRAR FICHA APRENDIZ
+if(isset($_POST["ficha"])){
+
+    $valFicha = new AjaxFichas();
+    $valFicha -> ficha = $_POST["ficha"];
+    $valFicha -> ajaxMostrarFichaAprendiz();
+}

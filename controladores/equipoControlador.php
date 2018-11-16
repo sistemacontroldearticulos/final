@@ -168,7 +168,7 @@ class ControladorEquipos
 
           swal({
               type: "success",
-              title: "El equipo ha sido cambiado correctamente",
+              title: "El equipo ha sido editado correctamente",
               showConfirmButton: true,
               confirmButtonText: "Cerrar"
               }).then(function(result){

@@ -3,7 +3,7 @@ require_once "conexion.php";
 
 class ModelosProgramas
 {
-    public function mdlCrearPrograma($tabla, $datos)
+    static public function mdlCrearPrograma($tabla, $datos)
     {
 
         $stmt = Conexion::conectar()->prepare("INSERT INTO $tabla(NombrePrograma, DuracionPrograma, TipoPrograma) VALUES (:NombrePrograma, :DuracionPrograma, :TipoPrograma)");

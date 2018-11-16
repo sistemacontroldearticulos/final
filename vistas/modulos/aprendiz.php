@@ -87,7 +87,7 @@
                       </tr>';
                 }
             ?>
-
+          
         </tbody>
 
        </table>
@@ -129,7 +129,9 @@
               
               <div class="input-group">
               
-                <span class="input-group-addon"><i class="fa fa-user"></i></span> 
+                <span class="input-group-addon">
+                  <img src="vistas/img/plantilla/modal/usuarios.png" width="15px">
+                </span>
 
                 <input type="text" class="form-control input-lg" name="nuevoAprendiz" placeholder="Ingresar nombre" required>
 
@@ -142,7 +144,9 @@
               
               <div class="input-group">
               
-                <span class="input-group-addon"><i class="fa fa-key"></i></span> 
+                <span class="input-group-addon">
+                  <img src="vistas/img/plantilla/modal/ndocumentos.png" width="15px">
+                </span>
 
                 <input type="number" class="form-control input-lg" name="nuevoDocumentoAprendiz" min="0" placeholder="Numero de documento" required>
 
@@ -157,8 +161,9 @@
               
               <div class="input-group">
               
-                <span class="input-group-addon"><i class="fa fa-lock"></i></span>
-
+                <span class="input-group-addon">
+                  <img src="vistas/img/plantilla/modal/ficha.png" width="15px">
+                </span>
 
                 <?php  
 
@@ -177,7 +182,9 @@
               
               <div class="input-group">
               
-                <span class="input-group-addon"><i class="fa fa-key"></i></span> 
+                <span class="input-group-addon">
+                  <img src="vistas/img/plantilla/modal/telefono.png" width="15px">
+                </span>
 
                 <input type="number" class="form-control input-lg" name="nuevoTelefonoAprendiz" min="0" placeholder="Numero de telefono" required>
 
@@ -191,7 +198,9 @@
               
               <div class="input-group">
               
-                <span class="input-group-addon"><i class="fa fa-envelope"></i></span> 
+                <span class="input-group-addon">
+                  <img src="vistas/img/plantilla/modal/email.png" width="15px">
+                </span> 
 
                 <input type="email" class="form-control input-lg" name="nuevoEmailAprendiz" placeholder="Ingresar email" required>
 
@@ -250,7 +259,9 @@
               
               <div class="input-group">
               
-                <span class="input-group-addon"><i class="fa fa-user"></i></span> 
+                <span class="input-group-addon">
+                  <img src="vistas/img/plantilla/modal/usurios.png" width="15px">
+                </span> 
 
                 <input type="text" class="form-control input-lg" name="editarAprendiz" id="editarAprendiz" required>
 
@@ -263,7 +274,9 @@
               
               <div class="input-group">
               
-                <span class="input-group-addon"><i class="fa fa-key"></i></span> 
+                <span class="input-group-addon">
+                  <img src="vistas/img/plantilla/modal/ndocumentos.png" width="15px">
+                </span> 
 
                 <input type="number" class="form-control input-lg" name="editarDocumentoAprendiz" id="editarDocumentoAprendiz" min="0" readonly>
 
@@ -276,7 +289,9 @@
               
               <div class="input-group">
               
-                <span class="input-group-addon"><i class="fa fa-lock"></i></span> 
+                <span class="input-group-addon">
+                  <img src="vistas/img/plantilla/modal/ficha.png" width="15px">
+                </span> 
 
                 <input type="number" class="form-control input-lg" name="editarFichaAprendiz" id="editarFichaAprendiz" required readonly>
 
@@ -289,7 +304,9 @@
               
               <div class="input-group">
               
-                <span class="input-group-addon"><i class="fa fa-key"></i></span> 
+                <span class="input-group-addon">
+                  <img src="vistas/img/plantilla/modal/telefono.png" width="15px">
+                </span> 
 
                 <input type="number" class="form-control input-lg" name="editarTelefonoAprendiz" id="editarTelefonoAprendiz" min="0" required>
 
@@ -303,7 +320,9 @@
               
               <div class="input-group">
               
-                <span class="input-group-addon"><i class="fa fa-envelope"></i></span> 
+                <span class="input-group-addon">
+                  <img src="vistas/img/plantilla/modal/email.png" width="15px">
+                </span> 
 
                 <input type="email" class="form-control input-lg" name="editarEmailAprendiz" id="editarEmailAprendiz" required>
 

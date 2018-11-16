@@ -46,6 +46,20 @@ class AjaxArticulos{
 
     }
 
+    // MOSTRAR ARTICULOS AMBIENTES
+    public $idambiente;
+    public function ajaxMostrarArticulosAmbiente(){
+
+        $item = "idambiente";
+        $valor = $this->idambiente;
+        $tabla = "articulo";
+
+        $respuesta = ModeloArticulos::mdlMostrarArticuloNovedad($tabla, $item, $valor);
+
+        echo json_encode($respuesta);
+
+    }
+
 }
 
 // EDITAR ARTICULOS
@@ -70,4 +84,12 @@ if(isset($_POST["numInventario"])){
     $articulo = new AjaxArticulos();
     $articulo -> numinventario = strtoupper($_POST["numInventario"]);
     $articulo -> ajaxValidarInventario();
+}
+
+// MOSTRAR ARTICULOS AMBIENTE
+if(isset($_POST["idAmbiente"])){
+
+    $articulo = new AjaxArticulos();
+    $articulo -> idambiente = strtoupper($_POST["idAmbiente"]);
+    $articulo -> ajaxMostrarArticulosAmbiente();
 }

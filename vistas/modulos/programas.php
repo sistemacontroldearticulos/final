@@ -124,9 +124,8 @@
                         <div class="form-group">
                             <div class="input-group">
                                 <span class="input-group-addon">
-                                    <i class="fa fa-th">
-                                    </i>
-                                </span>
+                  <img src="vistas/img/plantilla/modal/programa.png" width="15px">
+                </span>
                                 <select class="form-control input-lg" name="TipoPrograma" id="TipoPrograma" required onchange="duracion(this.value)">
                                     <option value="">
                                         Seleccione Tipo de Programa
@@ -146,9 +145,8 @@
                         <div class="form-group">
                             <div class="input-group">
                                 <span class="input-group-addon">
-                                    <i class="fa fa-clock">
-                                    </i>
-                                </span>
+                  <img src="vistas/img/plantilla/modal/calendario.png" width="15px">
+                </span>
                                 <input class="form-control input-lg" name="nuevaDuracion"  id="nuevaDuracion" placeholder="Duración del Programa" type="text" required>
                                 </input>
                             </div>
@@ -193,9 +191,8 @@ $crearPrograma->ctrCrearProgramas();
                         <div class="form-group">
                             <div class="input-group">
                                 <span class="input-group-addon">
-                                    <i class="fa fa-user">
-                                    </i>
-                                </span>
+                  <img src="vistas/img/plantilla/modal/programas.png" width="15px">
+                </span>
                                 <input class="form-control input-lg" name="EditarPrograma" id="EditarPrograma" required="" type="text">
                                 </input>
                                 <input class="form-control input-lg" name="idPrograma" id="idPrograma" type="hidden">
@@ -206,9 +203,8 @@ $crearPrograma->ctrCrearProgramas();
                         <div class="form-group">
                             <div class="input-group">
                                 <span class="input-group-addon">
-                                    <i class="fa fa-users">
-                                    </i>
-                                </span>
+                  <img src="vistas/img/plantilla/modal/programa.png" width="15px">
+                </span>
                                 <select class="form-control input-lg" name="EditarTipoPrograma" id="EditarTipoPrograma" required onchange="duracion(this.value)" >
                                     <!-- <option value="" id="EditarTipoPrograma2">
                                         Selecionar Tipo de Programa
@@ -228,9 +224,8 @@ $crearPrograma->ctrCrearProgramas();
                         <div class="form-group">
                             <div class="input-group">
                                 <span class="input-group-addon">
-                                    <i class="fa fa-user">
-                                    </i>
-                                </span>
+                  <img src="vistas/img/plantilla/modal/calendario.png" width="15px">
+                </span>
                                 <input class="form-control input-lg" name="EditarDuracion" id="EditarDuracion" required="" type="text">
                                 </input>
                             </div>

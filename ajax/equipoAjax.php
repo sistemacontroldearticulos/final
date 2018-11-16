@@ -59,3 +59,10 @@ if(isset($_POST["sel"])){
     $equipo -> ajaxEquipoArticulo();
 }
 
+if(isset($_POST["idEquipo"])){
+
+    $equipo = new AjaxEquipo();
+    $equipo -> idEquipo = $_POST["idEquipo"];
+    $equipo -> ajaxEditarEquipo();
+}
+

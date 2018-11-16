@@ -164,7 +164,9 @@
 
                 <div class="input-group">
 
-                  <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                  <span class="input-group-addon">
+                  <img src="vistas/img/plantilla/modal/articulos.png" width="15px">
+                </span>
 
                   <input type="text" class="form-control input-lg" name="nuevoTipo" placeholder="Tipo Articulo" required>
 
@@ -177,7 +179,9 @@
 
                 <div class="input-group">
 
-                  <span class="input-group-addon"><i class="fa fa-key"></i></span>
+                  <span class="input-group-addon">
+                  <img src="vistas/img/plantilla/modal/modelos1.png" width="15px">
+                </span>
 
                   <input type="text" class="form-control input-lg" name="nuevoModelo"placeholder="Modelo Articulo" required>
 
@@ -193,7 +197,9 @@
 
                 <div class="input-group">
 
-                  <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+                  <span class="input-group-addon">
+                  <img src="vistas/img/plantilla/modal/marca.png" width="15px">
+                </span>
 
                   <input type="text" class="form-control input-lg" name="nuevaMarca" placeholder="Marca Articulo" required>
 
@@ -206,7 +212,9 @@
 
                 <div class="input-group">
 
-                  <span class="input-group-addon"><i class="fa fa-key"></i></span>
+                  <span class="input-group-addon">
+                  <img src="vistas/img/plantilla/modal/serial1.png" width="15px">
+                </span>
 
                   <input type="text" class="form-control input-lg" name="nuevoSerial" id="nuevoSerial" placeholder="Serial del Articulo">
 
@@ -221,7 +229,9 @@
 
               <div class="input-group">
 
-                <span class="input-group-addon"><i class="fa fa-users"></i></span>
+                <span class="input-group-addon">
+                  <img src="vistas/img/plantilla/modal/ambientes.png" width="15px">
+                </span>
 
                 <select class="form-control input-lg" name="nuevoAmbiente" required>
 
@@ -250,7 +260,9 @@
 
               <div class="input-group">
 
-                <span class="input-group-addon"><i class="fa fa-users"></i></span>
+                <span class="input-group-addon">
+                  <img src="vistas/img/plantilla/modal/equipos.png" width="15px">
+                </span>
 
                 <input type="hidden" name="equipo" id="equipo">
 
@@ -283,7 +295,9 @@ foreach ($equipos as $key => $value) {
 
               <div class="input-group">
 
-                <span class="input-group-addon"><i class="fa fa-users"></i></span>
+                <span class="input-group-addon">
+                  <img src="vistas/img/plantilla/modal/categorias.png" width="15px">
+                </span>
 
                 <select class="form-control input-lg" name="nuevaCategoria" required>
 
@@ -316,7 +330,9 @@ foreach ($ambiente as $key => $value) {
 
                 <div class="input-group">
 
-                  <span class="input-group-addon"><i class="fa fa-key"></i></span>
+                  <span class="input-group-addon">
+                  <img src="vistas/img/plantilla/modal/codigo.png" width="15px">
+                </span>
 
                   <input type="text" class="form-control input-lg" name="nuevoInventario" id="nuevoInventario" min="0" placeholder="Numero Inventario SENA">
 
@@ -328,7 +344,9 @@ foreach ($ambiente as $key => $value) {
 
                 <div class="input-group">
 
-                  <span class="input-group-addon"><i class="fa fa-users"></i></span>
+                  <span class="input-group-addon">
+                  <img src="vistas/img/plantilla/modal/estado.png" width="15px">
+                </span>
 
                   <select class="form-control input-lg" name="nuevoEstado" required>
 
@@ -350,7 +368,9 @@ foreach ($ambiente as $key => $value) {
 
               <div class="input-group">
 
-                <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+                <span class="input-group-addon">
+                  <img src="vistas/img/plantilla/modal/observaciones.png" width="15px">
+                </span>
 
                  <textarea class="form-control rounded-5" name="nuevaCaracteristica" rows="3" placeholder="INGRESE CARACTERÍSTICAS DEL ARTICULO"></textarea>
                  <!-- <input type="text" class="form-control input-lg" name="nuevaCaracteristica" min="0" placeholder="Ingrese la característica del artículo"> -->
@@ -414,7 +434,9 @@ $crearArticulo->ctrCrearArticulos();
 
               <div class="input-group">
 
-                <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                <span class="input-group-addon">
+                  <img src="vistas/img/plantilla/modal/articulos.png" width="15px">
+                </span>
 
                 <input type="text" class="form-control input-lg" name="editarTipo" id="editarTipo" placeholder="Tipo Articulo" required>
 
@@ -429,7 +451,9 @@ $crearArticulo->ctrCrearArticulos();
 
               <div class="input-group">
 
-                <span class="input-group-addon"><i class="fa fa-key"></i></span>
+                <span class="input-group-addon">
+                  <img src="vistas/img/plantilla/modal/modelo.png" width="15px">
+                </span>
 
                 <input type="text" class="form-control input-lg" name="editarModelo" id="editarModelo" min="0" placeholder="Modelo Articulo" required>
 
@@ -445,7 +469,9 @@ $crearArticulo->ctrCrearArticulos();
 
               <div class="input-group">
 
-                <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+                <span class="input-group-addon">
+                  <img src="vistas/img/plantilla/modal/marca.png" width="15px">
+                </span>
 
                 <input type="text" class="form-control input-lg" name="editarMarca" id="editarMarca" placeholder="Marca Articulo" required>
 
@@ -458,7 +484,9 @@ $crearArticulo->ctrCrearArticulos();
 
               <div class="input-group">
 
-                <span class="input-group-addon"><i class="fa fa-key"></i></span>
+                <span class="input-group-addon">
+                  <img src="vistas/img/plantilla/modal/serial1.png" width="15px">
+                </span>
 
                 <input type="text" class="form-control input-lg" name="editarSerial" id="editarSerial" min="0" placeholder="Serial del Articulo">
 
@@ -473,7 +501,9 @@ $crearArticulo->ctrCrearArticulos();
 
               <div class="input-group">
 
-                <span class="input-group-addon"><i class="fa fa-users"></i></span>
+                <span class="input-group-addon">
+                  <img src="vistas/img/plantilla/modal/ambientes.png" width="15px">
+                </span>
 
                 <select class="form-control input-lg" name="idAmbiente" id="editarAmbiente">
 
@@ -503,7 +533,9 @@ $crearArticulo->ctrCrearArticulos();
 
               <div class="input-group">
 
-                <span class="input-group-addon"><i class="fa fa-users"></i></span>
+                <span class="input-group-addon">
+                  <img src="vistas/img/plantilla/modal/equipos.png" width="15px">
+                </span>
 
                 <input type="hidden" name="equipo" id="equipo">
 
@@ -537,7 +569,9 @@ foreach ($equipos as $key => $value) {
 
               <div class="input-group">
 
-                <span class="input-group-addon"><i class="fa fa-users"></i></span>
+                <span class="input-group-addon">
+                  <img src="vistas/img/plantilla/modal/categorias.png" width="15px">
+                </span>
 
                 <select class="form-control input-lg" name="idCategoria" id="editarCategoria">
 
@@ -570,7 +604,9 @@ foreach ($ambiente as $key => $value) {
 
               <div class="input-group">
 
-                <span class="input-group-addon"><i class="fa fa-key"></i></span>
+                <span class="input-group-addon">
+                  <img src="vistas/img/plantilla/modal/codigo.png" width="15px">
+                </span>
 
                 <input type="text" class="form-control input-lg" name="editarInventario" id="editarInventario"  placeholder="Numero Inventario SENA">
 
@@ -582,7 +618,9 @@ foreach ($ambiente as $key => $value) {
 
               <div class="input-group">
 
-                <span class="input-group-addon"><i class="fa fa-users"></i></span>
+                <span class="input-group-addon">
+                  <img src="vistas/img/plantilla/modal/estado.png" width="15px">
+                </span>
 
                 <select class="form-control input-lg" name="editarEstado" id="editarEstado">
 
@@ -602,7 +640,9 @@ foreach ($ambiente as $key => $value) {
 
               <div class="input-group">
 
-                <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+                <span class="input-group-addon">
+                  <img src="vistas/img/plantilla/modal/observaciones.png" width="15px">
+                </span>
 
                  <textarea class="form-control rounded-5" name="editarCaracteristica" id="editarCaracteristica" rows="3" placeholder="INGRESE CARACTERÍSTICAS DEL ARTICULO"></textarea>
                  <!-- <input type="text" class="form-control input-lg" name="nuevaCaracteristica" min="0" placeholder="Ingrese la característica del artículo"> -->
