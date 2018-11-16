@@ -170,7 +170,10 @@ $crearNovedad->ctrCrearNovedad();
 
 </div>
 
-<div id="modalAgregarArticulo1" class="modal fade" role="dialog">
+
+
+<div id="modalAgregarArticulo1" class="modal fade" role="dialog" data-keyboard="false" data-backdrop="static">
+
 
   <div class="modal-dialog">
 
@@ -204,7 +207,7 @@ $crearNovedad->ctrCrearNovedad();
                          </div>
 
                      </div>
-                     
+
 
                      <div class="col-xs-6" >
 

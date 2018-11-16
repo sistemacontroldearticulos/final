@@ -47,39 +47,32 @@ $(".btnBuscar").click(function() {
         dataType: "json",
         success: function(respuesta) {
             // console.log("respuesta", respuesta);
-            if(respuesta==false)
-            {
+            if (respuesta == false) {
                 $("#nuevaFicha1").parent().after('<div class="alert" style="height: 20px; text-align="center"><font color="#f39c12"><strong>ESTA FICHA NO ESTA REGISTRADA EN LA BASE DE DATOS</strong></font></div>');
-                         $("#nuevaFicha1").val("");
-            }
-            else if(respuesta["idambiente"]==null)
-            {
+                $("#nuevaFicha1").val("");
+            } else if (respuesta["idambiente"] == null) {
                 $("#nuevaFicha1").parent().after('<div class="alert" style="height: 20px; text-align="center"><font color="#f39c12"><strong>LA FICHA INGRESADA NO ESTÁ ASIGNADA A NINGÚN AMBIENTE</strong></font></div>');
-                         $("#nuevaFicha1").val("");
-            }
-            else
-            {
+                $("#nuevaFicha1").val("");
+            } else {
                 var idAmbiente = respuesta["idambiente"];
-                 var datosAmbiente = new FormData();
+                var datosAmbiente = new FormData();
                 datosAmbiente.append("idAmbiente", idAmbiente);
                 $.ajax({
-                url: "ajax/ambientesAjax.php",
-                method: "POST",
-                data: datosAmbiente,
-                cache: false,
-                contentType: false,
-                processData: false,
-                dataType: "json",
-                success: function(respuesta) {
-                    console.log("TIENE AMBIENTE");
-                }
-            })
+                    url: "ajax/ambientesAjax.php",
+                    method: "POST",
+                    data: datosAmbiente,
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    dataType: "json",
+                    success: function(respuesta) {
+                        console.log("TIENE AMBIENTE");
+                    }
+                })
+            }
         }
-    }
+    });
 });
-});
-
-
 //$(".tablas").on("click", ".btnBuscar1", function(){
 $(".btnBuscar1").click(function() {
     var idFicha = $("#nuevaFicha1").val();
@@ -169,7 +162,7 @@ ACTIVAR LOS BOTONES CON LOS ID CORRESPONDIENTES
 =============================================*/
 // $(".tablas").on("click", 'button.btnAgregarArticulo', function(){
 $('.tablaArticulos tbody').on('click', 'button.btnAgregarArticulo', function() {
-// $('.tablaArticulos ').on('click', 'button.btnAgregarArticulo', function() {    
+    // $('.tablaArticulos ').on('click', 'button.btnAgregarArticulo', function() {    
     var data = table.row($(this).parents('tr')).data();
     // console.log("data", data);
     $(this).attr("idArticulo", data[0]);
@@ -178,7 +171,7 @@ $('.tablaArticulos tbody').on('click', 'button.btnAgregarArticulo', function() {
 AGREGAR NOVEVDAD
 =============================================*/
 $('.tablaArticulos tbody').on('click', 'button.btnAgregarArticulo', function() {
-// $('.tablaArticulos ').on('click', 'button.btnAgregarArticulo', function() {    
+    // $('.tablaArticulos ').on('click', 'button.btnAgregarArticulo', function() {    
     var idArticulo = $(this).attr("idArticulo");
     console.log("idArticulo", idArticulo);
     $(this).removeClass("btn-primary btnAgregarArticulo");
@@ -194,11 +187,12 @@ $('.tablaArticulos tbody').on('click', 'button.btnAgregarArticulo', function() {
         processData: false,
         dataType: "json",
         success: function(respuesta) {
-            console.log("resspuesta", respuesta);
             var nombreArticulo = respuesta["tipoarticulo"];
             var articulo = respuesta["idarticulo"];
             $("#idArticulo").val(articulo);
             $("#agregarArticulo").val(nombreArticulo);
+            $("button.recuperarBoton[idArticulo='" + idArticulo + "']").removeClass('btn-primary btnAgregarArticulo');
+            $("button.recuperarBoton[idArticulo='" + idArticulo + "']").prop('disabled', true);
         }
     });
 });
@@ -207,7 +201,10 @@ $('.formularioNovedad').on('click', 'button.quitarNovedad', function() {
     // console.log("boton");
     $(this).parent().parent().parent().parent().remove();
     var idArticulo = $(this).attr("idArticulo");
-    $("button.recuperarBoton[idArticulo='" + idArticulo + "']").removeClass('btn-default');
+    debugger;
+    $("button.recuperarBoton[idArticulo='" + idArticulo + "']").prop('disabled', false);
+    $("button.recuperarBoton[idArticulo='" + idArticulo + "']").removeClass('btn-default')
+    $("button.recuperarBoton[idArticulo='" + idArticulo + "']").removeClass('disabled');
     $("button.recuperarBoton[idArticulo='" + idArticulo + "']").addClass('btn-primary btnAgregarArticulo');
     listaArticulos("eliminar");
 });
@@ -220,9 +217,6 @@ function agregar() {
         $("#modalAgregarArticulo1").modal('hide')
         // $(".skin-blue sidebar-collapse sidebar-mini login-page").focus();
         $(".nuevoArticulo").append('<div class="row" style="padding: 5px 15px">' + '<div class="col-xs-4" style="padding-right:0px">' + '<div class="input-group">' + '<span class="input-group-addon"><button type="button" class="btn btn-danger quitarNovedad btn-xs" idArticulo="' + $("#idArticulo").val() + '"><i class="fa fa-times"></i></button></span>' + '<input type="text" class="form-control agregarArticulo1" idArticulo="' + $("#idArticulo").val() + '" name="agregarArticulo" value="' + $("#agregarArticulo").val() + '" required readonly>' + '</div>' + '</div>' + '<div class="form-group col-xs-4"  style="padding-left:5px; padding-right: 0px">' + '<div class="input-group">' + '<span class="input-group-addon"><i class="fa fa-th"></i></span>' + '<input type="text" class="form-control tipoNovedadArticulo1" name="tipoNovedadArticulo1" placeholder="Descripción" readonly value="' + $(".tipoNovedadArticulo").val() + '"required>' + '</div>' + '</div> ' + '<div class="col-xs-4" style="padding-left:5px">' + '<div class="input-group">' + '<input type="text" class="form-control nuevaDescripcion1" name="nuevaDescripcion" placeholder="Descripción" readonly value="' + $(".nuevaDescripcion").val() + '"required>' + '<input type="hidden" id="articulo" name="articulo" value="' + $("#idArticulo").val() + '">' + '</div>' + '</div>' + '</div>');
-        $("button.recuperarBoton[idArticulo='" + idArticulo + "']").removeClass('btn-primary btnAgregarArticulo');
-        $("button.recuperarBoton[idArticulo='" + idArticulo + "']").addClass('btn-default');
-        $("button.recuperarBoton[idArticulo='" + idArticulo + "']").addClass('disabled');
         listaArticulos("agregar");
     }
 }
@@ -255,10 +249,6 @@ function listaArticulos(valor) {
         $("#listaArticulos").val(JSON.stringify(array));
     } else {
         var idArticulo = $("#idArticulo").val();
-        $("button.recuperarBoton[idArticulo='" + idArticulo + "']").removeClass('disabled');
-        $("button.recuperarBoton[idArticulo='" + idArticulo + "']").removeClass('btn-default');
-        $("button.recuperarBoton[idArticulo='" + idArticulo + "']").addClass('btn-primary btnAgregarArticulo');
-
         // debugger;
         for (var i = 0; i < array.length; i++) {
             if ((array[i].id) == idArticulo) {
@@ -267,10 +257,8 @@ function listaArticulos(valor) {
         }
     }
     lista++;
-
     $("#tipoNovedadArticulo").val("");
     $(".nuevaDescripcion").val("");
-
 }
 
 function quitarNovedad() {
@@ -279,9 +267,8 @@ function quitarNovedad() {
     $("button.recuperarBoton[idArticulo='" + idArticulo + "']").removeClass('disabled');
     $("button.recuperarBoton[idArticulo='" + idArticulo + "']").removeClass('btn-default');
     $("button.recuperarBoton[idArticulo='" + idArticulo + "']").addClass('btn-primary btnAgregarArticulo');
+    $("button.recuperarBoton[idArticulo='" + idArticulo + "']").prop('disabled', false);
 }
-
-
 // $(".tablas").on("click", ".btnBuscar1", function(){
 $(".btnBuscar2").click(function() {
     var id = $(this).attr("idNovedad");
@@ -297,8 +284,6 @@ $(".btnBuscar2").click(function() {
         dataType: "json",
         success: function(respuesta) {
             // console.log(respuesta[0]["idnovedad"]);
-
-
             // debugger;
             $(".inputAmbiente").val(respuesta[0]["idnovedad"]);
             var e = $.Event("keyup", {
@@ -310,12 +295,11 @@ $(".btnBuscar2").click(function() {
     });
 });
 
-
-function salir(){
-     $(".inputAmbiente").val("");
-            var e = $.Event("keyup", {
-                keyCode: 13
-            });
-            $('.inputAmbiente').focus();
-            $('.inputAmbiente').trigger(e);
+function salir() {
+    $(".inputAmbiente").val("");
+    var e = $.Event("keyup", {
+        keyCode: 13
+    });
+    $('.inputAmbiente').focus();
+    $('.inputAmbiente').trigger(e);
 }
