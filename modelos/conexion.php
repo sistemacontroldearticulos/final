@@ -15,8 +15,6 @@ class Conexion
 // ec2-23-21-171-249.compute-1.amazonaws.com');
 
         $link = new PDO('pgsql:user=postgres dbname=proyectofinal password=123');
-
-
         $link->exec("set names utf8");
 
         return $link;
