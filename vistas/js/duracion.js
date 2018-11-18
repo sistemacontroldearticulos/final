@@ -21,8 +21,8 @@ function duracion(sel) {
         $("#EditarDuracion").prop('readonly', true);
     }
 }
-var tiempoPrograma = 0;
-
+// SE PASA LA VALIDACION DEL PROGRAMA DIRECTAMENTE AL EVENTO DE CAMBIO DE LA FECHA
+// "var diaActual" se pasa a inicializar cada vez que se ejecuta la funcion
 function tiempo(sel) {
     debugger;
     var idPrograma = $("#nuevoPrograma").val();
@@ -64,7 +64,7 @@ function tiempo(sel) {
         }
     });
 }
-
+// LOS INPUT DE LAS FECHAS AL CARGAR EL MODAL ESTAN DESACTIVADOS, SE ACTIVAN AL ESCOGER PROGRAMA
 function activarFechas() {
     debugger;
     $("#nuevaFechaFin").removeAttr('disabled');
