@@ -1,3 +1,5 @@
+//SE PASA A PONER UN SELECT PARA ESCOGER LOS APRENDICES QUE SE CARGA CON TODOS LOS APRENDICES DE LA FICHA
+//ESCOGIDA. EL SELECT SE CARGA AL FINAL DE ESTA FUNCION
 var ficha;
 $("#ficha").change(function() {
     $(".alert").remove();
@@ -42,7 +44,9 @@ $("#ficha").change(function() {
                             processData: false,
                             dataType: "json",
                             success: function(respuesta) {
+                                //CODIGO PARA LIMPIAR SELECT DE EQUIPO CADA VEZ QUE SE CAMBIA DE FICHA
                                 $('#equipos').empty().append('<option selected="selected" value="whatever">Seleccione El Equipo</option>');
+                                /////////////////////////////////////////////     
                                 var indices = [];
                                 indices.push("Seleccione Equipo");
                                 indices.length = 0;
@@ -82,7 +86,9 @@ $("#ficha").change(function() {
                                 }
                             }
                         })
+                        //CODIGO PARA LIMPIAR SELECT DE APRENDIZ CADA VEZ QUE SE CAMBIA DE FICHA
                         $('#aprendices').empty().append('<option selected="selected" value="whatever">Seleccione el Aprendiz</option>');
+                        ///////////////////////////////////////////////////////////////
                         var ficha = idFicha;
                         console.log(ficha);
                         var datos = new FormData();
