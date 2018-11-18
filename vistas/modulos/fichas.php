@@ -173,7 +173,7 @@ MODAL AGREGAR FICHA
 
                 <span class="input-group-addon"><i class="fa fa-th"></i></span>
 
-                <select class="form-control input-lg" name="nuevoPrograma" required onchange="programa(this.value)">
+                <select class="form-control input-lg" name="nuevoPrograma" id="nuevoPrograma" required onchange="activarFechas()">
 
                   <option value="">Seleccionar Programa</option>
 
@@ -258,7 +258,7 @@ foreach ($ambiente as $key => $value) {
 
                 <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
 
-                <input type="text" class="form-control input-lg" name="nuevaFechaInicio" placeholder="Ingrese Fecha Inicio" data-inputmask="'alias': 'dd/mm/yyyy'" data-mask required onchange="tiempo(this.value)">
+                <input type="text" class="form-control input-lg" id="nuevaFechaInicio" name="nuevaFechaInicio" placeholder="Ingrese Fecha Inicio" data-inputmask="'alias': 'mm/dd/yyyy'" data-mask  disabled required onchange="tiempo(this.value)">
 
               </div>
 
@@ -272,7 +272,7 @@ foreach ($ambiente as $key => $value) {
 
                 <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
 
-                <input type="text" class="form-control input-lg" id="fin" name="nuevaFechaFin" placeholder="Ingrese Fecha Fin" data-inputmask="'alias': 'dd/mm/yyyy'" data-mask >
+                <input type="text" class="form-control input-lg" id="fin" id="nuevaFechaFin" name="nuevaFechaFin" placeholder="Ingrese Fecha Fin" data-inputmask="'alias': 'mm/dd/yyyy'" data-mask disabled>
 
               </div>
 
