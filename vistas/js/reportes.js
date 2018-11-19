@@ -1,3 +1,7 @@
+document.addEventListener("DOMContentLoaded", function() {
+    localStorage.removeItem("capturarRango");
+    localStorage.clear();
+}, false);
 /*=============================================
 VARIABLE LOCAL STORAGE
 =============================================*/
@@ -53,4 +57,3 @@ $(".daterangepicker .ranges li").on("click", function() {
         window.location = "index.php?ruta=reportes&fechaInicial=" + fechaInicial + "&fechaFinal=" + fechaFinal;
     }
 })
-
