@@ -1,7 +1,4 @@
 function duracion(sel) {
-     
-
-
     if (sel == "TÉCNICO") {
         $("#nuevaDuracion").val("12 MESES");
         $("#nuevaDuracion").prop('readonly', true);
@@ -24,13 +21,12 @@ function duracion(sel) {
         $("#EditarDuracion").prop('readonly', true);
     }
 }
-
-var tiempoPrograma = 0;
-
-function programa(sel){
-    
-    var idPrograma = sel;
-
+// SE PASA LA VALIDACION DEL PROGRAMA DIRECTAMENTE AL EVENTO DE CAMBIO DE LA FECHA
+// "var diaActual" se pasa a inicializar cada vez que se ejecuta la funcion
+function tiempo(sel) {
+    debugger;
+    var idPrograma = $("#nuevoPrograma").val();
+    console.log(idPrograma);
     var datos = new FormData();
     datos.append("idPrograma", idPrograma);
     $.ajax({
@@ -44,45 +40,33 @@ function programa(sel){
         success: function(respuesta) {
             // console.log("respuesta", respuesta[3]);
             // $("#nuevoAmbiente1").val(respuesta["nombreambiente"]);
-            tiempoPrograma = respuesta[3];
+            var diaActual = new Date(sel);
+            // console.log("diaActual", diaActual);
+            var day = diaActual.getDate();
+            debugger;
+            if (respuesta[3] == "TÉCNICO") {
+                var month = diaActual.getMonth() + 1;
+                var year = diaActual.getFullYear() + 1;
+                fecha = month + '/' + day + '/' + year;
+                $("#fin").val(fecha);
+                $("#fin").prop('readonly', true);
+            } else if (respuesta[3] == "TECNÓLOGO") {
+                diaActual = new Date(sel);
+                console.log("diaActual", diaActual);
+                var day = diaActual.getDate();
+                var month = diaActual.getMonth() + 1;
+                var year = diaActual.getFullYear() + 2;
+                fecha = month + '/' + day + '/' + year;
+                $("#fin").val(fecha);
+                $("#fin").html(fecha);
+                $("#fin").prop('readonly', true);
+            }
         }
     });
 }
-
-function tiempo(sel) {
-
-    tiempoPrograma
-    console.log("tiempoPrograma", tiempoPrograma);
-
-    if (tiempoPrograma == "TÉCNICO") {
-
-        diaActual = new Date(sel);
-        // console.log("diaActual", diaActual);
-
-        var day = diaActual.getDate();
-        var month = diaActual.getMonth()+1;
-        var year = diaActual.getFullYear()+1;
-
-        fecha  = month + '/' + day + '/' + year;
-
-        $("#fin").val(fecha);
-        $("#fin").prop('readonly', true);
-
-    }else if (tiempoPrograma == "TECNÓLOGO") {
-
-        diaActual = new Date(sel);
-        console.log("diaActual", diaActual);
-
-        var day = diaActual.getDate();
-        var month = diaActual.getMonth()+1;
-        var year = diaActual.getFullYear()+2;
-
-        fecha  = month + '/' + day + '/' + year;
-
-        $("#fin").val(fecha);
-        $("#fin").html(fecha);
-        $("#fin").prop('readonly', true);
-    }
-
-
+// LOS INPUT DE LAS FECHAS AL CARGAR EL MODAL ESTAN DESACTIVADOS, SE ACTIVAN AL ESCOGER PROGRAMA
+function activarFechas() {
+    debugger;
+    $("#nuevaFechaFin").removeAttr('disabled');
+    $("#nuevaFechaInicio").removeAttr('disabled');
 }
