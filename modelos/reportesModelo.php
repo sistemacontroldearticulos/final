@@ -41,16 +41,15 @@ class ModeloReportes
 
             $stmt->execute();
 
+        } else if ($fechaInicial == $fechaFinal) {
 
-		}else if($fechaInicial == $fechaFinal){
+            $stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE fechanovedad like '%$fechaFinal%'");
+            $stmt->execute();
 
-			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE fechanovedad like '%$fechaFinal%'");
-			$stmt->execute();
-			
+
             return $stmt->fetchAll();
 
         }  else {
-
 
             $stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE fecha BETWEEN '$fechaInicial' AND '$fechaFinal'");
 

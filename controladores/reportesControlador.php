@@ -19,9 +19,9 @@ class ControladorReportes{
 
 		$respuesta = ModeloReportes::mdlRangoFechasReportes($tabla, $fechaInicial, $fechaFinal);
 		
-		var_dump($respuesta);
+		
 
-		//return $respuesta;
+		return $respuesta;
 		
 	}
 }

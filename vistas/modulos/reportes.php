@@ -49,8 +49,8 @@
 							$fechaInicial = $_GET["fechaInicial"];
 							$fechaFinal   = $_GET["fechaFinal"];
 
-
 						} else {
+
 
 							$fechaInicial = null;
 							$fechaFinal   = null;
@@ -109,6 +109,7 @@
 
                         }
 						?>
+
 
                     </tbody>
                 </table>
