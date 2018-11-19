@@ -106,9 +106,11 @@
                                     <img src="vistas/img/plantilla/modal/ndocumentos.png" width="15px">
                                     </i>
                                 </span>
-                                <input class="form-control input-lg" name="documentoAprendiz" id="documentoAprendiz"
-                                placeholder="Documento Aprendiz" required type="number" >
-                                </input>
+                                <select class="form-control input-lg" name="aprendices" id="aprendices" required>
+
+                                <option value="">Seleccione el Aprendiz</option>
+                 
+                                </select> 
                             </div>
                         </div>
                        <div class="input-group">
@@ -119,7 +121,7 @@
 
                 <select class="form-control input-lg" name="equipos" id="equipos" required>
 
-                  <option value="">Sin Equipo</option>
+                  <option id="opcionEquipo" value="">Seleccione El Equipo</option>
                  
                 </select> 
 
