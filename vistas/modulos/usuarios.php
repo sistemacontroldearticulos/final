@@ -320,9 +320,9 @@ $crearUsuario->ctrCrearUsuario();
 
               <div class="input-group">
 
-                <<span class="input-group-addon">
+                <span class="input-group-addon">
                   <img src="vistas/img/plantilla/modal/ndocumentos.png" width="15px">
-                </span>span class="input-group-addon"><i class="fa fa-key"></i></span>
+                </span>
 
                 <input type="numer" class="form-control input-lg" id="editarDocumento" name="editarDocumento" min="0" value="" readonly>
 

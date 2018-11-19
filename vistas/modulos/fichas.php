@@ -161,6 +161,8 @@ MODAL AGREGAR FICHA
 
                 <input type="number" class="form-control input-lg" name="nuevaFicha" id="nuevaFicha" placeholder="Ingrese Numero de Ficha" required>
 
+                <input type="hidden" id="nficha">
+
               </div>
 
             </div>

@@ -60,6 +60,7 @@ class ControladorNovedades
                         'TipoNovedad'                     => $tipo,
                         'ObservacionNovedad'              => $descripcion,
                         'IdNovedad'                       => $respuesta1[0]["idnovedad"],
+                        'fecha'                       => $respuesta1[0]["fechanovedad"],
                     );
 
                     // var_dump($datos);
