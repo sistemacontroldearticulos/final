@@ -62,11 +62,13 @@ $("#ficha").change(function() {
                                 });
                                 var p = "";
                                 var k = "";
-                                // SE MUESTRA EN EL SELEC DE EQUIPO
-                                for (var i = 0; i < uniqueNames.length; i++) {
-                                    var idEquipo = uniqueNames[i];
-                                    datos.append("idEquipo", idEquipo);
-                                    $.ajax({
+
+                                // SE MUESTRA EN EL SELECT DE EQUIPO
+                                for (var i = 0 ; i < uniqueNames.length; i++) {
+                                     var idEquipo = uniqueNames[i];
+                                     datos.append("idEquipo", idEquipo);
+                                     $.ajax({
+
                                         url: "ajax/equipoAjax.php",
                                         method: "POST",
                                         data: datos,

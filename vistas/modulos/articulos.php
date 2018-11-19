@@ -183,7 +183,7 @@
                   <img src="vistas/img/plantilla/modal/modelos1.png" width="15px">
                 </span>
 
-                  <input type="text" class="form-control input-lg" name="nuevoModelo"placeholder="Modelo Articulo" required>
+                  <input type="text" class="form-control input-lg" name="nuevoModelo"placeholder="Modelo Articulo" >
 
                 </div>
 
@@ -201,7 +201,7 @@
                   <img src="vistas/img/plantilla/modal/marca.png" width="15px">
                 </span>
 
-                  <input type="text" class="form-control input-lg" name="nuevaMarca" placeholder="Marca Articulo" required>
+                  <input type="text" class="form-control input-lg" name="nuevaMarca" placeholder="Marca Articulo" >
 
                 </div>
 

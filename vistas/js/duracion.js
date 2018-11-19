@@ -21,6 +21,7 @@ function duracion(sel) {
         $("#EditarDuracion").prop('readonly', true);
     }
 }
+
 // SE PASA LA VALIDACION DEL PROGRAMA DIRECTAMENTE AL EVENTO DE CAMBIO DE LA FECHA
 // "var diaActual" se pasa a inicializar cada vez que se ejecuta la funcion
 function tiempo(sel) {
@@ -70,3 +71,4 @@ function activarFechas() {
     $("#nuevaFechaFin").removeAttr('disabled');
     $("#nuevaFechaInicio").removeAttr('disabled');
 }
+

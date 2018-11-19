@@ -6,16 +6,31 @@ class ControladorArticulos
     public static function ctrCrearArticulos()
     {
         if (isset($_POST["nuevoTipo"])) {
-            if (preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["nuevoTipo"]) && preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["nuevaMarca"])) {
+            if (preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["nuevoTipo"])) {
+
                 $nuevoTipo           = strtoupper($_POST["nuevoTipo"]);
                 $nuevaMarca          = strtoupper($_POST["nuevaMarca"]);
                 $nuevoModelo         = strtoupper($_POST["nuevoModelo"]);
                 $nuevoSerial         = strtoupper($_POST["nuevoSerial"]);
                 $nuevaCaracteristica = strtoupper($_POST["nuevaCaracteristica"]);
                 $idEquipo            = $_POST["nuevoEquipo"];
+
                 if ($idEquipo == "") {
                     $idEquipo = null;
                 }
+
+                if ($nuevaMarca == "") {
+                    $nuevaMarca = null;
+                }
+
+                if ($nuevoModelo == "") {
+                    $nuevoModelo = null;
+                }
+
+                if ($nuevaCaracteristica == "") {
+                    $nuevaCaracteristica = null;
+                }
+
 
                 $tabla = "articulo";
                 $datos = array("TipoArticulo" => $nuevoTipo,
