@@ -1,44 +1,45 @@
-<?php 
+<?php
 
 require_once "conexion.php";
 
-class ModeloReportes{
+class ModeloReportes
+{
 
-	// MOSTRAR REPORTES
-	static public function mdlMostrarReportes($tabla, $item, $valor){
+    // MOSTRAR REPORTES
+    public static function mdlMostrarReportes($tabla, $item, $valor)
+    {
 
-		if ($item != null) {
-			
-			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
-			$stmt -> bindParam(":" . $item, $valor, PDO::PARAM_STR);
-			$stmt -> execute();
+        if ($item != null) {
 
-			return $stmt->fetch();
+            $stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
+            $stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
+            $stmt->execute();
 
-		}else{
+            return $stmt->fetch();
 
-	        $stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla");
-	        $stmt -> execute();
+        } else {
 
-	        return $stmt -> fetchAll();
+            $stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla");
+            $stmt->execute();
 
-	    }
+            return $stmt->fetchAll();
+
+        }
 
         $stmt->close();
         $stmt->null();
-	    
-	}
 
-	// RANGO FECHAS
-	static public function mdlRangoFechasReportes($tabla, $fechaInicial, $fechaFinal){
+    }
 
-		if($fechaInicial == null){
+    // RANGO FECHAS
+    public static function mdlRangoFechasReportes($tabla, $fechaInicial, $fechaFinal)
+    {
 
-			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla ORDER BY id ASC");
+        if ($fechaInicial == null) {
 
-			$stmt -> execute();
+            $stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla ORDER BY id ASC");
 
-			return $stmt -> fetchAll();	
+            $stmt->execute();
 
 
 		}else if($fechaInicial == $fechaFinal){
@@ -47,22 +48,28 @@ class ModeloReportes{
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE fechanovedad like '%$fechaFinal%'");
 
-			
+            return $stmt->fetchAll();
 
-			$stmt -> execute();
+        } else if ($fechaInicial == $fechaFinal) {
 
-			return $stmt -> fetchAll();
+            $stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE fecha like '%$fechaFinal%'");
 
-		}else{
 
-			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE fechanovedad BETWEEN '$fechaInicial' AND '$fechaFinal'");
+            $stmt->execute();
 
-			$stmt -> execute();
+            return $stmt->fetchAll();
 
-			return $stmt -> fetchAll();
+        } else {
 
-		}
 
-	}
+            $stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE fecha BETWEEN '$fechaInicial' AND '$fechaFinal'");
+
+            $stmt->execute();
+
+            return $stmt->fetchAll();
+
+        }
+
+    }
 
 }
