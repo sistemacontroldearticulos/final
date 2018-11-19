@@ -43,23 +43,13 @@ class ModeloReportes
 
 
 		}else if($fechaInicial == $fechaFinal){
-			
-
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE fechanovedad like '%$fechaFinal%'");
-
+			$stmt->execute();
+			
             return $stmt->fetchAll();
 
-        } else if ($fechaInicial == $fechaFinal) {
-
-            $stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE fecha like '%$fechaFinal%'");
-
-
-            $stmt->execute();
-
-            return $stmt->fetchAll();
-
-        } else {
+        }  else {
 
 
             $stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE fecha BETWEEN '$fechaInicial' AND '$fechaFinal'");

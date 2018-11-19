@@ -43,19 +43,19 @@
                     <tbody>
                         <?php
 
-if (isset($_GET["fechaInicial"])) {
+						if (isset($_GET["fechaInicial"])) {
 
 
-    $fechaInicial = $_GET["fechaInicial"];
-    $fechaFinal   = $_GET["fechaFinal"];
+							$fechaInicial = $_GET["fechaInicial"];
+							$fechaFinal   = $_GET["fechaFinal"];
 
 
-} else {
+						} else {
 
-    $fechaInicial = null;
-    $fechaFinal   = null;
+							$fechaInicial = null;
+							$fechaFinal   = null;
 
-}
+						}
 
 // $item = null;
 // $valor = null;
@@ -67,8 +67,7 @@ if (isset($_GET["fechaInicial"])) {
 						
 
                         foreach ($respuesta as $key => $value) {
-                            echo '<tr>
-                                    ';
+                            echo '<tr>';
                                     
 
                           $item1 = "idnovedad";
@@ -109,46 +108,7 @@ if (isset($_GET["fechaInicial"])) {
 
 
                         }
-=======
-// $respuesta = ControladorReportes::ctrMostrarReportes($item, $valor);
-$respuesta = ControladorReportes::ctrRangoFechasReportes($fechaInicial, $fechaFinal);
-
-foreach ($respuesta as $key => $value) {
-    echo '<tr>
-                                    <td>' . ($key + 1) . '</td>
-                                    <td>' . $value["idnovedad"] . '</td>';
-
-    $item1   = "idnovedad";
-    $valor1  = $value["idnovedad"];
-    $novedad = ControladorNovedades::ctrMostrarNovedades($item1, $valor1);
-
-    $item2    = "idarticulo";
-    $valor2   = $value["idarticulo"];
-    $articulo = ControladorArticulos::ctrMostrarArticulos($item2, $valor2);
-
-    $item3   = "numdocumentousuario";
-    $valor3  = $novedad[0]["numdocumentousuario"];
-    $usuario = ControladorUsuarios::ctrMostrarUsuarios($item3, $valor3);
-
-    $item4    = "idambiente";
-    $valor4   = $articulo["idambiente"];
-    $ambiente = ControladorAmbientes::ctrMostrarAmbientes($item4, $valor4);
-
-    $item5  = "idambiente";
-    $valor5 = $articulo["idambiente"];
-    $ficha  = ControladorFichas::ctrMostrarFichas($item5, $valor5);
-
-    echo '<td>' . $novedad[0]["fechanovedad"] . '</td>
-                                    <td>' . $articulo["tipoarticulo"] . '</td>
-                                    <td>' . $value["tiponovedad"] . '</td>
-                                    <td>' . $ambiente["nombreambiente"] . '</td>
-                                    <td>' . $ficha["numeroficha"] . '</td>
-                                    <td>' . $usuario["nombreusuario"] . '</td>
-                                </tr>';
-}
-
-?>
->>>>>>> 510bbbd2acd9462ea34c11e2c04179a782661ab9
+						?>
 
                     </tbody>
                 </table>
