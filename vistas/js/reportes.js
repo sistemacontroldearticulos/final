@@ -29,27 +29,26 @@ $('#daterange-btn').daterangepicker(
     endDate  : moment()
   },
   function (start, end) {
-    $('#daterange-btn span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
+   $('#daterange-btn span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
 
-    var fechaInicial = start.format('YYYY-M-D');
+   var fechaInicial = start.format('YYYY-M-D');
 
-    var fechaFinal = end.format('YYYY-M-D');
+   var fechaFinal = end.format('YYYY-M-D');
 
     var capturarRango = $("#daterange-btn span").html();
    
-   	localStorage.setItem("capturarRango", capturarRango);
+  	localStorage.setItem("capturarRango", capturarRango);
 
-   	window.location = "index.php?ruta=reportes&fechaInicial="+fechaInicial+"&fechaFinal="+fechaFinal;
+  	window.location = "index.php?ruta=reportes&fechaInicial="+fechaInicial+"&fechaFinal="+fechaFinal;
 
-  }
+ }
 
 )
 
 /*=============================================
 CANCELAR RANGO DE FECHAS
 =============================================*/
-
-$(".daterangepicker.opensleft .range_inputs .cancelBtn").on("click", function(){
+$(".daterangepicker .range_inputs .cancelBtn").on("click", function(){
 
 	localStorage.removeItem("capturarRango");
 	localStorage.clear();
@@ -59,28 +58,27 @@ $(".daterangepicker.opensleft .range_inputs .cancelBtn").on("click", function(){
 // /*=============================================
 // CAPTURAR HOY
 // =============================================*/
+ $(".daterangepicker .ranges li").on("click", function(){
 
-// $(".daterangepicker.opensleft .ranges li").on("click", function(){
 
+ 	var textoHoy = $(this).attr("data-range-key");
 
-// 	var textoHoy = $(this).attr("data-range-key");
+ 	if(textoHoy == "Hoy"){
 
-// 	if(textoHoy == "Hoy"){
-
-// 		var d = new Date();
+ 		var d = new Date();
 		
-// 		var dia = d.getDate();
-// 		var mes = d.getMonth()+1;
-// 		var año = d.getFullYear();
+ 		var dia = d.getDate();
+ 		var mes = d.getMonth()+1;
+ 		var año = d.getFullYear();
 
-// 		var fechaInicial = año+"-"+mes+"-"+dia;
+ 		var fechaInicial = año+"-"+mes+"-"+dia;
 
-//     	var fechaFinal = año+"-"+mes+"-"+dia;
+     	var fechaFinal = año+"-"+mes+"-"+dia;
 
-//     	localStorage.setItem("capturarRango", "Hoy");
+     	localStorage.setItem("capturarRango", "Hoy");
 
-//     	window.location = "index.php?ruta=ventas&fechaInicial="+fechaInicial+"&fechaFinal="+fechaFinal;
+     	window.location = "index.php?ruta=reportes&fechaInicial="+fechaInicial+"&fechaFinal="+fechaFinal;
 
-// 	}
+ 	}
 
-// })
+ })

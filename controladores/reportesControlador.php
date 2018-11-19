@@ -15,7 +15,7 @@ class ControladorReportes{
 	// RANGO DE FECHAS
 	static public function ctrRangoFechasReportes($fechaInicial, $fechaFinal){
 
-		$tabla = "articulonovedad";
+		$tabla = "novedad";
 
 		$respuesta = ModeloReportes::mdlRangoFechasReportes($tabla, $fechaInicial, $fechaFinal);
 

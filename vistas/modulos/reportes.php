@@ -47,6 +47,8 @@
 
                             $fechaInicial = $_GET["fechaInicial"];
                             $fechaFinal = $_GET["fechaFinal"];
+							
+							
 
                         }else{
 
@@ -60,39 +62,51 @@
 
                         // $respuesta = ControladorReportes::ctrMostrarReportes($item, $valor);
                         $respuesta = ControladorReportes::ctrRangoFechasReportes($fechaInicial, $fechaFinal);
+						var_dump($respuesta);
+						
 
                         foreach ($respuesta as $key => $value) {
                             echo '<tr>
-                                    <td>'.($key+1).'</td>
-                                    <td>'.$value["idnovedad"].'</td>';
+                                    ';
+                                    
 
                           $item1 = "idnovedad";
                           $valor1 = $value["idnovedad"];
-                          $novedad = ControladorNovedades::ctrMostrarNovedades($item1, $valor1); 
+                          $novedad = ControladorArticulos::ctrMostrarArticuloNovedad($item1, $valor1); 
+						  
+						  foreach($novedad as $key1 => $value1) {
+							  
+							  $item2 = "idarticulo";
+							$valor2 = $novedad[$key1]["idarticulo"];
+							$articulo = ControladorArticulos::ctrMostrarArticulos($item2, $valor2);
+							
+							  $item3 = "numdocumentousuario";
+							  $valor3 = $value["numdocumentousuario"];
+							  $usuario = ControladorUsuarios::ctrMostrarUsuarios($item3, $valor3); 
+							  
 
-                          $item2 = "idarticulo";
-                          $valor2 = $value["idarticulo"];
-                          $articulo = ControladorArticulos::ctrMostrarArticulos($item2, $valor2);
+							  $item4 = "idambiente";
+							  $valor4 = $articulo["idambiente"];
+							  $ambiente = ControladorAmbientes::ctrMostrarAmbientes($item4, $valor4);
 
-                          $item3 = "numdocumentousuario";
-                          $valor3 = $novedad[0]["numdocumentousuario"];
-                          $usuario = ControladorUsuarios::ctrMostrarUsuarios($item3, $valor3); 
+							  $item5 = "idambiente";
+							  $valor5 = $articulo["idambiente"];
+							  $ficha = ControladorFichas::ctrMostrarFichas($item5, $valor5);
 
-                          $item4 = "idambiente";
-                          $valor4 = $articulo["idambiente"];
-                          $ambiente = ControladorAmbientes::ctrMostrarAmbientes($item4, $valor4);
-
-                          $item5 = "idambiente";
-                          $valor5 = $articulo["idambiente"];
-                          $ficha = ControladorFichas::ctrMostrarFichas($item5, $valor5);
-
-                               echo'<td>'.$novedad[0]["fechanovedad"].'</td>
-                                    <td>'.$articulo["tipoarticulo"].'</td>
-                                    <td>'.$value["tiponovedad"].'</td>
-                                    <td>'.$ambiente["nombreambiente"].'</td>
-                                    <td>'.$ficha["numeroficha"].'</td>
-                                    <td>'.$usuario["nombreusuario"].'</td>
+								   echo'
+								   <td>'.($key1+1).'</td>
+								   <td>'.$value["idnovedad"].'</td>
+								   <td>'.$value["fechanovedad"].'</td>
+										<td>'.$articulo["tipoarticulo"].'</td>
+										<td>'.$novedad[0]["tiponovedad"].'</td>
+										<td>'.$ambiente["nombreambiente"].'</td>
+										<td>'.$ficha["numeroficha"].'</td>
+										<td>'.$usuario["nombreusuario"].'</td>
                                 </tr>';
+						  
+						  }
+
+
                         }
 
                         ?>
