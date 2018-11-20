@@ -60,12 +60,13 @@ class ControladorNovedades
                         'TipoNovedad'                     => $tipo,
                         'ObservacionNovedad'              => $descripcion,
                         'IdNovedad'                       => $respuesta1[0]["idnovedad"],
-                        'fecha'                       => $respuesta1[0]["fechanovedad"],
+
                     );
 
-                    // var_dump($datos);
 
-                    // $respuesta2 = ModeloNovedades::mdlCrearNovedadArticulo($tabla, $datos);
+                    // $respuesta2 = ModeloNovedades::mdlCrearNovedadArticulo($tabla5, $datos5);
+
+                    // var_dump($respuesta2);
                     $tabla3 = "articulonovedad";
                     $item3 = "idarticulo";
                     $valor3 = $id;
@@ -75,13 +76,13 @@ class ControladorNovedades
 
                     if ($respuesta3 != "") {
 
-                        // $a = ModeloNovedades::idnovedad();
-                        // var_dump($a[0]);
 
                         $tabla8 = "novedad";
-                        $datos8 = $a[0]; 
+                        $datos8 = ModeloNovedades::idnovedad(); 
 
-                        $respuesta7 = ModeloNovedades::mdlBorrarNovedad($tabla8, $datos8);
+                        $a = $datos8["max"];
+                        
+                        $respuesta7 = ModeloNovedades::mdlBorrarNovedad($tabla8, $a);
 
                         // var_dump($respuesta7);
 

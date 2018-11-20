@@ -42,21 +42,28 @@ function tiempo(sel) {
             // console.log("respuesta", respuesta[3]);
             // $("#nuevoAmbiente1").val(respuesta["nombreambiente"]);
             var diaActual = new Date(sel);
-            // console.log("diaActual", diaActual);
+            console.log("diaActual", diaActual);
             var day = diaActual.getDate();
-            debugger;
+            // debugger;
             if (respuesta[3] == "TÉCNICO") {
+
                 var month = diaActual.getMonth() + 1;
                 var year = diaActual.getFullYear() + 1;
+
                 fecha = month + '/' + day + '/' + year;
+
                 $("#fin").val(fecha);
                 $("#fin").prop('readonly', true);
+
             } else if (respuesta[3] == "TECNÓLOGO") {
+
                 diaActual = new Date(sel);
-                console.log("diaActual", diaActual);
+                console.log(diaActual);
+
                 var day = diaActual.getDate();
                 var month = diaActual.getMonth() + 1;
                 var year = diaActual.getFullYear() + 2;
+
                 fecha = month + '/' + day + '/' + year;
                 $("#fin").val(fecha);
                 $("#fin").html(fecha);

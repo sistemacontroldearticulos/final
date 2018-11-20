@@ -37,21 +37,23 @@ class ModeloReportes
 
         if ($fechaInicial == null) {
 
-            $stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla ORDER BY id ASC");
+            $stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla");
 
             $stmt->execute();
+
+            return $stmt -> fetchAll();
 
         } else if ($fechaInicial == $fechaFinal) {
 
             $stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE fechanovedad like '%$fechaFinal%'");
-            $stmt->execute();
 
+            $stmt->execute();
 
             return $stmt->fetchAll();
 
         }  else {
 
-            $stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE fecha BETWEEN '$fechaInicial' AND '$fechaFinal'");
+            $stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE fechanovedad BETWEEN '$fechaInicial' AND '$fechaFinal'");
 
             $stmt->execute();
 
