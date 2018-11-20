@@ -1,10 +1,12 @@
-<?php 
+<?php
 
-class ControladorActas{
+class ControladorActas
+{
 
-	static public function ctrCrearActa(){
+    public static function ctrCrearActa()
+    {
 
-		if (isset($_POST["ficha"])) {
+        if (isset($_POST["ficha"])) {
 
             $tabla = "acta_responsabilidad";
 
@@ -14,17 +16,20 @@ class ControladorActas{
             $hora  = date('H:i:s');
 
             $fechaActual = $fecha . ' ' . $hora;
+            var_dump($fechaActual);
+            var_dump($_POST["aprendices"]);
+            var_dump($_POST["equipos"]);
+            $numdocumentoinstructor = $_SESSION["NumDocumentoUsuario"];
 
-            $datos = array("numdocumentoaprendiz" => $_POST["documentoAprendiz"],
-                "idequipo"                     => $_POST["equipos"],
-                "fechaacta"                       => $fechaActual);
+            $datos = array("numdocumentoaprendiz" => $_POST["aprendices"],
+                "idequipo"                            => $_POST["equipos"],
+                "fechaacta"                           => $fechaActual,
+                "numdocumentoinstructor"              => $numdocumentoinstructor);
 
             $respuesta = ModeloActas::mdlCrearActa($tabla, $datos);
 
-            var_dump($respuesta);
-
             if ($respuesta == "ok") {
-				echo '<script>
+                echo '<script>
 
                     swal({
 
@@ -48,7 +53,7 @@ class ControladorActas{
         }
     }
 
-    static public function ctrMostrarActas($item, $valor)
+    public static function ctrMostrarActas($item, $valor)
     {
 
         $tabla = "acta_responsabilidad";
