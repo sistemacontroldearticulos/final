@@ -27,6 +27,7 @@
                 <table class="table table-bordered table-striped dt-responsive tablas">
                     <thead>
                         <tr>
+                            <th style="width:50px">Imprimir</th>
                             <th style="width:50px">ID Acta</th>
                             <th>Documento Aprendiz</th>
                             <th>Nombre Aprendiz</th>
@@ -45,23 +46,36 @@
 
                         echo '<tr>
 
-                                <td>'.$value["idacta"].'</td>
-                                <td>'.$value["numdocumentoaprendiz"].'</td>';
+                            <td>
 
-                                $item="numdocumentoaprendiz";
-                                $valor= $value["numdocumentoaprendiz"];
-                                $mostrarAprendiz= ControladorAprendiz::ctrMostrarAprendiz($item, $valor);
+                              <div class="btn-group">
 
-                                echo '<td>'.$mostrarAprendiz[0]["nombreaprendiz"].'</td>';
+                                <button class="btn btn-info btn-circle btn-lg btnImprimirActa" codigo="'.$value["idacta"].'">
+                                    <i class="fa fa-print"></i>
+                                </button>
 
-                                $item1 ="idequipo";
-                                $valor1 = $value["idequipo"];
-                                $mostrarEquipo= ControladorEquipos::ctrMostrarEquipos($item1, $valor1);
-
-                                echo '<td>'.$mostrarEquipo["nombreequipo"].'</td>
-                                <td>'.$value["fechaacta"].'</td>
                                 
-                              </tr>';
+                              </div>
+
+                            </td>
+
+                            <td>'.$value["idacta"].'</td>
+                            <td>'.$value["numdocumentoaprendiz"].'</td>';
+
+                            $item="numdocumentoaprendiz";
+                            $valor= $value["numdocumentoaprendiz"];
+                            $mostrarAprendiz= ControladorAprendiz::ctrMostrarAprendiz($item, $valor);
+
+                            echo '<td>'.$mostrarAprendiz[0]["nombreaprendiz"].'</td>';
+
+                            $item1 ="idequipo";
+                            $valor1 = $value["idequipo"];
+                            $mostrarEquipo= ControladorEquipos::ctrMostrarEquipos($item1, $valor1);
+
+                            echo '<td>'.$mostrarEquipo["nombreequipo"].'</td>
+                            <td>'.$value["fechaacta"].'</td>
+                            
+                          </tr>';
                           
                         }
 
@@ -96,7 +110,7 @@
                                     <img src="vistas/img/plantilla/iconos/fichas.png" width="15px">
                                 </span>
                                 <input class="form-control input-lg" name="ficha" id="ficha"
-                                placeholder="Ingrese Ficha" required type="number">
+                                placeholder="Ingrese Ficha" required type="number" required>
                             </div>
                         </div>
                         <!-- ENTRADA PARA EL DOCUMENTO APRENDIZ -->

@@ -34,7 +34,7 @@ class ControladorActas
                     swal({
 
                         type: "success",
-                        title: "¡La acta ha sido guardada correctamente!",
+                        title: "El acta ha sido guardada correctamente!",
                         showConfirmButton: true,
                         confirmButtonText: "Cerrar"
 

@@ -46,7 +46,7 @@ $("#ficha").change(function() {
                             success: function(respuesta) {
                                 //CODIGO PARA LIMPIAR SELECT DE EQUIPO CADA VEZ QUE SE CAMBIA DE FICHA
                                 $('#equipos').empty().append('<option selected="selected" value="whatever">Seleccione El Equipo</option>');
-                                /////////////////////////////////////////////     
+                                
                                 var indices = [];
                                 indices.push("Seleccione Equipo");
                                 indices.length = 0;
@@ -88,7 +88,7 @@ $("#ficha").change(function() {
                         })
                         //CODIGO PARA LIMPIAR SELECT DE APRENDIZ CADA VEZ QUE SE CAMBIA DE FICHA
                         $('#aprendices').empty().append('<option selected="selected" value="whatever">Seleccione el Aprendiz</option>');
-                        ///////////////////////////////////////////////////////////////
+                        
                         var ficha = idFicha;
                         console.log(ficha);
                         var datos = new FormData();
@@ -138,4 +138,38 @@ $("#equipos").change(function() {
             }
         }
     })
+})
+
+$("#aprendices").change(function() {
+    debugger;
+    $(".alert").remove();
+    var numdocumentoaprendiz = $(this).val();
+    var datos = new FormData();
+    datos.append("numdocumentoaprendiz", numdocumentoaprendiz);
+    $.ajax({
+        url: "ajax/actasAjax.php",
+        method: "POST",
+        data: datos,
+        cache: false,
+        contentType: false,
+        processData: false,
+        dataType: "json",
+        success: function(respuesta) {
+            if (respuesta) {
+                $("#aprendices").parent().after('<div class="alert" style="height: 20px; text-align="center"><font color="#f39c12"><strong>ESTE APRENDIZ SE ENCUENTRA REGISTRADO EN UN ACTA</strong></font></div>');
+                $("#aprendices").val("");
+            }
+            
+        }
+    })
+})
+
+
+// IMPRIMIR FACTURA
+$(".tablas").on("click", ".btnImprimirActa", function(){
+
+    var codigo = $(this).attr("codigo");
+
+    window.open("extensiones/tcpdf/pdf/factura.php?codigo="+codigo, "_blank");
+
 })

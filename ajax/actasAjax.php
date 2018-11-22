@@ -36,3 +36,10 @@ if (isset($_POST["equipo"])) {
 	$mostrarAprendiz -> equipo = $_POST["equipo"];
 	$mostrarAprendiz -> ajaxMostrarEquipoActa();
 }
+
+if (isset($_POST["numdocumentoaprendiz"])) {
+
+	$mostrarAprendiz = new AjaxActas();
+	$mostrarAprendiz -> aprendiz = $_POST["numdocumentoaprendiz"];
+	$mostrarAprendiz -> ajaxMostrarAprendizActa();
+}
