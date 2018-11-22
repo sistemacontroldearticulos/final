@@ -6,11 +6,11 @@ class ModelosProgramas
     static public function mdlCrearPrograma($tabla, $datos)
     {
 
-        $stmt = Conexion::conectar()->prepare("INSERT INTO $tabla(NombrePrograma, DuracionPrograma, TipoPrograma) VALUES (:NombrePrograma, :DuracionPrograma, :TipoPrograma)");
+        $stmt = Conexion::conectar()->prepare("INSERT INTO $tabla(NombrePrograma, TipoPrograma) VALUES (:NombrePrograma,  :TipoPrograma)");
 
         $stmt->bindParam(":NombrePrograma", $datos["NuevoPrograma"], PDO::PARAM_STR);
         $stmt->bindParam(":TipoPrograma", $datos["TipoPrograma"], PDO::PARAM_STR);
-        $stmt->bindParam(":DuracionPrograma", $datos["DuracionPrograma"], PDO::PARAM_STR);
+        // $stmt->bindParam(":DuracionPrograma", $datos["DuracionPrograma"], PDO::PARAM_STR);
         $stmt->execute();
         if ($stmt == true) {
             return "ok";
@@ -49,11 +49,11 @@ class ModelosProgramas
 
     public function mdlEditarPrograma($tabla, $datos)
     {
-        $stmt = Conexion::conectar()->prepare(" UPDATE $tabla SET NombrePrograma= :NombrePrograma, TipoPrograma = :TipoPrograma, DuracionPrograma=:DuracionPrograma where IdPrograma=:idPrograma");
+        $stmt = Conexion::conectar()->prepare(" UPDATE $tabla SET NombrePrograma= :NombrePrograma, TipoPrograma = :TipoPrograma where IdPrograma=:idPrograma");
 
         $stmt->bindParam(":NombrePrograma", $datos["EditarPrograma"], PDO::PARAM_STR);
         $stmt->bindParam(":TipoPrograma", $datos["TipoPrograma"], PDO::PARAM_STR);
-        $stmt->bindParam(":DuracionPrograma", $datos["DuracionPrograma"], PDO::PARAM_STR);
+        // $stmt->bindParam(":DuracionPrograma", $datos["DuracionPrograma"], PDO::PARAM_STR);
         $stmt->bindParam(":idPrograma", $datos["idPrograma"], PDO::PARAM_STR);
         $stmt->execute();
         if ($stmt == true) {

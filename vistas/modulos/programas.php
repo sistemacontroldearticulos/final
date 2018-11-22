@@ -40,9 +40,6 @@
                             <th>
                                 Tipo de Programa
                             </th>
-                            <th>
-                                Duración
-                            </th>
                             
                         </tr>
                     </thead>
@@ -77,9 +74,7 @@
                                         <td>
                                             ' . $value["tipoprograma"] . '
                                         </td>
-                                        <td>
-                                            ' . $value["duracionprograma"] . '
-                                        </td>
+                                     
                                         
                                     </tr>';
                             }
@@ -142,7 +137,7 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="form-group">
+                        <!-- <div class="form-group">
                             <div class="input-group">
                                 <span class="input-group-addon">
                   <img src="vistas/img/plantilla/modal/calendario.png" width="15px">
@@ -150,7 +145,7 @@
                                 <input class="form-control input-lg" name="nuevaDuracion"  id="nuevaDuracion" placeholder="Duración del Programa" type="text" required>
                                 </input>
                             </div>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
                 <!-- PIE DEL MODAL -->
@@ -221,7 +216,7 @@ $crearPrograma->ctrCrearProgramas();
                                 </select>
                             </div>
                         </div>
-                        <div class="form-group">
+                       <!--  <div class="form-group">
                             <div class="input-group">
                                 <span class="input-group-addon">
                   <img src="vistas/img/plantilla/modal/calendario.png" width="15px">
@@ -229,7 +224,7 @@ $crearPrograma->ctrCrearProgramas();
                                 <input class="form-control input-lg" name="EditarDuracion" id="EditarDuracion" required="" type="text">
                                 </input>
                             </div>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
                 <!-- PIE DEL MODAL -->

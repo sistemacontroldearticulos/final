@@ -1,16 +1,28 @@
 <?php
 
-require_once "../../../controladores/ventas.controlador.php";
-require_once "../../../modelos/ventas.modelo.php";
+require_once "../../../controladores/actasControlador.php";
+// require_once "../../../controladores/ambientesControlador.php";
+// require_once "../../../controladores/articulosControlador.php";
+// require_once "../../../controladores/categoriasControlador.php";
+// require_once "../../../controladores/fichasControlador.php";
+// require_once "../../../controladores/novedadesControlador.php";
+// require_once "../../../controladores/programasControlador.php";
+// require_once "../../../controladores/reportesControlador.php";
+require_once "../../../controladores/usuariosControlador.php";
+require_once "../../../controladores/equipoControlador.php";
+require_once "../../../controladores/aprendizControlador.php";
 
-require_once "../../../controladores/clientes.controlador.php";
-require_once "../../../modelos/clientes.modelo.php";
-
-require_once "../../../controladores/usuarios.controlador.php";
-require_once "../../../modelos/usuarios.modelo.php";
-
-require_once "../../../controladores/productos.controlador.php";
-require_once "../../../modelos/productos.modelo.php";
+require_once "../../../modelos/actasModelo.php";
+require_once "../../../modelos/equipoModelo.php";
+// require_once "../../../modelos/ambientesModelo.php";
+// require_once "../../../modelos/articulosModelo.php";
+// require_once "../../../modelos/categoriasModelo.php";
+// require_once "../../../modelos/fichasModelo.php";
+// require_once "../../../modelos/novedadesModelo.php";
+// require_once "../../../modelos/programasModelo.php";
+// require_once "../../../modelos/reportesModelo.php";
+require_once "../../../modelos/usuariosModelo.php";
+require_once "../../../modelos/aprendizModelo.php";
 
 class imprimirFactura{
 
@@ -18,32 +30,48 @@ public $codigo;
 
 public function traerImpresionFactura(){
 
-//TRAEMOS LA INFORMACIÓN DE LA VENTA
+// //TRAEMOS LA INFORMACIÓN DE LA VENTA
 
-$itemVenta = "codigo";
-$valorVenta = $this->codigo;
+$item = "idacta";
+$valor= $this->codigo;
 
-$respuestaVenta = ControladorVentas::ctrMostrarVentas($itemVenta, $valorVenta);
+$respuesta = ControladorActas::ctrMostrarActas($item, $valor);
 
-$fecha = substr($respuestaVenta["fecha"],0,-8);
-$productos = json_decode($respuestaVenta["productos"], true);
-$neto = number_format($respuestaVenta["neto"],2);
-$impuesto = number_format($respuestaVenta["impuesto"],2);
-$total = number_format($respuestaVenta["total"],2);
+$fecha = substr($respuesta["fechaacta"],0,-8);
+$equipo = $respuesta["idequipo"];
+$codigo1 = $respuesta["idacta"];
+$documentoAprendiz = $respuesta["numdocumentoaprendiz"];
+$documentoInstructor = $respuesta["numdocumentoinstructor"];
 
-//TRAEMOS LA INFORMACIÓN DEL CLIENTE
+$item2 = "numdocumentoaprendiz";
+$valor2 =  $respuesta["numdocumentoaprendiz"];
+$mostrarAprendiz= ControladorAprendiz::ctrMostrarAprendiz($item2, $valor2);
+$nombreaprendiz = $mostrarAprendiz[0]["nombreaprendiz"];
 
-$itemCliente = "id";
-$valorCliente = $respuestaVenta["id_cliente"];
 
-$respuestaCliente = ControladorClientes::ctrMostrarClientes($itemCliente, $valorCliente);
+$item1 ="idequipo";
+$valor1 = $respuesta["idequipo"];
+$mostrarEquipo= ControladorEquipos::ctrMostrarEquipos($item1, $valor1);
 
-//TRAEMOS LA INFORMACIÓN DEL VENDEDOR
+$item3 ="numdocumentousuario";
+$valor3 = $respuesta["numdocumentoinstructor"];
+$usuario = ControladorUsuarios::ctrMostrarUsuarios($item3, $valor3);
+$nombreusaurio = $usuario["nombreusuario"];
 
-$itemVendedor = "id";
-$valorVendedor = $respuestaVenta["id_vendedor"];
 
-$respuestaVendedor = ControladorUsuarios::ctrMostrarUsuarios($itemVendedor, $valorVendedor);
+// //TRAEMOS LA INFORMACIÓN DEL CLIENTE
+
+// $itemCliente = "id";
+// $valorCliente = $respuestaVenta["id_cliente"];
+
+// $respuestaCliente = ControladorClientes::ctrMostrarClientes($itemCliente, $valorCliente);
+
+// //TRAEMOS LA INFORMACIÓN DEL VENDEDOR
+
+// $itemVendedor = "id";
+// $valorVendedor = $respuestaVenta["id_vendedor"];
+
+// $respuestaVendedor = ControladorUsuarios::ctrMostrarUsuarios($itemVendedor, $valorVendedor);
 
 //REQUERIMOS LA CLASE TCPDF
 
@@ -70,10 +98,10 @@ $bloque1 = <<<EOF
 				<div style="font-size:8.5px; text-align:right; line-height:15px;">
 					
 					<br>
-					NIT: 71.759.963-9
+					NIT: 899.999.034-1
 
 					<br>
-					Dirección: Calle 44B 92-11
+					Dirección: Kra 9 No. 71N-60 Sede Alto Cauca Popayán.
 
 				</div>
 
@@ -84,17 +112,17 @@ $bloque1 = <<<EOF
 				<div style="font-size:8.5px; text-align:right; line-height:15px;">
 					
 					<br>
-					Teléfono: 300 786 52 49
+					Teléfono: 824 4372.
 					
 					<br>
-					ventas@inventorysystem.com
+					gpservicioalcliente@sena.edu.co
 
 				</div>
 				
 			</td>
 
-			<td style="background-color:white; width:110px; text-align:center; color:red"><br><br>FACTURA N.<br>$valorVenta</td>
-
+			<td style="background-color:white; width:110px; text-align:center; color:red"><br><br>ID ACTA.<br>$codigo1</td>
+			
 		</tr>
 
 	</table>
@@ -123,7 +151,7 @@ $bloque2 = <<<EOF
 		
 			<td style="border: 1px solid #666; background-color:white; width:390px">
 
-				Cliente: $respuestaCliente[nombre]
+				Aprendiz: $nombreaprendiz
 
 			</td>
 
@@ -137,7 +165,7 @@ $bloque2 = <<<EOF
 
 		<tr>
 		
-			<td style="border: 1px solid #666; background-color:white; width:540px">Vendedor: $respuestaVendedor[nombre]</td>
+			<td style="border: 1px solid #666; background-color:white; width:540px">Usuario: $nombreusaurio</td>
 
 		</tr>
 
@@ -155,141 +183,141 @@ $pdf->writeHTML($bloque2, false, false, false, false, '');
 
 // ---------------------------------------------------------
 
-$bloque3 = <<<EOF
+// $bloque3 = <<<EOF
 
-	<table style="font-size:10px; padding:5px 10px;">
+// 	<table style="font-size:10px; padding:5px 10px;">
 
-		<tr>
+// 		<tr>
 		
-		<td style="border: 1px solid #666; background-color:white; width:260px; text-align:center">Producto</td>
-		<td style="border: 1px solid #666; background-color:white; width:80px; text-align:center">Cantidad</td>
-		<td style="border: 1px solid #666; background-color:white; width:100px; text-align:center">Valor Unit.</td>
-		<td style="border: 1px solid #666; background-color:white; width:100px; text-align:center">Valor Total</td>
+// 		<td style="border: 1px solid #666; background-color:white; width:260px; text-align:center">Producto</td>
+// 		<td style="border: 1px solid #666; background-color:white; width:80px; text-align:center">Cantidad</td>
+// 		<td style="border: 1px solid #666; background-color:white; width:100px; text-align:center">Valor Unit.</td>
+// 		<td style="border: 1px solid #666; background-color:white; width:100px; text-align:center">Valor Total</td>
 
-		</tr>
+// 		</tr>
 
-	</table>
+// 	</table>
 
-EOF;
+// EOF;
 
-$pdf->writeHTML($bloque3, false, false, false, false, '');
+// $pdf->writeHTML($bloque3, false, false, false, false, '');
 
-// ---------------------------------------------------------
+// // ---------------------------------------------------------
 
-foreach ($productos as $key => $item) {
+// foreach ($productos as $key => $item) {
 
-$itemProducto = "descripcion";
-$valorProducto = $item["descripcion"];
-$orden = null;
+// $itemProducto = "descripcion";
+// $valorProducto = $item["descripcion"];
+// $orden = null;
 
-$respuestaProducto = ControladorProductos::ctrMostrarProductos($itemProducto, $valorProducto, $orden);
+// $respuestaProducto = ControladorProductos::ctrMostrarProductos($itemProducto, $valorProducto, $orden);
 
-$valorUnitario = number_format($respuestaProducto["precio_venta"], 2);
+// $valorUnitario = number_format($respuestaProducto["precio_venta"], 2);
 
-$precioTotal = number_format($item["total"], 2);
+// $precioTotal = number_format($item["total"], 2);
 
-$bloque4 = <<<EOF
+// $bloque4 = <<<EOF
 
-	<table style="font-size:10px; padding:5px 10px;">
+// 	<table style="font-size:10px; padding:5px 10px;">
 
-		<tr>
+// 		<tr>
 			
-			<td style="border: 1px solid #666; color:#333; background-color:white; width:260px; text-align:center">
-				$item[descripcion]
-			</td>
+// 			<td style="border: 1px solid #666; color:#333; background-color:white; width:260px; text-align:center">
+// 				$item[descripcion]
+// 			</td>
 
-			<td style="border: 1px solid #666; color:#333; background-color:white; width:80px; text-align:center">
-				$item[cantidad]
-			</td>
+// 			<td style="border: 1px solid #666; color:#333; background-color:white; width:80px; text-align:center">
+// 				$item[cantidad]
+// 			</td>
 
-			<td style="border: 1px solid #666; color:#333; background-color:white; width:100px; text-align:center">$ 
-				$valorUnitario
-			</td>
+// 			<td style="border: 1px solid #666; color:#333; background-color:white; width:100px; text-align:center">$ 
+// 				$valorUnitario
+// 			</td>
 
-			<td style="border: 1px solid #666; color:#333; background-color:white; width:100px; text-align:center">$ 
-				$precioTotal
-			</td>
-
-
-		</tr>
-
-	</table>
+// 			<td style="border: 1px solid #666; color:#333; background-color:white; width:100px; text-align:center">$ 
+// 				$precioTotal
+// 			</td>
 
 
-EOF;
+// 		</tr>
 
-$pdf->writeHTML($bloque4, false, false, false, false, '');
+// 	</table>
 
-}
 
-// ---------------------------------------------------------
+// EOF;
 
-$bloque5 = <<<EOF
+// $pdf->writeHTML($bloque4, false, false, false, false, '');
 
-	<table style="font-size:10px; padding:5px 10px;">
+// }
 
-		<tr>
+// // ---------------------------------------------------------
 
-			<td style="color:#333; background-color:white; width:340px; text-align:center"></td>
+// $bloque5 = <<<EOF
 
-			<td style="border-bottom: 1px solid #666; background-color:white; width:100px; text-align:center"></td>
+// 	<table style="font-size:10px; padding:5px 10px;">
 
-			<td style="border-bottom: 1px solid #666; color:#333; background-color:white; width:100px; text-align:center"></td>
+// 		<tr>
 
-		</tr>
+// 			<td style="color:#333; background-color:white; width:340px; text-align:center"></td>
+
+// 			<td style="border-bottom: 1px solid #666; background-color:white; width:100px; text-align:center"></td>
+
+// 			<td style="border-bottom: 1px solid #666; color:#333; background-color:white; width:100px; text-align:center"></td>
+
+// 		</tr>
 		
-		<tr>
+// 		<tr>
 		
-			<td style="border-right: 1px solid #666; color:#333; background-color:white; width:340px; text-align:center"></td>
+// 			<td style="border-right: 1px solid #666; color:#333; background-color:white; width:340px; text-align:center"></td>
 
-			<td style="border: 1px solid #666;  background-color:white; width:100px; text-align:center">
-				Neto:
-			</td>
+// 			<td style="border: 1px solid #666;  background-color:white; width:100px; text-align:center">
+// 				Neto:
+// 			</td>
 
-			<td style="border: 1px solid #666; color:#333; background-color:white; width:100px; text-align:center">
-				$ $neto
-			</td>
+// 			<td style="border: 1px solid #666; color:#333; background-color:white; width:100px; text-align:center">
+// 				$ $neto
+// 			</td>
 
-		</tr>
+// 		</tr>
 
-		<tr>
+// 		<tr>
 
-			<td style="border-right: 1px solid #666; color:#333; background-color:white; width:340px; text-align:center"></td>
+// 			<td style="border-right: 1px solid #666; color:#333; background-color:white; width:340px; text-align:center"></td>
 
-			<td style="border: 1px solid #666; background-color:white; width:100px; text-align:center">
-				Impuesto:
-			</td>
+// 			<td style="border: 1px solid #666; background-color:white; width:100px; text-align:center">
+// 				Impuesto:
+// 			</td>
 		
-			<td style="border: 1px solid #666; color:#333; background-color:white; width:100px; text-align:center">
-				$ $impuesto
-			</td>
+// 			<td style="border: 1px solid #666; color:#333; background-color:white; width:100px; text-align:center">
+// 				$ $impuesto
+// 			</td>
 
-		</tr>
+// 		</tr>
 
-		<tr>
+// 		<tr>
 		
-			<td style="border-right: 1px solid #666; color:#333; background-color:white; width:340px; text-align:center"></td>
+// 			<td style="border-right: 1px solid #666; color:#333; background-color:white; width:340px; text-align:center"></td>
 
-			<td style="border: 1px solid #666; background-color:white; width:100px; text-align:center">
-				Total:
-			</td>
+// 			<td style="border: 1px solid #666; background-color:white; width:100px; text-align:center">
+// 				Total:
+// 			</td>
 			
-			<td style="border: 1px solid #666; color:#333; background-color:white; width:100px; text-align:center">
-				$ $total
-			</td>
+// 			<td style="border: 1px solid #666; color:#333; background-color:white; width:100px; text-align:center">
+// 				$ $total
+// 			</td>
 
-		</tr>
-
-
-	</table>
-
-EOF;
-
-$pdf->writeHTML($bloque5, false, false, false, false, '');
+// 		</tr>
 
 
+// 	</table>
 
-// ---------------------------------------------------------
+// EOF;
+
+// $pdf->writeHTML($bloque5, false, false, false, false, '');
+
+
+
+// // ---------------------------------------------------------
 //SALIDA DEL ARCHIVO 
 
 $pdf->Output('factura.pdf');

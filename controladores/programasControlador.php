@@ -11,15 +11,17 @@ class ControladorProgramas
                 $tabla            = "programa";
                 $nombrePrograma   = strtoupper($_POST['NuevoPrograma']);
                 $tipoPrograma     = strtoupper($_POST["TipoPrograma"]);
-                $duracionPrograma = strtoupper($_POST["nuevaDuracion"]);
+                // $duracionPrograma = strtoupper($_POST["nuevaDuracion"]);
 
                 $datos = array("NuevoPrograma" => $nombrePrograma,
-                    "TipoPrograma"                 => $tipoPrograma,
-                    "DuracionPrograma"             => $duracionPrograma);
+                    "TipoPrograma"                 => $tipoPrograma
+                    // "DuracionPrograma"             => $duracionPrograma
+                );
 
                 //var_dump($datos);exit();
 
                 $respuesta = ModelosProgramas::mdlCrearPrograma($tabla, $datos);
+                var_dump($respuesta);
 
                 if ($respuesta == "ok") {
 
@@ -82,12 +84,13 @@ class ControladorProgramas
                 $tabla            = "programa";
                 $nombrePrograma   = strtoupper($_POST['EditarPrograma']);
                 $tipoPrograma     = strtoupper($_POST["EditarTipoPrograma"]);
-                $duracionPrograma = strtoupper($_POST["EditarDuracion"]);
+                // $duracionPrograma = strtoupper($_POST["EditarDuracion"]);
 
                 $datos = array("EditarPrograma" => $nombrePrograma,
                     "TipoPrograma"                  => $tipoPrograma,
                     "DuracionPrograma"              => $duracionPrograma,
-                    "idPrograma"                    => $_POST["idPrograma"]);
+                    // "idPrograma"                    => $_POST["idPrograma"]
+                );
 
                 $respuesta = ModelosProgramas::mdlEditarPrograma($tabla, $datos);
 
