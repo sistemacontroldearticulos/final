@@ -10,19 +10,26 @@ if (PHP_SAPI == 'cli-server') {
     }
 }
 
+function getConnection()
+{
+    $dbh = new PDO("pgsql:user=jvdwioghpjqleb dbname=d42v3gmecvlgdd ;password=ecb8e26902751ca156b5727322ab14f814d520244e2b6be875af2605cf6f4724;host=http://controldearticulos.herokuapp.com");
+    $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    return $dbh;
+}
+
 // function getConnection()
 // {
-//     $dbh = new PDO("pgsql:user=jvdwioghpjqleb dbname=d42v3gmecvlgdd ;password=ecb8e26902751ca156b5727322ab14f814d520244e2b6be875af2605cf6f4724;host=ec2-23-21-171-249.compute-1.amazonaws.com");
+//     $dbh = new PDO("pgsql:user=postgres dbname=proyectofinal ;password=123");
 //     $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 //     return $dbh;
 // }
 
-function getConnection()
-{
-    $dbh = new PDO("pgsql:user=postgres dbname=proyectofinal ;password=123");
-    $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    return $dbh;
-}
+// function getConnection()
+// {
+//     $dbh = new PDO("mysql:host=88.198.24.90;dbname=inventar_proyectofinal", "inventariosadsi", "SETQDnuHgv(_");
+//     $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+//     return $dbh;
+// }
 
 function login($response)
 {
@@ -200,7 +207,7 @@ function buscarFichaActas($response)
     $route      = $response->getAttribute('route');
     $args       = $route->getArguments();
     $idAmbiente = $args['numeroFicha'];
-    $sql        = "SELECT numdocumentoaprendiz, nombreaprendiz, equipo.idequipo, nombreequipo
+    $sql        = "SELECT numdocumentoaprendiz, nombreaprendiz, equipo.idequipo, nombreequipo, ficha.idprograma
     FROM aprendiz
     LEFT OUTER JOIN ficha on (aprendiz.numeroficha=ficha.numeroficha)
     LEFT OUTER JOIN ambiente on (ficha.idambiente=ambiente.idambiente)
