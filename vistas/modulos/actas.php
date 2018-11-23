@@ -33,6 +33,7 @@
                             <th>Nombre Aprendiz</th>
                             <th>ID Equipo</th>
                             <th>Fecha</th>
+                            <th>Instructor</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -72,8 +73,18 @@
                             $valor1 = $value["idequipo"];
                             $mostrarEquipo= ControladorEquipos::ctrMostrarEquipos($item1, $valor1);
 
+                            $item3 ="numdocumentousuario";
+                            $valor3 = $value["numdocumentoinstructor"];
+                            $usuario = ControladorUsuarios::ctrMostrarUsuarios($item3, $valor3);
+
+                            
+
                             echo '<td>'.$mostrarEquipo["nombreequipo"].'</td>
                             <td>'.$value["fechaacta"].'</td>
+                            <td>'.$usuario["nombreusuario"].'</td>
+
+
+
                             
                           </tr>';
                           

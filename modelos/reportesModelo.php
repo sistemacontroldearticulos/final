@@ -53,6 +53,12 @@ class ModeloReportes
 
         }  else {
 
+            // $fecha = "2006/05/04"; 
+            // list($anio, $mes, $dia) = explode("/",$fecha); 
+            // echo "Año: $anio <br />"; 
+            // echo "Mes: $mes <br />"; 
+            // echo "Dia: $dia <br />"; 
+
             $stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE fechanovedad BETWEEN '$fechaInicial' AND '$fechaFinal'");
 
             $stmt->execute();

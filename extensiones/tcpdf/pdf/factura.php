@@ -1,7 +1,7 @@
 <?php
 
 require_once "../../../controladores/actasControlador.php";
-// require_once "../../../controladores/ambientesControlador.php";
+require_once "../../../controladores/ambientesControlador.php";
 // require_once "../../../controladores/articulosControlador.php";
 // require_once "../../../controladores/categoriasControlador.php";
 // require_once "../../../controladores/fichasControlador.php";
@@ -14,10 +14,10 @@ require_once "../../../controladores/aprendizControlador.php";
 
 require_once "../../../modelos/actasModelo.php";
 require_once "../../../modelos/equipoModelo.php";
-// require_once "../../../modelos/ambientesModelo.php";
-// require_once "../../../modelos/articulosModelo.php";
+require_once "../../../modelos/ambientesModelo.php";
+require_once "../../../modelos/articulosModelo.php";
 // require_once "../../../modelos/categoriasModelo.php";
-// require_once "../../../modelos/fichasModelo.php";
+require_once "../../../modelos/fichasModelo.php";
 // require_once "../../../modelos/novedadesModelo.php";
 // require_once "../../../modelos/programasModelo.php";
 // require_once "../../../modelos/reportesModelo.php";
@@ -37,44 +37,67 @@ $valor= $this->codigo;
 
 $respuesta = ControladorActas::ctrMostrarActas($item, $valor);
 
-$fecha = substr($respuesta["fechaacta"],0,-8);
+// $fecha = substr($respuesta["fechaacta"],0,-8);
+// $hora = substr($respuesta["fechaacta"],-10,0);
+
+$dato = $respuesta["fechaacta"];
+$fecha = date('Y-m-d',strtotime($dato));
+$hora = date('H:i:s',strtotime($dato)); 
+
 $equipo = $respuesta["idequipo"];
 $codigo1 = $respuesta["idacta"];
 $documentoAprendiz = $respuesta["numdocumentoaprendiz"];
 $documentoInstructor = $respuesta["numdocumentoinstructor"];
 
+// NOMBRE APRENDIZ
 $item2 = "numdocumentoaprendiz";
 $valor2 =  $respuesta["numdocumentoaprendiz"];
 $mostrarAprendiz= ControladorAprendiz::ctrMostrarAprendiz($item2, $valor2);
 $nombreaprendiz = $mostrarAprendiz[0]["nombreaprendiz"];
 
+// NUMERO FICHA APRENDIZ
+$fichaAprendiz = $mostrarAprendiz[0]["numeroficha"];
 
+// CONSULTAR EQUIPO
 $item1 ="idequipo";
 $valor1 = $respuesta["idequipo"];
-$mostrarEquipo= ControladorEquipos::ctrMostrarEquipos($item1, $valor1);
+$mostrarEquipo = ControladorEquipos::ctrMostrarEquipos($item1, $valor1);
+$nombreEquipo = $mostrarEquipo["nombreequipo"];
 
+// NOMBRE USUARIO
 $item3 ="numdocumentousuario";
 $valor3 = $respuesta["numdocumentoinstructor"];
 $usuario = ControladorUsuarios::ctrMostrarUsuarios($item3, $valor3);
 $nombreusaurio = $usuario["nombreusuario"];
 
+// CONSULTAR ARTICULOS EN EQUIPO
+$item4 ="idequipo";
+$valor4 = "14";
+$tabla = "articulo";
+$articulosEquipo = ModeloArticulos::mdlMostrarArticulosEquipo($tabla, $item4, $valor4);
 
-// //TRAEMOS LA INFORMACIÓN DEL CLIENTE
+// CANTIDAD ARTICULOS EQUIPO
+$cantidadArticulosEquipo = 0;
+foreach ($articulosEquipo as $key => $value) {
+	$cantidadArticulosEquipo = $cantidadArticulosEquipo + 1; 
+}
 
-// $itemCliente = "id";
-// $valorCliente = $respuestaVenta["id_cliente"];
 
-// $respuestaCliente = ControladorClientes::ctrMostrarClientes($itemCliente, $valorCliente);
+// CONSULTAR FICHA
+$item5 ="numeroficha";
+$valor5 = $fichaAprendiz;
+$tabla1 = "ficha";
+$mostrarFicha = ModeloFichas::mdlMostrarFichas($tabla1, $item5, $valor5);
+$jornadaFicha = ucwords(strtolower($mostrarFicha["jornadaficha"]));
 
-// //TRAEMOS LA INFORMACIÓN DEL VENDEDOR
-
-// $itemVendedor = "id";
-// $valorVendedor = $respuestaVenta["id_vendedor"];
-
-// $respuestaVendedor = ControladorUsuarios::ctrMostrarUsuarios($itemVendedor, $valorVendedor);
+// CONSULTAR AMBIENTE
+$item6 ="idambiente";
+$valor6 = $mostrarFicha["idambiente"];
+// $tabla1 = "ficha";
+$mostrarAmbiente = ControladorAmbientes::ctrMostrarAmbientes( $item6, $valor6);
+$nombreAmbiente = $mostrarAmbiente["nombreambiente"];
 
 //REQUERIMOS LA CLASE TCPDF
-
 require_once('tcpdf_include.php');
 
 $pdf = new TCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
@@ -87,41 +110,29 @@ $pdf->AddPage();
 
 $bloque1 = <<<EOF
 
-	<table>
+	<table style="">
 		
 		<tr>
 			
-			<td style="width:150px"><img src="images/logo-negro-bloque.png"></td>
+			<td style="border: 1px solid #000; width:100px; height:90px; text-align: center;">
 
-			<td style="background-color:white; width:140px">
+				<img src="images/logo_sena_negro.png" style="height:85px; ">
+
+			</td>
+
+			<td style="border: 1px solid #000; width:440px">
 				
-				<div style="font-size:8.5px; text-align:right; line-height:15px;">
+				<div style=" text-align:center;">
+					
+					
+					<h5><strong>SISTEMA INTEGRADO DE GESTIÓN</strong></h5>
 					
 					<br>
-					NIT: 899.999.034-1
-
-					<br>
-					Dirección: Kra 9 No. 71N-60 Sede Alto Cauca Popayán.
+					<h5><strong>ACTA No 2018 - $codigo1</strong></h5>
 
 				</div>
 
 			</td>
-
-			<td style="background-color:white; width:140px">
-
-				<div style="font-size:8.5px; text-align:right; line-height:15px;">
-					
-					<br>
-					Teléfono: 824 4372.
-					
-					<br>
-					gpservicioalcliente@sena.edu.co
-
-				</div>
-				
-			</td>
-
-			<td style="background-color:white; width:110px; text-align:center; color:red"><br><br>ID ACTA.<br>$codigo1</td>
 			
 		</tr>
 
@@ -138,9 +149,9 @@ $bloque2 = <<<EOF
 	<table>
 		
 		<tr>
-			
-			<td style="width:540px"><img src="images/back.jpg"></td>
 		
+		<td style="border-bottom: 1px solid #000; background-color:white; width:540px"></td>
+
 		</tr>
 
 	</table>
@@ -149,15 +160,9 @@ $bloque2 = <<<EOF
 	
 		<tr>
 		
-			<td style="border: 1px solid #666; background-color:white; width:390px">
+			<td style="border: 1px solid #000; background-color:white; width:540px">
 
-				Aprendiz: $nombreaprendiz
-
-			</td>
-
-			<td style="border: 1px solid #666; background-color:white; width:150px; text-align:right">
-			
-				Fecha: $fecha
+				<strong>ACTA</strong>
 
 			</td>
 
@@ -165,14 +170,142 @@ $bloque2 = <<<EOF
 
 		<tr>
 		
-			<td style="border: 1px solid #666; background-color:white; width:540px">Usuario: $nombreusaurio</td>
+			<td style="border: 1px solid #000; background-color:white; width:180px">
+
+				<strong>CIUDAD Y FECHA</strong>
+				<br>
+				Popayán $fecha
+
+			</td>
+
+			<td style="border: 1px solid #000; background-color:white; width:180px">
+
+				<strong>HORA</strong>
+				<br>
+				$hora
+
+			</td>
+
+			<td style="border: 1px solid #000; background-color:white; width:180px">
+
+				<strong>JORNADA</strong>
+				<br>
+				$jornadaFicha
+
+			</td>
 
 		</tr>
 
 		<tr>
-		
-		<td style="border-bottom: 1px solid #666; background-color:white; width:540px"></td>
+			<td style="border: 1px solid #000; background-color:white; width:270px">
 
+				<strong>LUGAR:</strong> $nombreAmbiente
+
+			</td>
+
+			<td style="border: 1px solid #000; background-color:white; width:270px">
+
+				<strong>FICHA:</strong> $fichaAprendiz
+
+			</td>
+
+		</tr>
+
+		<tr>	
+			<td style="border: 1px solid #000; background-color:white; width:540px">
+
+				<strong>TEMA:</strong>  Acta de responsabilidad
+
+			</td>
+		</tr>
+
+		<tr>
+			<td style="border: 1px solid #000; background-color:white; width:540px">
+				
+				<strong>OBJETIVO:</strong> Se le otorgará al aprendiz  $nombreaprendiz identificado con número el documento No.  $documentoAprendiz , el equipo  $nombreEquipo que consta de $cantidadArticulosEquipo implementos necesarios para realizar la función que le corresponde.
+				<br>
+				<br>
+				Si llegase a presentarse un inconveniente, ya sea pérdida o daño de alguno de los implementos entregados, deberá ser reportado al instructor que esté acargo del ambiente en su momento, de lo contrario se tomará como responsable al aprendiz acargo del equipo.
+
+			</td>
+		</tr>	
+
+		<tr>
+			<td style="border: 1px solid #000; background-color:white; width:540px">
+
+				<strong>DESARROLLO REUNIÓN</strong>
+
+			</td>
+		</tr>
+
+		<tr>
+			<td style="border: 1px solid #000; background-color:white; width:540px">
+
+				<p>Se informa a los aprendices la importancia de estructurar y llevar el portafolio del aprendiz de la
+				siguiente manera:
+
+				Acta de Plan de Mejoramiento Académico. (Aplica solo si realizó plan de mejoramiento)
+
+				<ol>
+				    <li>  GFPI-F-019 Guías de aprendizaje.</li>
+				    <li>  Evidencias de Aprendizaje descritas en la guía de aprendizaje por cada instructor.</li>
+					<li>  Plan de trabajo.</li>				    
+				</ol>
+
+				Se aclara dudas de los aprendices con respecto a la nueva manera y se plantea la forma de
+				evidenciar dicho portafolio y se da el tiempo para actualizar su información.
+				</p>
+
+			</td>
+		</tr>
+
+		<tr>
+			<td style="border: 1px solid #000; background-color:white; width:540px; height:50px; ">
+
+				<strong>CONCLUSIONES</strong>
+
+			</td>
+		</tr>
+
+		<tr>
+		
+		<td style="border-bottom: 1px solid #000; background-color:white; width:540px"></td>
+
+		</tr>
+
+		<tr>
+			<td style="border: 1px solid #000; background-color:white; width:80px; ">
+
+				<strong>EQUIPO</strong>
+				
+			</td>
+	
+			<td style="border: 1px solid #000; background-color:white; width:460px; ">
+				$nombreEquipo
+			</td>
+		
+		</tr>
+
+		<tr>
+			<td style="border: 1px solid #000; background-color:white; width:80px; ">
+				<strong>ID</strong>
+			</td>
+	
+			<td style="border: 1px solid #000; background-color:white; width:115px; ">
+				<strong>TIPO ARTICULO</strong>
+			</td>
+		
+			<td style="border: 1px solid #000; background-color:white; width:115px; ">
+				<strong>SERIAL</strong>
+			</td>
+
+			<td style="border: 1px solid #000; background-color:white; width:115px; ">
+				<strong>MODELO</strong>
+			</td>
+
+			<td style="border: 1px solid #000; background-color:white; width:115px; ">
+				<strong>MARCA</strong>
+			</td>
 		</tr>
 
 	</table>
@@ -181,144 +314,97 @@ EOF;
 
 $pdf->writeHTML($bloque2, false, false, false, false, '');
 
-// ---------------------------------------------------------
+// --------------------------------------------------------------------------
 
-// $bloque3 = <<<EOF
+foreach ($articulosEquipo as $key => $item) {
 
-// 	<table style="font-size:10px; padding:5px 10px;">
+$bloque4 = <<<EOF
 
-// 		<tr>
-		
-// 		<td style="border: 1px solid #666; background-color:white; width:260px; text-align:center">Producto</td>
-// 		<td style="border: 1px solid #666; background-color:white; width:80px; text-align:center">Cantidad</td>
-// 		<td style="border: 1px solid #666; background-color:white; width:100px; text-align:center">Valor Unit.</td>
-// 		<td style="border: 1px solid #666; background-color:white; width:100px; text-align:center">Valor Total</td>
+	<table style="font-size:10px; padding:5px 10px;">
 
-// 		</tr>
 
-// 	</table>
 
-// EOF;
-
-// $pdf->writeHTML($bloque3, false, false, false, false, '');
-
-// // ---------------------------------------------------------
-
-// foreach ($productos as $key => $item) {
-
-// $itemProducto = "descripcion";
-// $valorProducto = $item["descripcion"];
-// $orden = null;
-
-// $respuestaProducto = ControladorProductos::ctrMostrarProductos($itemProducto, $valorProducto, $orden);
-
-// $valorUnitario = number_format($respuestaProducto["precio_venta"], 2);
-
-// $precioTotal = number_format($item["total"], 2);
-
-// $bloque4 = <<<EOF
-
-// 	<table style="font-size:10px; padding:5px 10px;">
-
-// 		<tr>
+		<tr>
 			
-// 			<td style="border: 1px solid #666; color:#333; background-color:white; width:260px; text-align:center">
-// 				$item[descripcion]
-// 			</td>
+			<td style="border: 1px solid #000; background-color:white; width:80px; ">
+				$item[idarticulo]
+			</td>
 
-// 			<td style="border: 1px solid #666; color:#333; background-color:white; width:80px; text-align:center">
-// 				$item[cantidad]
-// 			</td>
+			<td style="border: 1px solid #000; background-color:white; width:115px; ">
+				$item[tipoarticulo]
+			</td>
 
-// 			<td style="border: 1px solid #666; color:#333; background-color:white; width:100px; text-align:center">$ 
-// 				$valorUnitario
-// 			</td>
+			<td style="border: 1px solid #000; background-color:white; width:115px; ">
+				$item[serialarticulo]
+			</td>
 
-// 			<td style="border: 1px solid #666; color:#333; background-color:white; width:100px; text-align:center">$ 
-// 				$precioTotal
-// 			</td>
+			<td style="border: 1px solid #000; background-color:white; width:115px; ">
+				$item[modeloarticulo]
+			</td>
+
+			<td style="border: 1px solid #000; background-color:white; width:115px; ">
+				$item[marcaarticulo]
+			</td>
 
 
-// 		</tr>
+		</tr>
 
-// 	</table>
+	</table>
 
 
-// EOF;
+EOF;
 
-// $pdf->writeHTML($bloque4, false, false, false, false, '');
+$pdf->writeHTML($bloque4, false, false, false, false, '');
+}
 
-// }
+// --------------------------------------------------------------------------
 
-// // ---------------------------------------------------------
+$bloque5 = <<<EOF
 
-// $bloque5 = <<<EOF
-
-// 	<table style="font-size:10px; padding:5px 10px;">
-
-// 		<tr>
-
-// 			<td style="color:#333; background-color:white; width:340px; text-align:center"></td>
-
-// 			<td style="border-bottom: 1px solid #666; background-color:white; width:100px; text-align:center"></td>
-
-// 			<td style="border-bottom: 1px solid #666; color:#333; background-color:white; width:100px; text-align:center"></td>
-
-// 		</tr>
+	<table>
 		
-// 		<tr>
+		<tr>
 		
-// 			<td style="border-right: 1px solid #666; color:#333; background-color:white; width:340px; text-align:center"></td>
+		<td style=" background-color:white; width:540px"></td>
 
-// 			<td style="border: 1px solid #666;  background-color:white; width:100px; text-align:center">
-// 				Neto:
-// 			</td>
+		</tr>
 
-// 			<td style="border: 1px solid #666; color:#333; background-color:white; width:100px; text-align:center">
-// 				$ $neto
-// 			</td>
+	</table>
 
-// 		</tr>
+	<table style="font-size:10px; padding:5px 10px;">
 
-// 		<tr>
-
-// 			<td style="border-right: 1px solid #666; color:#333; background-color:white; width:340px; text-align:center"></td>
-
-// 			<td style="border: 1px solid #666; background-color:white; width:100px; text-align:center">
-// 				Impuesto:
-// 			</td>
 		
-// 			<td style="border: 1px solid #666; color:#333; background-color:white; width:100px; text-align:center">
-// 				$ $impuesto
-// 			</td>
 
-// 		</tr>
-
-// 		<tr>
+		<tr>
+			<td style="border-bottom: 1px solid #000; background-color:white; width:200px"></td>
+	
+			<td style=" background-color:white; width:140px"></td>
 		
-// 			<td style="border-right: 1px solid #666; color:#333; background-color:white; width:340px; text-align:center"></td>
+			<td style="border-bottom: 1px solid #000; background-color:white; width:200px"></td>
+		</tr>
 
-// 			<td style="border: 1px solid #666; background-color:white; width:100px; text-align:center">
-// 				Total:
-// 			</td>
-			
-// 			<td style="border: 1px solid #666; color:#333; background-color:white; width:100px; text-align:center">
-// 				$ $total
-// 			</td>
+		<tr>
+			<td style=" background-color:white; width:200px; text-align: center;">
 
-// 		</tr>
+				<strong>FIRMA INSTRUCTOR</strong>
+
+			</td>
+
+			<td style=" background-color:white; width:140px"></td>
+
+			<td style=" background-color:white; width:200px; text-align: center;">
+
+				<strong>FIRMA APRENDIZ</strong>
+
+			</td>
+		</tr>
+
+	</table>
 
 
-// 	</table>
+EOF;
 
-// EOF;
-
-// $pdf->writeHTML($bloque5, false, false, false, false, '');
-
-
-
-// // ---------------------------------------------------------
-//SALIDA DEL ARCHIVO 
+$pdf->writeHTML($bloque5, false, false, false, false, '');
 
 $pdf->Output('factura.pdf');
 
