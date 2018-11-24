@@ -15,7 +15,11 @@ class Conexion
      //     ec2-23-21-171-249.compute-1.amazonaws.com');
 
 
-         $link = new PDO("mysql:host=localhost;dbname=proyectofinal", "root", "");
+       //   $link = new PDO("mysql:host=localhost;dbname=proyectofinal", "root", "");
+       // $link->exec("set names utf8");
+       // return $link;
+
+       $link = new PDO("mysql:host=http://88.198.24.90;dbname=inventar_proyectofinal", "inventariosadsi", "SETQDnuHgv(_");
        $link->exec("set names utf8");
        return $link;
 
