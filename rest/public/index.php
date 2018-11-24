@@ -19,6 +19,13 @@ function getConnection()
     return $dbh;
 }
 
+// function getConnection()
+// {
+//     $dbh = new PDO("mysql:host=localhost;dbname=proyectofinal", "root", "");
+//     $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+//     return $dbh;
+// }
+
 function login($response)
 {
     $route        = $response->getAttribute('route');
