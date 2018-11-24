@@ -18,7 +18,6 @@ class ControladorNovedades
             $fechaActual = $fecha . ' ' . $hora;
 
             $datos = array("NumDocumentoUsuario" => $_POST["numUsuario"],
-                "UsuarioNovedad"                     => $_POST["usuarioNovedad"],
                 "NumeroFicha"                        => $_POST["nuevaFicha1"],
                 "articulo"                           => null,
                 "FechaNovedad"                       => $fechaActual,
@@ -80,7 +79,7 @@ class ControladorNovedades
                         $tabla8 = "novedad";
                         $datos8 = ModeloNovedades::idnovedad(); 
 
-                        $a = $datos8["max"];
+                        $a = $datos8["MAX(idnovedad)"];
                         
                         $respuesta7 = ModeloNovedades::mdlBorrarNovedad($tabla8, $a);
 

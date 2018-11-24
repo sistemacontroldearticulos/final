@@ -26,6 +26,7 @@ class ControladorAmbientes
                 // var_dump($datos);
 
     			$respuesta=ModeloAmbientes::mdlCrearAmbientes($tabla, $datos);
+                
 
     				if($respuesta=="ok"){
     					echo '<script>

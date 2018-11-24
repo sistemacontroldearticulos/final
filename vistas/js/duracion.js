@@ -21,7 +21,6 @@ function duracion(sel) {
         $("#EditarDuracion").prop('readonly', true);
     }
 }
-
 // SE PASA LA VALIDACION DEL PROGRAMA DIRECTAMENTE AL EVENTO DE CAMBIO DE LA FECHA
 // "var diaActual" se pasa a inicializar cada vez que se ejecuta la funcion
 function tiempo(sel) {
@@ -46,28 +45,21 @@ function tiempo(sel) {
             var day = diaActual.getDate();
             // debugger;
             if (respuesta[3] == "TÉCNICO") {
-
                 var month = diaActual.getMonth() + 1;
                 var year = diaActual.getFullYear() + 1;
-
                 fecha = month + '/' + day + '/' + year;
-
-                $("#fin").val(fecha);
-                $("#fin").prop('readonly', true);
-
+                $("#nuevaFechaFin").val(fecha);
+                $("#nuevaFechaFin").prop('readonly', true);
             } else if (respuesta[3] == "TECNÓLOGO") {
-
                 diaActual = new Date(sel);
                 console.log(diaActual);
-
                 var day = diaActual.getDate();
                 var month = diaActual.getMonth() + 1;
                 var year = diaActual.getFullYear() + 2;
-
                 fecha = month + '/' + day + '/' + year;
-                $("#fin").val(fecha);
-                $("#fin").html(fecha);
-                $("#fin").prop('readonly', true);
+                $("#nuevaFechaFin").val(fecha);
+                $("#nuevaFechaFin").html(fecha);
+                $("#nuevaFechaFin").prop('readonly', true);
             }
         }
     });
@@ -78,4 +70,3 @@ function activarFechas() {
     $("#nuevaFechaFin").removeAttr('disabled');
     $("#nuevaFechaInicio").removeAttr('disabled');
 }
-
