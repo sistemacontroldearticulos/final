@@ -1,4 +1,4 @@
-  <?php
+<?php
 
 class ControladorFichas
 {
@@ -7,7 +7,7 @@ class ControladorFichas
 =                    CREAR FICHA                 =
 =============================================*/
 
-    public static function ctrAgregarFichas()
+    static public function ctrAgregarFichas()
     {
 
         if (isset($_POST["nuevaFicha"])) {
@@ -22,7 +22,7 @@ class ControladorFichas
 
                 $excel = $_FILES["nuevoExcel"]["tmp_name"];
 
-                include_once 'extensiones\PHPExcel-1.8\Classes\PHPExcel\IOFactory.php';
+                include 'extensiones/PHPExcel-1.8/Classes/PHPExcel/IOFactory.php';
                 $inputFileName = $excel;
                 $inputFileType = PHPExcel_IOFactory::identify($inputFileName);
                 $objReader     = PHPExcel_IOFactory::createReader($inputFileType);
@@ -170,7 +170,7 @@ class ControladorFichas
     }
 
 // MOSTRAR fICHAS
-    public function ctrMostrarFichas($item, $valor)
+    static public function ctrMostrarFichas($item, $valor)
     {
 
         $tabla = "ficha";
@@ -184,7 +184,7 @@ class ControladorFichas
 =                    CREAR FICHA                 =
 =============================================*/
 
-    public function ctrEditarFichas()
+    static public function ctrEditarFichas()
     {
 
         if (isset($_POST["editarFicha"])) {
@@ -249,7 +249,7 @@ class ControladorFichas
     }
 
 // ELIMINAR FICHA
-    public function ctrEliminarFicha()
+    static public function ctrEliminarFicha()
     {
         if (isset($_GET["idFicha"])) {
             $tabla     = "ficha";

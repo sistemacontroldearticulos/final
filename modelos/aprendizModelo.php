@@ -9,7 +9,7 @@ class ModeloAprendiz
     CREAR APRENDIZ
     =============================================*/
 
-    public static function mdlIngresarAprendiz($tabla, $datos){
+   static public function mdlIngresarAprendiz($tabla, $datos){
 
         $stmt = Conexion::conectar()->prepare("INSERT INTO $tabla(NumDocumentoAprendiz, NumeroFicha, NombreAprendiz, TelefonoAprendiz, EmailAprendiz) VALUES (:NumDocumentoAprendiz, :NumeroFicha, :NombreAprendiz, :TelefonoAprendiz, :EmailAprendiz)");
 
@@ -35,7 +35,7 @@ class ModeloAprendiz
     }
 
     // MOSTRAR APRENDIZ
-    public static function mdlMostrarAprendiz($tabla, $item, $valor){
+   static public function mdlMostrarAprendiz($tabla, $item, $valor){
 
         if ($item != null) {
             $stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item=:$item");
@@ -79,7 +79,7 @@ class ModeloAprendiz
     }
 
 
-    public static function mdlConsultarAprendizFicha($tabla, $item, $valor){
+   static public function mdlConsultarAprendizFicha($tabla, $item, $valor){
 
         $stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 

@@ -1,7 +1,7 @@
 <?php
 class ControladorEquipos
 {
-    public static function ctrCrearEquipos()
+    static public function ctrCrearEquipos()
     {
         if (isset($_POST["nuevoEquipo"])) {
             if (preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["nuevoEquipo"])) {
@@ -65,7 +65,7 @@ class ControladorEquipos
     }
 
     // MOSTRAR EQUIPOS
-    public static function ctrMostrarEquipos($item, $valor)
+    static public function ctrMostrarEquipos($item, $valor)
     {
 
         $tabla = "equipo";
@@ -77,7 +77,7 @@ class ControladorEquipos
     }
 
     // BORRAR EQUIPO
-    public static function ctrBorrarEquipo()
+    static public function ctrBorrarEquipo()
     {
 
         if (isset($_GET["idEquipo"])) {
@@ -138,7 +138,7 @@ class ControladorEquipos
         }
       
 
-        public static function ctrEditarEquipos()
+        static public function ctrEditarEquipos()
         {
 
             if (isset($_POST["editarEquipo"])) {

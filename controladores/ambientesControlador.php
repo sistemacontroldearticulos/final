@@ -167,7 +167,7 @@ class ControladorAmbientes
     }
 
 
-    public function ctrEliminarAmbientes()
+    static public function ctrEliminarAmbientes()
     {
         if (isset($_GET["idAmbiente"])) {
 

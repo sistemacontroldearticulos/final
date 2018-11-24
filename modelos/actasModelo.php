@@ -5,7 +5,7 @@ require_once "conexion.php";
 class ModeloActas
 {
 
-    public static function mdlCrearActa($tabla, $datos)
+    static public function mdlCrearActa($tabla, $datos)
     {
 
         $stmt = Conexion::conectar()->prepare("INSERT INTO $tabla(numdocumentoaprendiz, idequipo, fechaacta, numdocumentoinstructor) VALUES (:numdocumentoaprendiz, :idequipo, :fechaacta, :numdocumentoinstructor)");
@@ -25,7 +25,7 @@ class ModeloActas
         $stmt = null;
     }
 
-    public static function mdlMostrarActas($tabla, $item, $valor)
+    static public function mdlMostrarActas($tabla, $item, $valor)
     {
 
         if ($item != null) {

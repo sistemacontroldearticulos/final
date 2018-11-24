@@ -3,7 +3,7 @@
 class ControladorActas
 {
 
-    public static function ctrCrearActa()
+    static public function ctrCrearActa()
     {
 
         if (isset($_POST["ficha"])) {
@@ -53,7 +53,7 @@ class ControladorActas
         }
     }
 
-    public static function ctrMostrarActas($item, $valor)
+    static public function ctrMostrarActas($item, $valor)
     {
 
         $tabla = "acta_responsabilidad";

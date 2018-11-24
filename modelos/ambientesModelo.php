@@ -4,7 +4,7 @@ require_once "conexion.php";
 class ModeloAmbientes
 {
 
-    public static function mdlCrearAmbientes($tabla, $datos)
+    static public function mdlCrearAmbientes($tabla, $datos)
     {
 
         $stmt = Conexion::conectar()->prepare("INSERT INTO $tabla(NombreAmbiente, UbicacionAmbiente, IdPrograma) VALUES(:NombreAmbiente, :UbicacionAmbiente, :IdPrograma)");
@@ -23,7 +23,7 @@ class ModeloAmbientes
         $stmt = null;
     }
 
-    public static function mdlMostrarAmbientes($tabla, $item, $valor)
+    static public function mdlMostrarAmbientes($tabla, $item, $valor)
     {
 
         if ($item != null) {
@@ -49,7 +49,7 @@ class ModeloAmbientes
     }
 
     // EDITAR AMBIENTE
-    public static function mdlEditarAmbientes($tabla, $datos)
+    static public function mdlEditarAmbientes($tabla, $datos)
     {
         $stmt = Conexion::conectar()->prepare("UPDATE $tabla SET IdPrograma=:IdPrograma, NombreAmbiente =:NombreAmbiente, UbicacionAmbiente =:UbicacionAmbiente WHERE IdAmbiente=:IdAmbiente");
 

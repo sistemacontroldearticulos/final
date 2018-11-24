@@ -4,7 +4,7 @@
 
 class ModeloEquipos
 {
-	public function mdlCrearEquipo($tabla, $datos)
+	static public function mdlCrearEquipo($tabla, $datos)
 	{
 		var_dump($datos);
 		$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla (NombreEquipo, EstadoEquipo, NumArticulosEquipo, ObservacionEquipo, NumArticulosAgregados) VALUES (:NombreEquipo, :EstadoEquipo, :NumArticulosEquipo, :ObservacionEquipo, :NumArticulosAgregados)");
