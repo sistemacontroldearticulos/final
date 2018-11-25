@@ -12,19 +12,21 @@ if (PHP_SAPI == 'cli-server') {
 
 
 
-function getConnection()
-{
-    $dbh = new PDO("mysql:host=88.198.24.90;dbname=inventar_proyectofinal", "inventariosadsi", "SETQDnuHgv(_");
-    $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    return $dbh;
-}
-
 // function getConnection()
 // {
-//     $dbh = new PDO("mysql:host=localhost;dbname=proyectofinal", "root", "");
-//     $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-//     return $dbh;
+//     $link = new PDO("mysql:host=88.198.24.90;dbname=inventar_proyectofinal", "inventariosadsi", "SETQDnuHgv(_");
+//        $link->exec("set names utf8");
+//        return $link;
 // }
+
+function getConnection()
+{
+    $link = new PDO("mysql:host=localhost;dbname=proyectofinal", "root", "");
+       $link->exec("set names utf8");
+       return $link;
+}
+
+
 
 function login($response)
 {
@@ -226,19 +228,20 @@ function crearNovedad($request)
     // $emp = json_decode($request->getBody());
     $emp = $request->getParams();
 
-    var_dump($emp["numdocumentousuario"]);
 
-    $sql = "INSERT INTO novedad (numdocumentousuario, usuarionovedad, numeroficha, fechanovedad, articulo, estado) VALUES (:numdocumentousuario, :usuarionovedad, :numeroficha, :fechanovedad, :articulo, :estado)";
+    
+
+    $sql = "INSERT INTO novedad (numdocumentousuario, numeroficha, fechanovedad, articulo, estado) VALUES (:numdocumentousuario, :numeroficha, :fechanovedad, :articulo, :estado)";
     try {
         $db   = getConnection();
         $stmt = $db->prepare($sql);
-        $stmt->bindParam('numdocumentousuario', $emp["numdocumentousuario"]);
-        $stmt->bindParam(":usuarionovedad", $emp["usuarionovedad"]);
+        $stmt->bindParam(':numdocumentousuario', $emp["numdocumentousuario"]);
         $stmt->bindParam(":numeroficha", $emp["numeroficha"]);
         $stmt->bindParam(":fechanovedad", $emp["fechanovedad"]);
         $stmt->bindParam(":articulo", $emp["articulo"]);
         $stmt->bindParam(":estado", $emp["estado"]);
         $stmt->execute();
+        
     } catch (PDOException $e) {
         echo '{"error":{"text":' . $e->getMessage() . '}}';
     }
@@ -289,7 +292,7 @@ function buscarNovedad($response)
     $route = $response->getAttribute('route');
     $args  = $route->getArguments();
 
-    $sql = "SELECT MAX(idnovedad) FROM novedad";
+    $sql = "SELECT MAX(idnovedad) as 'max' FROM novedad";
 
     try {
         $stmt      = getConnection()->query($sql);
