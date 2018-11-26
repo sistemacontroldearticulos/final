@@ -231,10 +231,7 @@ $bloque2 = <<<EOF
 		<tr>
 			<td style="border: 1px solid #000; background-color:white; width:540px">
 				
-				<strong>OBJETIVO:</strong> Se le otorgará al aprendiz   identificado con número el documento No.   , el equipo   que consta de  implementos necesarios para realizar la función que le corresponde.
-				<br>
-				<br>
-				Si llegase a presentarse un inconveniente, ya sea pérdida o daño de alguno de los implementos entregados, deberá ser reportado al instructor que esté acargo del ambiente en su momento, de lo contrario se tomará como responsable al aprendiz acargo del equipo.
+				<strong>OBJETIVO:</strong> Responsabilizar al aprendiz quien firma el acta No. $codigo1 de fecha $fecha donde se hace crago del equipo $$$$ por perdida o daño.
 
 			</td>
 		</tr>	

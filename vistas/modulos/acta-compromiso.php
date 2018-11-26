@@ -18,11 +18,11 @@
     </section>
     <section class="content">
         <div class="box">
-            <div class="box-header with-border">
+            <!-- <div class="box-header with-border">
               <button class="btn btn-primary btn-circle btn-xl" onclick=" location.href='actas' " title="Agregar Acta">
                 <i class="fa fa-plus"></i>
               </button>
-            </div>
+            </div> -->
             <div class="box-body">
                 <table class="table table-bordered table-striped dt-responsive tablas">
                     <thead>
@@ -35,7 +35,6 @@
                             <th>Nombre Aprendiz</th>
                             <th>Fecha Creacion</th>
                             <th>Fecha Limite</th>
-                            <th>Observaciones</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -87,7 +86,6 @@
                             <td>'.$mostrarAprendiz[0]["nombreaprendiz"].'</td>
                             <td>'.$value["fechacreacion"].'</td>
                             <td>'.$value["fechalimite"].'</td>
-                            <td>'.$value["observaciones"].'</td>
                             
                           </tr>';
                           

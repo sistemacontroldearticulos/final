@@ -78,12 +78,11 @@ class ControladorActas
             
             $datos = array("idacta_responsabilidad" => $_POST["idActaResponsabilidad"],
                             "fechacreacion" => $fecha,
-                            "fechalimite" => $_POST["fechaActa"],
-                            "observaciones" => $_POST["observacionActa"]);
+                            "fechalimite" => $_POST["fechaActa"]);
 
-            var_dump($datos);
+            
             $respuesta = ModeloActas::mdlCrearActaCompromiso($tabla, $datos);
-
+            // var_dump($respuesta);
             if ($respuesta == "ok") {
                 echo '<script>
 

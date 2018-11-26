@@ -222,20 +222,6 @@
                             </div> 
                         </div>
 
-                       <div class="form-group">
-
-                          <div class="input-group">
-
-                            <span class="input-group-addon">
-                              <img src="vistas/img/plantilla/modal/observaciones.png" width="15px">
-                            </span>
-
-                             <textarea class="form-control rounded-5" name="observacionActa" rows="3" placeholder="INGRESE OBSERVACIONES DEL ACTA"></textarea>
-
-                          </div>
-
-                        </div>
-
                         <div class="form-group">
                             <div class="input-group">
 
