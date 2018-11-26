@@ -52,8 +52,8 @@ function tiempo(sel) {
 
                 fecha = month + '/' + day + '/' + year;
 
-                $("#fin").val(fecha);
-                $("#fin").prop('readonly', true);
+                $("#nuevaFechaFin").val(fecha);
+                $("#nuevaFechaFin").prop('readonly', true);
 
             } else if (respuesta[3] == "TECNÓLOGO") {
 
@@ -65,9 +65,9 @@ function tiempo(sel) {
                 var year = diaActual.getFullYear() + 2;
 
                 fecha = month + '/' + day + '/' + year;
-                $("#fin").val(fecha);
-                $("#fin").html(fecha);
-                $("#fin").prop('readonly', true);
+                $("#nuevaFechaFin").val(fecha);
+                $("#nuevaFechaFin").html(fecha);
+                $("#nuevaFechaFin").prop('readonly', true);
             }
         }
     });

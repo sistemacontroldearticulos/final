@@ -69,7 +69,7 @@
 
                     <input type="number" class="form-control input-lg" id="nuevaFicha1" name="nuevaFicha1" placeholder="Ingrese numero de ficha"  required>
 
-                     <span class="input-group-addon btnBuscar btnBuscar1"><button type="button" class="btn btn-primary btn-sm" onclick="ficha(nuevaFicha1.value)"><i class="fa fa-search"></i></button></span>
+                     <span  class="input-group-addon btnBuscar btnBuscar1"><button title="Buscar Ficha" type="button" class="btn btn-primary btn-sm" onclick="ficha(nuevaFicha1.value)"><i class="fa fa-search"></i></button></span>
 
                   </div>
 

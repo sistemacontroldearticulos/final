@@ -90,7 +90,7 @@ $("#ficha").change(function() {
                         $('#aprendices').empty().append('<option selected="selected" value="whatever">Seleccione el Aprendiz</option>');
                         
                         var ficha = idFicha;
-                        console.log(ficha);
+                        
                         var datos = new FormData();
                         datos.append("ficha", ficha);
                         $.ajax({
@@ -107,7 +107,7 @@ $("#ficha").change(function() {
                                     var option = document.createElement("option");
                                     $(option).val(respuesta[i]["numdocumentoaprendiz"]);
                                     $(option).html(respuesta[i]["nombreaprendiz"]);
-                                    console.log(option);
+                                    
                                     $(option).appendTo("#aprendices");
                                 }
                             }
@@ -170,6 +170,6 @@ $(".tablas").on("click", ".btnImprimirActa", function(){
 
     var codigo = $(this).attr("codigo");
 
-    window.open("extensiones/tcpdf/pdf/factura.php?codigo="+codigo, "_blank");
+    window.open("extensiones/tcpdf/pdf/acta.php?codigo="+codigo, "_blank");
 
 })

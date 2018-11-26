@@ -128,7 +128,7 @@ $bloque1 = <<<EOF
 					<h5><strong>SISTEMA INTEGRADO DE GESTIÓN</strong></h5>
 					
 					<br>
-					<h5><strong>ACTA No 2018 - $codigo1</strong></h5>
+					<h5><strong>ACTA RESPONSABILIDAD No 2018 - $codigo1</strong></h5>
 
 				</div>
 
@@ -231,38 +231,16 @@ $bloque2 = <<<EOF
 		</tr>	
 
 		<tr>
-			<td style="border: 1px solid #000; background-color:white; width:540px">
+		
+		<td style="border-bottom: 1px solid #000; background-color:white; width:540px"></td>
 
-				<strong>DESARROLLO REUNIÓN</strong>
-
-			</td>
 		</tr>
-
-		<tr>
-			<td style="border: 1px solid #000; background-color:white; width:540px">
-
-				<p>Se informa a los aprendices la importancia de estructurar y llevar el portafolio del aprendiz de la
-				siguiente manera:
-
-				Acta de Plan de Mejoramiento Académico. (Aplica solo si realizó plan de mejoramiento)
-
-				<ol>
-				    <li>  GFPI-F-019 Guías de aprendizaje.</li>
-				    <li>  Evidencias de Aprendizaje descritas en la guía de aprendizaje por cada instructor.</li>
-					<li>  Plan de trabajo.</li>				    
-				</ol>
-
-				Se aclara dudas de los aprendices con respecto a la nueva manera y se plantea la forma de
-				evidenciar dicho portafolio y se da el tiempo para actualizar su información.
-				</p>
-
-			</td>
-		</tr>
+	
 
 		<tr>
 			<td style="border: 1px solid #000; background-color:white; width:540px; height:50px; ">
 
-				<strong>CONCLUSIONES</strong>
+				<strong>OBSERVACIONES: </strong>
 
 			</td>
 		</tr>
@@ -376,11 +354,11 @@ $bloque5 = <<<EOF
 		
 
 		<tr>
-			<td style="border-bottom: 1px solid #000; background-color:white; width:200px"></td>
+			<td style="border-bottom: 1px solid #000; background-color:white; width:200px; height:80px "></td>
 	
 			<td style=" background-color:white; width:140px"></td>
 		
-			<td style="border-bottom: 1px solid #000; background-color:white; width:200px"></td>
+			<td style="border-bottom: 1px solid #000; background-color:white; width:200px; height:80px "></td>
 		</tr>
 
 		<tr>
@@ -406,7 +384,7 @@ EOF;
 
 $pdf->writeHTML($bloque5, false, false, false, false, '');
 
-$pdf->Output('factura.pdf');
+$pdf->Output('ActaResponsabilidad.pdf');
 
 }
 

@@ -1,7 +1,7 @@
 <div class="content-wrapper">
     <section class="content-header">
         <h1>
-            Administrar Actas
+            Administrar Actas De Responsabilidad
         </h1>
         <ol class="breadcrumb">
             <li>
@@ -12,7 +12,7 @@
                 </a>
             </li>
             <li class="active">
-                Administrar Actas
+                Administrar Actas De Responsabilidad
             </li>
         </ol>
     </section>
@@ -51,11 +51,14 @@
 
                               <div class="btn-group">
 
-                                <button class="btn btn-info btn-circle btn-lg btnImprimirActa" codigo="'.$value["idacta"].'">
+                                <button title="Imprimir" class="btn btn-primary btn-circle btn-lg btnImprimirActa" codigo="'.$value["idacta"].'">
                                     <i class="fa fa-print"></i>
                                 </button>
 
-                                
+                                 <button title="Crear Acta De Compromiso" class="btn btn-warning btn-circle btn-lg btnCompromiso" data-toggle="modal" data-target="#modalActaCompromiso" codigoActa="'.$value["idacta"].'">
+                                    <i class="fa fa-plus"></i>
+                                </button>
+
                               </div>
 
                             </td>
@@ -108,7 +111,7 @@
                         x
                     </button>
                     <h4 class="modal-title">
-                        Agregar Acta
+                        Agregar Acta Responsabilidad
                     </h4>
                 </div>
                 <div class="modal-body">
@@ -167,6 +170,97 @@
                  <?php 
                   $crearActa = new ControladorActas();
                   $crearActa -> ctrCrearActa();
+                 ?>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<!-- MODAL AGREGAR ACTA COMPROMISO -->
+<div class="modal fade" id="modalActaCompromiso" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form enctype="multipart/form-data" method="post" role="form">
+                <!-- CABEZA DEL MODAL -->
+                <div class="modal-header cabeza-modal">
+                    <button class="close" data-dismiss="modal" type="button">
+                        x
+                    </button>
+                    <h4 class="modal-title">
+                        Agregar Acta Compromiso
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    <!-- CUERPO DEL MODAL -->
+                    <div class="box-body">
+                        <!-- ENTRADA PARA FICHA -->
+                        <div class="form-group">
+                            <div class="input-group">
+
+                                <span class="input-group-addon">
+                                    <img src="vistas/img/plantilla/iconos/fichas.png" width="15px">
+                                </span>
+                                <input class="form-control input-lg" name="aprendizActa" id="aprendizActa"
+                                 type="text" readonly required>
+
+                                <input id="idAprendiz" name="idAprendiz" type="hidden">
+                            </div>
+                        </div>
+                        <!-- ENTRADA PARA EL DOCUMENTO APRENDIZ -->
+                        <div class="form-group">
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                    <img src="vistas/img/plantilla/modal/ndocumentos.png" width="15px">
+                                    </i>
+                                </span>
+                                <input class="form-control input-lg" name="equipoActa" id="equipoActa"
+                                 type="text" readonly required>
+
+                                 <input id="idEquipo" name="idEquipo" type="hidden">
+                                 <input id="idActaResponsabilidad" name="idActaResponsabilidad" type="hidden">
+                            </div> 
+                        </div>
+
+                       <div class="form-group">
+
+                          <div class="input-group">
+
+                            <span class="input-group-addon">
+                              <img src="vistas/img/plantilla/modal/observaciones.png" width="15px">
+                            </span>
+
+                             <textarea class="form-control rounded-5" name="observacionActa" rows="3" placeholder="INGRESE OBSERVACIONES DEL ACTA"></textarea>
+
+                          </div>
+
+                        </div>
+
+                        <div class="form-group">
+                            <div class="input-group">
+
+                            <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+
+                            <input type="text" class="form-control input-lg" name="fechaActa" placeholder="Ingrese Fecha Limite" data-inputmask="'alias': 'mm/dd/yyyy'" data-mask  required">
+
+                          </div>
+                        </div>
+                       
+                    </div>
+                </div>
+                <!-- PIE DEL MODAL -->
+                <div class="modal-footer">
+                    <button class="btn btn-default" data-dismiss="modal" type="button">
+                        Salir
+                    </button>
+                    <button class="btn btn-primary" type="submit">
+                        Guardar Acta
+                    </button>
+                </div>
+
+                 <?php 
+                  $crearActaCompromiso = new ControladorActas();
+                  $crearActaCompromiso -> ctrCrearActaCompromiso();
                  ?>
             </form>
         </div>

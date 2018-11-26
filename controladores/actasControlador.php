@@ -63,4 +63,61 @@ class ControladorActas
         return $respuesta;
 
     }
+
+    static public function ctrCrearActaCompromiso(){
+
+        if (isset($_POST["aprendizActa"])) {
+            
+            $tabla = "actacompromiso";
+
+            date_default_timezone_set('America/Bogota');
+
+            $fecha1 = date('Y-m-d');
+            $hora  = date('H:i:s');
+            $fecha = $fecha1 . ' ' . $hora;
+            
+            $datos = array("idacta_responsabilidad" => $_POST["idActaResponsabilidad"],
+                            "fechacreacion" => $fecha,
+                            "fechalimite" => $_POST["fechaActa"],
+                            "observaciones" => $_POST["observacionActa"]);
+
+            var_dump($datos);
+            $respuesta = ModeloActas::mdlCrearActaCompromiso($tabla, $datos);
+
+            if ($respuesta == "ok") {
+                echo '<script>
+
+                    swal({
+
+                        type: "success",
+                        title: "El acta ha sido guardada correctamente!",
+                        showConfirmButton: true,
+                        confirmButtonText: "Cerrar"
+
+                    }).then(function(result){
+
+                        if(result.value){
+
+                            window.location = "acta-compromiso";
+
+                        }
+
+                    });
+
+                    </script>';
+            }
+        }
+    }
+
+    // MOSTRAR ACTA COMPROMISO
+    public static function ctrMostrarActasCompromiso($item, $valor){
+
+        $tabla = "actacompromiso";
+
+        $respuesta = ModeloActas::mdlMostrarActasCompromiso($tabla, $item, $valor);
+
+        return $respuesta;
+
+    }
+
 }

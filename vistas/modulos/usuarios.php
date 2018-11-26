@@ -67,9 +67,9 @@ foreach ($usuario as $key => $value) {
 
                     <div class="btn-group">
 
-                      <button class="btn btn-circle btn-lg btn-warning btnEditarUsuario" NumDocumentoUsuario="' . $value["numdocumentousuario"] . '" data-toggle="modal" data-target="#modalEditarUsuario"><i class="fa fa-pencil"></i></button>
+                      <button title="Editar" class="btn btn-circle btn-lg btn-warning btnEditarUsuario" NumDocumentoUsuario="' . $value["numdocumentousuario"] . '" data-toggle="modal" data-target="#modalEditarUsuario"><i class="fa fa-pencil"></i></button>
 
-                      <button class="btn btn-circle btn-lg btn-danger btnEliminarUsuario" NumDocumentoUsuario="' . $value["numdocumentousuario"] . '" FotoUsuario="' . $value["fotousuario"] . '" NombreUsuario="' . $value["nombreusuario"] . '"><i class="fa fa-times"></i></button>
+                      <button title="Eliminar" class="btn btn-circle btn-lg btn-danger btnEliminarUsuario" NumDocumentoUsuario="' . $value["numdocumentousuario"] . '" FotoUsuario="' . $value["fotousuario"] . '" NombreUsuario="' . $value["nombreusuario"] . '"><i class="fa fa-times"></i></button>
 
                     </div>
 

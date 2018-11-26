@@ -91,7 +91,7 @@ $respuesta = ControladorNovedades::ctrMostrarNovedades($item, $valor);
 
                         <div class="btn-group">
                             
-                          <button class="btn btn-circle btn-lg btn-success btnVerNovedades btnBuscar2" data-toggle="modal" data-target="#modalVerNovedades" idNovedad="'.$value["idnovedad"].'"><i class="fa fa-eye"></i></button>
+                          <button title="ver Novedad" class="btn btn-circle btn-lg btn-success btnVerNovedades btnBuscar2" data-toggle="modal" data-target="#modalVerNovedades" idNovedad="'.$value["idnovedad"].'"><i class="fa fa-eye"></i></button>
 
                         </div>  
 

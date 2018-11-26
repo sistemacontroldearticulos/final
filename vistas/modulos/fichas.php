@@ -70,11 +70,11 @@
 
                           <div class="btn-group">
 
-                            <button class="btn btn-circle btn-lg btn-warning btnEditarFicha" idFicha="' . $value["numeroficha"] . '" data-toggle="modal" data-target="#modalEditarFicha"><i class="fa fa-pencil"></i></button>
+                            <button title="Editar" class="btn btn-circle btn-lg btn-warning btnEditarFicha" idFicha="' . $value["numeroficha"] . '" data-toggle="modal" data-target="#modalEditarFicha"><i class="fa fa-pencil"></i></button>
 
-                            <button class="btn btn-circle btn-lg btn-danger btnEliminarFicha" idFicha="' . $value["numeroficha"] . '"><i class="fa fa-times"></i></button>
+                            <button title="Eliminar" class="btn btn-circle btn-lg btn-danger btnEliminarFicha" idFicha="' . $value["numeroficha"] . '"><i class="fa fa-times"></i></button>
                             
-                            <button class="btn btn-circle btn-lg btn-success btnVerAprendiz" id="' . $value["numeroficha"] . '" 
+                            <button title="Ver Aprendices" class="btn btn-circle btn-lg btn-success btnVerAprendiz" id="' . $value["numeroficha"] . '" 
                              ><i class="fa fa-eye"></i></button>
 
                           </div>

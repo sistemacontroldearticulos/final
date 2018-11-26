@@ -63,9 +63,9 @@
 
                       <div class="btn-group">
 
-                        <button class="btn btn-warning btn-circle btn-lg btnEditarAmbiente" data-toggle="modal" data-target="#modalEditarAmbiente" idAmbiente="'.$value["idambiente"].'"><i class="fa fa-pencil"></i></button>
+                        <button title="Editar" class="btn btn-warning btn-circle btn-lg btnEditarAmbiente" data-toggle="modal" data-target="#modalEditarAmbiente" idAmbiente="'.$value["idambiente"].'"><i class="fa fa-pencil"></i></button>
 
-                        <button class="btn btn-circle btn-lg btn-danger btnEliminarAmbiente" idAmbiente="'.$value["idambiente"].'"><i class="fa fa-times"></i></button>
+                        <button title="Eliminar" class="btn btn-circle btn-lg btn-danger btnEliminarAmbiente" idAmbiente="'.$value["idambiente"].'"><i class="fa fa-times"></i></button>
 
                       </div>
 
