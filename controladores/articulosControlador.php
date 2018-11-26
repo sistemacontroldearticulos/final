@@ -3,7 +3,7 @@
 class ControladorArticulos
 {
     // CREAR ARTICULO
-    public static function ctrCrearArticulos()
+    static public function ctrCrearArticulos()
     {
         if (isset($_POST["nuevoTipo"])) {
             if (preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["nuevoTipo"])) {
@@ -113,7 +113,7 @@ class ControladorArticulos
     }
 
 
-    public static function ctrMostrarArticulos($item, $valor)
+    static public function ctrMostrarArticulos($item, $valor)
     {
 
         $tabla = "articulo";
@@ -208,7 +208,7 @@ class ControladorArticulos
     }
 
     // EDITAR ARTICULO
-    public static function ctrEditarArticulos()
+    static public function ctrEditarArticulos()
     {
         if (isset($_POST["editarTipo"])) {
             if (preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["editarTipo"]) && preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["editarMarca"])) {

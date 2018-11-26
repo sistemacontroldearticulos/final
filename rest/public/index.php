@@ -10,19 +10,23 @@ if (PHP_SAPI == 'cli-server') {
     }
 }
 
+
+
 // function getConnection()
 // {
-//     $dbh = new PDO("pgsql:user=jvdwioghpjqleb dbname=d42v3gmecvlgdd ;password=ecb8e26902751ca156b5727322ab14f814d520244e2b6be875af2605cf6f4724;host=ec2-23-21-171-249.compute-1.amazonaws.com");
-//     $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-//     return $dbh;
+//     $link = new PDO("mysql:host=88.198.24.90;dbname=inventar_proyectofinal", "inventariosadsi", "SETQDnuHgv(_");
+//        $link->exec("set names utf8");
+//        return $link;
 // }
 
 function getConnection()
 {
-    $dbh = new PDO("pgsql:user=postgres dbname=proyectofinal ;password=123");
-    $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    return $dbh;
+    $link = new PDO("mysql:host=localhost;dbname=proyectofinal", "root", "");
+       $link->exec("set names utf8");
+       return $link;
 }
+
+
 
 function login($response)
 {
@@ -200,7 +204,7 @@ function buscarFichaActas($response)
     $route      = $response->getAttribute('route');
     $args       = $route->getArguments();
     $idAmbiente = $args['numeroFicha'];
-    $sql        = "SELECT numdocumentoaprendiz, nombreaprendiz, equipo.idequipo, nombreequipo
+    $sql        = "SELECT numdocumentoaprendiz, nombreaprendiz, equipo.idequipo, nombreequipo, ficha.idprograma
     FROM aprendiz
     LEFT OUTER JOIN ficha on (aprendiz.numeroficha=ficha.numeroficha)
     LEFT OUTER JOIN ambiente on (ficha.idambiente=ambiente.idambiente)
@@ -224,19 +228,20 @@ function crearNovedad($request)
     // $emp = json_decode($request->getBody());
     $emp = $request->getParams();
 
-    var_dump($emp["numdocumentousuario"]);
 
-    $sql = "INSERT INTO novedad (numdocumentousuario, usuarionovedad, numeroficha, fechanovedad, articulo, estado) VALUES (:numdocumentousuario, :usuarionovedad, :numeroficha, :fechanovedad, :articulo, :estado)";
+    
+
+    $sql = "INSERT INTO novedad (numdocumentousuario, numeroficha, fechanovedad, articulo, estado) VALUES (:numdocumentousuario, :numeroficha, :fechanovedad, :articulo, :estado)";
     try {
         $db   = getConnection();
         $stmt = $db->prepare($sql);
-        $stmt->bindParam('numdocumentousuario', $emp["numdocumentousuario"]);
-        $stmt->bindParam(":usuarionovedad", $emp["usuarionovedad"]);
+        $stmt->bindParam(':numdocumentousuario', $emp["numdocumentousuario"]);
         $stmt->bindParam(":numeroficha", $emp["numeroficha"]);
         $stmt->bindParam(":fechanovedad", $emp["fechanovedad"]);
         $stmt->bindParam(":articulo", $emp["articulo"]);
         $stmt->bindParam(":estado", $emp["estado"]);
         $stmt->execute();
+        
     } catch (PDOException $e) {
         echo '{"error":{"text":' . $e->getMessage() . '}}';
     }
@@ -287,7 +292,7 @@ function buscarNovedad($response)
     $route = $response->getAttribute('route');
     $args  = $route->getArguments();
 
-    $sql = "SELECT MAX(idnovedad) FROM novedad";
+    $sql = "SELECT MAX(idnovedad) as 'max' FROM novedad";
 
     try {
         $stmt      = getConnection()->query($sql);

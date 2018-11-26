@@ -1,7 +1,7 @@
 <?php
 class ControladorProgramas
 {
-    public function ctrCrearProgramas()
+    static public function ctrCrearProgramas()
     {
 
         if (isset($_POST["NuevoPrograma"])) {
@@ -66,7 +66,7 @@ class ControladorProgramas
         }
     }
 
-    public function ctrMostrarProgramas($item, $valor)
+    static public function ctrMostrarProgramas($item, $valor)
     {
         $tabla = "programa";
 
@@ -74,7 +74,7 @@ class ControladorProgramas
         return $respuesta;
     }
 
-    public function ctrEditarPrograma()
+    static public function ctrEditarPrograma()
     {
 
         if (isset($_POST["EditarPrograma"])) {
@@ -137,7 +137,7 @@ class ControladorProgramas
         }
     }
 
-    public function ctrBorrarPrograma()
+    static public function ctrBorrarPrograma()
     {
         if (isset($_GET["idPrograma"])) {
 

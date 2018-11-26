@@ -9,10 +9,12 @@ class ModeloNovedades
     public static function mdlCrearNovedad($tabla, $datos)
     {
 
-        $stmt = Conexion::conectar()->prepare("INSERT INTO $tabla (NumDocumentoUsuario, UsuarioNovedad, NumeroFicha, FechaNovedad, Articulo, Estado) VALUES (:NumDocumentoUsuario, :UsuarioNovedad, :NumeroFicha,  :FechaNovedad, :Articulo, :Estado)");
+        var_dump($datos);
+
+        $stmt = Conexion::conectar()->prepare("INSERT INTO $tabla (NumDocumentoUsuario, NumeroFicha, FechaNovedad, Articulo, Estado) VALUES (:NumDocumentoUsuario, :NumeroFicha,  :FechaNovedad, :Articulo, :Estado)");
 
         $stmt->bindParam(":NumDocumentoUsuario", $datos["NumDocumentoUsuario"], PDO::PARAM_STR);
-        $stmt->bindParam(":UsuarioNovedad", $datos["UsuarioNovedad"], PDO::PARAM_STR);
+
         $stmt->bindParam(":NumeroFicha", $datos["NumeroFicha"], PDO::PARAM_STR);
         $stmt->bindParam(":FechaNovedad", $datos["FechaNovedad"], PDO::PARAM_STR);
         $stmt->bindParam(":Articulo", $datos["articulo"], PDO::PARAM_STR);

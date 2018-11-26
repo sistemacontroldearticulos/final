@@ -22,7 +22,7 @@ class ModelosProgramas
         $stmt = null;
     }
 
-    public function mdlMostrarProgramas($tabla, $item, $valor)
+    static public function mdlMostrarProgramas($tabla, $item, $valor)
     {
 
         if ($item != null) {
@@ -47,7 +47,7 @@ class ModelosProgramas
         $stmt->null();
     }
 
-    public function mdlEditarPrograma($tabla, $datos)
+    static public function mdlEditarPrograma($tabla, $datos)
     {
         $stmt = Conexion::conectar()->prepare(" UPDATE $tabla SET NombrePrograma= :NombrePrograma, TipoPrograma = :TipoPrograma where IdPrograma=:idPrograma");
 

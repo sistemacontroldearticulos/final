@@ -101,7 +101,7 @@ class ModeloFichas{
 
     }
 
-    public function mdlBuscarFichaPrograma($tabla, $datos)
+    static public function mdlBuscarFichaPrograma($tabla, $datos)
     {
         $stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE IdPrograma = :idPrograma");
 

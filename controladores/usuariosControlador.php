@@ -7,7 +7,7 @@ class ControladorUsuarios
     INGRESO DE USUARIO
     =============================================*/
 
-    public static function ctrIngresoUsuario()
+    static public function ctrIngresoUsuario()
     {
 
         if (isset($_POST["ingUsuario"])) {
@@ -55,7 +55,7 @@ class ControladorUsuarios
     REGISTRO DE USUARIO
     =============================================*/
 
-    public static function ctrCrearUsuario()
+    static public function ctrCrearUsuario()
     {
 
         if (isset($_POST["nuevoNombre"])) {
@@ -194,7 +194,7 @@ class ControladorUsuarios
     MOSTRAR USUARIO
     =============================================*/
 
-    public static function ctrMostrarUsuarios($item, $valor)
+    static public function ctrMostrarUsuarios($item, $valor)
     {
 
         $tabla     = "usuario";
@@ -207,7 +207,7 @@ class ControladorUsuarios
     EDITAR USUARIO
     =============================================*/
 
-    public static function ctrEditarUsuario()
+    static public function ctrEditarUsuario()
     {
 
         if (isset($_POST["editarNombre"])) {
@@ -417,7 +417,7 @@ class ControladorUsuarios
     ELIMINAR USUARIO
     =============================================*/
 
-    public static function ctrBorrarUsuario()
+    static public function ctrBorrarUsuario()
     {
 
         if (isset($_GET["NumDocumentoUsuario"])) {

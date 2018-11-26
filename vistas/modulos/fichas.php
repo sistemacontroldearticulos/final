@@ -274,7 +274,7 @@ foreach ($ambiente as $key => $value) {
 
                 <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
 
-                <input type="text" class="form-control input-lg" id="fin" id="nuevaFechaFin" name="nuevaFechaFin" placeholder="Ingrese Fecha Fin" data-inputmask="'alias': 'mm/dd/yyyy'" data-mask disabled>
+                <input type="text" class="form-control input-lg" id="nuevaFechaFin" name="nuevaFechaFin" placeholder="Ingrese Fecha Fin" data-inputmask="'alias': 'mm/dd/yyyy'" data-mask disabled>
 
               </div>
 

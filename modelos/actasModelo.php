@@ -4,9 +4,9 @@ require_once "conexion.php";
 
 class ModeloActas
 {
+
     // ACTA RESPONSABILIDAD
-    public static function mdlCrearActa($tabla, $datos)
-    {
+    static public function mdlCrearActa($tabla, $datos){
 
         $stmt = Conexion::conectar()->prepare("INSERT INTO $tabla(numdocumentoaprendiz, idequipo, fechaacta, numdocumentoinstructor) VALUES (:numdocumentoaprendiz, :idequipo, :fechaacta, :numdocumentoinstructor)");
         // var_dump($stmt);
@@ -24,6 +24,7 @@ class ModeloActas
         $stmt->close();
         $stmt = null;
     }
+
 
     // ACTA COMPPROMISO
     static public function mdlCrearActaCompromiso($tabla, $datos)
@@ -49,8 +50,7 @@ class ModeloActas
     }
 
     // MOSTRAR ACTA RESPONSABILIDAD
-    public static function mdlMostrarActas($tabla, $item, $valor)
-    {
+    static public function mdlMostrarActas($tabla, $item, $valor){
 
         if ($item != null) {
 

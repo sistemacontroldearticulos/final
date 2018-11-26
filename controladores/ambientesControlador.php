@@ -26,6 +26,7 @@ class ControladorAmbientes
                 // var_dump($datos);
 
     			$respuesta=ModeloAmbientes::mdlCrearAmbientes($tabla, $datos);
+                
 
     				if($respuesta=="ok"){
     					echo '<script>
@@ -166,7 +167,7 @@ class ControladorAmbientes
     }
 
 
-    public function ctrEliminarAmbientes()
+    static public function ctrEliminarAmbientes()
     {
         if (isset($_GET["idAmbiente"])) {
 

@@ -5,7 +5,7 @@ class ControladorAprendiz{
 	/*=============================================
 	MOSTRAR USUARIO
 	=============================================*/
-	public static function ctrMostrarAprendiz($item, $valor){
+	static public function ctrMostrarAprendiz($item, $valor){
     $tabla     = "aprendiz";
     $respuesta = ModeloAprendiz::mdlMostrarAprendiz($tabla, $item, $valor);
 
@@ -15,7 +15,7 @@ class ControladorAprendiz{
 	/*=============================================
 	OBTENER NUMERO FICHA
 	=============================================*/
-	public static function Aprendiz(){
+	static public function Aprendiz(){
 		$ficha = $_GET["ficha"];
     	return $ficha;
       // var_dump($ficha);
@@ -24,7 +24,7 @@ class ControladorAprendiz{
 	/*=============================================
 	CREAR APRENDIZ
 	=============================================*/
-	public static function ctrCrearAprendiz(){
+	static public function ctrCrearAprendiz(){
     	// $ficha = $_GET["ficha"];
     	// var_dump($ficha);
         if (isset($_POST["nuevoAprendiz"])) {
@@ -36,11 +36,11 @@ class ControladorAprendiz{
                 $tabla = "aprendiz";
                 $nombreAprendiz = strtoupper($_POST["nuevoAprendiz"]);
      
-                $datos = array("NumDocumentoAprendiz" => $_POST["nuevoDocumentoAprendiz"],
-		                    "NumeroFicha"           => $_GET["ficha"],
-		                    "NombreAprendiz"      => $nombreAprendiz,
-		                    "TelefonoAprendiz"    => $_POST["nuevoTelefonoAprendiz"],
-		                    "EmailAprendiz" => $_POST["nuevoEmailAprendiz"]);
+                $datos = array("numdocumentoaprendiz" => $_POST["nuevoDocumentoAprendiz"],
+		                    "numeroficha"           => $_GET["ficha"],
+		                    "nombreaprendiz"      => $nombreAprendiz,
+		                    "telefonoaprendiz"    => $_POST["nuevoTelefonoAprendiz"],
+		                    "emailaprendiz" => $_POST["nuevoEmailAprendiz"]);
 
                 // var_dump($datos);
 
@@ -126,7 +126,7 @@ class ControladorAprendiz{
   /*=============================================
   EDITAR APRENDIZ
   =============================================*/
-  public static function ctrEditarAprendiz(){
+  static public function ctrEditarAprendiz(){
 
         if (isset($_POST["editarAprendiz"])) {
 
