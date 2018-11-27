@@ -37,7 +37,8 @@ $valor= $this->codigo;
 
 $respuesta = ControladorActas::ctrMostrarActas($item, $valor);
 
-// $fecha = substr($respuesta["fechaacta"],0,-8);
+$anio = substr($respuesta["fechaacta"],0,-15);
+
 // $hora = substr($respuesta["fechaacta"],-10,0);
 
 $dato = $respuesta["fechaacta"];
@@ -72,9 +73,10 @@ $nombreusaurio = $usuario["nombreusuario"];
 
 // CONSULTAR ARTICULOS EN EQUIPO
 $item4 ="idequipo";
-$valor4 = "14";
+$valor4 = $mostrarEquipo["idequipo"];
 $tabla = "articulo";
 $articulosEquipo = ModeloArticulos::mdlMostrarArticulosEquipo($tabla, $item4, $valor4);
+// var_dump($articulosEquipo);
 
 // CANTIDAD ARTICULOS EQUIPO
 $cantidadArticulosEquipo = 0;
@@ -88,7 +90,6 @@ $item5 ="numeroficha";
 $valor5 = $fichaAprendiz;
 $tabla1 = "ficha";
 $mostrarFicha = ModeloFichas::mdlMostrarFichas($tabla1, $item5, $valor5);
-$jornadaFicha = ucwords(strtolower($mostrarFicha["jornadaficha"]));
 
 // CONSULTAR AMBIENTE
 $item6 ="idambiente";
@@ -128,7 +129,7 @@ $bloque1 = <<<EOF
 					<h5><strong>SISTEMA INTEGRADO DE GESTIÓN</strong></h5>
 					
 					<br>
-					<h5><strong>ACTA No 2018 - $codigo1</strong></h5>
+					<h5><strong>ACTA RESPONSABILIDAD No $anio - $codigo1</strong></h5>
 
 				</div>
 
@@ -190,7 +191,7 @@ $bloque2 = <<<EOF
 
 				<strong>JORNADA</strong>
 				<br>
-				$jornadaFicha
+				$mostrarFicha[5]
 
 			</td>
 
@@ -200,6 +201,7 @@ $bloque2 = <<<EOF
 			<td style="border: 1px solid #000; background-color:white; width:270px">
 
 				<strong>LUGAR:</strong> $nombreAmbiente
+
 
 			</td>
 
@@ -222,7 +224,7 @@ $bloque2 = <<<EOF
 		<tr>
 			<td style="border: 1px solid #000; background-color:white; width:540px">
 				
-				<strong>OBJETIVO:</strong> Se le otorgará al aprendiz  $nombreaprendiz identificado con número el documento No.  $documentoAprendiz , el equipo  $nombreEquipo que consta de $cantidadArticulosEquipo implementos necesarios para realizar la función que le corresponde.
+				<strong>OBJETIVO:</strong> Se le otorgará al aprendiz $nombreaprendiz  identificado con número el documento No.  $documentoAprendiz , el equipo  $nombreEquipo que consta de $cantidadArticulosEquipo implementos necesarios para realizar la función que le corresponde.
 				<br>
 				<br>
 				Si llegase a presentarse un inconveniente, ya sea pérdida o daño de alguno de los implementos entregados, deberá ser reportado al instructor que esté acargo del ambiente en su momento, de lo contrario se tomará como responsable al aprendiz acargo del equipo.
@@ -231,38 +233,16 @@ $bloque2 = <<<EOF
 		</tr>	
 
 		<tr>
-			<td style="border: 1px solid #000; background-color:white; width:540px">
+		
+		<td style="border-bottom: 1px solid #000; background-color:white; width:540px"></td>
 
-				<strong>DESARROLLO REUNIÓN</strong>
-
-			</td>
 		</tr>
-
-		<tr>
-			<td style="border: 1px solid #000; background-color:white; width:540px">
-
-				<p>Se informa a los aprendices la importancia de estructurar y llevar el portafolio del aprendiz de la
-				siguiente manera:
-
-				Acta de Plan de Mejoramiento Académico. (Aplica solo si realizó plan de mejoramiento)
-
-				<ol>
-				    <li>  GFPI-F-019 Guías de aprendizaje.</li>
-				    <li>  Evidencias de Aprendizaje descritas en la guía de aprendizaje por cada instructor.</li>
-					<li>  Plan de trabajo.</li>				    
-				</ol>
-
-				Se aclara dudas de los aprendices con respecto a la nueva manera y se plantea la forma de
-				evidenciar dicho portafolio y se da el tiempo para actualizar su información.
-				</p>
-
-			</td>
-		</tr>
+	
 
 		<tr>
 			<td style="border: 1px solid #000; background-color:white; width:540px; height:50px; ">
 
-				<strong>CONCLUSIONES</strong>
+				<strong>OBSERVACIONES: </strong>
 
 			</td>
 		</tr>
@@ -376,11 +356,11 @@ $bloque5 = <<<EOF
 		
 
 		<tr>
-			<td style="border-bottom: 1px solid #000; background-color:white; width:200px"></td>
+			<td style="border-bottom: 1px solid #000; background-color:white; width:200px; height:80px "></td>
 	
 			<td style=" background-color:white; width:140px"></td>
 		
-			<td style="border-bottom: 1px solid #000; background-color:white; width:200px"></td>
+			<td style="border-bottom: 1px solid #000; background-color:white; width:200px; height:80px "></td>
 		</tr>
 
 		<tr>
@@ -406,7 +386,7 @@ EOF;
 
 $pdf->writeHTML($bloque5, false, false, false, false, '');
 
-$pdf->Output('factura.pdf');
+$pdf->Output('ActaResponsabilidad.pdf');
 
 }
 

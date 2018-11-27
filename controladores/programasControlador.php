@@ -88,8 +88,8 @@ class ControladorProgramas
 
                 $datos = array("EditarPrograma" => $nombrePrograma,
                     "TipoPrograma"                  => $tipoPrograma,
-                    "DuracionPrograma"              => $duracionPrograma,
-                    // "idPrograma"                    => $_POST["idPrograma"]
+                    // "DuracionPrograma"              => $duracionPrograma,
+                    "idPrograma"                    => $_POST["idPrograma"]
                 );
 
                 $respuesta = ModelosProgramas::mdlEditarPrograma($tabla, $datos);

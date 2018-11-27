@@ -17,7 +17,7 @@ class ControladorFichas
 
                 $tabla = "ficha";
 
-                $jornada = strtoupper($_POST["nuevaJornada"]);
+                // $jornada = strtoupper($_POST["nuevaJornada"]);
                 // $fechaInicio=($_POST["nuevaFechaInicio"],$formato);
 
                 $excel = $_FILES["nuevoExcel"]["tmp_name"];
@@ -57,7 +57,7 @@ class ControladorFichas
                         "IdPrograma"                 => $_POST["nuevoPrograma"],
                         "FechaInicio"                => $_POST["nuevaFechaInicio"],
                         "FechaFin"                   => $_POST["nuevaFechaFin"],
-                        "JornadaFicha"               => $jornada);
+                        "JornadaFicha"               => $_POST["nuevaJornada"]);
 
                     $respuesta = ModeloFichas::mdlAgregarFichas($tabla, $datos);
                     if ($respuesta == "ok") {

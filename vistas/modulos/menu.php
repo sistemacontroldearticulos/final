@@ -166,17 +166,51 @@
 
 			</li>
 
-			<li>
+			
 
-				<a href="actas">
-					
-					
+			<li class="treeview">
+
+				<a href="#">
+
 					<img src="vistas/img/plantilla/iconos/actaresponsabilidad.png" width="15px">
-					<span>Actas de responsabilidad</span>
+					
+					<span>Actas</span>
+					
+					<span class="pull-right-container">
+					
+						<i class="fa fa-angle-down pull-right"></i>
+
+					</span>
 
 				</a>
 
-			</li>';
+				<ul class="treeview-menu">
+					
+					<li>
+
+						<a href="actas">
+							
+							<img src="vistas/img/plantilla/iconos/actaresponsabilidad.png" width="15px">
+							<span>Actas de responsabilidad</span>
+						</a>
+
+					</li>
+
+					<li>
+
+						<a href="acta-compromiso">
+									
+							<img src="vistas/img/plantilla/iconos/actaresponsabilidad.png" width="15px">
+							<span>Actas de compromiso</span>
+
+						</a>
+
+					</li>
+
+				</ul>
+
+			</li>
+			';
 			}
 			?>
 

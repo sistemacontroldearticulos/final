@@ -67,6 +67,7 @@ $("#nuevoAmbiente").change(function() {
     // debugger;   
     $(".alert").remove();
     var nombreAmbiente = $(this).val();
+    console.log("nombreAmbiente", nombreAmbiente);
     var datos = new FormData();
     datos.append("nombreAmbiente", nombreAmbiente);
     $.ajax({

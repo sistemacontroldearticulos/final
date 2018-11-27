@@ -59,7 +59,7 @@ class ControladorNovedades
                         'TipoNovedad'                     => $tipo,
                         'ObservacionNovedad'              => $descripcion,
                         'IdNovedad'                       => $respuesta1[0]["idnovedad"],
-
+                        'fotonovedad'                     => null
                     );
 
 

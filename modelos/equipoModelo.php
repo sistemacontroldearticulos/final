@@ -108,4 +108,6 @@ class ModeloEquipos
         $stmt = null;
 
     }
+
+    
 }

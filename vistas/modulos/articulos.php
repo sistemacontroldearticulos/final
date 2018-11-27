@@ -74,11 +74,11 @@
               echo '<tr>
               <td>
                             <div class="btn-group">
-                                <button class="btn btn-circle btn-lg btn-warning btnEditarArticulo" idArticulo="' . $value["idarticulo"] . '"  data-toggle="modal" data-target="#modalEditarArticulo">
+                                <button title="Editar" class="btn btn-circle btn-lg btn-warning btnEditarArticulo" idArticulo="' . $value["idarticulo"] . '"  data-toggle="modal" data-target="#modalEditarArticulo">
                                     <i class="fa fa-pencil">
                                     </i>
                                 </button>
-                                <button class="btn btn-circle btn-lg btn-danger btnEliminarArticulo" idArticulo="' . $value["idarticulo"] . '"><i class="fa fa-times"></i></button>
+                                <button title="Eliminar" class="btn btn-circle btn-lg btn-danger btnEliminarArticulo" idArticulo="' . $value["idarticulo"] . '"><i class="fa fa-times"></i></button>
                             </div>
                         </td>
                       <td>' . $value["idarticulo"] . '</td>

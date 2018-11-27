@@ -56,11 +56,11 @@
 
                                         <td>
                                             <div class="btn-group">
-                                                <button class="btn btn-warning btn-circle btn-lg btnEditarPrograma" idPrograma="' . $value["idprograma"] . '"  data-toggle="modal" data-target="#modalEditarPrograma">
+                                                <button title="Editar" class="btn btn-warning btn-circle btn-lg btnEditarPrograma" idPrograma="' . $value["idprograma"] . '"  data-toggle="modal" data-target="#modalEditarPrograma">
                                                     <i class="fa fa-pencil">
                                                     </i>
                                                 </button>
-                                                <button class="btn btn-danger btn-circle btn-lg btnEliminarPrograma" idPrograma="' . $value["idprograma"] . '">
+                                                <button title="Eliminar" class="btn btn-danger btn-circle btn-lg btnEliminarPrograma" idPrograma="' . $value["idprograma"] . '">
                                                     <i class="fa fa-times">
                                                     </i>
                                                 </button>

@@ -70,11 +70,11 @@
 
                           <div class="btn-group">
 
-                            <button class="btn btn-circle btn-lg btn-warning btnEditarFicha" idFicha="' . $value["numeroficha"] . '" data-toggle="modal" data-target="#modalEditarFicha"><i class="fa fa-pencil"></i></button>
+                            <button title="Editar" class="btn btn-circle btn-lg btn-warning btnEditarFicha" idFicha="' . $value["numeroficha"] . '" data-toggle="modal" data-target="#modalEditarFicha"><i class="fa fa-pencil"></i></button>
 
-                            <button class="btn btn-circle btn-lg btn-danger btnEliminarFicha" idFicha="' . $value["numeroficha"] . '"><i class="fa fa-times"></i></button>
+                            <button title="Eliminar" class="btn btn-circle btn-lg btn-danger btnEliminarFicha" idFicha="' . $value["numeroficha"] . '"><i class="fa fa-times"></i></button>
                             
-                            <button class="btn btn-circle btn-lg btn-success btnVerAprendiz" id="' . $value["numeroficha"] . '" 
+                            <button title="Ver Aprendices" class="btn btn-circle btn-lg btn-success btnVerAprendiz" id="' . $value["numeroficha"] . '" 
                              ><i class="fa fa-eye"></i></button>
 
                           </div>
@@ -241,9 +241,9 @@ foreach ($ambiente as $key => $value) {
                     <select class="form-control input-lg" name="nuevaJornada" required>
 
                   <option value="">Seleccionar Jornada</option>
-                  <option value="Mañana">Mañana</option>
-                  <option value="Tarde">Tarde</option>
-                  <option value="Noche">Noche</option>
+                  <option value="MAÑANA">Mañana</option>
+                  <option value="TARDE">Tarde</option>
+                  <option value="NOCHE">Noche</option>
 
                     </select>
 

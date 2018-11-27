@@ -28,7 +28,6 @@ class AjaxAprendiz{
         $respuesta = ControladorAprendiz::ctrMostrarAprendiz($item, $valor);
         echo json_encode($respuesta);
 
-
     }
 
 }
@@ -41,9 +40,7 @@ if(isset($_POST["idAprendiz"])){
     $aprendiz -> ajaxEditarAprendiz();
 }
 
-
 //ACTAS APRENDIZ
-
 if(isset($_POST["ficha"])){
 
     $aprendiz = new AjaxAprendiz();

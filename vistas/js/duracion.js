@@ -48,8 +48,10 @@ function tiempo(sel) {
                 var month = diaActual.getMonth() + 1;
                 var year = diaActual.getFullYear() + 1;
                 fecha = month + '/' + day + '/' + year;
+
                 $("#nuevaFechaFin").val(fecha);
                 $("#nuevaFechaFin").prop('readonly', true);
+
             } else if (respuesta[3] == "TECNÓLOGO") {
                 diaActual = new Date(sel);
                 console.log(diaActual);

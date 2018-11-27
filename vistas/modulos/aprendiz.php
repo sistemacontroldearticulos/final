@@ -70,9 +70,9 @@
 
                           <div class="btn-group">
 
-                            <button class="btn btn-warning btn-circle btn-lg btnEditarAprendiz" data-toggle="modal" data-target="#modalEditarAprendiz" Documento="'.$value["numdocumentoaprendiz"].'" ><i class="fa fa-pencil"></i></button>
+                            <button title="Editar" class="btn btn-warning btn-circle btn-lg btnEditarAprendiz" data-toggle="modal" data-target="#modalEditarAprendiz" Documento="'.$value["numdocumentoaprendiz"].'" ><i class="fa fa-pencil"></i></button>
 
-                            <button class="btn btn-circle btn-lg btn-danger btnEliminarAprendiz" Documento="'.$value["numdocumentoaprendiz"].'" ><i class="fa fa-times"></i></button>
+                            <button title="Eliminar" class="btn btn-circle btn-lg btn-danger btnEliminarAprendiz" Documento="'.$value["numdocumentoaprendiz"].'" ><i class="fa fa-times"></i></button>
 
                           </div>
 
