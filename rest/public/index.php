@@ -36,7 +36,7 @@ function login($response)
     $contra1      = $args['contra'];
     // $contrasenia  = hash('sha512', $contra1);
 
-    $sql = "SELECT usuario.contraseniausuario, usuario.numdocumentousuario, usuario.nombreusuario, usuario.idprograma, rolusuario, novedad.idnovedad,fechanovedad, nombreambiente, tipoarticulo, tiponovedad, equipo.idequipo, jornadaficha
+    $sql = "SELECT usuario.contraseniausuario, usuario.numdocumentousuario, usuario.nombreusuario, usuario.idprograma, rolusuario, novedad.idnovedad,fechanovedad, nombreambiente, tipoarticulo, tiponovedad, nombreequipo, jornadaficha, observacionnovedad, ficha.numeroficha,fotonovedad
 
         FROM usuario
         LEFT OUTER JOIN novedad ON (usuario.numdocumentousuario=novedad.numdocumentousuario)
@@ -252,7 +252,7 @@ function articuloNovedad($request)
     // $emp = json_decode($request->getBody());
     $emp = $request->getParams();
 
-    $sql = "INSERT INTO articulonovedad (idarticulo, idnovedad, tiponovedad, observacionnovedad) VALUES (:idarticulo, :idnovedad, :tiponovedad, :observacionnovedad)";
+    $sql = "INSERT INTO articulonovedad (idarticulo, idnovedad, tiponovedad, observacionnovedad, fotonovedad) VALUES (:idarticulo, :idnovedad, :tiponovedad, :observacionnovedad,:fotonovedad)";
     try {
         $db   = getConnection();
         $stmt = $db->prepare($sql);
@@ -260,6 +260,7 @@ function articuloNovedad($request)
         $stmt->bindParam(":idnovedad", $emp["idnovedad"]);
         $stmt->bindParam(":tiponovedad", $emp["tiponovedad"]);
         $stmt->bindParam(":observacionnovedad", $emp["observacionnovedad"]);
+        $stmt->bindParam(":fotonovedad", $emp["fotonovedad"]);
         $stmt->execute();
     } catch (PDOException $e) {
         echo '{"error":{"text":' . $e->getMessage() . '}}';
