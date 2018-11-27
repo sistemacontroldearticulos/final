@@ -22,6 +22,11 @@
               <button class="btn btn-primary btn-circle btn-xl" data-toggle="modal" data-target="#modalAgregarActa" title="Agregar Acta">
                 <i class="fa fa-plus"></i>
               </button>
+
+              <button class="btn btn-primary btn-circle btn-xl " data-toggle="modal" data-target="#modalImprimirFicha" title="Exportar Actas Ficha">
+                <i class="fa fa-download"></i>
+              </button>
+
             </div>
             <div class="box-body">
                 <table class="table table-bordered table-striped dt-responsive tablas">
@@ -178,7 +183,7 @@
 
 
 <!-- MODAL AGREGAR ACTA COMPROMISO -->
-<div class="modal fade" id="modalActaCompromiso" role="dialog">
+<div class="modal fade modalActaCompromiso" id="modalActaCompromiso" role="dialog" >
     <div class="modal-dialog">
         <div class="modal-content">
             <form enctype="multipart/form-data" method="post" role="form">
@@ -216,10 +221,24 @@
                                 </span>
                                 <input class="form-control input-lg" name="equipoActa" id="equipoActa"
                                  type="text" readonly required>
-
+    
                                  <input id="idEquipo" name="idEquipo" type="hidden">
                                  <input id="idActaResponsabilidad" name="idActaResponsabilidad" type="hidden">
                             </div> 
+                        </div>
+
+                        <div class="form-group">
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                    <img src="vistas/img/plantilla/modal/ndocumentos.png" width="15px">
+                                    </i>
+                                </span>
+                                <select class="form-control input-lg" name="articulos" id="articulos" required>
+
+                                <option value="">Seleccione el Articulo</option>
+                 
+                                </select> 
+                            </div>
                         </div>
 
                         <div class="form-group">
@@ -247,6 +266,56 @@
                  <?php 
                   $crearActaCompromiso = new ControladorActas();
                   $crearActaCompromiso -> ctrCrearActaCompromiso();
+                 ?>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- MODAL AGREGAR PROGRAMA -->
+<div class="modal fade" id="modalImprimirFicha" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form enctype="multipart/form-data" method="post" role="form">
+                <!-- CABEZA DEL MODAL -->
+                <div class="modal-header cabeza-modal">
+                    <button class="close" data-dismiss="modal" type="button">
+                        x
+                    </button>
+                    <h4 class="modal-title">
+                        Descargar Actas Ficha
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    <!-- CUERPO DEL MODAL -->
+                    <div class="box-body">
+                        <!-- ENTRADA PARA FICHA -->
+                        <div class="form-group">
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                    <img src="vistas/img/plantilla/iconos/fichas.png" width="15px">
+                                </span>
+                                <input class="form-control input-lg" name="ficha" id="fi"
+                                placeholder="Ingrese Ficha" required type="number">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- PIE DEL MODAL -->
+                <div class="modal-footer">
+                    <button class="btn btn-default" data-dismiss="modal" type="button">
+                        Salir
+                    </button>
+                    <button class="btn btn-primary" class="ExportarActa" type="submit">
+                        Exportar PDF
+                    </button>
+                </div> 
+
+                <?php 
+
+                $Exportar = New ControladorActas();
+                $Exportar -> ctrExportarActasFicha();
+
                  ?>
             </form>
         </div>

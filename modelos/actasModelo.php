@@ -30,11 +30,12 @@ class ModeloActas
     static public function mdlCrearActaCompromiso($tabla, $datos)
     {
 
-        $stmt = Conexion::conectar()->prepare("INSERT INTO $tabla(idacta_responsabilidad, fechacreacion, fechalimite) VALUES (:idacta_responsabilidad, :fechacreacion, :fechalimite)");
+        $stmt = Conexion::conectar()->prepare("INSERT INTO $tabla(idacta_responsabilidad, fechacreacion, fechalimite, idarticulo) VALUES (:idacta_responsabilidad, :fechacreacion, :fechalimite, :idarticulo)");
         
         $stmt->bindParam(":idacta_responsabilidad", $datos["idacta_responsabilidad"], PDO::PARAM_STR);
         $stmt->bindParam(":fechalimite", $datos["fechalimite"], PDO::PARAM_STR);
         $stmt->bindParam(":fechacreacion", $datos["fechacreacion"], PDO::PARAM_STR);
+        $stmt->bindParam(":idarticulo", $datos["idarticulo"], PDO::PARAM_STR);
 
         // var_dump($stmt);
 

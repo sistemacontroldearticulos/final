@@ -16,9 +16,7 @@ class ControladorActas
             $hora  = date('H:i:s');
 
             $fechaActual = $fecha . ' ' . $hora;
-            var_dump($fechaActual);
-            var_dump($_POST["aprendices"]);
-            var_dump($_POST["equipos"]);
+
             $numdocumentoinstructor = $_SESSION["NumDocumentoUsuario"];
 
             $datos = array("numdocumentoaprendiz" => $_POST["aprendices"],
@@ -78,11 +76,12 @@ class ControladorActas
             
             $datos = array("idacta_responsabilidad" => $_POST["idActaResponsabilidad"],
                             "fechacreacion" => $fecha,
-                            "fechalimite" => $_POST["fechaActa"]);
+                            "fechalimite" => $_POST["fechaActa"],
+                            "idarticulo" => $_POST["articulos"]);
 
             
             $respuesta = ModeloActas::mdlCrearActaCompromiso($tabla, $datos);
-            // var_dump($respuesta);
+            
             if ($respuesta == "ok") {
                 echo '<script>
 
@@ -116,6 +115,19 @@ class ControladorActas
         $respuesta = ModeloActas::mdlMostrarActasCompromiso($tabla, $item, $valor);
 
         return $respuesta;
+
+    }
+
+    static public function ctrExportarActasFicha(){
+
+        if (isset($_POST["ficha"]) && ($_POST["ficha"] != "")) {
+         
+            echo '<script>
+                     window.open("extensiones/tcpdf/pdf/actaFicha.php?codigo='.$_POST["ficha"].', _blank");
+                </script>';
+          
+        }
+            
 
     }
 

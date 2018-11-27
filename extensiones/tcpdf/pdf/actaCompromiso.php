@@ -51,7 +51,9 @@ $codigo1 = $actaCompromiso["idacta_compromiso"];
 // FECHA Y HORA DE CREACION ACTA
 $dato = $actaCompromiso["fechacreacion"];
 $fecha = date('Y-m-d',strtotime($dato));
-$hora = date('H:i:s',strtotime($dato)); 
+$hora = date('H:i:s',strtotime($dato));
+
+
 
 // $equipo = $respuesta["idequipo"];
 // $codigo1 = $respuesta["idacta"];
@@ -67,11 +69,11 @@ $nombreaprendiz = $mostrarAprendiz[0]["nombreaprendiz"];
 // NUMERO FICHA APRENDIZ
 $fichaAprendiz = $mostrarAprendiz[0]["numeroficha"];
 
-// // CONSULTAR EQUIPO
-// $item1 ="idequipo";
-// $valor1 = $respuesta["idequipo"];
-// $mostrarEquipo = ControladorEquipos::ctrMostrarEquipos($item1, $valor1);
-// $nombreEquipo = $mostrarEquipo["nombreequipo"];
+// CONSULTAR EQUIPO
+$item1 ="idequipo";
+$valor1 = $actaResponsabilidad["idequipo"];
+$mostrarEquipo = ControladorEquipos::ctrMostrarEquipos($item1, $valor1);
+$nombreEquipo = $mostrarEquipo["nombreequipo"];
 
 // // NOMBRE USUARIO
 // $item3 ="numdocumentousuario";
@@ -79,11 +81,14 @@ $fichaAprendiz = $mostrarAprendiz[0]["numeroficha"];
 // $usuario = ControladorUsuarios::ctrMostrarUsuarios($item3, $valor3);
 // $nombreusaurio = $usuario["nombreusuario"];
 
-// // CONSULTAR ARTICULOS EN EQUIPO
-// $item4 ="idequipo";
-// $valor4 = "14";
-// $tabla = "articulo";
-// $articulosEquipo = ModeloArticulos::mdlMostrarArticulosEquipo($tabla, $item4, $valor4);
+// CONSULTAR ARTICULOS EN EQUIPO
+$item4 ="idarticulo";
+$valor4 = $actaCompromiso["idarticulo"];
+$tabla = "articulo";
+$articulosEquipo = ModeloArticulos::mdlMostrarArticulosEquipo($tabla, $item4, $valor4);
+
+$articulo = $articulosEquipo[0]["tipoarticulo"];
+$idarticulo = $articulosEquipo[0]["idarticulo"];
 
 // // CANTIDAD ARTICULOS EQUIPO
 // $cantidadArticulosEquipo = 0;
@@ -97,14 +102,13 @@ $item5 ="numeroficha";
 $valor5 = $fichaAprendiz;
 $tabla1 = "ficha";
 $mostrarFicha = ModeloFichas::mdlMostrarFichas($tabla1, $item5, $valor5);
-$jornadaFicha = ucwords(strtolower($mostrarFicha["jornadaficha"]));
 
-// // CONSULTAR AMBIENTE
-// $item6 ="idambiente";
-// $valor6 = $mostrarFicha["idambiente"];
-// // $tabla1 = "ficha";
-// $mostrarAmbiente = ControladorAmbientes::ctrMostrarAmbientes( $item6, $valor6);
-// $nombreAmbiente = $mostrarAmbiente["nombreambiente"];
+// CONSULTAR AMBIENTE
+$item6 ="idambiente";
+$valor6 = $mostrarFicha[2];
+// $tabla1 = "ficha";
+$mostrarAmbiente = ControladorAmbientes::ctrMostrarAmbientes( $item6, $valor6);
+$nombreAmbiente = $mostrarAmbiente["nombreambiente"];
 
 //REQUERIMOS LA CLASE TCPDF
 require_once('tcpdf_include.php');
@@ -199,8 +203,7 @@ $bloque2 = <<<EOF
 
 				<strong>JORNADA</strong>
 				<br>
-				$jornadaFicha
-
+				$mostrarFicha[5]
 			</td>
 
 		</tr>
@@ -208,7 +211,7 @@ $bloque2 = <<<EOF
 		<tr>
 			<td style="border: 1px solid #000; background-color:white; width:270px">
 
-				<strong>LUGAR:</strong> 
+				<strong>LUGAR:</strong> $nombreAmbiente
 
 			</td>
 
@@ -223,7 +226,7 @@ $bloque2 = <<<EOF
 		<tr>	
 			<td style="border: 1px solid #000; background-color:white; width:540px">
 
-				<strong>TEMA:</strong>  Acta de responsabilidad
+				<strong>TEMA:</strong>  Acta de compromiso
 
 			</td>
 		</tr>
@@ -231,7 +234,7 @@ $bloque2 = <<<EOF
 		<tr>
 			<td style="border: 1px solid #000; background-color:white; width:540px">
 				
-				<strong>OBJETIVO:</strong> Responsabilizar al aprendiz quien firma el acta No. $codigo1 de fecha $fecha donde se hace crago del equipo $$$$ por perdida o daño.
+				<strong>OBJETIVO:</strong> Responsabilizar al aprendiz $nombreaprendiz quien firma el acta No. $codigo1 de fecha $fecha donde se hace cargo del equipo $nombreEquipo por perdida o daño.
 
 			</td>
 		</tr>	
@@ -246,7 +249,25 @@ $bloque2 = <<<EOF
 		<tr>
 			<td style="border: 1px solid #000; background-color:white; width:540px; height:50px; ">
 
-				<strong>OBSERVACIONES: </strong>
+				<strong>OBSERVACIONES: </strong>El aprendiz debera responder por el articulo ($articulo) con identificador ($idarticulo) 
+
+				 en un plazo maximo de 5 dias.
+				<br>
+				Si no cumple con el plazo establecido se enviara a comite y se le hara condicionamiento de matricula.
+
+			</td>
+		</tr>
+
+		<tr>
+		
+		<td style="border-bottom: 1px solid #000; background-color:white; width:540px"></td>
+
+		</tr>
+
+		<tr>
+			<td style="border: 1px solid #000; background-color:white; width:540px; height:50px; ">
+
+				<strong>NOTA: </strong> 
 
 			</td>
 		</tr>

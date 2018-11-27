@@ -241,9 +241,9 @@ foreach ($ambiente as $key => $value) {
                     <select class="form-control input-lg" name="nuevaJornada" required>
 
                   <option value="">Seleccionar Jornada</option>
-                  <option value="Mañana">Mañana</option>
-                  <option value="Tarde">Tarde</option>
-                  <option value="Noche">Noche</option>
+                  <option value="MAÑANA">Mañana</option>
+                  <option value="TARDE">Tarde</option>
+                  <option value="NOCHE">Noche</option>
 
                     </select>
 
