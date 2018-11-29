@@ -373,9 +373,7 @@ MODAL EDITAR FICHA
 
                 <span class="input-group-addon"><i class="fa fa-th"></i></span>
 
-                <select class="form-control input-lg" name="idPrograma" >
-
-                  <option id="editarPrograma"></option>
+                <select class="form-control input-lg" name="idPrograma" id="editarPrograma" onchange="activarFechas1()">
 
                   <?php
 $item  = null;
@@ -403,9 +401,8 @@ foreach ($programas as $key => $value) {
 
                 <span class="input-group-addon"><i class="fa fa-th"></i></span>
 
-                <select class="form-control input-lg" name="idAmbiente" >
+                <select class="form-control input-lg" name="idAmbiente" id="editarAmbiente">
 
-                  <option id="editarAmbiente"></option>
 
                   <?php
 
@@ -454,7 +451,7 @@ foreach ($mostrarAmbientes as $key => $value) {
 
                 <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
 
-                <input type="text" class="form-control input-lg" name="editarFechaInicio"  id="editarFechaInicio" placeholder="Ingrese Fecha Inicio" data-inputmask="'alias': 'dd/mm/yyyy'" data-mask required">
+                <input type="text" class="form-control input-lg" name="editarFechaInicio"  id="editarFechaInicio" placeholder="Ingrese Fecha Inicio" data-inputmask="'alias': 'dd/mm/yyyy'" data-mask required onchange="tiempo1(this.value)">
 
               </div>
 
@@ -511,4 +508,10 @@ $eliminarFicha = new ControladorFichas();
 $eliminarFicha->ctrEliminarFicha();
 ?>
 
+<?php
+// echo '<input type="text" name="documento" id="documento"> ';
+
+  $eliminarAprendiz = new ControladorFichas();
+  $eliminarAprendiz -> ctrBorrarAprendiz();
+?>
 

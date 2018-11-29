@@ -33,7 +33,7 @@ $(".tablas").on("click", ".btnEditarFicha", function(){
                 dataType: "json",
                 success: function(respuesta) {
                     $("#editarPrograma").val(respuesta["idprograma"]);
-                    $("#editarPrograma").html(respuesta["nombreprograma"]);
+                    // $("#editarPrograma").html(respuesta["nombreprograma"]);
                 }
             })
             var idAmbiente = $(this).attr("idAmbiente");
@@ -50,7 +50,7 @@ $(".tablas").on("click", ".btnEditarFicha", function(){
                 success: function(respuesta) {
                     console.log("respuesta", respuesta);
                     $("#editarAmbiente").val(respuesta["idambiente"]);
-                    $("#editarAmbiente").html(respuesta["nombreambiente"]);
+                    // $("#editarAmbiente").html(respuesta["nombreambiente"]);
                 }
             })
         }

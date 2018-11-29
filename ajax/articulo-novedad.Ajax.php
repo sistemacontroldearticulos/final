@@ -20,7 +20,7 @@ class TablaArticulosNovedad{
 
    
     // $item = "idambiente";
-    // $valor = "7";
+    // $valor = "6";
 
     // $item = "idnovedad";
     // $valor = "17";

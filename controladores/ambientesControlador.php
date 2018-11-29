@@ -86,8 +86,7 @@ class ControladorAmbientes
     			$NombreAmbiente = strtoupper($_POST["editarAmbiente"]);
     			$editarUbicacion = strtoupper($_POST["editarUbicacion"]);
 
-                $editarUbicacion = $_POST["editarUbicacion"];
-                if ($_POST["editarUbicacion"] == "") {
+                if ($editarUbicacion == "") {
                     $editarUbicacion = null;
                 }
 

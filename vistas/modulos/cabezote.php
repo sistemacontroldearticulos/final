@@ -62,9 +62,15 @@
 
 						<li class="user-body">
 
-							<div class="pull-right">
+							<div class="pull-right" >
 
-								<a href="salir" class="btn btn-default btn-flat">Salir</a>
+								<a href="salir" class="btn btn-default btn-flat" style="width: 120px">
+
+									<i class="fa fa-arrow-circle-left"></i> SALIR
+								</a>
+
+
+          
 
 							</div>
 

@@ -38,3 +38,6 @@ $('#datemask').inputmask('dd/mm/yyyy', {
     'placeholder': 'dd/mm/yyyy'
 })
 $('[data-mask]').inputmask()
+
+//Initialize Select2 Elements
+$('.select2').select2()

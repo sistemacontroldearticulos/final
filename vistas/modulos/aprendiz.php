@@ -260,7 +260,7 @@
               <div class="input-group">
               
                 <span class="input-group-addon">
-                  <img src="vistas/img/plantilla/modal/usurios.png" width="15px">
+                  <img src="vistas/img/plantilla/modal/usuarios.png" width="15px">
                 </span> 
 
                 <input type="text" class="form-control input-lg" name="editarAprendiz" id="editarAprendiz" required>
@@ -352,9 +352,3 @@
   </div>
 </div>
 
-<?php
-// echo '<input type="text" name="documento" id="documento"> ';
-
-  $eliminarAprendiz = new ControladorAprendiz();
-  $eliminarAprendiz -> ctrBorrarAprendiz();
-?>

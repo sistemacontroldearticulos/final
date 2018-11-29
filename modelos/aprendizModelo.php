@@ -34,6 +34,33 @@ class ModeloAprendiz
 
     }
 
+    static public function mdlEditarAprendiz($tabla, $datos){
+
+        $stmt = Conexion::conectar()->prepare("UPDATE $tabla SET NumeroFicha = :NumeroFicha, NombreAprendiz = :NombreAprendiz, TelefonoAprendiz = :TelefonoAprendiz, EmailAprendiz = :EmailAprendiz WHERE NumDocumentoAprendiz = :NumDocumentoAprendiz");
+
+        var_dump($stmt);
+
+        $stmt->bindParam(":NumDocumentoAprendiz", $datos["NumDocumentoAprendiz"], PDO::PARAM_STR);
+        $stmt->bindParam(":NumeroFicha", $datos["NumeroFicha"], PDO::PARAM_STR);
+        $stmt->bindParam(":NombreAprendiz", $datos["NombreAprendiz"], PDO::PARAM_STR);
+        $stmt->bindParam(":TelefonoAprendiz", $datos["TelefonoAprendiz"], PDO::PARAM_STR);
+        $stmt->bindParam(":EmailAprendiz", $datos["EmailAprendiz"], PDO::PARAM_STR);
+
+        if ($stmt->execute()) {
+
+            return "ok";
+
+        } else {
+
+            return "error";
+
+        }
+
+        $stmt->close();
+        $stmt = null;
+
+    }
+
     // MOSTRAR APRENDIZ
    static public function mdlMostrarAprendiz($tabla, $item, $valor){
 

@@ -223,6 +223,36 @@
               </div>
 
             </div>
+
+
+             <!-- <div class="form-group">
+
+                <div class="input-group">
+
+                  <span class="input-group-addon">
+                    <img src="vistas/img/plantilla/modal/ambientes.png" width="15px">
+                  </span>
+
+                  <select class="form-control select2 input-lg" style="width: 100%; font-size: 30px">
+                    <option value="">Seleccionar Ambiente</option>
+                      <?php
+
+                        // $item  = null;
+                        // $valor = null;
+
+                        // $ambiente = ControladorAmbientes::ctrMostrarAmbientes($item, $valor);
+
+                        // foreach ($ambiente as $key => $value) {
+
+                        //   echo '<option value="' . $value["idambiente"] . '">' . $value["nombreambiente"] . '</option>';
+                        // }
+
+                      ?>
+                  </select>
+                
+                </div>
+
+              </div> -->
   
             <!-- ENTRADA PARA SELECCIONAR AMBIENTE -->
             <div class="form-group">
@@ -473,7 +503,7 @@ $crearArticulo->ctrCrearArticulos();
                   <img src="vistas/img/plantilla/modal/marca.png" width="15px">
                 </span>
 
-                <input type="text" class="form-control input-lg" name="editarMarca" id="editarMarca" placeholder="Marca Articulo" required>
+                <input type="text" class="form-control input-lg" name="editarMarca" id="editarMarca" placeholder="Marca Articulo" >
 
               </div>
 

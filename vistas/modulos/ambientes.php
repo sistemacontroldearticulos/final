@@ -259,7 +259,7 @@
                   <img src="vistas/img/plantilla/modal/ubi.png" width="15px">
                 </span>
 
-                <input type="text" class="form-control input-lg" name="editarUbicacion"  id="editarUbicacion">
+                <input type="text" class="form-control input-lg" name="editarUbicacion"  id="editarUbicacion" placeholder="Ingrese Ubicacion de Ambiente">
 
               </div>
 
