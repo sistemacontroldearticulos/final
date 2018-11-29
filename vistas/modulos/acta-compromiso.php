@@ -18,11 +18,11 @@
     </section>
     <section class="content">
         <div class="box">
-            <!-- <div class="box-header with-border">
+            <div class="box-header with-border">
               <button class="btn btn-primary btn-circle btn-xl" onclick=" location.href='actas' " title="Agregar Acta">
                 <i class="fa fa-plus"></i>
               </button>
-            </div> -->
+            </div>
             <div class="box-body">
                 <table class="table table-bordered table-striped dt-responsive tablas">
                     <thead>
@@ -52,7 +52,7 @@
 
                               <div class="btn-group">
 
-                                <button class="btn btn-info btn-circle btn-lg btnImprimirActaCompromiso" title="Imprimir" codigo="'.$value["idacta_compromiso"].'">
+                                <button class="btn btn-primary btn-circle btn-lg btnImprimirActaCompromiso" title="Imprimir" codigo="'.$value["idacta_compromiso"].'">
                                     <i class="fa fa-print"></i>
                                 </button>
 

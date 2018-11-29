@@ -9,7 +9,7 @@ class ModeloNovedades
     public static function mdlCrearNovedad($tabla, $datos)
     {
 
-        var_dump($datos);
+        // var_dump($datos);
 
         $stmt = Conexion::conectar()->prepare("INSERT INTO $tabla (NumDocumentoUsuario, NumeroFicha, FechaNovedad, Articulo, Estado) VALUES (:NumDocumentoUsuario, :NumeroFicha,  :FechaNovedad, :Articulo, :Estado)");
 

@@ -127,6 +127,7 @@ $("#fi").change(function(){
                 processData: false,
                 dataType: "json",
                 success: function(respuesta) {
+                    // console.log("respuesta", respuesta.length);
 
                     for (var i = 0; i < respuesta.length; i++) {
 
@@ -144,18 +145,13 @@ $("#fi").change(function(){
                             success: function(respuesta) {
                                 console.log("respuesta", respuesta);
                                 
-                                // if (respuesta != false) {
+                                if (respuesta == false) {
 
-                                //     $("#fi").parent().after('<div class="alert" style="height: 20px; text-align="center"><font color="#f39c12"><strong>ESTA FICHO NO TIENE ACTAS</strong></font></div>');
-                                //     $("#fi").val("");
+                                    $("#fi").parent().after('<div class="alert" style="height: 20px; text-align="center"><font color="#f39c12"><strong>ESTA FICHO NO TIENE ACTAS</strong></font></div>');
+                                    $("#fi").val("");
+                                   
 
-                                // }else{
-
-                                //     $("#fi").parent().after('<div class="alert" style="height: 20px; text-align="center"><font color="#f39c12"><strong>ESTA FICHO NO TIENE ACTAS</strong></font></div>');
-                                //     $("#fi").val("");
-
-
-                                // }
+                                }
                             }
                         })
                     }

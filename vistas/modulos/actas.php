@@ -71,10 +71,10 @@
                             <td>'.$value["idacta"].'</td>
                             <td>'.$value["numdocumentoaprendiz"].'</td>';
 
-                            $item="numdocumentoaprendiz";
-                            $valor= $value["numdocumentoaprendiz"];
-                            $mostrarAprendiz= ControladorAprendiz::ctrMostrarAprendiz($item, $valor);
-
+                            $item2="numdocumentoaprendiz";
+                            $valor2= $value["numdocumentoaprendiz"];
+                            $mostrarAprendiz= ControladorAprendiz::ctrMostrarAprendiz($item2, $valor2);
+                            // var_dump($mostrarAprendiz);
                             echo '<td>'.$mostrarAprendiz[0]["nombreaprendiz"].'</td>';
 
                             $item1 ="idequipo";

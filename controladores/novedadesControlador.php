@@ -124,7 +124,7 @@ class ControladorNovedades
 
                                          if(result.value){
 
-                                             window.location = "crear-novedad";
+                                             window.location = "novedades";
 
                                          }
 

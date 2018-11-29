@@ -65,8 +65,7 @@ class ControladorFichas
                       $letras = array('A' => "A",
                                       'B' => "B",
                                       'C' => "C",
-                                      'D' => "D",
-                                      'E' => "E");
+                                      'D' => "D");
 
                       $errores = 0;
 
@@ -84,14 +83,14 @@ class ControladorFichas
 
                               $datos1 = array("NumeroFicha" => $_POST["nuevaFicha"],
                                               "NumDocumentoAprendiz" => $data[0][$i][$letras['A']],
-                                              "NombreAprendiz"       => $data[0][$i][$letras['C']],
-                                              "TelefonoAprendiz"     => $data[0][$i][$letras['D']],
-                                              "EmailAprendiz"        => $data[0][$i][$letras['E']]);
+                                              "NombreAprendiz"       => $data[0][$i][$letras['B']],
+                                              "TelefonoAprendiz"     => $data[0][$i][$letras['C']],
+                                              "EmailAprendiz"        => $data[0][$i][$letras['D']]);
 
-                                    // var_dump($datos1);
+                                    var_dump($datos1);
 
                               $respuesta2 = ModeloAprendiz::MdlIngresarAprendiz($tabla, $datos1);
-                                    // var_dump($respuesta2);
+                                    var_dump($respuesta2);
 
                           }
 
@@ -116,6 +115,11 @@ class ControladorFichas
                                   </script>';
                           } else {
 
+                            $tabla     = "ficha";
+                            $datos     = $_POST["nuevaFicha"];
+
+                            $respuesta = ModeloFichas::mdlEliminarFicha($tabla, $datos);
+                            
                             echo '<script>
 
                                   swal({
@@ -158,12 +162,9 @@ class ControladorFichas
 
                                 </script>';
                           }
-                            
                         }
-
                       }
                     }
-
                 }
             }
         }

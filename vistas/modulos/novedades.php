@@ -97,9 +97,14 @@ $respuesta = ControladorNovedades::ctrMostrarNovedades($item, $valor);
 
                       </td>
 
-                      <td>'.$value["idnovedad"].'</td>
+                      <td>'.$value["idnovedad"].'</td>';
 
-                      <td>'.$value["usuarionovedad"].'</td>
+                      $item  = "numdocumentousuario";
+                      $valor = $value["numdocumentousuario"];
+
+                      $usuario = ControladorUsuarios::ctrMostrarUsuarios($item, $valor);
+
+                      echo '<td>'.$usuario["nombreusuario"].'</td>
 
                       <td>'.$value["numeroficha"].'</td>
 

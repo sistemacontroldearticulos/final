@@ -276,7 +276,7 @@
                 </span>
 
                 <select class="form-control input-lg" name="idPrograma" id="EditarPrograma">
-                  
+                  <option value="">Sin Programa</option>
 
                     <?php
                     $item  = null;
