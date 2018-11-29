@@ -167,7 +167,7 @@
                   <img src="vistas/img/plantilla/modal/programas.png" width="15px">
                 </span>
 
-                <select class="form-control input-lg" name="idPrograma" id="idPrograma" required>
+                <select class="form-control select2 input-lg" name="idPrograma" id="idPrograma" style="width: 100%" required>
                   <option value="">Seleccionar Programa</option>
                     <?php
                     $item  = null;
@@ -275,7 +275,8 @@
                   <img src="vistas/img/plantilla/modal/programas.png" width="15px">
                 </span>
 
-                <select class="form-control input-lg" name="idPrograma" id="EditarPrograma">
+                <select class="form-control select2 input-lg" name="idPrograma" id="EditarPrograma" style="width: 100%" required>
+                
                   <option value="">Sin Programa</option>
 
                     <?php

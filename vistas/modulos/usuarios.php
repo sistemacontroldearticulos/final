@@ -217,7 +217,7 @@ foreach ($usuario as $key => $value) {
                   <img src="vistas/img/plantilla/modal/programas.png" width="15px">
                 </span>
 
-                <select class="form-control input-lg" name="nuevoPrograma" id="nuevoPrograma">
+                <select class="form-control select2 input-lg" name="nuevoPrograma" id="nuevoPrograma" style="width: 100%">
 
                   <option value="">Seleccionar Programa</option>
                   <?php
@@ -378,8 +378,7 @@ $crearUsuario->ctrCrearUsuario();
                   <img src="vistas/img/plantilla/modal/programas.png" width="15px">
                 </span>
 
-                <select class="form-control input-lg"  name="editarPrograma"  id="editarPrograma">
-
+                <select class="form-control select2 input-lg" name="editarPrograma" id="editarPrograma" style="width: 100%">
 
                    <!-- <option id="editarPrograma" value=""></option> -->
                    <option value="">Sin Programa</option>
