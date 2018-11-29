@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.2
+-- version 4.8.3
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 29-11-2018 a las 22:34:19
--- Versión del servidor: 10.1.34-MariaDB
--- Versión de PHP: 7.2.7
+-- Tiempo de generación: 30-11-2018 a las 00:35:37
+-- Versión del servidor: 10.1.36-MariaDB
+-- Versión de PHP: 7.2.11
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -19,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de datos: `proyecto`
+-- Base de datos: `proyectofinal`
 --
 
 -- --------------------------------------------------------
@@ -317,7 +317,8 @@ ALTER TABLE `aprendiz`
 ALTER TABLE `articulo`
   ADD PRIMARY KEY (`idarticulo`),
   ADD KEY `idambiente` (`idambiente`,`idequipo`,`idcategoria`),
-  ADD KEY `idcategoria` (`idcategoria`);
+  ADD KEY `idcategoria` (`idcategoria`),
+  ADD KEY `idequipo` (`idequipo`);
 
 --
 -- Indices de la tabla `articulonovedad`
@@ -426,10 +427,67 @@ ALTER TABLE `programa`
 --
 
 --
+-- Filtros para la tabla `actacompromiso`
+--
+ALTER TABLE `actacompromiso`
+  ADD CONSTRAINT `actacompromiso_ibfk_1` FOREIGN KEY (`idacta_responsabilidad`) REFERENCES `acta_responsabilidad` (`idacta`);
+
+--
+-- Filtros para la tabla `acta_responsabilidad`
+--
+ALTER TABLE `acta_responsabilidad`
+  ADD CONSTRAINT `acta_responsabilidad_ibfk_1` FOREIGN KEY (`numdocumentoaprendiz`) REFERENCES `aprendiz` (`numdocumentoaprendiz`),
+  ADD CONSTRAINT `acta_responsabilidad_ibfk_2` FOREIGN KEY (`idequipo`) REFERENCES `equipo` (`idequipo`),
+  ADD CONSTRAINT `acta_responsabilidad_ibfk_3` FOREIGN KEY (`numdocumentoinstructor`) REFERENCES `usuario` (`numdocumentousuario`);
+
+--
+-- Filtros para la tabla `ambiente`
+--
+ALTER TABLE `ambiente`
+  ADD CONSTRAINT `ambiente_ibfk_1` FOREIGN KEY (`idprograma`) REFERENCES `programa` (`idprograma`);
+
+--
+-- Filtros para la tabla `aprendiz`
+--
+ALTER TABLE `aprendiz`
+  ADD CONSTRAINT `aprendiz_ibfk_1` FOREIGN KEY (`numeroficha`) REFERENCES `ficha` (`numeroficha`);
+
+--
+-- Filtros para la tabla `articulo`
+--
+ALTER TABLE `articulo`
+  ADD CONSTRAINT `articulo_ibfk_1` FOREIGN KEY (`idambiente`) REFERENCES `ambiente` (`idambiente`),
+  ADD CONSTRAINT `articulo_ibfk_2` FOREIGN KEY (`idequipo`) REFERENCES `equipo` (`idequipo`),
+  ADD CONSTRAINT `articulo_ibfk_3` FOREIGN KEY (`idcategoria`) REFERENCES `categoria` (`idcategoria`);
+
+--
+-- Filtros para la tabla `articulonovedad`
+--
+ALTER TABLE `articulonovedad`
+  ADD CONSTRAINT `articulonovedad_ibfk_1` FOREIGN KEY (`idarticulo`) REFERENCES `articulo` (`idarticulo`),
+  ADD CONSTRAINT `articulonovedad_ibfk_2` FOREIGN KEY (`idnovedad`) REFERENCES `novedad` (`idnovedad`);
+
+--
+-- Filtros para la tabla `ficha`
+--
+ALTER TABLE `ficha`
+  ADD CONSTRAINT `ficha_ibfk_1` FOREIGN KEY (`idprograma`) REFERENCES `programa` (`idprograma`),
+  ADD CONSTRAINT `ficha_ibfk_2` FOREIGN KEY (`idambiente`) REFERENCES `ambiente` (`idambiente`);
+
+--
 -- Filtros para la tabla `novedad`
 --
 ALTER TABLE `novedad`
-  ADD CONSTRAINT `articulo` FOREIGN KEY (`articulo`) REFERENCES `articulo` (`idarticulo`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `articulo` FOREIGN KEY (`articulo`) REFERENCES `articulo` (`idarticulo`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `novedad_ibfk_1` FOREIGN KEY (`numdocumentousuario`) REFERENCES `usuario` (`numdocumentousuario`),
+  ADD CONSTRAINT `novedad_ibfk_2` FOREIGN KEY (`numeroficha`) REFERENCES `ficha` (`numeroficha`),
+  ADD CONSTRAINT `novedad_ibfk_3` FOREIGN KEY (`articulo`) REFERENCES `articulo` (`idarticulo`);
+
+--
+-- Filtros para la tabla `usuario`
+--
+ALTER TABLE `usuario`
+  ADD CONSTRAINT `usuario_ibfk_1` FOREIGN KEY (`idprograma`) REFERENCES `programa` (`idprograma`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
