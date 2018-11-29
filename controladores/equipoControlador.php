@@ -10,16 +10,17 @@ class ControladorEquipos
                 $nuevoEstado      = strtoupper($_POST["nuevoEstado"]);
                 $nuevaObservacion = strtoupper($_POST["nuevaObservacion"]);
 
-                $datos = array
-                    (
-                    "NuevoEquipo"           => $nuevoEquipo,
+                $datos = array("NuevoEquipo"           => $nuevoEquipo,
                     "NuevoEstado"           => $nuevoEstado,
                     "NuevaObservacion"      => $nuevaObservacion,
                     "NumArticulosEquipo"    => $_POST["nuevaCantidad"],
-                    "NumArticulosAgregados" => 0,
+                    "idambiente"            => $_POST["nuevoAmbienteEquipo"],
+                    "NumArticulosAgregados" => 0
                 );
 
                 $respuesta = ModeloEquipos::mdlCrearEquipo($tabla, $datos);
+
+                var_dump($respuesta);
 
                 if ($respuesta == "ok") {
 
