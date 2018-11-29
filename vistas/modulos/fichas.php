@@ -175,7 +175,8 @@ MODAL AGREGAR FICHA
 
                 <span class="input-group-addon"><i class="fa fa-th"></i></span>
 
-                <select class="form-control input-lg" name="nuevoPrograma" id="nuevoPrograma" required onchange="activarFechas()">
+                <select class="form-control select2 input-lg" name="nuevoPrograma" id="nuevoPrograma" style="width: 100%" required onchange="activarFechas()">
+
 
                   <option value="">Seleccionar Programa</option>
 
@@ -207,7 +208,7 @@ foreach ($programa as $key => $value) {
 
                 <span class="input-group-addon"><i class="fa fa-th"></i></span>
 
-                 <select class="form-control input-lg" name="nuevoAmbiente" required>
+                <select class="form-control select2 input-lg" name="nuevoAmbiente" style="width: 100%" required >
 
                   <option value="">Seleccionar Ambiente</option>
 
@@ -373,7 +374,8 @@ MODAL EDITAR FICHA
 
                 <span class="input-group-addon"><i class="fa fa-th"></i></span>
 
-                <select class="form-control input-lg" name="idPrograma" id="editarPrograma" onchange="activarFechas1()" >
+                <select class="form-control select2 input-lg" name="idPrograma" id="editarPrograma" style="width: 100%" onchange="activarFechas1()">
+
 
                   <?php
 $item  = null;
@@ -401,8 +403,7 @@ foreach ($programas as $key => $value) {
 
                 <span class="input-group-addon"><i class="fa fa-th"></i></span>
 
-                <select class="form-control input-lg" name="idAmbiente" id="editarAmbiente">
-
+                <select class="form-control select2 input-lg" name="idAmbiente" id="editarAmbiente" style="width: 100%">
 
                   <?php
 

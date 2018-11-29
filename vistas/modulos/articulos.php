@@ -225,7 +225,7 @@
             </div>
 
 
-             <!-- <div class="form-group">
+            <div class="form-group">
 
                 <div class="input-group">
 
@@ -233,57 +233,26 @@
                     <img src="vistas/img/plantilla/modal/ambientes.png" width="15px">
                   </span>
 
-                  <select class="form-control select2 input-lg" style="width: 100%; font-size: 30px">
+                  <select class="form-control select2 input-lg" name="nuevoAmbiente" style="width: 100%" required>
                     <option value="">Seleccionar Ambiente</option>
                       <?php
 
-                        // $item  = null;
-                        // $valor = null;
+                        $item  = null;
+                        $valor = null;
 
-                        // $ambiente = ControladorAmbientes::ctrMostrarAmbientes($item, $valor);
+                        $ambiente = ControladorAmbientes::ctrMostrarAmbientes($item, $valor);
 
-                        // foreach ($ambiente as $key => $value) {
+                        foreach ($ambiente as $key => $value) {
 
-                        //   echo '<option value="' . $value["idambiente"] . '">' . $value["nombreambiente"] . '</option>';
-                        // }
+                          echo '<option value="' . $value["idambiente"] . '">' . $value["nombreambiente"] . '</option>';
+                        }
 
                       ?>
                   </select>
                 
                 </div>
 
-              </div> -->
-  
-            <!-- ENTRADA PARA SELECCIONAR AMBIENTE -->
-            <div class="form-group">
-
-              <div class="input-group">
-
-                <span class="input-group-addon">
-                  <img src="vistas/img/plantilla/modal/ambientes.png" width="15px">
-                </span>
-
-                <select class="form-control input-lg" name="nuevoAmbiente" required>
-
-                  <option value="">Seleccionar Ambiente</option>
-                  <?php
-
-                    $item  = null;
-                    $valor = null;
-
-                    $ambiente = ControladorAmbientes::ctrMostrarAmbientes($item, $valor);
-
-                    foreach ($ambiente as $key => $value) {
-
-                      echo '<option value="' . $value["idambiente"] . '">' . $value["nombreambiente"] . '</option>';
-                    }
-
-                  ?>
-                </select> 
-
               </div>
-
-            </div>
 
              <!-- ENTRADA PARA SELECCIONAR EQUIPO -->
             <div class="form-group">
@@ -295,9 +264,8 @@
                 </span>
 
                 <input type="hidden" name="equipo" id="equipo">
-
-                <select class="form-control input-lg" name="nuevoEquipo" id="nuevoEquipo"onchange="equipoFuncion(this.value)">
-
+                
+                <select class="form-control select2 input-lg" name="nuevoEquipo" id="nuevoEquipo"onchange="equipoFuncion(this.value)" style="width: 100%">
 
                   <option value="">Seleccionar Equipo</option>
                   <?php
@@ -329,7 +297,7 @@ foreach ($equipos as $key => $value) {
                   <img src="vistas/img/plantilla/modal/categorias.png" width="15px">
                 </span>
 
-                <select class="form-control input-lg" name="nuevaCategoria" required>
+                <select class="form-control select2 input-lg" name="nuevaCategoria" required style="width: 100%">
 
                   <option value="">Seleccionar Categoria</option>
                   <?php
@@ -535,7 +503,7 @@ $crearArticulo->ctrCrearArticulos();
                   <img src="vistas/img/plantilla/modal/ambientes.png" width="15px">
                 </span>
 
-                <select class="form-control input-lg" name="idAmbiente" id="editarAmbiente">
+                <select class="form-control select2 input-lg" name="idAmbiente" id="editarAmbiente" style="width: 100%">
 
                   <!-- <option id="editarAmbiente"></option> -->
                    <option value="">Sin Ambiente</option>
@@ -569,7 +537,7 @@ $crearArticulo->ctrCrearArticulos();
 
                 <input type="hidden" name="equipo" id="equipo">
 
-                <select class="form-control input-lg" name="idEquipo" id="editarEquipo" onchange="equipoFuncion1(this.value)">
+                <select class="form-control select2 input-lg" name="idEquipo" id="editarEquipo" onchange="equipoFuncion1(this.value)" style="width: 100%">
 
                   <!-- <option id="editarEquipo"></option> -->
                   <option value="">Sin Equipo</option>
@@ -603,7 +571,7 @@ foreach ($equipos as $key => $value) {
                   <img src="vistas/img/plantilla/modal/categorias.png" width="15px">
                 </span>
 
-                <select class="form-control input-lg" name="idCategoria" id="editarCategoria">
+                <select class="form-control select2 input-lg" name="idCategoria" id="editarCategoria" style="width: 100%">
 
                   <!-- <option id="editarCategoria"></option> -->
                   <option value="">Sin Categoria</option>
