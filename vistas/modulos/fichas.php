@@ -373,7 +373,7 @@ MODAL EDITAR FICHA
 
                 <span class="input-group-addon"><i class="fa fa-th"></i></span>
 
-                <select class="form-control input-lg" name="idPrograma" id="editarPrograma" onchange="activarFechas1()">
+                <select class="form-control input-lg" name="idPrograma" id="editarPrograma" onchange="activarFechas1()" >
 
                   <?php
 $item  = null;
@@ -451,7 +451,7 @@ foreach ($mostrarAmbientes as $key => $value) {
 
                 <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
 
-                <input type="text" class="form-control input-lg" name="editarFechaInicio"  id="editarFechaInicio" placeholder="Ingrese Fecha Inicio" data-inputmask="'alias': 'dd/mm/yyyy'" data-mask required onchange="tiempo1(this.value)">
+                <input type="text" class="form-control input-lg" name="editarFechaInicio"  id="editarFechaInicio" placeholder="Ingrese Fecha Inicio" data-inputmask="'alias': 'mm/dd/yyyy'" data-mask required disabled onchange="tiempo1(this.value)">
 
               </div>
 
@@ -465,7 +465,7 @@ foreach ($mostrarAmbientes as $key => $value) {
 
                 <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
 
-                <input type="text" class="form-control input-lg" id="editarFechaFin" name="editarFechaFin" placeholder="Ingrese Fecha Fin" data-inputmask="'alias': 'dd/mm/yyyy'" data-mask required>
+                <input type="text" class="form-control input-lg" id="editarFechaFin" name="editarFechaFin" disabled placeholder="Ingrese Fecha Fin" data-inputmask="'alias': 'mm/dd/yyyy'" data-mask required>
 
               </div>
 
