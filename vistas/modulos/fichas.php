@@ -465,7 +465,7 @@ foreach ($mostrarAmbientes as $key => $value) {
 
                 <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
 
-                <input type="text" class="form-control input-lg" id="editarFechaFin" name="editarFechaFin" disabled placeholder="Ingrese Fecha Fin" data-inputmask="'alias': 'mm/dd/yyyy'" data-mask required>
+                <input type="text" class="form-control input-lg" id="editarFechaFin" name="editarFechaFin" disabled placeholder="Ingrese Fecha Fin" data-inputmask="'alias': 'mm/dd/yyyy'" data-mask required onchange="validacion()">
 
               </div>
 

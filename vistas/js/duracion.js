@@ -109,8 +109,7 @@ function tiempo1(sel) {
                 $("#editarFechaFin").html(fecha);
                 $("#editarFechaFin").prop('readonly', true);
             } else if (respuesta[3] == "COMPLEMENTARIO") {
-                $("#editarFechaInicio").attr("disabled", "disabled");
-                $("#editarFechaInicio").val('');
+                $("#editarFechaFin").removeAttr('disabled');
             }
         }
     });
@@ -121,4 +120,14 @@ function activarFechas1() {
     $("#editarFechaInicio").removeAttr('disabled');
     $("#editarFechaInicio").val('');
     $("#editarFechaFin").val('');
+}
+
+function validacion() {
+    $(".alert").remove();
+    var inicio = $("#editarFechaInicio").val();
+    var fin = $("#editarFechaFin").val();
+    if (inicio == fin) {
+        $("#editarFechaFin").parent().after('<div class="alert" style="height: 20px; text-align="center"><font color="#f39c12"><strong>LA FECHA FINAL DE UN PROGRAMA COMPLEMENTARIO NO PUEDE SER IGUAL A LA FECHA INICAL</strong></font></div>');
+        $("#editarFechaFin").val("");
+    }
 }
