@@ -6,21 +6,23 @@ class ModeloEquipos
 {
 	static public function mdlCrearEquipo($tabla, $datos)
 	{
-		var_dump($datos);
-		$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla (NombreEquipo, EstadoEquipo, NumArticulosEquipo, ObservacionEquipo, NumArticulosAgregados) VALUES (:NombreEquipo, :EstadoEquipo, :NumArticulosEquipo, :ObservacionEquipo, :NumArticulosAgregados)");
+        $stmt = Conexion::conectar()->prepare("INSERT INTO $tabla (NombreEquipo, EstadoEquipo, NumArticulosEquipo, ObservacionEquipo, NumArticulosAgregados, idambiente) VALUES (:NombreEquipo, :EstadoEquipo, :NumArticulosEquipo, :ObservacionEquipo, :NumArticulosAgregados, :idambiente )");
 
         $stmt->bindParam(":NombreEquipo", $datos["NuevoEquipo"], PDO::PARAM_STR);
+        $stmt->bindParam(":idambiente", $datos["idambiente"], PDO::PARAM_STR);
         $stmt->bindParam(":EstadoEquipo", $datos["NuevoEstado"], PDO::PARAM_STR);
         $stmt->bindParam(":NumArticulosEquipo", $datos["NumArticulosEquipo"], PDO::PARAM_STR);
         $stmt->bindParam(":ObservacionEquipo", $datos["NuevaObservacion"], PDO::PARAM_STR);
         $stmt->bindParam(":NumArticulosAgregados", $datos["NumArticulosAgregados"], PDO::PARAM_STR);
+
+        var_dump($stmt->execute());
 
         if ($stmt->execute()) {
 
             return "ok";
 
         } else {
-
+            var_dump($stmt);
             return "error";
 
         }
