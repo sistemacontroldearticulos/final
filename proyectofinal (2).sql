@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 30-11-2018 a las 00:35:37
+-- Tiempo de generación: 30-11-2018 a las 01:10:25
 -- Versión del servidor: 10.1.36-MariaDB
 -- Versión de PHP: 7.2.11
 
@@ -182,17 +182,18 @@ CREATE TABLE `equipo` (
   `estadoequipo` text COLLATE utf8_bin NOT NULL,
   `numarticulosequipo` varchar(50) COLLATE utf8_bin NOT NULL,
   `observacionequipo` varchar(200) COLLATE utf8_bin DEFAULT NULL,
-  `numarticulosagregados` varchar(50) COLLATE utf8_bin DEFAULT NULL
+  `numarticulosagregados` varchar(50) COLLATE utf8_bin DEFAULT NULL,
+  `idambiente` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
 -- Volcado de datos para la tabla `equipo`
 --
 
-INSERT INTO `equipo` (`idequipo`, `nombreequipo`, `estadoequipo`, `numarticulosequipo`, `observacionequipo`, `numarticulosagregados`) VALUES
-(1, 'A20', 'ACTIVADO', '4', '', '4'),
-(2, 'D01', 'ACTIVADO', '3', '', '3'),
-(3, 'I33', 'DESACTIVADO', '6', 'EL EQUIPO PRESENTA UN GOLPE EN LA ESQUINA SUPERIOR DERECHA DE LA PANTALLA', '4');
+INSERT INTO `equipo` (`idequipo`, `nombreequipo`, `estadoequipo`, `numarticulosequipo`, `observacionequipo`, `numarticulosagregados`, `idambiente`) VALUES
+(1, 'A20', 'ACTIVADO', '4', '', '4', NULL),
+(2, 'D01', 'ACTIVADO', '3', '', '3', NULL),
+(3, 'I33', 'DESACTIVADO', '6', 'EL EQUIPO PRESENTA UN GOLPE EN LA ESQUINA SUPERIOR DERECHA DE LA PANTALLA', '4', NULL);
 
 -- --------------------------------------------------------
 
@@ -338,7 +339,8 @@ ALTER TABLE `categoria`
 -- Indices de la tabla `equipo`
 --
 ALTER TABLE `equipo`
-  ADD PRIMARY KEY (`idequipo`);
+  ADD PRIMARY KEY (`idequipo`),
+  ADD KEY `idambiente` (`idambiente`);
 
 --
 -- Indices de la tabla `ficha`
@@ -466,6 +468,12 @@ ALTER TABLE `articulo`
 ALTER TABLE `articulonovedad`
   ADD CONSTRAINT `articulonovedad_ibfk_1` FOREIGN KEY (`idarticulo`) REFERENCES `articulo` (`idarticulo`),
   ADD CONSTRAINT `articulonovedad_ibfk_2` FOREIGN KEY (`idnovedad`) REFERENCES `novedad` (`idnovedad`);
+
+--
+-- Filtros para la tabla `equipo`
+--
+ALTER TABLE `equipo`
+  ADD CONSTRAINT `equipo_ibfk_1` FOREIGN KEY (`idambiente`) REFERENCES `ambiente` (`idambiente`);
 
 --
 -- Filtros para la tabla `ficha`
