@@ -30,7 +30,7 @@ function tiempo(sel) {
     var datos = new FormData();
     datos.append("idPrograma", idPrograma);
     $.ajax({
-        url: "ajax/programas.Ajax.php",
+        url: "ajax/programas.ajax.php",
         method: "POST",
         data: datos,
         cache: false,
@@ -78,7 +78,7 @@ function tiempo1(sel) {
     var datos = new FormData();
     datos.append("idPrograma", idPrograma);
     $.ajax({
-        url: "ajax/programas.Ajax.php",
+        url: "ajax/programas.ajax.php",
         method: "POST",
         data: datos,
         cache: false,

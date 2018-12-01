@@ -36,7 +36,7 @@ function login($response)
     $contra1      = $args['contra'];
     // $contrasenia  = hash('sha512', $contra1);
 
-    $sql = "SELECT usuario.contraseniausuario, usuario.numdocumentousuario, usuario.nombreusuario, usuario.idprograma, rolusuario, novedad.idnovedad,fechanovedad, nombreambiente, tipoarticulo, tiponovedad, nombreequipo, jornadaficha, observacionnovedad, ficha.numeroficha,fotonovedad
+    $sql = "SELECT usuario.contraseniausuario, usuario.numdocumentousuario, usuario.nombreusuario, usuario.idprograma, rolusuario, novedad.idnovedad,fechanovedad, nombreambiente, tipoarticulo, tiponovedad, nombreequipo, jornadaficha, observacionnovedad, ficha.numeroficha,fotonovedad, novedad.estado
 
         FROM usuario
         LEFT OUTER JOIN novedad ON (usuario.numdocumentousuario=novedad.numdocumentousuario)
@@ -261,6 +261,24 @@ function articuloNovedad($request)
         $stmt->bindParam(":tiponovedad", $emp["tiponovedad"]);
         $stmt->bindParam(":observacionnovedad", $emp["observacionnovedad"]);
         $stmt->bindParam(":fotonovedad", $emp["fotonovedad"]);
+        $stmt->execute();
+    } catch (PDOException $e) {
+        echo '{"error":{"text":' . $e->getMessage() . '}}';
+    }
+}
+
+function cambiarContrasenia($request)
+{
+    $idusuario  = $request->getAttribute('numdocumentousuario');
+
+    $emp = $request->getParams();
+
+    $sql = "UPDATE usuario SET contraseniausuario=:contraNueva WHERE numdocumentousuario=$idusuario";
+    try {
+        $db   = getConnection();
+        $stmt = $db->prepare($sql);
+        $stmt->bindParam(":contraNueva", $emp["contraNueva"]);
+
         $stmt->execute();
     } catch (PDOException $e) {
         echo '{"error":{"text":' . $e->getMessage() . '}}';
