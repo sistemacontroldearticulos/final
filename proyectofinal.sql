@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 30-11-2018 a las 01:10:25
+-- Tiempo de generación: 02-12-2018 a las 20:49:15
 -- Versión del servidor: 10.1.36-MariaDB
 -- Versión de PHP: 7.2.11
 
@@ -49,6 +49,13 @@ CREATE TABLE `acta_responsabilidad` (
   `fechaacta` text COLLATE utf8_bin NOT NULL,
   `numdocumentoinstructor` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+--
+-- Volcado de datos para la tabla `acta_responsabilidad`
+--
+
+INSERT INTO `acta_responsabilidad` (`idacta`, `numdocumentoaprendiz`, `idequipo`, `fechaacta`, `numdocumentoinstructor`) VALUES
+(1, 13, 1, '2018-12-01 09:33:37', 123);
 
 -- --------------------------------------------------------
 
@@ -126,10 +133,10 @@ CREATE TABLE `articulo` (
 --
 
 INSERT INTO `articulo` (`idarticulo`, `idambiente`, `idequipo`, `idcategoria`, `tipoarticulo`, `modeloarticulo`, `marcaarticulo`, `caracteristicaarticulo`, `estadoarticulo`, `numinventariosena`, `serialarticulo`) VALUES
-(4, 6, 1, 1, 'MOUSE', 'SFDS54', 'ACER', NULL, 'ACTIVO', '123Z', '7898x'),
-(5, 6, 1, 1, 'CPU', NULL, NULL, NULL, 'ACTIVO', '', ''),
+(4, 6, 1, 1, 'MOUSE', 'SFDS54', 'ACER', NULL, 'DAÑADO', '123Z', '7898x'),
+(5, 6, 1, 1, 'CPU', NULL, NULL, NULL, 'DAÑADO', '', ''),
 (6, 6, 1, 1, 'TECLADO', '54132', NULL, NULL, 'DAÑADO', '31212', ''),
-(7, 6, 1, 1, 'MONITOR', 'SDSDAS', 'HP', NULL, 'ACTIVO', '', 'asdsa'),
+(7, 6, 1, 1, 'MONITOR', 'SDSDAS', 'HP', NULL, 'DAÑADO', '', 'asdsa'),
 (8, 7, 3, 1, 'MOUSE ', '32132', 'HP', NULL, 'ACTIVO', 'zxcz', 'zxcz'),
 (9, 7, 3, 1, 'CPU', 'ASDA', 'LENOVO', '...', 'DAÑADO', '1232', 'asd12'),
 (10, 7, 3, 1, 'TECLADO', 'ZXCZCS', 'XCXC', NULL, 'ACTIVO', '', '321w'),
@@ -151,6 +158,15 @@ CREATE TABLE `articulonovedad` (
   `observacionnovedad` text COLLATE utf8_bin,
   `fotonovedad` text COLLATE utf8_bin
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+--
+-- Volcado de datos para la tabla `articulonovedad`
+--
+
+INSERT INTO `articulonovedad` (`idarticulo`, `idnovedad`, `tiponovedad`, `observacionnovedad`, `fotonovedad`) VALUES
+(4, 50, 'DAÑADO', '', NULL),
+(5, 51, 'DAÑADO', 'asdad', NULL),
+(6, 51, 'DAÑADO', 'asdasdad', NULL);
 
 -- --------------------------------------------------------
 
@@ -191,7 +207,7 @@ CREATE TABLE `equipo` (
 --
 
 INSERT INTO `equipo` (`idequipo`, `nombreequipo`, `estadoequipo`, `numarticulosequipo`, `observacionequipo`, `numarticulosagregados`, `idambiente`) VALUES
-(1, 'A20', 'ACTIVADO', '4', '', '4', NULL),
+(1, 'A20', 'ACTIVADO', '4', '', '4', 6),
 (2, 'D01', 'ACTIVADO', '3', '', '3', NULL),
 (3, 'I33', 'DESACTIVADO', '6', 'EL EQUIPO PRESENTA UN GOLPE EN LA ESQUINA SUPERIOR DERECHA DE LA PANTALLA', '4', NULL);
 
@@ -220,6 +236,28 @@ INSERT INTO `ficha` (`numeroficha`, `idprograma`, `idambiente`, `fechainicio`, `
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `notificaciones`
+--
+
+CREATE TABLE `notificaciones` (
+  `idnotificacion` int(11) NOT NULL,
+  `numdocumentousuario` int(11) NOT NULL,
+  `tipo` varchar(50) COLLATE utf8_bin NOT NULL,
+  `fecha` varchar(50) COLLATE utf8_bin NOT NULL,
+  `leido` tinyint(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+--
+-- Volcado de datos para la tabla `notificaciones`
+--
+
+INSERT INTO `notificaciones` (`idnotificacion`, `numdocumentousuario`, `tipo`, `fecha`, `leido`) VALUES
+(22, 777, 'CREADO UNA NUEVA NOVEDAD', '2018-12-02 12:03:27', 1),
+(23, 888, 'CREADO UNA NUEVA NOVEDAD', '2018-12-02 14:04:22', 1);
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `novedad`
 --
 
@@ -231,6 +269,14 @@ CREATE TABLE `novedad` (
   `articulo` int(11) DEFAULT NULL,
   `estado` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+--
+-- Volcado de datos para la tabla `novedad`
+--
+
+INSERT INTO `novedad` (`idnovedad`, `numdocumentousuario`, `numeroficha`, `fechanovedad`, `articulo`, `estado`) VALUES
+(50, 777, 1493990, '2018-12-02 12:03:27', NULL, 1),
+(51, 888, 1493990, '2018-12-02 14:04:22', NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -266,7 +312,7 @@ CREATE TABLE `usuario` (
   `nombreusuario` varchar(50) COLLATE utf8_bin NOT NULL,
   `contraseniausuario` varchar(200) COLLATE utf8_bin NOT NULL,
   `rolusuario` varchar(50) COLLATE utf8_bin NOT NULL,
-  `fotousuario` longtext COLLATE utf8_bin
+  `fotousuario` text COLLATE utf8_bin
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
@@ -274,7 +320,8 @@ CREATE TABLE `usuario` (
 --
 
 INSERT INTO `usuario` (`numdocumentousuario`, `idprograma`, `nombreusuario`, `contraseniausuario`, `rolusuario`, `fotousuario`) VALUES
-(123, NULL, 'ADMINISTRADOR', '3c9909afec25354d551dae21590bb26e38d53f2173b8d3dc3eee4c047e7ab1c1eb8b85103e3be7ba613b31bb5c9c36214dc9f14a42fd7a2fdb84856bca5c44c2', 'ADMINISTRADOR', ''),
+(123, NULL, 'ADMINISTRADOR', 'c7ad44cbad762a5da0a452f9e854fdc1e0e7a52a38015f23f3eab1d80b931dd472634dfac71cd34ebc35d16ab7fb8a90c81f975113d6c7538dc69dd8de9077ec', 'ADMINISTRADOR', ''),
+(444, NULL, 'DANIEL', 'a5e4209e841321ae706ee84b94b38088a18acc7643250e4bb0af543c9d7599a0854c8e08c2283ec0ee338806cca171206340a510c5c406beb6ec3b6f18150c4b', 'ADMINISTRADOR', 'vistas/img/usuarios/444/223.jpg'),
 (777, 5, 'INSTRUCTOR ', '093763d6b1457e9fb44eeb346737783ad13bb739370d4a7d42d9cade8da9040b8c64e525aa0f2afde2dd5a98e763fbde69a679098603083c6a76fa2f66aa1188', 'INSTRUCTOR', 'vistas/img/usuarios/777/899.png'),
 (888, 6, 'ESPECIAL', 'bb602aa6ebb8decd4a7293b1c428cf4889df083d0984378ceefc600a371ac96de20ed1fbc8adf3baa8e63a28d20b750b1dd2512c51cf78490b602b5bc50e47c1', 'ESPECIAL', 'vistas/img/usuarios/888/852.png');
 
@@ -351,6 +398,13 @@ ALTER TABLE `ficha`
   ADD KEY `idambiente` (`idambiente`);
 
 --
+-- Indices de la tabla `notificaciones`
+--
+ALTER TABLE `notificaciones`
+  ADD PRIMARY KEY (`idnotificacion`),
+  ADD KEY `numdocumentousuario` (`numdocumentousuario`);
+
+--
 -- Indices de la tabla `novedad`
 --
 ALTER TABLE `novedad`
@@ -386,7 +440,7 @@ ALTER TABLE `actacompromiso`
 -- AUTO_INCREMENT de la tabla `acta_responsabilidad`
 --
 ALTER TABLE `acta_responsabilidad`
-  MODIFY `idacta` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idacta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `ambiente`
@@ -413,10 +467,16 @@ ALTER TABLE `equipo`
   MODIFY `idequipo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
+-- AUTO_INCREMENT de la tabla `notificaciones`
+--
+ALTER TABLE `notificaciones`
+  MODIFY `idnotificacion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+
+--
 -- AUTO_INCREMENT de la tabla `novedad`
 --
 ALTER TABLE `novedad`
-  MODIFY `idnovedad` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idnovedad` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
 
 --
 -- AUTO_INCREMENT de la tabla `programa`
@@ -481,6 +541,12 @@ ALTER TABLE `equipo`
 ALTER TABLE `ficha`
   ADD CONSTRAINT `ficha_ibfk_1` FOREIGN KEY (`idprograma`) REFERENCES `programa` (`idprograma`),
   ADD CONSTRAINT `ficha_ibfk_2` FOREIGN KEY (`idambiente`) REFERENCES `ambiente` (`idambiente`);
+
+--
+-- Filtros para la tabla `notificaciones`
+--
+ALTER TABLE `notificaciones`
+  ADD CONSTRAINT `notificaciones_ibfk_1` FOREIGN KEY (`numdocumentousuario`) REFERENCES `usuario` (`numdocumentousuario`);
 
 --
 -- Filtros para la tabla `novedad`
