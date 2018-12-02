@@ -33,13 +33,24 @@ class AjaxEquipo
     }
     // VALIDAR EQUIPO
     public $nombreequipo;
-
 	public function ajaxValidarEquipo()
 	{
 		$item = "nombreequipo";
 		$valor = $this->nombreequipo;
 
 		$respuesta = ControladorEquipos::ctrMostrarEquipos($item, $valor);
+
+		echo json_encode($respuesta);
+	}
+
+	// VALIDAR EQUIPO
+    public $idAmbiente;
+	public function ajaxMostrarEquiposAmbiente()
+	{
+		$item = "idAmbiente";
+		$valor = $this->idAmbiente;
+
+		$respuesta = ControladorEquipos::ctrMostrarEquipos1($item, $valor);
 
 		echo json_encode($respuesta);
 	}
@@ -66,3 +77,9 @@ if(isset($_POST["idEquipo"])){
     $equipo -> ajaxEditarEquipo();
 }
 
+if(isset($_POST["idAmbiente"])){
+
+    $equipo = new AjaxEquipo();
+    $equipo -> idAmbiente = $_POST["idAmbiente"];
+    $equipo -> ajaxMostrarEquiposAmbiente();
+}

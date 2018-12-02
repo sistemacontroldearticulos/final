@@ -84,7 +84,7 @@
                   <img src="vistas/img/plantilla/modal/ambientes.png" width="15px">
                 </span>
 
-                      <input type="text" class="form-control input-lg" id="nuevoAmbiente1" value name="nuevoAmbiente1" readonly placeholder="Ambiente">
+                      <input type="text" class="form-control input-lg" id="nuevoAmbiente1" name="nuevoAmbiente1" readonly placeholder="Ambiente">
 
                   </div>
 

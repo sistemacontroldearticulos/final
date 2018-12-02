@@ -77,12 +77,6 @@
 
 						}
 
-// $item = null;
-// $valor = null;
-
-						// var_dump($fechaInicial);
-						// var_dump($fechaFinal);
-                        // $respuesta = ControladorReportes::ctrMostrarReportes($item, $valor);
                         $respuesta = ControladorReportes::ctrRangoFechasReportes($fechaInicial, $fechaFinal);
 						
 						

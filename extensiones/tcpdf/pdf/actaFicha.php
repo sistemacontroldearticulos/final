@@ -291,12 +291,36 @@ $pdf->writeHTML($bloque2, false, false, false, false, '');
 
 // --------------------------------------------------------------------------
 
-// foreach ($articulosEquipo as $key => $item) {
+$pila = array();
+foreach ($articulosEquipo as $k => $item) {
 
-foreach ($articulosEquipo as $key => $value) {
+	$a = $articulosEquipo[$k]["idequipo"];
+	array_push($pila, $a);
+}
+$resultado1 = array_unique($pila);
+// echo '<pre>'; print_r($resultado1); echo '</pre>';
+$resultado = array_unique($pila);
+
+
+
+// foreach ($resultado1 as $key => $value) {
+
+// 	$item = "idequipo";
+// 	$valor= $resultado1[$key];
+
+// 	$respuesta = ControladorActas::ctrMostrarActas($item, $valor);
+// 	var_dump($valor);
+// 	echo '<pre>'; print_r($respuesta); echo '</pre>';
+// }
+
+
+
+
+
+foreach ($resultado as $key => $value) {
 	
 $item = "idequipo";
-$valor= $articulosEquipo[$key]["idequipo"];
+$valor= $resultado[$key];
 
 $respuesta = ControladorActas::ctrMostrarActas($item, $valor);
 
@@ -321,15 +345,10 @@ $item6 ="idequipo";
 $valor6 = $mostrarEquipo["idequipo"];
 $tabla = "articulo";
 $articulosEquipos1 = ModeloArticulos::mdlMostrarArticulosEquipo1($tabla, $item6, $valor6);
-$id = $articulosEquipos1["idarticulo"];
-$serial = $articulosEquipos1["serialarticulo"];
-$tipoarticulo = $articulosEquipos1["tipoarticulo"];
-$marca = $articulosEquipos1["marcaarticulo"];
-$modelo = $articulosEquipos1["modeloarticulo"];
 
-$bloque4 = <<<EOF
+$bloque9 = <<<EOF
 
-	<table style="font-size:10px; padding:5px 10px;">
+<table style="font-size:10px; padding:5px 10px;">
 
 		<tr>
 		
@@ -380,6 +399,26 @@ $bloque4 = <<<EOF
 			</td>
 		</tr>
 	</table>
+EOF;
+
+$pdf->writeHTML($bloque9, false, false, false, false, '');
+
+
+
+foreach ($articulosEquipos1 as $key => $value) {
+	// echo '<pre>'; print_r($articulosEquipos1[$key]["idarticulo"]); echo '</pre>';
+
+// echo '<pre>'; print_r($articulosEquipos1); echo '</pre>';
+
+$id = $articulosEquipos1[$key]["idarticulo"];
+$serial = $articulosEquipos1[$key]["serialarticulo"];
+$tipoarticulo = $articulosEquipos1[$key]["tipoarticulo"];
+$marca = $articulosEquipos1[$key]["marcaarticulo"];
+$modelo = $articulosEquipos1[$key]["modeloarticulo"];
+
+$bloque4 = <<<EOF
+
+	
 
 
 	<table style="font-size:10px; padding:5px 10px;">
@@ -416,6 +455,7 @@ $bloque4 = <<<EOF
 EOF;
 
 $pdf->writeHTML($bloque4, false, false, false, false, '');
+}
 }
 }
 

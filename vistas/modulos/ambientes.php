@@ -267,7 +267,7 @@
           
         
 
-        <div class="form-group">
+        <div class="form-group" style="background: #f39c12">
 
               <div class="input-group">
 
@@ -275,11 +275,13 @@
                   <img src="vistas/img/plantilla/modal/programas.png" width="15px">
                 </span>
 
-                <select class="form-control select2 input-lg" name="idPrograma" id="EditarPrograma" style="width: 100%" required>
+                <select  class="form-control select2 input-lg" name="idPrograma"  style="width: 100%" required>
                 
-                  <option value="">Sin Programa</option>
+                  <option value="" >Sin Programa</option>
+                  
 
                     <?php
+
                     $item  = null;
                     $valor = null;
 

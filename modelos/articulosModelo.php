@@ -163,7 +163,7 @@ static public function mdlMostrarArticulosEquipo($tabla, $item, $valor){
 
 		$stmt -> execute();
 
-		return $stmt -> fetch();
+		return $stmt -> fetchAll();
 
 	}
 

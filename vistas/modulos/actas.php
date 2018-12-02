@@ -246,7 +246,7 @@
 
                             <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
 
-                            <input type="text" class="form-control input-lg" name="fechaActa" placeholder="Ingrese Fecha Limite" data-inputmask="'alias': 'mm/dd/yyyy'" data-mask  required">
+                            <input type="text" class="form-control input-lg" name="fechaActa" placeholder="Ingrese Fecha Limite" data-inputmask="'alias': 'mm/dd/yyyy'" data-mask  required>
 
                           </div>
                         </div>
@@ -295,7 +295,7 @@
                                 <span class="input-group-addon">
                                     <img src="vistas/img/plantilla/iconos/fichas.png" width="15px">
                                 </span>
-                                <input class="form-control input-lg" name="ficha" id="fi"
+                                <input class="form-control input-lg" name="ficha1" id="fi"
                                 placeholder="Ingrese Ficha" required type="number">
                             </div>
                         </div>

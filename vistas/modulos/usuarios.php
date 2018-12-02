@@ -55,6 +55,53 @@
         <tbody>
 
           <?php
+
+          if($_SESSION["RolUsuario"] == "INSTRUCTOR" || $_SESSION["RolUsuario"] == "ESPECIAL"){
+
+            $item  = "numdocumentousuario";
+            $valor = $_SESSION["NumDocumentoUsuario"];
+
+            $usuario = ControladorUsuarios::ctrMostrarUsuarios($item, $valor);
+
+            echo ' <tr>
+                    <td>
+
+                        <div class="btn-group">
+
+                          <button title="Editar" class="btn btn-circle btn-lg btn-warning btnEditarUsuario" NumDocumentoUsuario="' . $usuario["numdocumentousuario"] . '" data-toggle="modal" data-target="#modalEditarUsuario"><i class="fa fa-pencil"></i></button>
+
+                          <button title="Eliminar" class="btn btn-circle btn-lg btn-danger btnEliminarUsuario" NumDocumentoUsuario="' . $usuario["numdocumentousuario"] . '" FotoUsuario="' . $usuario["fotousuario"] . '" NombreUsuario="' . $usuario["nombreusuario"] . '"><i class="fa fa-times"></i></button>
+
+                        </div>
+
+                      </td>
+                      <td>1</td>
+                      <td>' . $usuario["numdocumentousuario"] . '</td>
+                      <td>' . $usuario["nombreusuario"] . '</td>';
+
+                      if ($usuario["fotousuario"] != "") {
+
+                          echo '<td><img src="' . $usuario["fotousuario"] . '" class="img-thumbnail" width="40px"></td>';
+
+                      } else {
+
+                          echo '<td><img src="vistas/img/usuarios/default/anonymous.png" class="img-thumbnail" width="40px"></td>';
+
+                      }
+
+                      echo '<td>' . $usuario["rolusuario"] . '</td>';
+                      $item  = "idprograma";
+                      $valor = $usuario["idprograma"];
+
+                      $programa = ControladorProgramas::ctrMostrarProgramas($item, $valor);
+                      
+                      echo '<td>' . $programa["nombreprograma"] . '</td>
+
+                    </tr>';
+
+          }else{
+
+
 $item  = null;
 $valor = null;
 
@@ -100,6 +147,7 @@ foreach ($usuario as $key => $value) {
                   
 
                 </tr>';
+}
 }
 
 ?>

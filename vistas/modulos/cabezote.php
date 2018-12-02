@@ -66,7 +66,7 @@
 
 								<a href="salir" class="btn btn-default btn-flat" style="width: 120px">
 
-									<i class="fa fa-arrow-circle-left"></i> SALIR
+									SALIR  <i class="fa fa-arrow-circle-right"></i>
 								</a>
 
 

@@ -101,9 +101,9 @@ class ControladorAmbientes
                     "IdAmbiente"=>$_POST["idAmbiente"]
     			);
 
-                // var_dump($datos);
+                echo '<pre>'; print_r($datos); echo '</pre>';
                 
-    			$respuesta=ModeloAmbientes::mdlEditarAmbientes($tabla, $datos);
+    			// $respuesta=ModeloAmbientes::mdlEditarAmbientes($tabla, $datos);
 
     				if($respuesta=="ok"){
     					echo '<script>

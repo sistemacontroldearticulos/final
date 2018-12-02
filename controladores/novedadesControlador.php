@@ -53,6 +53,28 @@ class ControladorNovedades
                     $tipo        = $key->tipo;
                     $descripcion = $key->descripcion;
 
+
+
+                    $tabla10 = "articulo";
+                    $item10 = "idarticulo";
+                    $valor10 = $id;
+                    $articulo10 = ControladorArticulos::ctrMostrarArticulos($item10, $valor10);
+                    
+                    $datos10 = array("IdArticulo" => $articulo10[0],
+                        "TipoArticulo"              => $articulo10[4],
+                        "MarcaArticulo"             => $articulo10[6],
+                        "ModeloArticulo"            => $articulo10[5],
+                        "NumInventarioSena"         => $articulo10[9],
+                        "SerialArticulo"            => $articulo10[10],
+                        "EstadoArticulo"            => $tipo,
+                        "IdAmbiente"                => $articulo10[1],
+                        "IdCategoria"               => $articulo10[3],
+                        "CaracteristicaArticulo"    => $articulo10[7],
+                        "IdEquipo"                  => $articulo10[2]);
+
+
+                    $update = ModeloArticulos::mdlEditarArticulo($tabla10, $datos10);
+
                     $tabla5      = "articulonovedad";
 
                     $datos5       = array('IdArticulo' => $id,

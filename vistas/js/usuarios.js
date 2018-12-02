@@ -141,7 +141,7 @@ function rolUsuario(sel) {
 }
 
 function rolUsuario2(sel) {
-    debugger;
+    // debugger;
     if (sel == "ADMINISTRADOR") {
         $("#editarPrograma").val("");
         $("#editarPrograma").prop('disabled', true);
@@ -149,3 +149,6 @@ function rolUsuario2(sel) {
         $("#editarPrograma").prop('disabled', false);
     }
 }
+// $(".btnEditarUsuario1").change(function(){
+//     debugger;
+// })

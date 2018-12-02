@@ -15,7 +15,7 @@ class ModeloEquipos
         $stmt->bindParam(":ObservacionEquipo", $datos["NuevaObservacion"], PDO::PARAM_STR);
         $stmt->bindParam(":NumArticulosAgregados", $datos["NumArticulosAgregados"], PDO::PARAM_STR);
 
-        var_dump($stmt->execute());
+        // var_dump($stmt->execute());
 
         if ($stmt->execute()) {
 
@@ -61,6 +61,35 @@ class ModeloEquipos
 
     }
 
+    // MOSTRAR EQUIPOS ALL
+    static public function mdlMostrarEquipos1($tabla, $item, $valor){
+
+        if($item != null){
+
+            $stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
+
+            $stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+
+            $stmt -> execute();
+
+            return $stmt -> fetchAll();
+
+        }else{
+
+            $stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla");
+
+            $stmt -> execute();
+
+            return $stmt -> fetchAll();
+
+        }
+
+        $stmt -> close();
+
+        $stmt = null;
+
+    }
+
     // BORRAR EQUIPO
     static public function mdlBorrarEquipo($tabla, $datos){
 
@@ -87,7 +116,7 @@ class ModeloEquipos
     static public function mdlEditarEquipo($tabla, $datos){
         // var_dump($datos);
 
-        $stmt = Conexion::conectar()->prepare("UPDATE $tabla SET NombreEquipo=:NombreEquipo,EstadoEquipo=:EstadoEquipo,NumArticulosEquipo=:NumArticulosEquipo,ObservacionEquipo=:ObservacionEquipo,NumArticulosAgregados=:NumArticulosAgregados WHERE IdEquipo=:IdEquipo");
+        $stmt = Conexion::conectar()->prepare("UPDATE $tabla SET NombreEquipo=:NombreEquipo,EstadoEquipo=:EstadoEquipo,NumArticulosEquipo=:NumArticulosEquipo,ObservacionEquipo=:ObservacionEquipo,NumArticulosAgregados=:NumArticulosAgregados, idambiente=:idambiente WHERE IdEquipo=:IdEquipo");
 
         $stmt->bindParam(":NombreEquipo", $datos["NuevoEquipo"], PDO::PARAM_STR);
         $stmt->bindParam(":EstadoEquipo", $datos["NuevoEstado"], PDO::PARAM_STR);
@@ -95,6 +124,7 @@ class ModeloEquipos
         $stmt->bindParam(":ObservacionEquipo", $datos["NuevaObservacion"], PDO::PARAM_STR);
         $stmt->bindParam(":NumArticulosAgregados", $datos["NumArticulosAgregados"], PDO::PARAM_STR);
         $stmt->bindParam(":IdEquipo", $datos["IdEquipo"], PDO::PARAM_STR);
+        $stmt->bindParam(":idambiente", $datos["idambiente"], PDO::PARAM_STR);
 
         if($stmt->execute()){
 
