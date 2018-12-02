@@ -309,11 +309,14 @@ function quitarNovedad() {
 }
 // $(".tablas").on("click", ".btnBuscar1", function(){
 $(".btnBuscar2").click(function() {
+
+    
     var id = $(this).attr("idNovedad");
     var datos = new FormData();
     datos.append("id", id);
+
     $.ajax({
-        url: "ajax/novedadAjax.php",
+        url: "ajax/modalArticulosAjax.php",
         method: "POST",
         data: datos,
         cache: false,
@@ -321,23 +324,51 @@ $(".btnBuscar2").click(function() {
         processData: false,
         dataType: "json",
         success: function(respuesta) {
-            // console.log(respuesta[0]["idnovedad"]);
-            // debugger;
-            $(".inputAmbiente").val(respuesta[0]["idnovedad"]);
-            var e = $.Event("keyup", {
-                keyCode: 13
-            });
-            $('.inputAmbiente').focus();
-            $('.inputAmbiente').trigger(e);
+
+            $(".tablaModalArticulos td").remove();
+
+            for (var i = 0; i < respuesta.length; i++) {
+
+                var nuevafila= "<tr><td>" +
+                respuesta[i]["idnovedad"] + "</td><td>" +
+                respuesta[i]["idarticulo"] + "</td><td>" +
+                respuesta[i]["tiponovedad"] + "</td><td>" +
+                "aqui va el nombre del articulo" + "</td><td>" +
+                respuesta[i]["observacionnovedad"] + "</td></tr>"
+
+                $(".tablaModalArticulos").append(nuevafila)
+            }
+
         }
     });
+
+
+    // $.ajax({
+    //     url: "ajax/novedadAjax.php",
+    //     method: "POST",
+    //     data: datos,
+    //     cache: false,
+    //     contentType: false,
+    //     processData: false,
+    //     dataType: "json",
+    //     success: function(respuesta) {
+    //         // console.log(respuesta[0]["idnovedad"]);
+
+    //         $(".inputAmbiente").val(respuesta[0]["idnovedad"]);
+    //         var e = $.Event("keyup", {
+    //             keyCode: 13
+    //         });
+    //         $('.inputAmbiente').focus();
+    //         $('.inputAmbiente').trigger(e);
+    //     }
+    // });
 });
 
-function salir() {
-    $(".inputAmbiente").val("");
-    var e = $.Event("keyup", {
-        keyCode: 13
-    });
-    $('.inputAmbiente').focus();
-    $('.inputAmbiente').trigger(e);
-}
+// function salir() {
+//     $(".inputAmbiente").val("");
+//     var e = $.Event("keyup", {
+//         keyCode: 13
+//     });
+//     $('.inputAmbiente').focus();
+//     $('.inputAmbiente').trigger(e);
+// }

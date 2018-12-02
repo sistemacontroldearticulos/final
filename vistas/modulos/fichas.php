@@ -510,7 +510,6 @@ $eliminarFicha->ctrEliminarFicha();
 ?>
 
 <?php
-// echo '<input type="text" name="documento" id="documento"> ';
 
   $eliminarAprendiz = new ControladorFichas();
   $eliminarAprendiz -> ctrBorrarAprendiz();

@@ -104,8 +104,8 @@ class ControladorNovedades
                         $a = $datos8["MAX(idnovedad)"];
                         
                         $respuesta7 = ModeloNovedades::mdlBorrarNovedad($tabla8, $a);
-
-                        // var_dump($respuesta7);
+                        $respuesta8 = ModeloNovedades::mdlBorrarArticuloNovedad($tabla3, $a);
+                        echo '<pre>'; print_r($respuesta8); echo '</pre>';
 
                          echo '<script>
 

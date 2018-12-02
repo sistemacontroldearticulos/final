@@ -171,5 +171,34 @@ static public function mdlMostrarArticulosEquipo($tabla, $item, $valor){
 
 	$stmt = null;
 }
+	
+
+	// MOSTRAR PERDIDOS
+	static public function perdidos(){
+
+		$stmt = Conexion::conectar()->prepare("SELECT COUNT(*) FROM articulo WHERE estadoarticulo like '%PERDIDO%'");
+		$stmt -> execute();
+		return $stmt -> fetch();
+
+	}
+
+	// MOSTRAR ACTIVOS
+	static public function activos(){
+
+		$stmt = Conexion::conectar()->prepare("SELECT COUNT(*) FROM articulo WHERE estadoarticulo like '%ACTIVO%'");
+		$stmt -> execute();
+		return $stmt -> fetch();
+
+	}
+
+	// MOSTRAR DAÑADOS
+	static public function daniado(){
+
+		$stmt = Conexion::conectar()->prepare("SELECT COUNT(*) FROM articulo WHERE estadoarticulo like '%DAÑADO%'");
+		$stmt -> execute();
+		return $stmt -> fetch();
+
+	}
+
 
 }

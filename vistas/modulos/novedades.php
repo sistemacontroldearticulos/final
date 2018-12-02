@@ -18,6 +18,8 @@
 
   </section>
 
+
+
   <section class="content">
 
     <div class="box">
@@ -166,8 +168,8 @@ $respuesta = ControladorNovedades::ctrMostrarNovedades($item, $valor);
           <!-- CUERPO DEL MODAL -->
           <div class="box-body">
 
-            <table class="table table-bordered table-striped dt-responsive tablas">
-              <thead>
+            <table class="table table-bordered table-striped table-hover tablaModalArticulos">
+              <!-- <thead> -->
                   <tr>
                     <th>ID Novedad</th>
                     <th>ID Articulo</th>
@@ -175,38 +177,38 @@ $respuesta = ControladorNovedades::ctrMostrarNovedades($item, $valor);
                     <th>Tipo</th>
                     <th>Observacion</th>
                   </tr>
-              </thead>
-              <tbody>
+              <!-- </thead> -->
+              <!-- <tbody> -->
                   
-                <?php 
+                
 
-                  $item = null;
-                  $valor = null;
+                  <!-- // $item = null;
+                  // $valor = null;
 
-                  $respuesta = ControladorArticulos::ctrMostrarArticuloNovedad($item, $valor);
+                  // $respuesta = ControladorArticulos::ctrMostrarArticuloNovedad($item, $valor);
 
-                  foreach ($respuesta as $key => $value) {
+                  // foreach ($respuesta as $key => $value) {
 
-                    echo '<tr>
+                  //   echo '<tr>
                             
-                            <td style="width:10px">'.$value["idnovedad"].'</td>
+                  //           <td style="width:10px">'.$value["idnovedad"].'</td>
 
-                            <td style="width:10px">'.$value["idarticulo"].'</td>';
+                  //           <td style="width:10px">'.$value["idarticulo"].'</td>';
 
-                            $item1 = "IdArticulo";
-                            $valor1 = $value["idarticulo"];
-                            $respuesta1 = ControladorArticulos::ctrMostrarArticulos($item1, $valor1);
+                  //           $item1 = "IdArticulo";
+                  //           $valor1 = $value["idarticulo"];
+                  //           $respuesta1 = ControladorArticulos::ctrMostrarArticulos($item1, $valor1);
 
-                      echo '<td style="width:70px">'.$respuesta1["tipoarticulo"].'</td>
+                  //     echo '<td style="width:70px">'.$respuesta1["tipoarticulo"].'</td>
 
-                            <td style="width:50px">'.$value["tiponovedad"].'</td>
+                  //           <td style="width:50px">'.$value["tiponovedad"].'</td>
 
-                            <td style="width:150px">'.$value["observacionnovedad"].'</td>
-                          </tr>';
-                  }
-                ?>
+                  //           <td style="width:150px">'.$value["observacionnovedad"].'</td>
+                  //         </tr>';
+                  // } -->
+                
 
-              </tbody> 
+              <!-- </tbody>  -->
             </table>
             
           </div>
@@ -216,7 +218,7 @@ $respuesta = ControladorNovedades::ctrMostrarNovedades($item, $valor);
         <!-- PIE DEL MODAL -->
         <div class="modal-footer">
           <a href="inicio">
-          <button type="button" onclick="salir() " class="btn btn-primary" data-dismiss="modal">Salir</button>
+          <button type="button" class="btn btn-primary" data-dismiss="modal">Salir</button>
         </a>
         </div>
         

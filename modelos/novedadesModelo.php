@@ -133,4 +133,28 @@ class ModeloNovedades
 
         $stmt = null;
     }
+
+    // BORRAR NOVEDAD
+    static public function mdlBorrarArticuloNovedad($tabla, $datos){
+
+        $stmt = Conexion::conectar()->prepare("DELETE FROM $tabla WHERE idnovedad = :idnovedad");
+
+        $stmt -> bindParam(":idnovedad", $datos, PDO::PARAM_INT);
+
+        if($stmt -> execute()){
+
+            return "ok";
+        
+        }else{
+
+            return "error"; 
+
+        }
+
+        $stmt -> close();
+
+        $stmt = null;
+
+    }
+
 }

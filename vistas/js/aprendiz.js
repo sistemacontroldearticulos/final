@@ -10,7 +10,6 @@ $(".tablas").on("click", ".btnEliminarAprendiz", function(){
 
     $("#documento").val(NumDocumentoAprendiz);
 
-
     swal({
         title: '¿Está seguro de borrar aprendiz?',
         text: "¡Si no lo está puede cancelar la accíón!",

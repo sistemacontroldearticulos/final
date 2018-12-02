@@ -149,6 +149,7 @@ function rolUsuario2(sel) {
         $("#editarPrograma").prop('disabled', false);
     }
 }
-// $(".btnEditarUsuario1").change(function(){
-//     debugger;
-// })
+$(".btnEditarUsuario1").click(function(){
+    // debugger;
+    $("#modalEditarUsuario").modal();
+})

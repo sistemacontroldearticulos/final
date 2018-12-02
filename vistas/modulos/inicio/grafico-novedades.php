@@ -1,3 +1,22 @@
+<?php 
+
+  $item = null;
+  $valor = null;
+  $respuesta = ControladorNovedades::ctrMostrarNovedades($item, $valor);
+
+  $arrayFechas = array();
+
+  foreach ($respuesta as $key => $value) {
+
+    $fecha = substr($value["fechanovedad"],0,-12);
+    array_push($arrayFechas,$fecha);
+    
+  }
+
+  $a = array_count_values($arrayFechas);
+
+?>
+
 <div class="box box-solid bg-teal-gradient">
 	
 	<div class="box-header">
@@ -21,20 +40,19 @@
     element          : 'line-chart',
     resize           : true,
     data             : [
-      { y: '2011 Q1', item1: 12 },
-      { y: '2011 Q2', item1: 12 },
-      { y: '2011 Q3', item1: 12 },
-      { y: '2011 Q4', item1: 12 },
-      { y: '2011 Q1', item1: 12 },
-      { y: '2011 Q2', item1: 12 },
-      { y: '2011 Q3', item1: 12 },
-      { y: '2011 Q4', item1: 12 },
-      { y: '2011 Q1', item1: 12 },
-      { y: '2011 Q2', item1: 12 }
+
+    <?php foreach ($a as $key => $value){
+
+      echo "{ y: '".$key."', novedades: '".$value."' },";
+    }
+    echo "{ y: '".$key."', novedades: '".$value."'}";
+
+    ?>
+    
     ],
     xkey             : 'y',
-    ykeys            : ['item1'],
-    labels           : ['Item 1'],
+    ykeys            : ['novedades'],
+    labels           : ['Novedades'],
     lineColors       : ['#efefef'],
     lineWidth        : 2,
     hideHover        : 'auto',

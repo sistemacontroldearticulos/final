@@ -43,9 +43,19 @@ class ModeloReportes
 
             return $stmt -> fetchAll();
 
+
         } else if ($fechaInicial == $fechaFinal) {
 
-            $stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE fechanovedad like '%$fechaFinal%'");
+           // FECHA INICIAL
+            $fecha1 = $fechaInicial; 
+            list($anio1, $mes1, $dia1) = explode("-",$fecha1); 
+            $fechaini = $anio1 . '-' . $mes1 . '-' .$dia1;
+            if ($dia1 < 10) {
+                $day1 = (string)$dia1;
+                $fechaini = $anio1 . '-' . $mes1 . '-' . '0'.$day1;
+            }
+
+            $stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE fechanovedad like '%$fechaini%'");
 
             $stmt->execute();
 
@@ -53,15 +63,26 @@ class ModeloReportes
 
         }  else {
 
-            $fecha = $fechaFinal; 
-            list($anio, $mes, $dia) = explode("-",$fecha); 
+            // FECHA INICIAL
+            $fecha1 = $fechaInicial; 
+            list($anio1, $mes1, $dia1) = explode("-",$fecha1); 
+            $fechaini = $anio1 . '-' . $mes1 . '-' .$dia1;
+            if ($dia1 < 10) {
+                $day1 = (string)$dia1;
+                $fechaini = $anio1 . '-' . $mes1 . '-' . '0'.$day1;
+            }
 
-            $b = (int)$dia+1;
-            $day = (string)$b;
+            // FECHA FINAL
+            $fecha2 = $fechaFinal; 
+            list($anio2, $mes2, $dia2) = explode("-",$fecha2);        
+            $fechafin = $anio2 . '-' . $mes2 . '-' .$dia2;
+            if ($dia2 < 10) {
+                $b1 = (int)$dia2+1;
+                $day2 = (string)$b1;
+                $fechafin = $anio2 . '-' . $mes2 . '-' . '0'.$day2;
+            }
 
-            $fechaActual = $anio . '-' . $mes . '-' . $day;
-
-            $stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE fechanovedad BETWEEN '$fechaInicial' AND '$fechaActual'");
+            $stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE fechanovedad BETWEEN '$fechaini' AND '$fechafin'");
 
             $stmt->execute();
 
