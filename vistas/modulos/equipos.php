@@ -43,6 +43,7 @@
            <th style="width:30px">Acciones</th>   
            <th style="width:15px">#</th>
            <th>Nombre</th>
+           <th>Ambiente</th>
            <th>Estado</th>
            <th>Numero Articulos</th>
            <th>Numero Articulos Agregados</th>
@@ -80,6 +81,13 @@
                   <td>'.$value["idequipo"].'</td>
 
                   <td>'.$value["nombreequipo"].'</td>';
+
+                  $item  = "IdAmbiente";
+                  $valor = $value["idambiente"];
+
+                  $ambiente = ControladorAmbientes::ctrMostrarAmbientes($item, $valor);
+                  echo '<td>' . $ambiente["nombreambiente"] . '</td>';
+
 
                   if($value["estadoequipo"]=="ACTIVADO")
                     {
@@ -325,6 +333,36 @@ MODAL EDITAR EQUIPO
               </div>
 
             </div>
+
+            <!-- ENTRADA PARA EL AMBIENTE -->
+            <div class="form-group">
+
+                <div class="input-group">
+
+                  <span class="input-group-addon">
+                    <img src="vistas/img/plantilla/modal/ambientes.png" width="15px">
+                  </span>
+
+                  <select class="form-control select2 input-lg" name="editarAmbienteEquipo" style="width: 100%" required>
+                    <option value="">Sin Ambiente</option>
+                      <?php
+
+                        $item  = null;
+                        $valor = null;
+
+                        $ambiente = ControladorAmbientes::ctrMostrarAmbientes($item, $valor);
+
+                        foreach ($ambiente as $key => $value) {
+
+                          echo '<option value="' . $value["idambiente"] . '">' . $value["nombreambiente"] . '</option>';
+                        }
+
+                      ?>
+                  </select>
+                
+                </div>
+
+              </div>
 
             <!-- ENTRADA PARA CANTIDAD ARTICULOS -->
             <div class="form-group">

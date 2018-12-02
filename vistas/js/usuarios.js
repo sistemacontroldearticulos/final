@@ -55,25 +55,27 @@ $(".tablas").on("click", ".btnEditarUsuario", function(){
             // $("#editarPerfil").html(respuesta["rolusuario"]);
             $("#editarPerfil").val(respuesta["rolusuario"]);
             $("#fotoActual").val(respuesta["fotousuario"]);
-            // var datosPrograma = new FormData();
-            // datosPrograma.append("idPrograma", respuesta["idprograma"]);
-            // $.ajax({
-            //     url: "ajax/programas.ajax.php",
-            //     method: "POST",
-            //     data: datosPrograma,
-            //     cache: false,
-            //     contentType: false,
-            //     processData: false,
-            //     dataType: "json",
-            //     success: function(respuesta) {
-            //         if (respuesta == false) {
-            //             $("#editarPrograma").prop('disabled', true)
-            //         } else {
-            //             // $("#editarPrograma").html(respuesta["nombreprograma"]);
-            //             $("#editarPrograma").val(respuesta["idprograma"]);
-            //         }
-            //     }
-            // })
+            var datosPrograma = new FormData();
+            datosPrograma.append("idPrograma", respuesta["idprograma"]);
+            $.ajax({
+                url: "ajax/programas.ajax.php",
+                method: "POST",
+                data: datosPrograma,
+                cache: false,
+                contentType: false,
+                processData: false,
+                dataType: "json",
+                success: function(respuesta) {
+                    if (respuesta == false) {
+                        $("#editarPrograma").prop('disabled', true)
+                    } else {
+                        // $("#editarPrograma").html(respuesta["nombreprograma"]);
+                        $("#select2-editarPrograma-container").val(respuesta["idprograma"]);
+                        $("#select2-editarPrograma-container").html(respuesta["nombreprograma"]);
+                        $("#editarPrograma").val(respuesta["idprograma"]);
+                    }
+                }
+            })
             $("#passwordActual").val(respuesta["contraseniausuario"]);
             if (respuesta["fotousuario"] != "") {
                 $(".previsualizar").attr("src", respuesta["fotousuario"]);
@@ -137,7 +139,7 @@ function rolUsuario(sel) {
 }
 
 function rolUsuario2(sel) {
-    debugger;
+    // debugger;
     if (sel == "ADMINISTRADOR") {
         $("#editarPrograma").val("");
         $("#editarPrograma").prop('disabled', true);
@@ -145,3 +147,9 @@ function rolUsuario2(sel) {
         $("#editarPrograma").prop('disabled', false);
     }
 }
+
+
+// $(".btnEditarUsuario1").change(function(){
+
+//     debugger;
+// })

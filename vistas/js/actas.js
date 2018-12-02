@@ -44,6 +44,8 @@ $("#ficha").change(function() {
                             processData: false,
                             dataType: "json",
                             success: function(respuesta) {
+                                console.log("respuesta", respuesta);
+                                
                                 //CODIGO PARA LIMPIAR SELECT DE EQUIPO CADA VEZ QUE SE CAMBIA DE FICHA
                                 $('#equipos').empty().append('<option selected="selected" value="whatever">Seleccione El Equipo</option>');
                                 
@@ -75,6 +77,9 @@ $("#ficha").change(function() {
                                         processData: false,
                                         dataType: "json",
                                         success: function(respuesta) {
+                                            console.log("respuesta", respuesta);
+
+
                                             p = respuesta["nombreequipo"];
                                             k = respuesta["idequipo"];
                                             var option = document.createElement("option");
@@ -102,7 +107,8 @@ $("#ficha").change(function() {
                             processData: false,
                             dataType: "json",
                             success: function(respuesta) {
-                                console.log("respuesta", respuesta.length);
+                                // console.log("respuesta", respuesta);
+
                                 for (var i = 0; i < respuesta.length; i++) {
                                     var option = document.createElement("option");
                                     $(option).val(respuesta[i]["numdocumentoaprendiz"]);

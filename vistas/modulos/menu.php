@@ -7,7 +7,24 @@
 
 			<?php 
 
-				if($_SESSION["RolUsuario"] == "ADMINISTRADOR"){
+			if($_SESSION["RolUsuario"] == "INSTRUCTOR"){
+
+					echo '
+
+				<li class="active">
+
+					<a class="btnEditarUsuario1" NumDocumentoUsuario="' . $_SESSION["NumDocumentoUsuario"] . '" data-toggle="modal" data-target="#modalEditarUsuario">
+
+						<img src="vistas/img/plantilla/iconos/usuarios.png" width="15px">
+						<span>Perfil</span>
+
+					</a>
+
+				</li>';
+			}
+
+
+			if($_SESSION["RolUsuario"] == "ADMINISTRADOR"){
 
 					echo '
 

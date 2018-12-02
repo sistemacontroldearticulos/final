@@ -233,7 +233,7 @@
                     <img src="vistas/img/plantilla/modal/ambientes.png" width="15px">
                   </span>
 
-                  <select class="form-control select2 input-lg" name="nuevoAmbiente" style="width: 100%" required>
+                  <select class="form-control select2 input-lg" name="nuevoAmbiente" id="nuevoAmbiente" style="width: 100%" required>
                     <option value="">Seleccionar Ambiente</option>
                       <?php
 
@@ -268,19 +268,19 @@
                 <select class="form-control select2 input-lg" name="nuevoEquipo" id="nuevoEquipo"onchange="equipoFuncion(this.value)" style="width: 100%">
 
                   <option value="">Seleccionar Equipo</option>
-                  <?php
+                  <!-- <?php
 
-$item  = null;
-$valor = null;
+// $item  = null;
+// $valor = null;
 
-$equipos = ControladorEquipos::ctrMostrarEquipos($item, $valor);
+// $equipos = ControladorEquipos::ctrMostrarEquipos($item, $valor);
 
-foreach ($equipos as $key => $value) {
+// foreach ($equipos as $key => $value) {
 
-    echo '<option value="' . $value["idequipo"] . '">' . $value["nombreequipo"] . '</option>';
-}
+//     echo '<option value="' . $value["idequipo"] . '">' . $value["nombreequipo"] . '</option>';
+// }
 
-?>
+?> -->
 
                 </select>
 

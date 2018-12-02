@@ -20,7 +20,7 @@ class ControladorEquipos
 
                 $respuesta = ModeloEquipos::mdlCrearEquipo($tabla, $datos);
 
-                var_dump($respuesta);
+                // var_dump($respuesta);
 
                 if ($respuesta == "ok") {
 
@@ -72,6 +72,18 @@ class ControladorEquipos
         $tabla = "equipo";
 
         $respuesta = ModeloEquipos::mdlMostrarEquipos($tabla, $item, $valor);
+
+        return $respuesta;
+
+    }
+
+    // MOSTRAR EQUIPOS ALL
+    static public function ctrMostrarEquipos1($item, $valor)
+    {
+
+        $tabla = "equipo";
+
+        $respuesta = ModeloEquipos::mdlMostrarEquipos1($tabla, $item, $valor);
 
         return $respuesta;
 
@@ -151,14 +163,13 @@ class ControladorEquipos
                     $nuevoEstado      = strtoupper($_POST["editarEstado"]);
                     $nuevaObservacion = strtoupper($_POST["editarObservacion"]);
 
-                    $datos = array
-                        (
-                        "IdEquipo"              => $_POST["idEquipo"],
+                    $datos = array("IdEquipo"   => $_POST["idEquipo"],
                         "NuevoEquipo"           => $nuevoEquipo,
                         "NuevoEstado"           => $nuevoEstado,
                         "NuevaObservacion"      => $nuevaObservacion,
                         "NumArticulosEquipo"    => $_POST["editarCantidad"],
                         "NumArticulosAgregados" => $_POST["agregados"],
+                        "idambiente"            => $_POST["editarAmbienteEquipo"]
                     );
 
                     $respuesta = ModeloEquipos::mdlEditarEquipo($tabla, $datos);

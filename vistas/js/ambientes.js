@@ -33,7 +33,7 @@ $(".tablas").on("click", ".btnEditarAmbiente", function(){
                 dataType: "json",
                 success: function(respuesta) {
                     $("#EditarPrograma").val(respuesta["idprograma"]);
-                    // $("#EditarPrograma").html(respuesta["nombreprograma"]);
+                    $("#EditarPrograma").html(respuesta["nombreprograma"]);
                 }
             })
         }

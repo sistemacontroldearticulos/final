@@ -149,3 +149,42 @@ $("#nuevoInventario").change(function() {
         }
     })
 })
+
+
+// CARGAR EQUIPOS EN ambientes
+$("#nuevoAmbiente").change(function() {
+    // debugger;   
+    $(".alert").remove();
+
+    var idAmbiente = $(this).val();
+    var datos = new FormData();
+    datos.append("idAmbiente", idAmbiente);
+
+    $.ajax({
+
+        url: "ajax/equipoAjax.php",
+        method: "POST",
+        data: datos,
+        cache: false,
+        contentType: false,
+        processData: false,
+        dataType: "json",
+        success: function(respuesta) {
+            // console.log("respuesta", respuesta);
+
+            $('#nuevoEquipo').empty().append('<option selected="selected" value="whatever">Seleccionar Equipo</option>');
+
+            
+
+
+            for (var i = 0; i < respuesta.length; i++) {
+
+                var option = document.createElement("option");
+                $(option).html(respuesta[i]["nombreequipo"]);
+                $(option).val(respuesta[i]["idequipo"]);
+                $(option).appendTo("#nuevoEquipo");
+                // console.log("respuesta", respuesta[i]["nombreequipo"]);
+            }
+        }
+    })
+})

@@ -39,7 +39,7 @@ $(".tablas").on("click", ".btnEditarEquipo", function(){
             $("#editarEquipo").val(respuesta["nombreequipo"]);
             $("#idEquipo").val(respuesta["idequipo"]);
             $("#editarEstado").val(respuesta["estadoequipo"]);
-            // $("#editarEstado").html(respuesta["EstadoEquipo"]);
+            $("#editarAmbienteEquipo").val(respuesta["idambiente"]);
             $("#editarCantidad").val(respuesta["numarticulosequipo"]);
             $("#editarObservacion").val(respuesta["observacionequipo"]);
             $("#agregados").val(respuesta["numarticulosagregados"]);

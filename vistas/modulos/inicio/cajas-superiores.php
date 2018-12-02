@@ -33,7 +33,7 @@ $totalActas = count($Actas);
     
     <div class="icon">
     
-      <i class="fa fa-file"></i>
+      <i class="ion ion-stats-bars"></i>
     
     </div>
     
