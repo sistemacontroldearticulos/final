@@ -1,19 +1,19 @@
 <div class="content-wrapper">
 
   <section class="content-header">
-    
+
     <h1>
-      
+
       Administrar Novedades
-    
+
     </h1>
 
     <ol class="breadcrumb">
-      
+
       <li><a href="inicio"><i class="fa fa-dashboard"></i> Inicio</a></li>
-      
+
       <li class="active">Administrar novedades</li>
-    
+
     </ol>
 
   </section>
@@ -25,9 +25,9 @@
       <div class="box-header with-border">
 
         <a href="crear-novedad">
-  
+
           <button class="btn btn-primary btn-circle btn-xl" title="Agregar novedad">
-            
+
             <i class="fa fa-plus"></i>
 
           </button>
@@ -37,12 +37,12 @@
       </div>
 
       <div class="box-body">
-        
+
 
        <table class="table table-bordered table-striped dt-responsive tablas">
-         
+
         <thead>
-         
+
          <tr>
            <th>Detalles</th>
            <th style="width:10px">ID</th>
@@ -50,86 +50,84 @@
            <th>Ficha</th>
            <th>Fecha</th>
            <th>Estado</th>
-           
+
            <!-- <th>Ambiente</th> -->
 
-         </tr> 
+         </tr>
 
         </thead>
 
         <tbody>
 
-          <?php 
+          <?php
 
-          $item = "numdocumentousuario";
-              $valor = $_SESSION["NumDocumentoUsuario"];
-            $rol = ControladorUsuarios::ctrMostrarUsuarios($item ,$valor);
-            // var_dump($rol["rolusuario"]);
+$item  = "numdocumentousuario";
+$valor = $_SESSION["NumDocumentoUsuario"];
+$rol   = ControladorUsuarios::ctrMostrarUsuarios($item, $valor);
+// var_dump($rol["rolusuario"]);
 
-            if ($rol["rolusuario"] == "ADMINISTRADOR") {
+if ($rol["rolusuario"] == "ADMINISTRADOR") {
 
-              $item = null;
-              $valor = null;
-$respuesta = ControladorNovedades::ctrMostrarNovedades($item, $valor);
-            }else{
+    $item      = null;
+    $valor     = null;
+    $respuesta = ControladorNovedades::ctrMostrarNovedades($item, $valor);
+} else {
 
-              $item = "numdocumentousuario";
-              $valor = $_SESSION["NumDocumentoUsuario"];
-$respuesta = ControladorNovedades::ctrMostrarNovedades($item, $valor);
-            }
+    $item      = "numdocumentousuario";
+    $valor     = $_SESSION["NumDocumentoUsuario"];
+    $respuesta = ControladorNovedades::ctrMostrarNovedades($item, $valor);
+}
 
-            // $item = null;
-            // $valor = null;
+// $item = null;
+// $valor = null;
 
-            
-
-            // var_dump($respuesta);
-            foreach ($respuesta as $key => $value) {
-              echo '<tr>
+// var_dump($respuesta);
+foreach ($respuesta as $key => $value) {
+    echo '<tr>
 
                     <td>
 
                         <div class="btn-group">
-                            
-                          <button title="ver Novedad" class="btn btn-circle btn-lg btn-success btnVerNovedades btnBuscar2" data-toggle="modal" data-target="#modalVerNovedades" idNovedad="'.$value["idnovedad"].'"><i class="fa fa-eye"></i></button>
 
-                        </div>  
+                          <button title="ver Novedad" class="btn btn-circle btn-lg btn-success btnVerNovedades btnBuscar2" data-toggle="modal" data-target="#modalVerNovedades" idNovedad="' . $value["idnovedad"] . '"><i class="fa fa-eye"></i></button>
+
+                        </div>
 
                       </td>
 
-                      <td>'.$value["idnovedad"].'</td>';
+                      <td>' . $value["idnovedad"] . '</td>';
 
-                      $item  = "numdocumentousuario";
-                      $valor = $value["numdocumentousuario"];
+    $item  = "numdocumentousuario";
+    $valor = $value["numdocumentousuario"];
 
-                      $usuario = ControladorUsuarios::ctrMostrarUsuarios($item, $valor);
+    $usuario = ControladorUsuarios::ctrMostrarUsuarios($item, $valor);
 
-                      echo '<td>'.$usuario["nombreusuario"].'</td>
+    echo '<td>' . $usuario["nombreusuario"] . '</td>
 
-                      <td>'.$value["numeroficha"].'</td>
+                      <td>' . $value["numeroficha"] . '</td>
 
-                      <td>'.$value["fechanovedad"].'</td>';
+                      <td>' . $value["fechanovedad"] . '</td>';
 
-                      if($value["estado"] != 0){
+    if ($value["estado"] != 0) {
 
-                        echo '<td><button class="btn btn-success btn-xs ">Activado</button></td>';
+        echo '<td><button class="btn btn-success btn-xs ">Activado</button></td>';
 
-                      }else{
+    } else {
 
-                        echo '<td><button class="btn btn-danger btn-xs ">Desactivado</button></td>';
+        echo '<td><button class="btn btn-danger btn-xs ">Desactivado</button></td>';
 
-                      } 
+    }
 
-                      // <td>'.$value["estado"].'</td>
+    // <td>'.$value["estado"].'</td>
 
-                echo '
+    echo '
 
                     </tr>';
-            }
+}
 
-          ?>
+?>
 
-          
+
         </tbody>
 
        </table>
@@ -144,7 +142,7 @@ $respuesta = ControladorNovedades::ctrMostrarNovedades($item, $valor);
 
 <!-- MODAL AGREGAR APRENDIZ -->
 <div id="modalVerNovedades" class="modal fade" role="dialog">
-  
+
   <div class="modal-dialog">
 
     <div class="modal-content">
@@ -160,9 +158,9 @@ $respuesta = ControladorNovedades::ctrMostrarNovedades($item, $valor);
 
         </div>
 
-       
+
         <div class="modal-body">
-          
+
           <!-- CUERPO DEL MODAL -->
           <div class="box-body">
 
@@ -177,38 +175,38 @@ $respuesta = ControladorNovedades::ctrMostrarNovedades($item, $valor);
                   </tr>
               </thead>
               <tbody>
-                  
-                <?php 
 
-                  $item = null;
-                  $valor = null;
+                <?php
 
-                  $respuesta = ControladorArticulos::ctrMostrarArticuloNovedad($item, $valor);
+$item  = null;
+$valor = null;
 
-                  foreach ($respuesta as $key => $value) {
+$respuesta = ControladorArticulos::ctrMostrarArticuloNovedad($item, $valor);
 
-                    echo '<tr>
-                            
-                            <td style="width:10px">'.$value["idnovedad"].'</td>
+foreach ($respuesta as $key => $value) {
 
-                            <td style="width:10px">'.$value["idarticulo"].'</td>';
+    echo '<tr>
 
-                            $item1 = "IdArticulo";
-                            $valor1 = $value["idarticulo"];
-                            $respuesta1 = ControladorArticulos::ctrMostrarArticulos($item1, $valor1);
+                            <td style="width:10px">' . $value["idnovedad"] . '</td>
 
-                      echo '<td style="width:70px">'.$respuesta1["tipoarticulo"].'</td>
+                            <td style="width:10px">' . $value["idarticulo"] . '</td>';
 
-                            <td style="width:50px">'.$value["tiponovedad"].'</td>
+    $item1      = "IdArticulo";
+    $valor1     = $value["idarticulo"];
+    $respuesta1 = ControladorArticulos::ctrMostrarArticulos($item1, $valor1);
 
-                            <td style="width:150px">'.$value["observacionnovedad"].'</td>
+    echo '<td style="width:70px">' . $respuesta1["tipoarticulo"] . '</td>
+
+                            <td style="width:50px">' . $value["tiponovedad"] . '</td>
+
+                            <td style="width:150px">' . $value["observacionnovedad"] . '</td>
                           </tr>';
-                  }
-                ?>
+}
+?>
 
-              </tbody> 
+              </tbody>
             </table>
-            
+
           </div>
 
         </div>
@@ -219,8 +217,17 @@ $respuesta = ControladorNovedades::ctrMostrarNovedades($item, $valor);
           <button type="button" onclick="salir() " class="btn btn-primary" data-dismiss="modal">Salir</button>
         </a>
         </div>
-        
+
       </form>
     </div>
   </div>
 </div>
+
+ <?php
+
+$programa = ControladorNotificaciones::ctrActualizarNotificaciones();
+echo '<input type="hidden" id="instructor" value="' . $programa . '">';
+
+?>
+
+
