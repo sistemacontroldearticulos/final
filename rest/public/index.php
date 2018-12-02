@@ -10,8 +10,6 @@ if (PHP_SAPI == 'cli-server') {
     }
 }
 
-
-
 // function getConnection()
 // {
 //     $link = new PDO("mysql:host=88.198.24.90;dbname=inventar_proyectofinal", "inventariosadsi", "SETQDnuHgv(_");
@@ -22,11 +20,9 @@ if (PHP_SAPI == 'cli-server') {
 function getConnection()
 {
     $link = new PDO("mysql:host=localhost;dbname=proyectofinal", "root", "");
-       $link->exec("set names utf8");
-       return $link;
+    $link->exec("set names utf8");
+    return $link;
 }
-
-
 
 function login($response)
 {
@@ -228,9 +224,6 @@ function crearNovedad($request)
     // $emp = json_decode($request->getBody());
     $emp = $request->getParams();
 
-
-    
-
     $sql = "INSERT INTO novedad (numdocumentousuario, numeroficha, fechanovedad, articulo, estado) VALUES (:numdocumentousuario, :numeroficha, :fechanovedad, :articulo, :estado)";
     try {
         $db   = getConnection();
@@ -241,7 +234,7 @@ function crearNovedad($request)
         $stmt->bindParam(":articulo", $emp["articulo"]);
         $stmt->bindParam(":estado", $emp["estado"]);
         $stmt->execute();
-        
+
     } catch (PDOException $e) {
         echo '{"error":{"text":' . $e->getMessage() . '}}';
     }
@@ -269,7 +262,7 @@ function articuloNovedad($request)
 
 function cambiarContrasenia($request)
 {
-    $idusuario  = $request->getAttribute('numdocumentousuario');
+    $idusuario = $request->getAttribute('numdocumentousuario');
 
     $emp = $request->getParams();
 
@@ -299,6 +292,28 @@ function registrarActas($request)
         $stmt->bindParam(":idequipo", $emp["idequipo"]);
         $stmt->bindParam(":fechaacta", $emp["fechaacta"]);
         $stmt->bindParam(":numdocumentoinstructor", $emp["numdocumentoinstructor"]);
+        $stmt->execute();
+    } catch (PDOException $e) {
+        echo '{"error":{"text":' . $e->getMessage() . '}}';
+    }
+}
+
+function crearNotificacion($request)
+{
+    // $emp = json_decode($request->getBody());
+    $emp = $request->getParams();
+    print_r($emp);
+
+    $sql = "INSERT INTO notificaciones (numdocumentousuario, tipo, fecha, leido) VALUES (:numdocumentousuario, :tipo, :fecha, :leido)";
+    try {
+        $db   = getConnection();
+        $stmt = $db->prepare($sql);
+
+        $stmt->bindParam(":numdocumentousuario", $emp["numdocumentousuario"]);
+        $stmt->bindParam(":tipo", $emp["tipo"]);
+        $stmt->bindParam(":fecha", $emp["fecha"]);
+        $stmt->bindParam(":leido", $emp["leido"]);
+        print_r($stmt);
         $stmt->execute();
     } catch (PDOException $e) {
         echo '{"error":{"text":' . $e->getMessage() . '}}';

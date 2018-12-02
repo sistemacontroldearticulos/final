@@ -26,6 +26,7 @@ $app->group('/api', function () use ($app) {
     $app->post('/articuloNovedad', 'articuloNovedad');
     $app->put('/cambiarPwd/{numdocumentousuario}', 'cambiarContrasenia');
     $app->post('/actas', 'registrarActas');
+    $app->post('/notificacion', 'crearNotificacion');
     $app->get('/buscarArticulo/{idArticulo}', 'buscarArticulo');
     $app->get('/loginActas/{numDocumento}', 'loginActas');
     $id = '{id}';
