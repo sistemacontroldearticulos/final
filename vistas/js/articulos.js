@@ -1,4 +1,4 @@
-$(".tablas").on("click", ".btnEliminarArticulo", function(){
+$(".tablas").on("click", ".btnEliminarArticulo", function() {
     // debugger;
     var idArticulo = $(this).attr("idArticulo");
     swal({
@@ -9,7 +9,7 @@ $(".tablas").on("click", ".btnEliminarArticulo", function(){
         confirmButtonColor: '#3085d6',
         cancelButtonColor: '#d33',
         cancelButtonText: 'Cancelar',
-        confirmButtonText:  'Si, borrar articulo!'
+        confirmButtonText: 'Si, borrar articulo!'
     }).then((result) => {
         if (result.value) {
             window.location = "index.php?ruta=articulos&idArticulo=" + idArticulo;
@@ -19,7 +19,7 @@ $(".tablas").on("click", ".btnEliminarArticulo", function(){
 /*=============================================
 =            EDITAR ARTICULOS                  =
 =============================================*/
-$(".tablas").on("click", ".btnEditarArticulo", function(){
+$(".tablas").on("click", ".btnEditarArticulo", function() {
     var idArticulo = $(this).attr("idArticulo");
     var datos = new FormData();
     datos.append("idArticulo", idArticulo);
@@ -52,6 +52,8 @@ $(".tablas").on("click", ".btnEditarArticulo", function(){
                 success: function(respuesta) {
                     $("#editarAmbiente").val(respuesta["idambiente"]);
                     // $("#editarAmbiente").html(respuesta["nombreambiente"]);
+                    $("#select2-editarAmbiente-container").val(respuesta["idambiente"]);
+                    $("#select2-editarAmbiente-container").html(respuesta["nombreambiente"]);
                 }
             })
             var idEquipo = $(this).attr("idEquipo");
@@ -68,6 +70,8 @@ $(".tablas").on("click", ".btnEditarArticulo", function(){
                 success: function(respuesta) {
                     // console.log("respuesta", respuesta);
                     $("#editarEquipo").val(respuesta["idequipo"]);
+                    $("#select2-editarEquipo-container").val(respuesta["idequipo"]);
+                    $("#select2-editarEquipo-container").html(respuesta["nombreequipo"]);
                     // $("#editarEquipo").html(respuesta["nombreequipo"]);
                 }
             })
@@ -84,6 +88,8 @@ $(".tablas").on("click", ".btnEditarArticulo", function(){
                 dataType: "json",
                 success: function(respuesta) {
                     $("#editarCategoria").val(respuesta["idcategoria"]);
+                    $("#select2-editarCategoria-container").val(respuesta["idcategoria"]);
+                    $("#select2-editarCategoria-container").html(respuesta["nombrecategoria"]);
                     // $("#editarCategoria").html(respuesta["nombrecategoria"]);
                 }
             })
@@ -95,7 +101,6 @@ $(".tablas").on("click", ".btnEditarArticulo", function(){
         }
     })
 })
-
 /*=========================
 =    VALIDAR SERIAL ARTICULO    =
 =========================*/
@@ -122,7 +127,6 @@ $("#nuevoSerial").change(function() {
         }
     })
 })
-
 /*=========================
 =    VALIDAR INEVTARIO SENA ARTICULO    =
 =========================*/

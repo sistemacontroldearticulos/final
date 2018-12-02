@@ -1,8 +1,7 @@
 /*=============================================
 =            EDITAR AMBIENTE                  =
 =============================================*/
-
-$(".tablas").on("click", ".btnEditarAmbiente", function(){
+$(".tablas").on("click", ".btnEditarAmbiente", function() {
     var idAmbiente = $(this).attr("idAmbiente");
     var datos = new FormData();
     datos.append("idAmbiente", idAmbiente);
@@ -33,6 +32,8 @@ $(".tablas").on("click", ".btnEditarAmbiente", function(){
                 dataType: "json",
                 success: function(respuesta) {
                     $("#EditarPrograma").val(respuesta["idprograma"]);
+                    $("#select2-EditarPrograma-container").val(respuesta["idprograma"]);
+                    $("#select2-EditarPrograma-container").html(respuesta["nombreprograma"]);
                     // $("#EditarPrograma").html(respuesta["nombreprograma"]);
                 }
             })
@@ -42,7 +43,7 @@ $(".tablas").on("click", ".btnEditarAmbiente", function(){
 /*=============================================
 =            ELIMINAR AMBIENTE                  =
 =============================================*/
-$(".tablas").on("click", ".btnEliminarAmbiente", function(){
+$(".tablas").on("click", ".btnEliminarAmbiente", function() {
     var idAmbiente = $(this).attr("idAmbiente");
     swal({
         title: '¿Desea eliminar el ambiente?',
@@ -59,7 +60,6 @@ $(".tablas").on("click", ".btnEliminarAmbiente", function(){
         }
     })
 })
-
 /*=========================
 =    VALIDAR AMBIENTE     =
 =========================*/
@@ -87,4 +87,3 @@ $("#nuevoAmbiente").change(function() {
         }
     })
 })
-

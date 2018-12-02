@@ -34,8 +34,8 @@ $(".nuevaFoto").change(function() {
 /*=============================================
 EDITAR USUARIO
 =============================================*/
-$(".tablas").on("click", ".btnEditarUsuario", function(){
-// $(".btnEditarUsuario").click(function() {
+$(".tablas").on("click", ".btnEditarUsuario", function() {
+    // $(".btnEditarUsuario").click(function() {
     var idUsuario = $(this).attr("NumDocumentoUsuario");
     var datos = new FormData();
     datos.append("idUsuario", idUsuario);
@@ -55,25 +55,29 @@ $(".tablas").on("click", ".btnEditarUsuario", function(){
             // $("#editarPerfil").html(respuesta["rolusuario"]);
             $("#editarPerfil").val(respuesta["rolusuario"]);
             $("#fotoActual").val(respuesta["fotousuario"]);
-            // var datosPrograma = new FormData();
-            // datosPrograma.append("idPrograma", respuesta["idprograma"]);
-            // $.ajax({
-            //     url: "ajax/programas.ajax.php",
-            //     method: "POST",
-            //     data: datosPrograma,
-            //     cache: false,
-            //     contentType: false,
-            //     processData: false,
-            //     dataType: "json",
-            //     success: function(respuesta) {
-            //         if (respuesta == false) {
-            //             $("#editarPrograma").prop('disabled', true)
-            //         } else {
-            //             // $("#editarPrograma").html(respuesta["nombreprograma"]);
-            //             $("#editarPrograma").val(respuesta["idprograma"]);
-            //         }
-            //     }
-            // })
+            var datosPrograma = new FormData();
+            datosPrograma.append("idPrograma", respuesta["idprograma"]);
+            $.ajax({
+                url: "ajax/programas.ajax.php",
+                method: "POST",
+                data: datosPrograma,
+                cache: false,
+                contentType: false,
+                processData: false,
+                dataType: "json",
+                success: function(respuesta) {
+                    console.log(respuesta);
+                    if (respuesta == false) {
+                        $("#editarPrograma").prop('disabled', true)
+                    } else {
+                        // $("#editarPrograma").html(respuesta["nombreprograma"]);
+                        $("#select2-editarPrograma-container").val(respuesta["idprograma"]);
+                        $("#select2-editarPrograma-container").html(respuesta["nombreprograma"]);
+                        $("#editarPrograma").val(respuesta["idprograma"]);
+                        console.log($("#editarPrograma").val());
+                    }
+                }
+            })
             $("#passwordActual").val(respuesta["contraseniausuario"]);
             if (respuesta["fotousuario"] != "") {
                 $(".previsualizar").attr("src", respuesta["fotousuario"]);
