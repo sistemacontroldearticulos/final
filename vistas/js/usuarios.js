@@ -34,8 +34,8 @@ $(".nuevaFoto").change(function() {
 /*=============================================
 EDITAR USUARIO
 =============================================*/
-$(".tablas").on("click", ".btnEditarUsuario", function(){
-// $(".btnEditarUsuario").click(function() {
+$(".tablas").on("click", ".btnEditarUsuario", function() {
+    // $(".btnEditarUsuario").click(function() {
     var idUsuario = $(this).attr("NumDocumentoUsuario");
     var datos = new FormData();
     datos.append("idUsuario", idUsuario);
@@ -66,6 +66,7 @@ $(".tablas").on("click", ".btnEditarUsuario", function(){
                 processData: false,
                 dataType: "json",
                 success: function(respuesta) {
+                    console.log(respuesta);
                     if (respuesta == false) {
                         $("#editarPrograma").prop('disabled', true)
                     } else {
@@ -73,6 +74,7 @@ $(".tablas").on("click", ".btnEditarUsuario", function(){
                         $("#select2-editarPrograma-container").val(respuesta["idprograma"]);
                         $("#select2-editarPrograma-container").html(respuesta["nombreprograma"]);
                         $("#editarPrograma").val(respuesta["idprograma"]);
+                        console.log($("#editarPrograma").val());
                     }
                 }
             })
@@ -147,9 +149,6 @@ function rolUsuario2(sel) {
         $("#editarPrograma").prop('disabled', false);
     }
 }
-
-
 // $(".btnEditarUsuario1").change(function(){
-
 //     debugger;
 // })

@@ -328,6 +328,7 @@ class ControladorUsuarios
                 } else {
                     $programa = $_POST["editarPrograma"];
                 }
+                print_r($programa);
 
                 $datos = array("NumDocumentoUsuario" => $_POST["editarDocumento"],
                     "NombreUsuario"                      => $editarNombre,
@@ -336,7 +337,7 @@ class ControladorUsuarios
                     "FotoUsuario"                        => $ruta,
                     "IdPrograma"                         => $programa);
 
-                // var_dump($datos["RolUsuario"]);
+                var_dump($datos["RolUsuario"]);
 
                 if ($datos["RolUsuario"] != "ADMINISTRADOR" && $datos["IdPrograma"] == null) {
 

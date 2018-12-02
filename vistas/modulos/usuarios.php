@@ -438,7 +438,7 @@ $crearUsuario->ctrCrearUsuario();
                     $programas = ControladorProgramas::ctrMostrarProgramas($item, $valor);
 
                     foreach ($programas as $key => $value) {
-                        echo '<option value="' . $value["idprograma"] . '">' . $value["nombreprograma"] . '</option>';
+                        echo '<option id=editarPrograma1 value="' . $value["idprograma"] . '">' . $value["nombreprograma"] . ' </option>';
                     }
 
                     ?>

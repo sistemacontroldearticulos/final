@@ -33,12 +33,28 @@ $(".tablas").on("click", ".btnEditarEquipo", function() {
         processData: false,
         dataType: "json",
         success: function(respuesta) {
-            console.log("respuesta", respuesta);
             nombre = respuesta["nombreequipo"];
             $("#editarEquipo").val(respuesta["nombreequipo"]);
             $("#idEquipo").val(respuesta["idequipo"]);
             $("#editarEstado").val(respuesta["estadoequipo"]);
-            $("#editarAmbienteEquipo").val(respuesta["idambiente"]);
+            var idAmbiente = respuesta["idambiente"];
+            var datosAmbiente = new FormData();
+            datosAmbiente.append("idAmbiente", respuesta["idambiente"]);
+            $.ajax({
+                url: "ajax/ambientesAjax.php",
+                method: "POST",
+                data: datosAmbiente,
+                cache: false,
+                contentType: false,
+                processData: false,
+                dataType: "json",
+                success: function(respuesta) {
+                    console.log(respuesta);
+                    $(".select2-selection__rendered").val(respuesta["idambiente"]);
+                    $(".select2-selection__rendered").html(respuesta["nombreambiente"]);
+                    $("#editarAmbienteEquipo").val(respuesta["idambiente"]);
+                }
+            })
             $("#editarCantidad").val(respuesta["numarticulosequipo"]);
             $("#editarObservacion").val(respuesta["observacionequipo"]);
             $("#agregados").val(respuesta["numarticulosagregados"]);

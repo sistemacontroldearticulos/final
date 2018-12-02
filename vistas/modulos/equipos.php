@@ -343,7 +343,7 @@ MODAL EDITAR EQUIPO
                     <img src="vistas/img/plantilla/modal/ambientes.png" width="15px">
                   </span>
 
-                  <select class="form-control select2 input-lg" name="editarAmbienteEquipo" style="width: 100%" required>
+                  <select class="form-control select2 input-lg" name="editarAmbienteEquipo" id="editarAmbienteEquipo" style="width: 100%" required>
                     <option value="">Sin Ambiente</option>
                       <?php
 
