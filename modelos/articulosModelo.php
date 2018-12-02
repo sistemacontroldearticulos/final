@@ -1,100 +1,99 @@
-<?php 
+<?php
 require_once "conexion.php";
 class ModeloArticulos
 {
-	static public function mdlCrearArticulo($tabla, $datos)
-	{
+    public static function mdlCrearArticulo($tabla, $datos)
+    {
 
-		$stmt= Conexion::conectar()->prepare("INSERT INTO $tabla (IdAmbiente, IdEquipo, IdCategoria, TipoArticulo, ModeloArticulo, MarcaArticulo, CaracteristicaArticulo, EstadoArticulo, NumInventarioSena, SerialArticulo) VALUES (:IdAmbiente, :IdEquipo, :IdCategoria, :TipoArticulo, :ModeloArticulo, :MarcaArticulo, :CaracteristicaArticulo, :EstadoArticulo, :NumInventarioSena, :SerialArticulo)");
+        $stmt = Conexion::conectar()->prepare("INSERT INTO $tabla (IdAmbiente, IdEquipo, IdCategoria, TipoArticulo, ModeloArticulo, MarcaArticulo, CaracteristicaArticulo, EstadoArticulo, NumInventarioSena, SerialArticulo) VALUES (:IdAmbiente, :IdEquipo, :IdCategoria, :TipoArticulo, :ModeloArticulo, :MarcaArticulo, :CaracteristicaArticulo, :EstadoArticulo, :NumInventarioSena, :SerialArticulo)");
 
-		$stmt->bindParam(":IdAmbiente", $datos["IdAmbiente"], PDO::PARAM_STR);
-		$stmt->bindParam(":IdEquipo", $datos["IdEquipo"], PDO::PARAM_STR);
-		$stmt->bindParam(":IdCategoria", $datos["IdCategoria"], PDO::PARAM_STR);
-		$stmt->bindParam(":TipoArticulo", $datos["TipoArticulo"], PDO::PARAM_STR);
-		$stmt->bindParam(":ModeloArticulo", $datos["ModeloArticulo"], PDO::PARAM_STR);
-		$stmt->bindParam(":MarcaArticulo", $datos["MarcaArticulo"], PDO::PARAM_STR);
-		$stmt->bindParam(":CaracteristicaArticulo", $datos["CaracteristicaArticulo"], PDO::PARAM_STR);
-		$stmt->bindParam(":EstadoArticulo", $datos["EstadoArticulo"], PDO::PARAM_STR);
-		$stmt->bindParam(":NumInventarioSena", $datos["NumInventarioSena"], PDO::PARAM_STR);
-		$stmt->bindParam(":SerialArticulo", $datos["SerialArticulo"], PDO::PARAM_STR);
-		if($stmt->execute())
-		{
-			return "ok";
-		}
-		else
-		{
-			return "error";
-		}
-		$stmt->close();
-		$stmt=null;
-	}
+        $stmt->bindParam(":IdAmbiente", $datos["IdAmbiente"], PDO::PARAM_STR);
+        $stmt->bindParam(":IdEquipo", $datos["IdEquipo"], PDO::PARAM_STR);
+        $stmt->bindParam(":IdCategoria", $datos["IdCategoria"], PDO::PARAM_STR);
+        $stmt->bindParam(":TipoArticulo", $datos["TipoArticulo"], PDO::PARAM_STR);
+        $stmt->bindParam(":ModeloArticulo", $datos["ModeloArticulo"], PDO::PARAM_STR);
+        $stmt->bindParam(":MarcaArticulo", $datos["MarcaArticulo"], PDO::PARAM_STR);
+        $stmt->bindParam(":CaracteristicaArticulo", $datos["CaracteristicaArticulo"], PDO::PARAM_STR);
+        $stmt->bindParam(":EstadoArticulo", $datos["EstadoArticulo"], PDO::PARAM_STR);
+        $stmt->bindParam(":NumInventarioSena", $datos["NumInventarioSena"], PDO::PARAM_STR);
+        $stmt->bindParam(":SerialArticulo", $datos["SerialArticulo"], PDO::PARAM_STR);
+        if ($stmt->execute()) {
+            return "ok";
+        } else {
+            return "error";
+        }
+        $stmt->close();
+        $stmt = null;
+    }
 
-	static public function mdlMostrarArticulos($tabla, $item, $valor){
+    public static function mdlMostrarArticulos($tabla, $item, $valor)
+    {
 
-		if($item != null){
+        if ($item != null) {
 
-			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
+            $stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+            $stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+            $stmt->execute();
 
-			return $stmt -> fetch();
+            return $stmt->fetch();
 
-		}else{
+        } else {
 
-			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla");
+            $stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla");
 
-			$stmt -> execute();
+            $stmt->execute();
 
-			return $stmt -> fetchAll();
+            return $stmt->fetchAll();
 
-		}
+        }
 
-		$stmt -> close();
+        $stmt->close();
 
-		$stmt = null;
-	}
+        $stmt = null;
+    }
 
-static public function mdlBorrarArticulos($tabla, $datos){
+    public static function mdlBorrarArticulos($tabla, $datos)
+    {
 
-		$stmt = Conexion::conectar()->prepare("DELETE FROM $tabla WHERE idarticulo = :idarticulo");
+        $stmt = Conexion::conectar()->prepare("DELETE FROM $tabla WHERE idarticulo = :idarticulo");
 
-		$stmt -> bindParam(":idarticulo", $datos, PDO::PARAM_INT);
+        $stmt->bindParam(":idarticulo", $datos, PDO::PARAM_INT);
 
-		if($stmt -> execute()){
+        if ($stmt->execute()) {
 
-			return "ok";
-		
-		}else{
+            return "ok";
 
-			return "error";	
+        } else {
 
-		}
+            return "error";
 
-		$stmt -> close();
+        }
 
-		$stmt = null;
+        $stmt->close();
 
-	}
+        $stmt = null;
 
-	// EDITAR ARTICULO
-    static public function mdlEditarArticulo($tabla, $datos)
+    }
+
+    // EDITAR ARTICULO
+    public static function mdlEditarArticulo($tabla, $datos)
     {
         $stmt = Conexion::conectar()->prepare(" UPDATE $tabla SET TipoArticulo = :TipoArticulo, MarcaArticulo = :MarcaArticulo, ModeloArticulo = :ModeloArticulo, NumInventarioSena = :NumInventarioSena, SerialArticulo =:SerialArticulo, EstadoArticulo = :EstadoArticulo, IdAmbiente = :IdAmbiente, IdCategoria = :IdCategoria, CaracteristicaArticulo = :CaracteristicaArticulo, IdEquipo = :IdEquipo WHERE IdArticulo=:IdArticulo ");
 
-            $stmt->bindParam(":IdArticulo", $datos["IdArticulo"], PDO::PARAM_STR);
-            $stmt->bindParam(":TipoArticulo", $datos["TipoArticulo"], PDO::PARAM_STR);
-            $stmt->bindParam(":MarcaArticulo", $datos["MarcaArticulo"], PDO::PARAM_STR);
-            $stmt->bindParam(":ModeloArticulo", $datos["ModeloArticulo"], PDO::PARAM_STR);
-            $stmt->bindParam(":NumInventarioSena", $datos["NumInventarioSena"], PDO::PARAM_STR);
-            $stmt->bindParam(":SerialArticulo", $datos["SerialArticulo"], PDO::PARAM_STR);
-            $stmt->bindParam(":EstadoArticulo", $datos["EstadoArticulo"], PDO::PARAM_STR);
-            $stmt->bindParam(":IdAmbiente", $datos["IdAmbiente"], PDO::PARAM_STR);
-            $stmt->bindParam(":IdCategoria", $datos["IdCategoria"], PDO::PARAM_STR);
-            $stmt->bindParam(":CaracteristicaArticulo", $datos["CaracteristicaArticulo"], PDO::PARAM_STR);
-            $stmt->bindParam(":IdEquipo", $datos["IdEquipo"], PDO::PARAM_STR);
-            
+        $stmt->bindParam(":IdArticulo", $datos["IdArticulo"], PDO::PARAM_STR);
+        $stmt->bindParam(":TipoArticulo", $datos["TipoArticulo"], PDO::PARAM_STR);
+        $stmt->bindParam(":MarcaArticulo", $datos["MarcaArticulo"], PDO::PARAM_STR);
+        $stmt->bindParam(":ModeloArticulo", $datos["ModeloArticulo"], PDO::PARAM_STR);
+        $stmt->bindParam(":NumInventarioSena", $datos["NumInventarioSena"], PDO::PARAM_STR);
+        $stmt->bindParam(":SerialArticulo", $datos["SerialArticulo"], PDO::PARAM_STR);
+        $stmt->bindParam(":EstadoArticulo", $datos["EstadoArticulo"], PDO::PARAM_STR);
+        $stmt->bindParam(":IdAmbiente", $datos["IdAmbiente"], PDO::PARAM_STR);
+        $stmt->bindParam(":IdCategoria", $datos["IdCategoria"], PDO::PARAM_STR);
+        $stmt->bindParam(":CaracteristicaArticulo", $datos["CaracteristicaArticulo"], PDO::PARAM_STR);
+        $stmt->bindParam(":IdEquipo", $datos["IdEquipo"], PDO::PARAM_STR);
+
         if ($stmt->execute()) {
             return "ok";
 
@@ -105,100 +104,104 @@ static public function mdlBorrarArticulos($tabla, $datos){
         $stmt = null;
     }
 
+    public static function mdlMostrarArticulosEquipo($tabla, $item, $valor)
+    {
 
-static public function mdlMostrarArticulosEquipo($tabla, $item, $valor){
+        if ($item != null) {
 
-	if($item != null){
+            $stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-		$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
+            $stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-		$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+            $stmt->execute();
 
-		$stmt -> execute();
+            return $stmt->fetchAll();
 
-		return $stmt -> fetchAll();
+        }
 
-	}
+        $stmt->close();
 
-	$stmt -> close();
+        $stmt = null;
+    }
 
-	$stmt = null;
-}
-	
-	// MOSTRAR ARTICULOS NOVEDAD
-	static public function mdlMostrarArticuloNovedad($tabla, $item, $valor){
+    // MOSTRAR ARTICULOS NOVEDAD
+    public static function mdlMostrarArticuloNovedad($tabla, $item, $valor)
+    {
 
-		if($item != null){
+        if ($item != null) {
 
-			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
+            $stmt = Conexion::conectar()->prepare("SELECT articulonovedad.*, articulo.tipoarticulo FROM $tabla
+			join articulo on (articulonovedad.idarticulo=articulo.idarticulo) WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+            $stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+            $stmt->execute();
 
-			return $stmt -> fetchAll();
+            return $stmt->fetchAll();
 
-		}else{
+        } else {
 
-			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla");
+            $stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla");
 
-			$stmt -> execute();
+            $stmt->execute();
 
-			return $stmt -> fetchAll();
+            return $stmt->fetchAll();
 
-		}
+        }
 
-		$stmt -> close();
+        $stmt->close();
 
-		$stmt = null;
-	}
+        $stmt = null;
+    }
 
-	static public function mdlMostrarArticulosEquipo1($tabla, $item, $valor){
+    public static function mdlMostrarArticulosEquipo1($tabla, $item, $valor)
+    {
 
-	if($item != null){
+        if ($item != null) {
 
-		$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
+            $stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-		$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+            $stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-		$stmt -> execute();
+            $stmt->execute();
 
-		return $stmt -> fetchAll();
+            return $stmt->fetchAll();
 
-	}
+        }
 
-	$stmt -> close();
+        $stmt->close();
 
-	$stmt = null;
-}
-	
+        $stmt = null;
+    }
 
-	// MOSTRAR PERDIDOS
-	static public function perdidos(){
+    // MOSTRAR PERDIDOS
+    public static function perdidos()
+    {
 
-		$stmt = Conexion::conectar()->prepare("SELECT COUNT(*) FROM articulo WHERE estadoarticulo like '%PERDIDO%'");
-		$stmt -> execute();
-		return $stmt -> fetch();
+        $stmt = Conexion::conectar()->prepare("SELECT COUNT(*) FROM articulo WHERE estadoarticulo like '%PERDIDO%'");
+        $stmt->execute();
+        return $stmt->fetch();
 
-	}
+    }
 
-	// MOSTRAR ACTIVOS
-	static public function activos(){
+    // MOSTRAR ACTIVOS
+    public static function activos()
+    {
 
-		$stmt = Conexion::conectar()->prepare("SELECT COUNT(*) FROM articulo WHERE estadoarticulo like '%ACTIVO%'");
-		$stmt -> execute();
-		return $stmt -> fetch();
+        $stmt = Conexion::conectar()->prepare("SELECT COUNT(*) FROM articulo WHERE estadoarticulo like '%ACTIVO%'");
+        $stmt->execute();
+        return $stmt->fetch();
 
-	}
+    }
 
-	// MOSTRAR DAÑADOS
-	static public function daniado(){
+    // MOSTRAR DAÑADOS
+    public static function daniado()
+    {
 
-		$stmt = Conexion::conectar()->prepare("SELECT COUNT(*) FROM articulo WHERE estadoarticulo like '%DAÑADO%'");
-		$stmt -> execute();
-		return $stmt -> fetch();
+        $stmt = Conexion::conectar()->prepare("SELECT COUNT(*) FROM articulo WHERE estadoarticulo like '%DAÑADO%'");
+        $stmt->execute();
+        return $stmt->fetch();
 
-	}
-
+    }
 
 }

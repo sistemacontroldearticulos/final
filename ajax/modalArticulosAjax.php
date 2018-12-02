@@ -1,31 +1,31 @@
-<?php 
+<?php
 
 require_once "../controladores/articulosControlador.php";
 require_once "../controladores/novedadesControlador.php";
 require_once "../modelos/articulosModelo.php";
 require_once "../modelos/novedadesModelo.php";
 
+class ModalArticulos
+{
 
+    public $idnovedad;
 
-class ModalArticulos{
+    public function mostrarTabla()
+    {
 
-	public $idnovedad;
+        $item  = "idnovedad";
+        $valor = $this->idnovedad;
 
-	public function mostrarTabla(){
+        $respuesta = ControladorArticulos::ctrMostrarArticuloNovedad($item, $valor);
 
-		$item = "idnovedad";
-	    $valor = $this->idnovedad;
+        echo json_encode($respuesta);
 
-	    $respuesta = ControladorArticulos::ctrMostrarArticuloNovedad($item, $valor);
-
-	    echo json_encode($respuesta);
-
-	}
+    }
 }
 
 if (isset($_POST["id"])) {
-	
-	$activar = new ModalArticulos();
-	$activar -> idnovedad = $_POST["id"];
-	$activar -> mostrarTabla();
+
+    $activar            = new ModalArticulos();
+    $activar->idnovedad = $_POST["id"];
+    $activar->mostrarTabla();
 }

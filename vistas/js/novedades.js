@@ -288,6 +288,9 @@ $(".btnBuscar2").click(function() {
         processData: false,
         dataType: "json",
         success: function(respuesta) {
+            debugger;
+
+            console.log(respuesta);
 
             $(".tablaModalArticulos td").remove();
 
@@ -297,7 +300,7 @@ $(".btnBuscar2").click(function() {
                 respuesta[i]["idnovedad"] + "</td><td>" +
                 respuesta[i]["idarticulo"] + "</td><td>" +
                 respuesta[i]["tiponovedad"] + "</td><td>" +
-                "aqui va el nombre del articulo" + "</td><td>" +
+                respuesta[i]["tipoarticulo"] + "</td><td>" +
                 respuesta[i]["observacionnovedad"] + "</td></tr>"
 
                 $(".tablaModalArticulos").append(nuevafila)
