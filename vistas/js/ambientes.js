@@ -31,9 +31,9 @@ $(".tablas").on("click", ".btnEditarAmbiente", function() {
                 processData: false,
                 dataType: "json",
                 success: function(respuesta) {
-                    $("#EditarPrograma").val(respuesta["idprograma"]);
-                    $("#select2-EditarPrograma-container").val(respuesta["idprograma"]);
-                    $("#select2-EditarPrograma-container").html(respuesta["nombreprograma"]);
+                    $(".select2-selection__rendered").val(respuesta["idprograma"]);
+                    $(".select2-selection__rendered").html(respuesta["nombreprograma"]);
+                    $("#idPrograma").val(respuesta["idprograma"]);
                     // $("#EditarPrograma").html(respuesta["nombreprograma"]);
                 }
             })
