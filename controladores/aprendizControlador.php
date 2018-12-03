@@ -87,39 +87,7 @@ class ControladorAprendiz{
         }
   }
 
-  /*=============================================
-  ELIMINAR APRENDIZ
-  =============================================*/
-  // static public function ctrBorrarAprendiz(){
-
-  //   // $documento = $_POST["documento"];
-  //   // var_dump($documento);
-
-  //     if (isset($_GET["NumDocumentoAprendiz"])) {
-
-  //         $tabla = "aprendiz";
-  //         $datos = $_GET["NumDocumentoAprendiz"];
-
-  //         $respuesta = ModeloAprendiz::mdlBorrarAprendiz($tabla, $datos);
-
-  //         if ($respuesta == "ok") {
-
-  //             echo '<script>
-  //                         swal({
-  //                                 type:"success",
-  //                                 title:"El aprendiz ha sido borrado correctamente",
-  //                                 showConfirmButton: true,
-  //                                 confirmButtonText: "Cerrar",
-  //                                 closeOnConfirm:false
-  //                             }).then((result)=>{
-  //                                 if(result.value){
-  //                                     window.location ="fichas";
-  //                                 }
-  //                         })
-  //                 </script>';
-  //         }
-  //     }
-  // }
+  
 
   /*=============================================
   EDITAR APRENDIZ

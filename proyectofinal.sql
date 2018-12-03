@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 03-12-2018 a las 01:11:29
+-- Tiempo de generación: 04-12-2018 a las 00:05:12
 -- Versión del servidor: 10.1.34-MariaDB
 -- Versión de PHP: 7.2.7
 
@@ -35,6 +35,14 @@ CREATE TABLE `actacompromiso` (
   `fechalimite` text COLLATE utf8_bin NOT NULL,
   `idarticulo` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+--
+-- Volcado de datos para la tabla `actacompromiso`
+--
+
+INSERT INTO `actacompromiso` (`idacta_compromiso`, `idacta_responsabilidad`, `fechacreacion`, `fechalimite`, `idarticulo`) VALUES
+(1, 1, '2018-12-02 20:27:18', '11/11/2011', 6),
+(2, 1, '2018-12-03 00:31:03', '12/09/2018', 7);
 
 -- --------------------------------------------------------
 
@@ -98,24 +106,16 @@ CREATE TABLE `aprendiz` (
 --
 
 INSERT INTO `aprendiz` (`numdocumentoaprendiz`, `numeroficha`, `nombreaprendiz`, `telefonoaprendiz`, `emailaprendiz`) VALUES
-(10, 1493990, 'Melany Alejandra Rojas Troyano ', 3265974231, 'sakdjhaskdjs@gmail.com'),
 (11, 1493990, ' Alejandra Rojas Troyano Lopez', 3265974232, 'sakdjhaskdjs@gmail.com'),
-(12, 1493990, 'Karen Molina Cobo ', 3265974233, 'sakdjhaskdjs@gmail.com'),
 (13, 1493990, 'Daniel Yordanier Valencia Troyano ', 3265974234, 'sakdjhaskdjs@gmail.com'),
 (15, 1493990, ' Danny Peña ', 3265974236, 'sakdjhaskdjs@gmail.com'),
 (16, 1493990, 'Mariana Bolaños', 3265974237, 'sakdjhaskdjs@gmail.com'),
 (17, 1493990, 'Tatiana Riascos', 3265974238, 'sakdjhaskdjs@gmail.com'),
-(18, 1493990, 'Melany Alejandra Rojas Troyano ', 3265974239, 'sakdjhaskdjs@gmail.com'),
 (141, 1493990, 'Nare Alejandro Manquillo Cobo', 3265974235, 'sakdjhaskdjs@gmail.com'),
-(1232132, 1493994, 'Melany Alejandra Rojas Troyano ', 3265974231, 'sakdjhaskdjs@gmail.com'),
-(11234352, 1493994, 'Daniel Yordanier Valencia Troyano ', 3265974234, 'sakdjhaskdjs@gmail.com'),
-(54665757, 1493994, ' Danny Peña ', 3265974236, 'sakdjhaskdjs@gmail.com'),
 (145645642, 1493994, ' Alejandra Rojas Troyano Lopez', 3265974232, 'sakdjhaskdjs@gmail.com'),
 (345345243, 1493994, 'Mariana Bolaños', 3265974237, 'sakdjhaskdjs@gmail.com'),
-(354646242, 1493994, 'Nare Alejandro Manquillo Cobo', 3265974235, 'sakdjhaskdjs@gmail.com'),
 (789789792, 1493994, 'Karen Molina Cobo ', 3265974233, 'sakdjhaskdjs@gmail.com'),
-(1279878762, 1493994, 'Tatiana Riascos', 3265974238, 'sakdjhaskdjs@gmail.com'),
-(14563464354, 1493994, 'Melany Alejandra Rojas Troyano ', 3265974239, 'sakdjhaskdjs@gmail.com');
+(1279878762, 1493994, 'Tatiana Riascos', 3265974238, 'sakdjhaskdjs@gmail.com');
 
 -- --------------------------------------------------------
 
@@ -142,8 +142,8 @@ CREATE TABLE `articulo` (
 --
 
 INSERT INTO `articulo` (`idarticulo`, `idambiente`, `idequipo`, `idcategoria`, `tipoarticulo`, `modeloarticulo`, `marcaarticulo`, `caracteristicaarticulo`, `estadoarticulo`, `numinventariosena`, `serialarticulo`) VALUES
-(4, 6, 1, 1, 'MOUSE', 'SFDS54', 'ACER', NULL, 'DAÑADO', '123Z', '7898x'),
-(5, 6, 1, 1, 'CPU', NULL, NULL, NULL, 'DAÑADO', '', ''),
+(4, 6, 4, 1, 'MOUSE', 'SSSSSS', 'ACER', '', 'DAÑADO', '123Z', '7898x'),
+(5, 6, 1, 1, 'CPU', NULL, NULL, NULL, 'PERDIDO', '', ''),
 (6, 6, 1, 1, 'TECLADO', '54132', NULL, NULL, 'DAÑADO', '31212', ''),
 (7, 6, 1, 1, 'MONITOR', 'SDSDAS', 'HP', NULL, 'DAÑADO', '', 'asdsa'),
 (8, 7, 3, 1, 'MOUSE ', '32132', 'HP', NULL, 'ACTIVO', 'zxcz', 'zxcz'),
@@ -152,7 +152,8 @@ INSERT INTO `articulo` (`idarticulo`, `idambiente`, `idequipo`, `idcategoria`, `
 (11, 8, 2, 1, 'MONITOR', '2321', 'LG', NULL, 'DAÑADO', '', 'dasd2'),
 (12, 8, 2, 1, 'TECLADO', 'ASDSAD', 'ASDASD', NULL, 'PERDIDO', 'assad', 'asdas'),
 (13, 8, 2, 1, 'CPU', 'ADASDAS', NULL, NULL, 'PERDIDO', '324234', 'asdas'),
-(14, 7, 3, 1, 'MONITOR', 'ADSADA', 'SASA', '', 'ACTIVO', '', '');
+(14, 7, 3, 1, 'MONITOR', 'ADSADA', 'SASA', '', 'ACTIVO', '', ''),
+(15, 6, 1, 1, '123', '123', '123', '1321', 'ACTIVO', '123', '123');
 
 -- --------------------------------------------------------
 
@@ -173,11 +174,8 @@ CREATE TABLE `articulonovedad` (
 --
 
 INSERT INTO `articulonovedad` (`idarticulo`, `idnovedad`, `tiponovedad`, `observacionnovedad`, `fotonovedad`) VALUES
-(4, 50, 'DAÑADO', '', NULL),
-(5, 56, 'DAÑADO', '', NULL),
-(7, 57, 'PERDIDIO', '', NULL),
-(11, 58, 'DAÑADO', '', NULL),
-(12, 58, 'PERDIDO', '', NULL);
+(4, 60, 'DAÑADO', 'dfsfsf', 'vistas/img/usuarios/default/articulo.png'),
+(5, 60, 'PERDIDO', '', 'vistas/img/usuarios/default/articulo.png');
 
 -- --------------------------------------------------------
 
@@ -218,9 +216,11 @@ CREATE TABLE `equipo` (
 --
 
 INSERT INTO `equipo` (`idequipo`, `nombreequipo`, `estadoequipo`, `numarticulosequipo`, `observacionequipo`, `numarticulosagregados`, `idambiente`) VALUES
-(1, 'A20', 'ACTIVADO', '4', '', '4', 6),
+(1, 'A20', 'ACTIVADO', '4', '', '4', NULL),
 (2, 'D01', 'ACTIVADO', '3', '', '3', NULL),
-(3, 'I33', 'DESACTIVADO', '6', 'EL EQUIPO PRESENTA UN GOLPE EN LA ESQUINA SUPERIOR DERECHA DE LA PANTALLA', '4', NULL);
+(3, 'I33', 'DESACTIVADO', '6', 'EL EQUIPO PRESENTA UN GOLPE EN LA ESQUINA SUPERIOR DERECHA DE LA PANTALLA', '4', NULL),
+(4, 'A21', 'ACTIVADO', '7', '', '1', NULL),
+(5, 'C30', 'ACTIVADO', '8', 'KDSHFKDSJFK', '0', 6);
 
 -- --------------------------------------------------------
 
@@ -287,10 +287,7 @@ CREATE TABLE `novedad` (
 --
 
 INSERT INTO `novedad` (`idnovedad`, `numdocumentousuario`, `numeroficha`, `fechanovedad`, `articulo`, `estado`) VALUES
-(50, 777, 1493990, '2018-10-02 12:03:27', NULL, 1),
-(56, 123, 1493990, '2018-11-02 18:15:32', NULL, 1),
-(57, 123, 1493990, '2018-12-02 18:16:51', NULL, 1),
-(58, 123, 1493994, '2018-12-02 19:08:35', NULL, 1);
+(60, 123, 1493990, '2018-12-03 00:19:34', NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -335,7 +332,6 @@ CREATE TABLE `usuario` (
 
 INSERT INTO `usuario` (`numdocumentousuario`, `idprograma`, `nombreusuario`, `contraseniausuario`, `rolusuario`, `fotousuario`) VALUES
 (123, NULL, 'ADMINISTRADOR', 'c7ad44cbad762a5da0a452f9e854fdc1e0e7a52a38015f23f3eab1d80b931dd472634dfac71cd34ebc35d16ab7fb8a90c81f975113d6c7538dc69dd8de9077ec', 'ADMINISTRADOR', ''),
-(444, NULL, 'DANIEL', 'a5e4209e841321ae706ee84b94b38088a18acc7643250e4bb0af543c9d7599a0854c8e08c2283ec0ee338806cca171206340a510c5c406beb6ec3b6f18150c4b', 'ADMINISTRADOR', 'vistas/img/usuarios/444/223.jpg'),
 (777, 5, 'INSTRUCTOR ', '093763d6b1457e9fb44eeb346737783ad13bb739370d4a7d42d9cade8da9040b8c64e525aa0f2afde2dd5a98e763fbde69a679098603083c6a76fa2f66aa1188', 'INSTRUCTOR', 'vistas/img/usuarios/777/899.png'),
 (888, 6, 'ESPECIAL', 'bb602aa6ebb8decd4a7293b1c428cf4889df083d0984378ceefc600a371ac96de20ed1fbc8adf3baa8e63a28d20b750b1dd2512c51cf78490b602b5bc50e47c1', 'ESPECIAL', 'vistas/img/usuarios/888/852.png');
 
@@ -448,13 +444,13 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT de la tabla `actacompromiso`
 --
 ALTER TABLE `actacompromiso`
-  MODIFY `idacta_compromiso` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idacta_compromiso` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de la tabla `acta_responsabilidad`
 --
 ALTER TABLE `acta_responsabilidad`
-  MODIFY `idacta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `idacta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `ambiente`
@@ -466,7 +462,7 @@ ALTER TABLE `ambiente`
 -- AUTO_INCREMENT de la tabla `articulo`
 --
 ALTER TABLE `articulo`
-  MODIFY `idarticulo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `idarticulo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT de la tabla `categoria`
@@ -478,7 +474,7 @@ ALTER TABLE `categoria`
 -- AUTO_INCREMENT de la tabla `equipo`
 --
 ALTER TABLE `equipo`
-  MODIFY `idequipo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `idequipo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de la tabla `notificaciones`
@@ -490,7 +486,7 @@ ALTER TABLE `notificaciones`
 -- AUTO_INCREMENT de la tabla `novedad`
 --
 ALTER TABLE `novedad`
-  MODIFY `idnovedad` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=59;
+  MODIFY `idnovedad` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
 
 --
 -- AUTO_INCREMENT de la tabla `programa`

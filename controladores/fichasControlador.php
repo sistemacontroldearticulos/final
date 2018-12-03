@@ -7,37 +7,41 @@ class ControladorFichas
 =                    CREAR FICHA                 =
 =============================================*/
 
-static public function ctrBorrarAprendiz(){
+  static public function ctrBorrarAprendiz(){
 
     // $documento = $_POST["documento"];
 
-      if (isset($_GET["NumDocumentoAprendiz"])) {
+    if (isset($_GET["NumDocumentoAprendiz"])) {
 
-          $tabla = "aprendiz";
-          $datos = $_GET["NumDocumentoAprendiz"];
-          
+      $tabla = "aprendiz";
+      $datos = $_GET["NumDocumentoAprendiz"];
 
-          $respuesta = ModeloAprendiz::mdlBorrarAprendiz($tabla, $datos);
-          
+      $item = "numdocumentoaprendiz";
+      $actaResponsabilidad = ControladorActas::ctrEliminarActaResponsabilidad($datos);
 
-          if ($respuesta == "ok") {
+      if ($actaResponsabilidad == "ok") {
+        
+        $respuesta = ModeloAprendiz::mdlBorrarAprendiz($tabla, $datos);
 
-              echo '<script>
-                          swal({
-                                  type:"success",
-                                  title:"El aprendiz ha sido borrado correctamente",
-                                  showConfirmButton: true,
-                                  confirmButtonText: "Cerrar",
-                                  closeOnConfirm:false
-                              }).then((result)=>{
-                                  if(result.value){
-                                      window.location ="fichas";
-                                  }
-                          })
-                  </script>';
-          }
+        if ($respuesta == "ok") {
+
+            echo '<script>
+                        swal({
+                                type:"success",
+                                title:"El aprendiz ha sido borrado correctamente",
+                                showConfirmButton: true,
+                                confirmButtonText: "Cerrar",
+                                closeOnConfirm:false
+                            }).then((result)=>{
+                                if(result.value){
+                                    window.location ="fichas";
+                                }
+                        })
+                </script>';
+        }
       }
-      }
+    }
+  }
 
     static public function ctrAgregarFichas()
     {
