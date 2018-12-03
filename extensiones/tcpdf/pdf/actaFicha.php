@@ -490,9 +490,10 @@ $bloque5 = <<<EOF
 		
 
 		<tr>
-			<td style="border-bottom: 1px solid #000; background-color:white; width:200px; height:80px "></td>
+			<td style="border-bottom: 1px solid #000; background-color:white; width:200px; height:50px "></td>
 	
 			<td style=" background-color:white; width:140px"></td>
+
 		
 			
 		</tr>

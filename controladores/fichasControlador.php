@@ -15,8 +15,10 @@ static public function ctrBorrarAprendiz(){
 
           $tabla = "aprendiz";
           $datos = $_GET["NumDocumentoAprendiz"];
+          
 
           $respuesta = ModeloAprendiz::mdlBorrarAprendiz($tabla, $datos);
+          
 
           if ($respuesta == "ok") {
 

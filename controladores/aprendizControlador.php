@@ -25,8 +25,7 @@ class ControladorAprendiz{
 	CREAR APRENDIZ
 	=============================================*/
 	static public function ctrCrearAprendiz(){
-    	// $ficha = $_GET["ficha"];
-    	// var_dump($ficha);
+    	
         if (isset($_POST["nuevoAprendiz"])) {
 
             if (preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["nuevoAprendiz"]) &&
@@ -42,8 +41,7 @@ class ControladorAprendiz{
 		                    "telefonoaprendiz"    => $_POST["nuevoTelefonoAprendiz"],
 		                    "emailaprendiz" => $_POST["nuevoEmailAprendiz"]);
 
-                // var_dump($datos);
-
+                // echo '<pre>'; print_r($datos); echo '</pre>';
                 $respuesta = ModeloAprendiz::mdlIngresarAprendiz($tabla, $datos);
 
                 if ($respuesta == "ok") {

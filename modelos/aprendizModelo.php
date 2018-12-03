@@ -13,11 +13,11 @@ class ModeloAprendiz
 
         $stmt = Conexion::conectar()->prepare("INSERT INTO $tabla(NumDocumentoAprendiz, NumeroFicha, NombreAprendiz, TelefonoAprendiz, EmailAprendiz) VALUES (:NumDocumentoAprendiz, :NumeroFicha, :NombreAprendiz, :TelefonoAprendiz, :EmailAprendiz)");
 
-        $stmt->bindParam(":NumDocumentoAprendiz", $datos["NumDocumentoAprendiz"], PDO::PARAM_STR);
-        $stmt->bindParam(":NumeroFicha", $datos["NumeroFicha"], PDO::PARAM_STR);
-        $stmt->bindParam(":NombreAprendiz", $datos["NombreAprendiz"], PDO::PARAM_STR);
-        $stmt->bindParam(":TelefonoAprendiz", $datos["TelefonoAprendiz"], PDO::PARAM_STR);
-        $stmt->bindParam(":EmailAprendiz", $datos["EmailAprendiz"], PDO::PARAM_STR);
+        $stmt->bindParam(":NumDocumentoAprendiz", $datos["numdocumentoaprendiz"], PDO::PARAM_STR);
+        $stmt->bindParam(":NumeroFicha", $datos["numeroficha"], PDO::PARAM_STR);
+        $stmt->bindParam(":NombreAprendiz", $datos["nombreaprendiz"], PDO::PARAM_STR);
+        $stmt->bindParam(":TelefonoAprendiz", $datos["telefonoaprendiz"], PDO::PARAM_STR);
+        $stmt->bindParam(":EmailAprendiz", $datos["emailaprendiz"], PDO::PARAM_STR);
 
         if ($stmt->execute()) {
 
@@ -89,10 +89,10 @@ class ModeloAprendiz
 
     //ELIMINAR USUARIO
     static public function mdlBorrarAprendiz($tabla,$datos){
-
+// var_dump($datos);
         $stmt = Conexion :: conectar()->prepare("DELETE FROM $tabla WHERE NumDocumentoAprendiz= :NumDocumentoAprendiz");
         $stmt -> bindParam(":NumDocumentoAprendiz",$datos,PDO::PARAM_INT);
-
+// var_dump($stmt);
         if($stmt -> execute()){
 
             return "ok";
