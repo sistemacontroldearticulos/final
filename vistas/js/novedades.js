@@ -211,6 +211,20 @@ $('.formularioNovedad').on('click', 'button.quitarNovedad', function() {
     listaArticulos("eliminar");
 });
 
+
+// FOTO ARTICULO
+// $(".nuevaFotoArticulo").change(function() {
+//     var imagenArticulo = this.files[0];    
+//     var datosImagen = new FileReader;
+//     datosImagen.readAsDataURL(imagenArticulo);
+//     $(datosImagen).on("load", function(event) {
+//         var rutaImagen = event.target.result;
+//         $(".previsualizar").attr("src", rutaImagen);
+//         $(".previsualizar1").attr("src", rutaImagen);
+
+//     })
+// })
+
 function agregar() {
     $(".alert").remove();
     if ($(".tipoNovedadArticulo").val() == "") {
@@ -245,11 +259,11 @@ function agregar() {
 
                 '<br>'+
 
-                '<div class="col-xs-6" style="padding-left:0px">' + 
+                '<div class="col-xs-12" style="padding-left:0px">' + 
 
                     '<div class="input-group">' + 
 
-                        '<input type="text" class="form-control nuevaDescripcion1" name="nuevaDescripcion" placeholder="Descripción" readonly value="' + $(".nuevaDescripcion").val() + '"required style="width:200px">' + 
+                        '<input type="text" class="form-control nuevaDescripcion1" name="nuevaDescripcion" placeholder="Descripción" readonly value="' + $(".nuevaDescripcion").val() + '"required style="width:416px">' + 
 
                         '<input type="hidden" id="articulo" name="articulo" value="' + $("#idArticulo").val() + '">' + 
 
@@ -257,13 +271,16 @@ function agregar() {
 
                 '</div>' +
 
-                '<div class="col-xs-6" style="padding-left:0px">' + 
+                // '<div class="col-xs-6" style="padding-left:0px">' + 
 
-                    '<div class="input-group">' + 
+                //     '<div class="input-group">' + 
 
-                        '<input type="text" class="form-control nuevaFotoArticulo1" name="nuevaFotoArticulo" placeholder="Descripción" readonly value="' + $(".nuevaFotoArticulo").val() + '"required style="width:208px">' + 
+                //         '<input type="text" class="form-control nuevaFotoArticulo1" name="nuevaFotoArticulo" placeholder="Descripción" readonly value="' + $(".nuevaFotoArticulo").val() + '"required style="width:208px">' +
 
-                    '</div>' + 
+                //         // '<img src="vistas/img/usuarios/default/anonymous.png" class="img-thumbnail previsualizar1" width="100px">'+
+
+
+                //     '</div>' + 
 
                 '</div>' +
 
@@ -271,6 +288,8 @@ function agregar() {
         listaArticulos("agregar");
     }
 }
+
+
 // LISTA DE ARTICULOS
 lista = 0;
 var listaArticulosEliminar = [];
@@ -283,6 +302,9 @@ function listaArticulos(valor) {
         var descripcion = $(".nuevaDescripcion1");
         var tipo = $(".tipoNovedadArticulo1");
         var nombre = $(".agregarArticulo1");
+        // var foto = $(".previsualizar1").attr("src");
+        // console.log("foto", foto);
+
         for (var i = 0; i <= lista; i++) {
             listaArticulos1.push({
                 "id": $(nombre[i]).attr("idArticulo"),
@@ -337,20 +359,22 @@ $(".btnBuscar2").click(function() {
         processData: false,
         dataType: "json",
         success: function(respuesta) {
-            debugger;
-
-            console.log(respuesta);
 
             $(".tablaModalArticulos td").remove();
 
             for (var i = 0; i < respuesta.length; i++) {
 
-                var nuevafila= "<tr><td>" +
-                respuesta[i]["idnovedad"] + "</td><td>" +
-                respuesta[i]["idarticulo"] + "</td><td>" +
-                respuesta[i]["tiponovedad"] + "</td><td>" +
-                respuesta[i]["tipoarticulo"] + "</td><td>" +
-                respuesta[i]["observacionnovedad"] + "</td></tr>"
+                var nuevafila= "<tr>"+
+
+                    "<td>" + respuesta[i]["idarticulo"] + "</td>"+
+                    "<td>" + respuesta[i]["tiponovedad"] + "</td>"+
+                    "<td>" + respuesta[i]["tipoarticulo"] + "</td>"+
+                    "<td>" + respuesta[i]["observacionnovedad"] + "</td>"+
+                    "<td>"+
+                        "<img style='width:50px; height:50px' src="+ respuesta[i]["fotonovedad"] +">"+
+                    "</td>"+
+
+                "</tr>"
 
                 $(".tablaModalArticulos").append(nuevafila)
             }

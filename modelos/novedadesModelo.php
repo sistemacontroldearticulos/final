@@ -40,12 +40,13 @@ class ModeloNovedades
     {
 
         // var_dump($datos);
-        $stmt = Conexion::conectar()->prepare("INSERT INTO $tabla (IdArticulo, TipoNovedad, ObservacionNovedad, IdNovedad) VALUES (:IdArticulo, :TipoNovedad, :ObservacionNovedad, :IdNovedad)");
+        $stmt = Conexion::conectar()->prepare("INSERT INTO $tabla (IdArticulo, TipoNovedad, ObservacionNovedad, IdNovedad, fotonovedad) VALUES (:IdArticulo, :TipoNovedad, :ObservacionNovedad, :IdNovedad, :fotonovedad)");
 
         $stmt->bindParam(":IdArticulo", $datos["IdArticulo"], PDO::PARAM_STR);
         $stmt->bindParam(":TipoNovedad", $datos["TipoNovedad"], PDO::PARAM_STR);
         $stmt->bindParam(":ObservacionNovedad", $datos["ObservacionNovedad"], PDO::PARAM_STR);
         $stmt->bindParam(":IdNovedad", $datos["IdNovedad"], PDO::PARAM_STR);
+        $stmt->bindParam(":fotonovedad", $datos["fotonovedad"], PDO::PARAM_STR);
 
 
         if ($stmt->execute()) {

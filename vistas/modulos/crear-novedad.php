@@ -247,7 +247,7 @@ $crearNovedad->ctrCrearNovedad();
 
                      </div>
 
-                     <div class="form-group">
+                    <!--  <div class="form-group">
 
                         <div class="panel">SUBIR FOTO</div>
 
@@ -255,7 +255,9 @@ $crearNovedad->ctrCrearNovedad();
 
                         <img src="vistas/img/usuarios/default/anonymous.png" class="img-thumbnail previsualizar" width="100px">
 
-                      </div>
+                        
+
+                      </div> -->
 
  <!-- PIE DEL MODAL -->
         <div class="modal-footer">

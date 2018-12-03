@@ -169,11 +169,11 @@ foreach ($respuesta as $key => $value) {
             <table class="table table-bordered table-striped table-hover tablaModalArticulos">
               <!-- <thead> -->
                   <tr>
-                    <th>ID Novedad</th>
                     <th>ID Articulo</th>
                     <th>Nombre</th>
                     <th>Tipo</th>
                     <th>Observacion</th>
+                    <th>Foto</th>
                   </tr>
 
               <!-- </thead> -->
