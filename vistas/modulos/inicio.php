@@ -80,7 +80,7 @@
 
             <div class="col-lg-4 col-xs-6">
               <div class="info-box bg-green">
-                <span class="info-box-icon"><i class="fa fa-thumbs-o-up"></i></span>
+                <span class="info-box-icon" onclick="location.href='articulos'"><i class="fa fa-thumbs-o-up"></i></span>
 
                 <div class="info-box-content">
                   <span class="info-box-text">Activos</span>
@@ -96,7 +96,7 @@
 
            <div class="col-lg-4 col-xs-6">
               <div class="info-box bg-yellow">
-                <span class="info-box-icon"><i class="fa fa-bolt"></i></span>
+                <span class="info-box-icon" onclick="location.href='articulos'"><i class="fa fa-bolt"></i></span>
 
                 <div class="info-box-content">
                   <span class="info-box-text">Dañados</span>
@@ -112,7 +112,7 @@
 
            <div class="col-lg-4 col-xs-6">
               <div class="info-box bg-red">
-                <span class="info-box-icon"><i class="fa fa-thumbs-o-down"></i></span>
+                <span class="info-box-icon" onclick="location.href='articulos'"><i class="fa fa-thumbs-o-down"></i></span>
 
                 <div class="info-box-content">
                   <span class="info-box-text">Perdidos</span>
@@ -128,9 +128,21 @@
         </div>
       </div>
     </div>
+
+
+    <div class="row">
+      <div class="col-lg-12">
+      
+        <?php 
+
+          include "inicio/reportes-ambientes.php";
+
+        ?>
+      </div>
+
+    </div>
+
   </section>
 </div>
-
- 
 
 

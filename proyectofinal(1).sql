@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.3
+-- version 4.8.2
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 02-12-2018 a las 20:49:15
--- Versión del servidor: 10.1.36-MariaDB
--- Versión de PHP: 7.2.11
+-- Tiempo de generación: 03-12-2018 a las 01:11:29
+-- Versión del servidor: 10.1.34-MariaDB
+-- Versión de PHP: 7.2.7
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -106,7 +106,16 @@ INSERT INTO `aprendiz` (`numdocumentoaprendiz`, `numeroficha`, `nombreaprendiz`,
 (16, 1493990, 'Mariana Bolaños', 3265974237, 'sakdjhaskdjs@gmail.com'),
 (17, 1493990, 'Tatiana Riascos', 3265974238, 'sakdjhaskdjs@gmail.com'),
 (18, 1493990, 'Melany Alejandra Rojas Troyano ', 3265974239, 'sakdjhaskdjs@gmail.com'),
-(141, 1493990, 'Nare Alejandro Manquillo Cobo', 3265974235, 'sakdjhaskdjs@gmail.com');
+(141, 1493990, 'Nare Alejandro Manquillo Cobo', 3265974235, 'sakdjhaskdjs@gmail.com'),
+(1232132, 1493994, 'Melany Alejandra Rojas Troyano ', 3265974231, 'sakdjhaskdjs@gmail.com'),
+(11234352, 1493994, 'Daniel Yordanier Valencia Troyano ', 3265974234, 'sakdjhaskdjs@gmail.com'),
+(54665757, 1493994, ' Danny Peña ', 3265974236, 'sakdjhaskdjs@gmail.com'),
+(145645642, 1493994, ' Alejandra Rojas Troyano Lopez', 3265974232, 'sakdjhaskdjs@gmail.com'),
+(345345243, 1493994, 'Mariana Bolaños', 3265974237, 'sakdjhaskdjs@gmail.com'),
+(354646242, 1493994, 'Nare Alejandro Manquillo Cobo', 3265974235, 'sakdjhaskdjs@gmail.com'),
+(789789792, 1493994, 'Karen Molina Cobo ', 3265974233, 'sakdjhaskdjs@gmail.com'),
+(1279878762, 1493994, 'Tatiana Riascos', 3265974238, 'sakdjhaskdjs@gmail.com'),
+(14563464354, 1493994, 'Melany Alejandra Rojas Troyano ', 3265974239, 'sakdjhaskdjs@gmail.com');
 
 -- --------------------------------------------------------
 
@@ -139,10 +148,10 @@ INSERT INTO `articulo` (`idarticulo`, `idambiente`, `idequipo`, `idcategoria`, `
 (7, 6, 1, 1, 'MONITOR', 'SDSDAS', 'HP', NULL, 'DAÑADO', '', 'asdsa'),
 (8, 7, 3, 1, 'MOUSE ', '32132', 'HP', NULL, 'ACTIVO', 'zxcz', 'zxcz'),
 (9, 7, 3, 1, 'CPU', 'ASDA', 'LENOVO', '...', 'DAÑADO', '1232', 'asd12'),
-(10, 7, 3, 1, 'TECLADO', 'ZXCZCS', 'XCXC', NULL, 'ACTIVO', '', '321w'),
-(11, 8, 2, 1, 'MONITOR', '2321', 'LG', NULL, 'ACTIVO', '', 'dasd2'),
-(12, 8, 2, 1, 'TECLADO', 'ASDSAD', 'ASDASD', NULL, 'ACTIVO', 'assad', 'asdas'),
-(13, 8, 2, 1, 'CPU', 'ADASDAS', NULL, NULL, 'ACTIVO', '324234', 'asdas'),
+(10, 7, 3, 1, 'TECLADO', 'ZXCZCS', 'XCXC', NULL, 'PERDIDO', '', '321w'),
+(11, 8, 2, 1, 'MONITOR', '2321', 'LG', NULL, 'DAÑADO', '', 'dasd2'),
+(12, 8, 2, 1, 'TECLADO', 'ASDSAD', 'ASDASD', NULL, 'PERDIDO', 'assad', 'asdas'),
+(13, 8, 2, 1, 'CPU', 'ADASDAS', NULL, NULL, 'PERDIDO', '324234', 'asdas'),
 (14, 7, 3, 1, 'MONITOR', 'ADSADA', 'SASA', '', 'ACTIVO', '', '');
 
 -- --------------------------------------------------------
@@ -165,8 +174,10 @@ CREATE TABLE `articulonovedad` (
 
 INSERT INTO `articulonovedad` (`idarticulo`, `idnovedad`, `tiponovedad`, `observacionnovedad`, `fotonovedad`) VALUES
 (4, 50, 'DAÑADO', '', NULL),
-(5, 51, 'DAÑADO', 'asdad', NULL),
-(6, 51, 'DAÑADO', 'asdasdad', NULL);
+(5, 56, 'DAÑADO', '', NULL),
+(7, 57, 'PERDIDIO', '', NULL),
+(11, 58, 'DAÑADO', '', NULL),
+(12, 58, 'PERDIDO', '', NULL);
 
 -- --------------------------------------------------------
 
@@ -231,7 +242,8 @@ CREATE TABLE `ficha` (
 --
 
 INSERT INTO `ficha` (`numeroficha`, `idprograma`, `idambiente`, `fechainicio`, `fechafin`, `jornadaficha`) VALUES
-(1493990, 5, 6, '11/11/2011', '11/11/2013', 'TARDE');
+(1493990, 5, 6, '11/11/2011', '11/11/2013', 'TARDE'),
+(1493994, 4, 8, '11/11/2011', '11/11/2012', 'MAÑANA');
 
 -- --------------------------------------------------------
 
@@ -275,8 +287,10 @@ CREATE TABLE `novedad` (
 --
 
 INSERT INTO `novedad` (`idnovedad`, `numdocumentousuario`, `numeroficha`, `fechanovedad`, `articulo`, `estado`) VALUES
-(50, 777, 1493990, '2018-12-02 12:03:27', NULL, 1),
-(51, 888, 1493990, '2018-12-02 14:04:22', NULL, 1);
+(50, 777, 1493990, '2018-10-02 12:03:27', NULL, 1),
+(56, 123, 1493990, '2018-11-02 18:15:32', NULL, 1),
+(57, 123, 1493990, '2018-12-02 18:16:51', NULL, 1),
+(58, 123, 1493994, '2018-12-02 19:08:35', NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -476,7 +490,7 @@ ALTER TABLE `notificaciones`
 -- AUTO_INCREMENT de la tabla `novedad`
 --
 ALTER TABLE `novedad`
-  MODIFY `idnovedad` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
+  MODIFY `idnovedad` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=59;
 
 --
 -- AUTO_INCREMENT de la tabla `programa`
