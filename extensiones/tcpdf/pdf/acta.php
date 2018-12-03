@@ -240,7 +240,7 @@ $bloque2 = <<<EOF
 	
 
 		<tr>
-			<td style="border: 1px solid #000; background-color:white; width:540px; height:50px; ">
+			<td style="border: 1px solid #000; background-color:white; width:540px; height:70px; ">
 
 				<strong>OBSERVACIONES: </strong>
 

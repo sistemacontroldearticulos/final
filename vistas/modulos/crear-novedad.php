@@ -112,6 +112,8 @@
 
           </div>
 
+
+
           <?php
 
 $crearNovedad = new ControladorNovedades();
@@ -244,6 +246,16 @@ $crearNovedad->ctrCrearNovedad();
                          </div>
 
                      </div>
+
+                     <div class="form-group">
+
+                        <div class="panel">SUBIR FOTO</div>
+
+                        <input type="file" class="nuevaFotoArticulo" name="nuevaFotoArticulo">
+
+                        <img src="vistas/img/usuarios/default/anonymous.png" class="img-thumbnail previsualizar" width="100px">
+
+                      </div>
 
  <!-- PIE DEL MODAL -->
         <div class="modal-footer">

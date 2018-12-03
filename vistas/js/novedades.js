@@ -218,7 +218,56 @@ function agregar() {
     } else {
         $("#modalAgregarArticulo1").modal('hide')
         // $(".skin-blue sidebar-collapse sidebar-mini login-page").focus();
-        $(".nuevoArticulo").append('<div class="row" style="padding: 5px 15px">' + '<div class="col-xs-4" style="padding-right:0px">' + '<div class="input-group">' + '<span class="input-group-addon"><button type="button" class="btn btn-danger quitarNovedad btn-xs" idArticulo="' + $("#idArticulo").val() + '"><i class="fa fa-times"></i></button></span>' + '<input type="text" class="form-control agregarArticulo1" idArticulo="' + $("#idArticulo").val() + '" name="agregarArticulo" value="' + $("#agregarArticulo").val() + '" required readonly>' + '</div>' + '</div>' + '<div class="form-group col-xs-4"  style="padding-left:5px; padding-right: 0px">' + '<div class="input-group">' + '<span class="input-group-addon"><i class="fa fa-th"></i></span>' + '<input type="text" class="form-control tipoNovedadArticulo1" name="tipoNovedadArticulo1" placeholder="Descripción" readonly value="' + $(".tipoNovedadArticulo").val() + '"required>' + '</div>' + '</div> ' + '<div class="col-xs-4" style="padding-left:5px">' + '<div class="input-group">' + '<input type="text" class="form-control nuevaDescripcion1" name="nuevaDescripcion" placeholder="Descripción" readonly value="' + $(".nuevaDescripcion").val() + '"required>' + '<input type="hidden" id="articulo" name="articulo" value="' + $("#idArticulo").val() + '">' + '</div>' + '</div>' + '</div>');
+        $(".nuevoArticulo").append(
+            '<div class="row" style="padding: 5px 30px">' + 
+
+                '<div class="col-xs-6" style="padding-left:0px;padding-right:7px">' + 
+
+                    '<div class="input-group">' + 
+
+                        '<span class="input-group-addon"><button type="button" class="btn btn-danger quitarNovedad btn-xs" idArticulo="' + $("#idArticulo").val() + '"><i class="fa fa-times"></i></button></span>' + 
+
+                        '<input type="text" class="form-control agregarArticulo1" idArticulo="' + $("#idArticulo").val() + '" name="agregarArticulo" value="' + $("#agregarArticulo").val() + '" required readonly>' + 
+
+                    '</div>' +
+                '</div>' + 
+
+                '<div class="form-group col-xs-6"  style="padding-left:0px; padding-right: 0px">' + 
+
+                    '<div class="input-group">' + 
+
+                        '<span class="input-group-addon"><i class="fa fa-th"></i></span>' + 
+
+                        '<input type="text" class="form-control tipoNovedadArticulo1" name="tipoNovedadArticulo1" placeholder="Descripción" readonly value="' + $(".tipoNovedadArticulo").val() + '"required>' + 
+
+                    '</div>' + 
+                '</div> ' + 
+
+                '<br>'+
+
+                '<div class="col-xs-6" style="padding-left:0px">' + 
+
+                    '<div class="input-group">' + 
+
+                        '<input type="text" class="form-control nuevaDescripcion1" name="nuevaDescripcion" placeholder="Descripción" readonly value="' + $(".nuevaDescripcion").val() + '"required style="width:200px">' + 
+
+                        '<input type="hidden" id="articulo" name="articulo" value="' + $("#idArticulo").val() + '">' + 
+
+                    '</div>' + 
+
+                '</div>' +
+
+                '<div class="col-xs-6" style="padding-left:0px">' + 
+
+                    '<div class="input-group">' + 
+
+                        '<input type="text" class="form-control nuevaFotoArticulo1" name="nuevaFotoArticulo" placeholder="Descripción" readonly value="' + $(".nuevaFotoArticulo").val() + '"required style="width:208px">' + 
+
+                    '</div>' + 
+
+                '</div>' +
+
+            '</div>');
         listaArticulos("agregar");
     }
 }

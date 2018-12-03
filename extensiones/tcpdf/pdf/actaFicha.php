@@ -42,7 +42,7 @@ $jornada = $mostrarFicha["jornadaficha"];
 $item4 ="idambiente";
 $valor4 = $mostrarFicha["idambiente"];
 $tabla = "articulo";
-$articulosEquipo = ModeloArticulos::mdlMostrarArticuloNovedad($tabla, $item4, $valor4);
+$articulosEquipo = ModeloArticulos::mdlMostrarArticulosEquipo1($tabla, $item4, $valor4);
 
 // CONSULTAR AMBIENTE
 $item9 ="idambiente";
@@ -260,10 +260,22 @@ $bloque2 = <<<EOF
 		<tr>
 			<td style="border: 1px solid #000; background-color:white; width:540px">
 				
-				<strong>OBJETIVO:</strong> Se le otorgará al aprendiz   identificado con número el documento No.   , el equipo   que consta de  implementos necesarios para realizar la función que le corresponde.
-				<br>
-				<br>
-				Si llegase a presentarse un inconveniente, ya sea pérdida o daño de alguno de los implementos entregados, deberá ser reportado al instructor que esté acargo del ambiente en su momento, de lo contrario se tomará como responsable al aprendiz acargo del equipo.
+				<strong>COMPROMISO:</strong> Los aprendices pertenecientes a la ficha ($ficha) se comprometen a responder por los artículos asignados al ambiente ($nombreAmbiente) firmando un acta de responsabilidad, de no cumplir con ello se les informará que deberán firmar un acta de compromiso.
+
+			</td>
+		</tr>
+
+		<tr>	
+			<td style="border: 1px solid #000; background-color:white; width:540px">
+
+				<strong>DESARROLLO DE REUNION</strong> 
+
+			</td>
+		</tr>
+		<tr>
+			<td style="border: 1px solid #000; background-color:white; width:540px">
+				
+				Se reúnen con los aprendices de la ficha anteriormente mencionada siendo las ($hora) del ($fecha) donde se hará entrega de los artículos del ambiente ($nombreAmbiente) y se les informa que quedan bajo responsabilidad de estos.
 
 			</td>
 		</tr>	
@@ -276,9 +288,9 @@ $bloque2 = <<<EOF
 	
 
 		<tr>
-			<td style="border: 1px solid #000; background-color:white; width:540px; height:50px; ">
+			<td style="border: 1px solid #000; background-color:white; width:540px; height:70px; ">
 
-				<strong>OBSERVACIONES: </strong>
+				<strong>NOTA: </strong>
 
 			</td>
 		</tr>

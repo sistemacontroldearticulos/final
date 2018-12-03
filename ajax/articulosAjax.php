@@ -54,7 +54,7 @@ class AjaxArticulos{
         $valor = $this->idambiente;
         $tabla = "articulo";
 
-        $respuesta = ModeloArticulos::mdlMostrarArticuloNovedad($tabla, $item, $valor);
+        $respuesta = ModeloArticulos::mdlMostrarArticulosEquipo1($tabla, $item, $valor);
 
         echo json_encode($respuesta);
 
@@ -68,7 +68,7 @@ class AjaxArticulos{
         $valor = $this->idEquipo;
         $tabla = "articulo";
 
-        $respuesta = ModeloArticulos::mdlMostrarArticulosEquipo($tabla, $item, $valor);
+        $respuesta = ModeloArticulos::mdlMostrarArticulosEquipo1($tabla, $item, $valor);
 
         echo json_encode($respuesta);
 

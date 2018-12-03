@@ -15,6 +15,7 @@ $("#ficha").change(function() {
         processData: false,
         dataType: "json",
         success: function(respuesta) {
+            // console.log("respuesta", respuesta);
             ficha = respuesta["numeroficha"];
             if (respuesta == false) {
                 $("#ficha").parent().after('<div class="alert" style="height: 20px; text-align="center"><font color="#f39c12"><strong>ESTA FICHA NO SE ENCUENTRA REGISTRADA</strong></font></div>');
@@ -32,7 +33,9 @@ $("#ficha").change(function() {
                     processData: false,
                     dataType: "json",
                     success: function(respuesta) {
+                        // console.log("respuesta", respuesta);
                         var idAmbiente = respuesta["idambiente"];
+                        // console.log("idAmbiente", idAmbiente);
                         var datos = new FormData();
                         datos.append("idAmbiente", idAmbiente);
                         $.ajax({
@@ -77,7 +80,7 @@ $("#ficha").change(function() {
                                         processData: false,
                                         dataType: "json",
                                         success: function(respuesta) {
-                                            console.log("respuesta", respuesta);
+                                            // console.log("respuesta", respuesta);
 
 
                                             p = respuesta["nombreequipo"];

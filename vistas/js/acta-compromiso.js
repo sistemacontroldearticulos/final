@@ -39,6 +39,7 @@ $(".tablas").on("click", ".btnCompromiso", function(){
 
             // EQUIPO ACTA
             var idEquipo = respuesta["idequipo"];
+            console.log("idEquipo", idEquipo);
             var datos = new FormData();
             datos.append("idEquipo", idEquipo);
             $.ajax({
@@ -56,6 +57,8 @@ $(".tablas").on("click", ".btnCompromiso", function(){
 
 
             // EQUIPO ACTA
+
+             $('#articulos').empty().append('<option selected="selected" value="whatever">Seleccione Articulos</option>');
             var p = "";
             var k = "";
 
@@ -70,15 +73,16 @@ $(".tablas").on("click", ".btnCompromiso", function(){
                 processData: false,
                 dataType: "json",
                 success: function(respuesta) {
-                    // console.log("respuesta", respuesta[0]["tipoarticulo"]);
+                    
 
-
-                p = respuesta[0]["tipoarticulo"];
-                k = respuesta[0]["idarticulo"];
+                for (var i = 0; i < respuesta.length; i++) {
+                    console.log("respuesta", respuesta[i]["tipoarticulo"]);
+    
                 var option = document.createElement("option");
-                $(option).html(p);
-                $(option).val(k);
+                $(option).val(respuesta[i]["idarticulo"]);
+                $(option).html(respuesta[i]["tipoarticulo"]);
                 $(option).appendTo("#articulos");
+                }
                     
                 }
             })

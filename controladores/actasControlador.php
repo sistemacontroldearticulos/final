@@ -126,72 +126,13 @@ class ControladorActas
                      window.open("extensiones/tcpdf/pdf/actaFicha.php?codigo='.$_POST["ficha1"].', _blank");
                 </script>';
 
-            // $item = "numeroficha";
-            // $valor = $_POST["ficha"];
-            // $ficha = ControladorFichas::ctrMostrarFichas($item, $valor);
+
+                echo '<script>
+
+                        window.location = "actas";
+
+                </script>';
             
-            // $item1 = "idambiente";
-            // $valor1 = $ficha["idambiente"];
-            // $ambiente = ControladorAmbientes::ctrMostrarAmbientes($item1, $valor1);
-
-            // $item2 = "idambiente";
-            // $valor2 = $ficha["idambiente"];
-            // $tabla = "articulo";
-            // $articulo = ModeloArticulos::mdlMostrarArticuloNovedad($tabla, $item2, $valor2);
-
-            // $a = 0;
-            // $b = 0;
-
-            // foreach ($articulo as $key => $value) {
-                
-            // $item3 = "idequipo";
-            // $valor3 = $articulo[$key]["idequipo"];
-            // $tabla1 = "equipo";
-            // $equipo = ModeloArticulos::mdlMostrarArticulosEquipo1($tabla1, $item3, $valor3);
-                
-            //     $item4 = "idequipo";
-            //     $valor4 = $articulo[$key]["idequipo"];
-
-            //     $respuesta4 = ControladorActas::ctrMostrarActas($item4, $valor4);
-
-            //     if ($respuesta4 != "") {
-            //         $a = $a + 1;    
-            //     }
-            // }
-            
-
-            // if ($a == 0) {
-            //     echo '<script>
-
-            //     swal({
-            //         type: "error",
-            //         title: "No hay actas en esta ficha",
-            //         showConfirmButton: true,
-            //         confirmButtonText: "Cerrar"
-
-            //     }).then(function(result){
-
-            //         if(result.value){
-
-            //             window.location = "actas";
-
-            //         }
-
-            //     });
-
-            //     </script>';
-            // }else{
-
-            //     echo '<script>
-            //              window.open("extensiones/tcpdf/pdf/actaFicha.php?codigo='.$_POST["ficha"].', _blank");
-            //         </script>';
-
-            //     echo '<script>
-
-            //             window.location = "actas";
-
-            //     </script>';
-            // }
         }
     }
 }
