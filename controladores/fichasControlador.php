@@ -10,30 +10,34 @@ class ControladorFichas
     public static function ctrBorrarAprendiz()
     {
 
-        // $documento = $_POST["documento"];
-
         if (isset($_GET["NumDocumentoAprendiz"])) {
 
             $tabla = "aprendiz";
             $datos = $_GET["NumDocumentoAprendiz"];
 
-            $respuesta = ModeloAprendiz::mdlBorrarAprendiz($tabla, $datos);
+            $item                = "numdocumentoaprendiz";
+            $actaResponsabilidad = ControladorActas::ctrEliminarActaResponsabilidad($datos);
 
-            if ($respuesta == "ok") {
+            if ($actaResponsabilidad == "ok") {
 
-                echo '<script>
-                          swal({
-                                  type:"success",
-                                  title:"El aprendiz ha sido borrado correctamente",
-                                  showConfirmButton: true,
-                                  confirmButtonText: "Cerrar",
-                                  closeOnConfirm:false
-                              }).then((result)=>{
-                                  if(result.value){
-                                      window.location ="fichas";
-                                  }
-                          })
-                  </script>';
+                $respuesta = ModeloAprendiz::mdlBorrarAprendiz($tabla, $datos);
+
+                if ($respuesta == "ok") {
+
+                    echo '<script>
+                        swal({
+                                type:"success",
+                                title:"El aprendiz ha sido borrado correctamente",
+                                showConfirmButton: true,
+                                confirmButtonText: "Cerrar",
+                                closeOnConfirm:false
+                            }).then((result)=>{
+                                if(result.value){
+                                    window.location ="fichas";
+                                }
+                        })
+                </script>';
+                }
             }
         }
     }
@@ -88,8 +92,6 @@ class ControladorFichas
                         'D'                 => "D",
                         'E'                 => "E");
 
-                    print_r($data[0][1][$letras['C']]);
-
                     if ($data[0][1][$letras['A']] == "DOCUMENTO" and $data[0][1][$letras['B']] == "FICHA" and $data[0][1][$letras['C']] == "NOMBRE" and $data[0][1][$letras['D']] == "TELEFONO" and $data[0][1][$letras['E']] == "EMAIL") {
 
                         $datos = array("NumeroFicha" => $_POST["nuevaFicha"],
@@ -103,6 +105,11 @@ class ControladorFichas
                         if ($respuesta == "ok") {
 
                             $errores = 0;
+                            $letras  = array('A' => "A",
+                                'B'                  => "B",
+                                'C'                  => "C",
+                                'D'                  => "D",
+                                'E'                  => "E");
 
                             for ($i = 2; $i <= count($data[0]); $i++) {
                                 $tablaConsulta     = "aprendiz";
@@ -118,14 +125,11 @@ class ControladorFichas
 
                                         $datos1 = array("NumeroFicha" => $_POST["nuevaFicha"],
                                             "NumDocumentoAprendiz"        => $data[0][$i][$letras['A']],
-                                            "NombreAprendiz"              => $data[0][$i][$letras['B']],
-                                            "TelefonoAprendiz"            => $data[0][$i][$letras['C']],
-                                            "EmailAprendiz"               => $data[0][$i][$letras['D']]);
-
-                                        var_dump($datos1);
+                                            "NombreAprendiz"              => $data[0][$i][$letras['C']],
+                                            "TelefonoAprendiz"            => $data[0][$i][$letras['D']],
+                                            "EmailAprendiz"               => $data[0][$i][$letras['E']]);
 
                                         $respuesta2 = ModeloAprendiz::MdlIngresarAprendiz($tabla, $datos1);
-                                        var_dump($respuesta2);
 
                                     }
 
@@ -153,7 +157,7 @@ class ControladorFichas
                                         $tabla = "ficha";
                                         $datos = $_POST["nuevaFicha"];
 
-                                        $respuesta = ModeloFichas::mdlEliminarFicha($tabla, $datos);
+                                        // $respuesta = ModeloFichas::mdlEliminarFicha($tabla, $datos);
 
                                         echo '<script>
 
@@ -166,7 +170,7 @@ class ControladorFichas
                                           }).then((result) => {
                                             if (result.value) {
 
-                                            window.location = "fichas";
+
                                             }
                                         })
 

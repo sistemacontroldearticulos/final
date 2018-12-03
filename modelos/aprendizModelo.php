@@ -9,15 +9,18 @@ class ModeloAprendiz
     CREAR APRENDIZ
     =============================================*/
 
-   static public function mdlIngresarAprendiz($tabla, $datos){
+    public static function mdlIngresarAprendiz($tabla, $datos)
+    {
 
         $stmt = Conexion::conectar()->prepare("INSERT INTO $tabla(NumDocumentoAprendiz, NumeroFicha, NombreAprendiz, TelefonoAprendiz, EmailAprendiz) VALUES (:NumDocumentoAprendiz, :NumeroFicha, :NombreAprendiz, :TelefonoAprendiz, :EmailAprendiz)");
 
-        $stmt->bindParam(":NumDocumentoAprendiz", $datos["numdocumentoaprendiz"], PDO::PARAM_STR);
-        $stmt->bindParam(":NumeroFicha", $datos["numeroficha"], PDO::PARAM_STR);
-        $stmt->bindParam(":NombreAprendiz", $datos["nombreaprendiz"], PDO::PARAM_STR);
-        $stmt->bindParam(":TelefonoAprendiz", $datos["telefonoaprendiz"], PDO::PARAM_STR);
-        $stmt->bindParam(":EmailAprendiz", $datos["emailaprendiz"], PDO::PARAM_STR);
+        $stmt->bindParam(":NumDocumentoAprendiz", $datos["NumDocumentoAprendiz"], PDO::PARAM_STR);
+        $stmt->bindParam(":NumeroFicha", $datos["NumeroFicha"], PDO::PARAM_STR);
+        $stmt->bindParam(":NombreAprendiz", $datos["NombreAprendiz"], PDO::PARAM_STR);
+        $stmt->bindParam(":TelefonoAprendiz", $datos["TelefonoAprendiz"], PDO::PARAM_STR);
+        $stmt->bindParam(":EmailAprendiz", $datos["EmailAprendiz"], PDO::PARAM_STR);
+
+        print_r($stmt);
 
         if ($stmt->execute()) {
 
@@ -34,7 +37,8 @@ class ModeloAprendiz
 
     }
 
-    static public function mdlEditarAprendiz($tabla, $datos){
+    public static function mdlEditarAprendiz($tabla, $datos)
+    {
 
         $stmt = Conexion::conectar()->prepare("UPDATE $tabla SET NumeroFicha = :NumeroFicha, NombreAprendiz = :NombreAprendiz, TelefonoAprendiz = :TelefonoAprendiz, EmailAprendiz = :EmailAprendiz WHERE NumDocumentoAprendiz = :NumDocumentoAprendiz");
 
@@ -62,7 +66,8 @@ class ModeloAprendiz
     }
 
     // MOSTRAR APRENDIZ
-   static public function mdlMostrarAprendiz($tabla, $item, $valor){
+    public static function mdlMostrarAprendiz($tabla, $item, $valor)
+    {
 
         if ($item != null) {
             $stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item=:$item");
@@ -71,42 +76,43 @@ class ModeloAprendiz
 
             $stmt->execute();
 
-            return $stmt->fetchAll();   
+            return $stmt->fetchAll();
 
-        } else{
+        } else {
 
-        $stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla");
+            $stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla");
 
-        $stmt -> execute();
+            $stmt->execute();
 
-        return $stmt -> fetchAll();
+            return $stmt->fetchAll();
 
-    }
+        }
 
         $stmt->close();
         $stmt->null();
     }
 
     //ELIMINAR USUARIO
-    static public function mdlBorrarAprendiz($tabla,$datos){
+    public static function mdlBorrarAprendiz($tabla, $datos)
+    {
 // var_dump($datos);
-        $stmt = Conexion :: conectar()->prepare("DELETE FROM $tabla WHERE NumDocumentoAprendiz= :NumDocumentoAprendiz");
-        $stmt -> bindParam(":NumDocumentoAprendiz",$datos,PDO::PARAM_INT);
+        $stmt = Conexion::conectar()->prepare("DELETE FROM $tabla WHERE NumDocumentoAprendiz= :NumDocumentoAprendiz");
+        $stmt->bindParam(":NumDocumentoAprendiz", $datos, PDO::PARAM_INT);
 // var_dump($stmt);
-        if($stmt -> execute()){
+        if ($stmt->execute()) {
 
             return "ok";
 
-        }else{
+        } else {
             return "error";
         }
 
-        $stmt -> close();
+        $stmt->close();
         $stmt = null;
     }
 
-
-   static public function mdlConsultarAprendizFicha($tabla, $item, $valor){
+    public static function mdlConsultarAprendizFicha($tabla, $item, $valor)
+    {
 
         $stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
@@ -140,4 +146,3 @@ class ModeloAprendiz
     }
 
 }
-

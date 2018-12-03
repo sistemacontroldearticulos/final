@@ -105,4 +105,44 @@ class ModeloActas
 
         $stmt = null;
     }
+
+    //ELIMINAR ACTA RESPONSABILIDAD
+    static public function mdlEliminarActaResponsabilidad($tabla, $datos){
+        
+        $stmt = Conexion :: conectar()->prepare("DELETE FROM $tabla WHERE numdocumentoaprendiz= :numdocumentoaprendiz");
+
+        $stmt -> bindParam(":numdocumentoaprendiz",$datos,PDO::PARAM_INT);
+
+        if($stmt -> execute()){
+
+            return "ok";
+
+        }else{
+            return "error";
+        }
+
+        $stmt -> close();
+        $stmt = null;
+
+    }
+
+    //ELIMINAR ACTA RESPONSABILIDAD
+    static public function mdlEliminarActaCompromiso($tabla, $datos){
+        
+        $stmt = Conexion :: conectar()->prepare("DELETE FROM $tabla WHERE idacta_responsabilidad= :idacta_responsabilidad");
+
+        $stmt -> bindParam(":idacta_responsabilidad",$datos,PDO::PARAM_INT);
+
+        if($stmt -> execute()){
+
+            return "ok";
+
+        }else{
+            return "error";
+        }
+
+        $stmt -> close();
+        $stmt = null;
+
+    }
 }
