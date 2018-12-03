@@ -52,7 +52,7 @@ session_start();
 
   <!-- Morris chart -->
   <link rel="stylesheet" href="vistas/bower_components/morris.js/morris.css">
-  
+
   <!-- Select2 -->
   <link rel="stylesheet" href="vistas/bower_components/select2/dist/css/select2.min.css">
 
@@ -174,7 +174,7 @@ if (isset($_SESSION["iniciarSesion"]) && $_SESSION["iniciarSesion"] == "ok") {
 }
 
 ?>
-
+<link rel="stylesheet" href="vistas/css/styles.css">
 <script src="vistas/js/actas.js"></script>
 <script src="vistas/js/plantilla.js"></script>
 <script src="vistas/js/usuarios.js"></script>

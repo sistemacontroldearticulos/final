@@ -1,3 +1,5 @@
+
+
 <div class="content-wrapper">
 
   <section class="content-header">
@@ -178,8 +180,8 @@ foreach ($respuesta as $key => $value) {
 
               <!-- </thead> -->
               <!-- <tbody> -->
-                  
-                
+
+
 
                   <!-- // $item = null;
                   // $valor = null;
@@ -189,7 +191,7 @@ foreach ($respuesta as $key => $value) {
                   // foreach ($respuesta as $key => $value) {
 
                   //   echo '<tr>
-                            
+
                   //           <td style="width:10px">'.$value["idnovedad"].'</td>
 
                   //           <td style="width:10px">'.$value["idarticulo"].'</td>';
@@ -205,7 +207,7 @@ foreach ($respuesta as $key => $value) {
                   //           <td style="width:150px">'.$value["observacionnovedad"].'</td>
                   //         </tr>';
                   // } -->
-                
+
 
               <!-- </tbody>  -->
 
@@ -225,6 +227,12 @@ foreach ($respuesta as $key => $value) {
       </form>
     </div>
   </div>
+</div>
+
+<div id="popUp" class="modal">
+  <span class="close">&times;</span>
+  <img class="modal-content" id="img01">
+  <div id="caption"></div>
 </div>
 
  <?php
