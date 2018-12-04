@@ -314,32 +314,66 @@ class ControladorFichas
     public static function ctrEliminarFicha()
     {
         if (isset($_GET["idFicha"])) {
-            $tabla = "ficha";
-            $datos = $_GET["idFicha"];
 
-            $tabla2              = "aprendiz";
-            $respuestaAprendices = ModeloAprendiz::mdlEliminarAprendizFicha($tabla2, $datos);
-            if ($respuestaAprendices == "ok") {
-                $respuesta = ModeloFichas::mdlEliminarFicha($tabla, $datos);
+            $tabla3 = "ficha";
+            $datos3 = $_GET["idFicha"];
 
-                if ($respuesta == "ok") {
-                    echo '<script>
+            $tabla1 = "aprendiz";
+            $item1 = "numeroficha";
+            $mostrarAprendices = ModeloAprendiz::mdlMostrarAprendiz($tabla1, $item1, $datos3);
+            $documentos = array();
+            foreach ($mostrarAprendices as $key => $value) {
+              $documento = array_push($documentos, $mostrarAprendices[$key]["numdocumentoaprendiz"]);
+            }
 
-                      swal({
-                            type: "success",
-                            title: "La ficha ha sido borrada correctamente",
-                            showConfirmButton: true,
-                            confirmButtonText: "Cerrar"
-                            }).then(function(result){
-                                      if (result.value) {
 
-                                      window.location = "fichas";
+            foreach ($documentos as $key => $value) {
+              $tabla = "aprendiz";
+              $datos = $documentos[$key];
+              $item                = "numdocumentoaprendiz";
+              $actaResponsabilidad = ControladorActas::ctrEliminarActaResponsabilidad($datos);
 
-                                      }
-                                  })
+              if ($actaResponsabilidad == "ok") {
+                  $respuesta = ModeloAprendiz::mdlBorrarAprendiz($tabla, $datos);
+              }
 
-                      </script>';
-                }
+            }
+
+            $tablaNov = "novedad";
+            $itemNov = "numeroficha";
+            $novedad =  ModeloNovedades::mdlMostrarNovedades($tablaNov, $itemNov, $datos3);
+            
+            foreach ($novedad as $key => $value) {
+              
+              $tablaArticulo = "articulonovedad";
+              $datosArticulo = $novedad[$key]["idnovedad"];
+              $eliminarArticuloNov = ModeloNovedades::mdlBorrarArticuloNovedad($tablaArticulo, $datosArticulo);
+
+            }
+
+            $eliminarNov = ModeloNovedades::mdlBorrarNovedad($tablaNov, $novedad[0]["idnovedad"]);
+
+            
+
+
+            $respuesta2 = ModeloFichas::mdlEliminarFicha($tabla3, $datos3);
+            if ($respuesta2 == "ok") {
+                echo '<script>
+
+                  swal({
+                        type: "success",
+                        title: "La ficha ha sido borrada correctamente",
+                        showConfirmButton: true,
+                        confirmButtonText: "Cerrar"
+                        }).then(function(result){
+                                  if (result.value) {
+
+                                  window.location = "fichas";
+
+                                  }
+                              })
+
+                  </script>';
             }
         }
     }

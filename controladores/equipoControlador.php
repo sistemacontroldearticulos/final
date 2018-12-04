@@ -90,8 +90,8 @@ class ControladorEquipos
     }
 
     // BORRAR EQUIPO
-    static public function ctrBorrarEquipo()
-    {
+    static public function ctrBorrarEquipo(){   
+      // var_dump($_GET["idEquipo"]);
 
         if (isset($_GET["idEquipo"])) {
 
@@ -220,4 +220,41 @@ class ControladorEquipos
 
         }
 
+
+  // BORRAR EQUIPO AMBIENTE
+  static public function ctrBorrarEquipoAmbiente($tabla10, $itemEquipo10, $datos10){   
+
+        $tabla = $tabla10;
+        $datos = $datos10;
+
+        $tablaArticulo = "articulo";
+        $item          = $itemEquipo10;
+        $valor         = $datos10;
+
+        $respuestaArticulo = ModeloArticulos::mdlMostrarArticulosEquipo($tablaArticulo, $item, $valor);
+        var_dump($respuestaArticulo);
+        if ($respuestaArticulo != null) {
+            foreach ($respuestaArticulo as $key => $value) {
+                if ($value[2] == $datos10) {
+                    $datosArticulo = array("IdArticulo"=> $value[0],
+                      "TipoArticulo" => $value[4],
+                      "MarcaArticulo"           => $value[6],
+                      "ModeloArticulo"          => $value[5],
+                      "NumInventarioSena"       => $value[9],
+                      "SerialArticulo"          =>  $value[10],
+                      "EstadoArticulo"          => $value[8],
+                      "IdAmbiente"              => $value[1],
+                      "IdCategoria"             => $value[3],
+                      "CaracteristicaArticulo"  => $value[7],
+                      "IdEquipo"                => null,
+                    );
+                    
+                    $respuestaUsuario2 = ModeloArticulos::mdlEditarArticulo($tablaArticulo, $datosArticulo);
+
+                }
+            }
+          }
+
+          $respuesta = ModeloEquipos::mdlBorrarEquipo($tabla, $datos);
     }
+}

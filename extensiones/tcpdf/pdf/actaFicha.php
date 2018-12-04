@@ -165,7 +165,7 @@ $bloque1 = <<<EOF
 					<h5><strong>SISTEMA INTEGRADO DE GESTIÓN</strong></h5>
 					
 					<br>
-					<h5><strong>ACTA RESPONSABILIDAD No $anio - </strong></h5>
+					<h5><strong>ASIGNACION DE EQUIPOS No $anio - $ficha </strong></h5>
 
 				</div>
 

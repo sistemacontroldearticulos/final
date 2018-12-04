@@ -220,10 +220,28 @@ class ControladorAmbientes
                 }
             }
 
+            $tablaEquipo = "equipo";
+            $itemEquipo = "idambiente";
+            $valorEquipo = $_GET["idAmbiente"];
+            $equipo = ModeloEquipos::mdlMostrarEquipos1($tablaEquipo, $itemEquipo, $valorEquipo);
+
+            foreach ($equipo as $key => $value) {
+
+                $TablaElimEquipo = "equipo";
+                $itemEquipo10 = "idequipo";
+                $DatosElimEquipo = $equipo[$key]["idequipo"];
+
+                $eliminarequipos = ControladorEquipos::ctrBorrarEquipoAmbiente($TablaElimEquipo, $itemEquipo10, $DatosElimEquipo);
+
+                // echo '<pre>'; print_r($equipo[$key]["idequipo"]); echo '</pre>';
+            }
+
+
+
             $tabla     = "ambiente";
             $datos     = $_GET["idAmbiente"];
             $respuesta = ModeloAmbientes::mdlEliminarAmbiente($tabla, $datos);
-            // var_dump($respuesta);
+
             if ($respuesta == "ok") {
                 echo '<script>
 
