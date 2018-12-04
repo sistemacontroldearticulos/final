@@ -7,22 +7,6 @@
 
 			<?php 
 
-			if($_SESSION["RolUsuario"] == "INSTRUCTOR"){
-
-					echo '
-
-				<li class="active">
-
-					<a class="btnEditarUsuario1" NumDocumentoUsuario="' . $_SESSION["NumDocumentoUsuario"] . '" data-toggle="modal" data-target="#modalEditarUsuario">
-
-						<img src="vistas/img/plantilla/iconos/usuarios.png" width="15px">
-						<span>Perfil</span>
-
-					</a>
-
-				</li>';
-			}
-
 
 			if($_SESSION["RolUsuario"] == "ADMINISTRADOR"){
 
@@ -226,9 +210,24 @@
 
 				</ul>
 
-			</li>
-			';
+			</li>';
 			}
+
+
+			if($_SESSION["RolUsuario"] == "INSTRUCTOR" || $_SESSION["RolUsuario"] == "ESPECIAL"){
+
+					echo '<li>
+
+						<a href="usuarios">
+
+							<img src="vistas/img/plantilla/iconos/usuarios.png" width="15px">
+							<span>Configuración</span>
+
+						</a>
+
+					</li>';
+			}
+			
 			?>
 
 		</ul>

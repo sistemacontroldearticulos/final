@@ -48,13 +48,23 @@ $(".tablas").on("click", ".btnEditarUsuario", function() {
         processData: false,
         dataType: "json",
         success: function(respuesta) {
-            console.log(respuesta);
             $("#editarNombre").html(respuesta["nombreusuario"]);
             $("#editarNombre").val(respuesta["nombreusuario"]);
             $("#editarDocumento").val(respuesta["numdocumentousuario"]);
             // $("#editarPerfil").html(respuesta["rolusuario"]);
             $("#editarPerfil").val(respuesta["rolusuario"]);
             $("#fotoActual").val(respuesta["fotousuario"]);
+
+
+            // EDITAR INSTRUCTOR O ESPECIAL
+            $("#editarNombre1").html(respuesta["nombreusuario"]);
+            $("#editarNombre1").val(respuesta["nombreusuario"]);
+            $("#editarDocumento1").val(respuesta["numdocumentousuario"]);
+            $("#editarPerfil1").val(respuesta["rolusuario"]);
+            $("#fotoActual11").val(respuesta["fotousuario"]);
+            $("#passwordActual1").val(respuesta["contraseniausuario"]);
+            //////////////////////////////////////////////////////////
+
             var datosPrograma = new FormData();
             datosPrograma.append("idPrograma", respuesta["idprograma"]);
             $.ajax({
@@ -74,7 +84,10 @@ $(".tablas").on("click", ".btnEditarUsuario", function() {
                         $("#select2-editarPrograma-container").val(respuesta["idprograma"]);
                         $("#select2-editarPrograma-container").html(respuesta["nombreprograma"]);
                         $("#editarPrograma").val(respuesta["idprograma"]);
-                        console.log($("#editarPrograma").val());
+
+                        // EDITAR INSTRUCTOR O ESPECIAL
+                        $("#editarPrograma11").val(respuesta["idprograma"]);
+                        ///////////////////////////////////////////
                     }
                 }
             })
@@ -103,7 +116,7 @@ $("#nuevoDocumento").change(function() {
         dataType: "json",
         success: function(respuesta) {
             if (respuesta) {
-                $("#editarDocumento").parent().after('<div class="alert alert-warning">Este numero de documento ya existe en la base de datos</div>');
+                $("#nuevoDocumento").parent().after('<div class="alert" style="height: 20px; text-align="center"><font color="#f39c12"><strong>ESTE DOCUMENTO YA SE ENCUENTRA REGISTRADO EN LA BASE DE DATOS</strong></font></div>');
                 $("#nuevoDocumento").val("");
             }
         }
@@ -149,7 +162,56 @@ function rolUsuario2(sel) {
         $("#editarPrograma").prop('disabled', false);
     }
 }
+// $(".btnEditarUsuario1").click(function(){
+//     debugger;
+//     $("#modalEditarUsuario").modal("toggle");
+// })
 $(".btnEditarUsuario1").click(function(){
-    // debugger;
-    $("#modalEditarUsuario").modal();
-})
+    var idUsuario = $(this).attr("NumDocumentoUsuario");
+    console.log("idUsuario", idUsuario);
+
+    // $('#modalEditarUsuario').modal('show');
+
+    $(".nuevoArticulo").append(
+            '<div class="row" style="padding: 5px 30px">' + 
+
+                '<div class="col-xs-6" style="padding-left:0px;padding-right:7px">' + 
+
+                    '<div class="input-group">' + 
+
+                        '<span class="input-group-addon"><button type="button" class="btn btn-danger quitarNovedad btn-xs" idArticulo="' + $("#idArticulo").val() + '"><i class="fa fa-times"></i></button></span>' + 
+
+                        '<input type="text" class="form-control agregarArticulo1" idArticulo="' + $("#idArticulo").val() + '" name="agregarArticulo" value="' + $("#agregarArticulo").val() + '" required readonly>' + 
+
+                    '</div>' +
+                '</div>' + 
+
+                '<div class="form-group col-xs-6"  style="padding-left:0px; padding-right: 0px">' + 
+
+                    '<div class="input-group">' + 
+
+                        '<span class="input-group-addon"><i class="fa fa-th"></i></span>' + 
+
+                        '<input type="text" class="form-control tipoNovedadArticulo1" name="tipoNovedadArticulo1" placeholder="Descripción" readonly value="' + $(".tipoNovedadArticulo").val() + '"required>' + 
+
+                    '</div>' + 
+                '</div> ' + 
+
+                '<br>'+
+
+                '<div class="col-xs-12" style="padding-left:0px">' + 
+
+                    '<div class="input-group">' + 
+
+                        '<input type="text" class="form-control nuevaDescripcion1" name="nuevaDescripcion" placeholder="Descripción" readonly value="' + $(".nuevaDescripcion").val() + '"required style="width:416px">' + 
+
+                        '<input type="hidden" id="articulo" name="articulo" value="' + $("#idArticulo").val() + '">' + 
+
+                    '</div>' + 
+
+                '</div>' +
+
+                '</div>' +
+
+            '</div>');
+});

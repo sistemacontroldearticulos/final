@@ -328,7 +328,7 @@ class ControladorUsuarios
                 } else {
                     $programa = $_POST["editarPrograma"];
                 }
-                print_r($programa);
+                // print_r($programa);
 
                 $datos = array("NumDocumentoUsuario" => $_POST["editarDocumento"],
                     "NombreUsuario"                      => $editarNombre,
@@ -337,7 +337,7 @@ class ControladorUsuarios
                     "FotoUsuario"                        => $ruta,
                     "IdPrograma"                         => $programa);
 
-                var_dump($datos["RolUsuario"]);
+                // var_dump($datos["RolUsuario"]);
 
                 if ($datos["RolUsuario"] != "ADMINISTRADOR" && $datos["IdPrograma"] == null) {
 
@@ -426,6 +426,23 @@ class ControladorUsuarios
             $tabla = "usuario";
             $datos = $_GET["NumDocumentoUsuario"];
 
+            $tablaNotif = "notificaciones";
+            $eliminarNotif = ModeloNotificaciones::mdlBorrarNotificacion1($tablaNotif, $datos);
+
+            $tablaNov = "novedad";
+            $itemNov = "numdocumentousuario";
+            $novedad =  ModeloNovedades::mdlMostrarNovedades($tablaNov, $itemNov, $datos);
+            
+            foreach ($novedad as $key => $value) {
+              
+              $tablaArticulo = "articulonovedad";
+              $datosArticulo = $novedad[$key]["idnovedad"];
+              $eliminarArticuloNov = ModeloNovedades::mdlBorrarArticuloNovedad($tablaArticulo, $datosArticulo);
+
+            }
+
+            $eliminarNov = ModeloNovedades::mdlBorrarNovedad($tablaNov, $novedad[0]["idnovedad"]);
+
             if ($_GET["FotoUsuario"] != "") {
 
                 unlink($_GET["FotoUsuario"]);
@@ -450,6 +467,83 @@ class ControladorUsuarios
 
                             })
                     </script>';
+            }
+        }
+    }
+
+
+    static public function ctrEditarUsuario1(){
+
+
+        if (isset($_POST["editarNombre1"])) {
+
+            if (preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["editarNombre1"])) {
+
+                if ($_POST["editarContrasenia1"] != "") {
+
+                    if (preg_match('/^[a-zA-Z0-9]+$/', $_POST["editarContrasenia1"])) {
+
+                        $encriptar =  hash('sha512', ($_POST["editarContrasenia1"]));
+
+                    } else {
+
+                        echo '<script>
+                                swal({
+                                        type: "error",
+                                        title: "¡la contraseña no puede ir vacía o llevar caracteres especiales!",
+                                        showConfirmButton: true,
+                                        confirmButtonText: "Cerrar"
+
+                                        }).then(function(result){
+                                            if(result.value){
+
+                                            window.location = "usuarios";
+
+                                            }
+                                    })
+                            </script>';
+                    }
+
+                } else {
+                    $encriptar = $_POST["passwordActual1"];
+                }
+
+                $editarNombre = strtoupper($_POST["editarNombre1"]);
+
+
+                $tablaEditar = "usuario";
+
+                $datos = array("NumDocumentoUsuario" => $_POST["editarDocumento1"],
+                    "NombreUsuario"                      => $editarNombre,
+                    "ContraseniaUsuario"                 => $encriptar,
+                    "RolUsuario"                         => $_POST["editarPerfil1"],
+                    "FotoUsuario"                        => $_POST["fotoActual11"],
+                    "IdPrograma"                         => $_POST["editarPrograma1"]);
+
+
+                $respuesta = ModeloUsuarios::mdlEditarUsuario($tablaEditar, $datos);
+
+                if ($respuesta == "ok") {
+
+                    echo '<script>
+
+                                swal({
+
+                                    type: "success",
+                                    title: "¡El usuario ha sido editado correctamente!",
+                                    showConfirmButton: true,
+                                    confirmButtonText: "Cerrar"
+
+                                    }).then(function(result){
+                                        if(result.value){
+                                        window.location = "usuarios";
+                                        }
+                                })
+
+                        </script>';
+
+                }
+
             }
         }
     }

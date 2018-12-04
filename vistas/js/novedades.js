@@ -271,17 +271,6 @@ function agregar() {
 
                 '</div>' +
 
-                // '<div class="col-xs-6" style="padding-left:0px">' + 
-
-                //     '<div class="input-group">' + 
-
-                //         '<input type="text" class="form-control nuevaFotoArticulo1" name="nuevaFotoArticulo" placeholder="Descripción" readonly value="' + $(".nuevaFotoArticulo").val() + '"required style="width:208px">' +
-
-                //         // '<img src="vistas/img/usuarios/default/anonymous.png" class="img-thumbnail previsualizar1" width="100px">'+
-
-
-                //     '</div>' + 
-
                 '</div>' +
 
             '</div>');

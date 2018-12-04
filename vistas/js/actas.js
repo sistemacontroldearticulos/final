@@ -182,3 +182,27 @@ $(".tablas").on("click", ".btnImprimirActa", function(){
     window.open("extensiones/tcpdf/pdf/acta.php?codigo="+codigo, "_blank");
 
 })
+
+
+$("#fi").change(function() {
+    $(".alert").remove();
+    var idFicha = $(this).val();
+    var datos = new FormData();
+    datos.append("idFicha", idFicha);
+    $.ajax({
+        url: "ajax/fichasAjax.php",
+        method: "POST",
+        data: datos,
+        cache: false,
+        contentType: false,
+        processData: false,
+        dataType: "json",
+        success: function(respuesta) {
+            console.log("respuesta", respuesta);
+            if (respuesta == false) {
+                $("#fi").parent().after('<div class="alert" style="height: 20px; text-align="center"><font color="#f39c12"><strong>ESTA FICHA NO SE ENCUENTRA REGISTRADA</strong></font></div>');
+                $("#fi").val("");
+            }
+        }
+    })
+})

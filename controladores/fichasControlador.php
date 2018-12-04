@@ -394,9 +394,6 @@ class ControladorFichas
 
             $eliminarNov = ModeloNovedades::mdlBorrarNovedad($tablaNov, $novedad[0]["idnovedad"]);
 
-            
-
-
             $respuesta2 = ModeloFichas::mdlEliminarFicha($tabla3, $datos3);
             if ($respuesta2 == "ok") {
                 echo '<script>

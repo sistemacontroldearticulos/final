@@ -1,28 +1,54 @@
 <div class="content-wrapper">
 
-  <section class="content-header">
+  <?php 
+      if($_SESSION["RolUsuario"] == "ADMINISTRADOR"){
 
-    <h1>
+        echo '<section class="content-header">
 
-      Administrar Usuarios
+          <h1>
 
-    </h1>
+            Administrar Usuarios
 
-    <ol class="breadcrumb">
+          </h1>
 
-      <li><a href="inicio"><i class="fa fa-dashboard"></i> Inicio</a></li>
+          <ol class="breadcrumb">
 
-      <li class="active">Administrar Usuarios</li>
+            <li><a href="inicio"><i class="fa fa-dashboard"></i> Inicio</a></li>
 
-    </ol>
+            <li class="active">Administrar Usuarios</li>
 
-  </section>
+          </ol>
+
+        </section>';
+      }elseif ($_SESSION["RolUsuario"] == "INSTRUCTOR" || $_SESSION["RolUsuario"] == "ESPECIAL") {
+        
+        echo '<section class="content-header">
+
+          <h1>
+
+            Configuración
+
+          </h1>
+
+          <ol class="breadcrumb">
+
+            <li><a href="inicio"><i class="fa fa-dashboard"></i> Inicio</a></li>
+
+            <li class="active">Configuración</li>
+
+          </ol>
+
+        </section>';
+      }
+  ?>
 
   <section class="content">
 
     <div class="box">
-
-      <div class="box-header with-border">
+      
+      <?php 
+      if($_SESSION["RolUsuario"] == "ADMINISTRADOR"){
+      echo '<div class="box-header with-border">
 
         <button class="btn btn-primary btn-circle btn-xl" data-toggle="modal" data-target="#modalAgregarUsuario" title="Agregar Usuario">
 
@@ -30,7 +56,9 @@
 
         </button>
 
-      </div>
+      </div>';
+    }
+       ?>
 
       <div class="box-body">
 
@@ -66,13 +94,14 @@
             echo ' <tr>
                     <td>
 
-                        <div class="btn-group">
+                        <div class="btn-group">';
 
-                          <button title="Editar" class="btn btn-circle btn-lg btn-warning btnEditarUsuario" NumDocumentoUsuario="' . $usuario["numdocumentousuario"] . '" data-toggle="modal" data-target="#modalEditarUsuario"><i class="fa fa-pencil"></i></button>
+                        // if($_SESSION["RolUsuario"] == "INSTRUCTOR" || $_SESSION["RolUsuario"] == "ESPECIAL"){
 
-                          <button title="Eliminar" class="btn btn-circle btn-lg btn-danger btnEliminarUsuario" NumDocumentoUsuario="' . $usuario["numdocumentousuario"] . '" FotoUsuario="' . $usuario["fotousuario"] . '" NombreUsuario="' . $usuario["nombreusuario"] . '"><i class="fa fa-times"></i></button>
+                          echo '<button title="Editar" class="btn btn-circle btn-lg btn-warning btnEditarUsuario" NumDocumentoUsuario="' .  $_SESSION["NumDocumentoUsuario"] . '" data-toggle="modal" data-target="#modalEditarUsuario1"><i class="fa fa-pencil"></i></button>';
 
-                        </div>
+
+                    echo '</div>
 
                       </td>
                       <td>1</td>
@@ -482,6 +511,90 @@ $crearUsuario->ctrCrearUsuario();
 
           $editarUsuario = new ControladorUsuarios();
           $editarUsuario->ctrEditarUsuario();
+
+        ?>
+
+      </form>
+    </div>
+  </div>
+</div>
+
+
+
+<!-- MODAL EDITAR USUARIO -->
+<div id="modalEditarUsuario1" class="modal fade" role="dialog">
+
+  <div class="modal-dialog">
+
+    <div class="modal-content">
+
+      <form role="form" method="post" enctype="multipart/form-data">
+
+        <!-- CABEZA DEL MODAL -->
+        <div class="modal-header cabeza-modal">
+
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+
+          <h4 class="modal-title">Editar Perfil</h4>
+
+        </div>
+
+          <!-- CUERPO DEL MODAL -->
+          <div class="modal-body">
+          <div class="box-body">
+
+            <!-- ENTRADA PARA EL USUARIO -->
+            <div class="form-group">
+
+              <div class="input-group">
+
+                <span class="input-group-addon">
+                  <img src="vistas/img/plantilla/modal/usuarios.png" width="15px">
+                </span>
+
+                <input type="text" class="form-control input-lg" id="editarNombre1" name="editarNombre1" value="" required placeholder="Ingrese Nombre">
+
+              </div>
+
+            </div>
+
+            <!-- ENTRADA PARA LA CONTRASEÑA -->
+             <div class="form-group">
+
+              <div class="input-group">
+
+                <span class="input-group-addon">
+                  <img src="vistas/img/plantilla/modal/contraseña.png" width="15px">
+                </span>
+
+                <input type="password" class="form-control input-lg" id="editarContrasenia1" name="editarContrasenia1" placeholder="Ingrese Contraseña">
+
+                <input type="hidden" id="editarDocumento1" name="editarDocumento1">
+                <input type="hidden" id="editarPerfil1" name="editarPerfil1">
+                <input type="hidden" id="fotoActual11" name="fotoActual11">
+                <input type="hidden" id="passwordActual1" name="passwordActual1">
+                <input type="hidden" id="editarPrograma11" name="editarPrograma1">
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+        <!-- PIE DEL MODAL -->
+        <div class="modal-footer">
+
+          <button type="button" class="btn btn-default" data-dismiss="modal">Salir</button>
+
+          <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+        </div>
+
+        <?php
+
+          $editarUsuario = new ControladorUsuarios();
+          $editarUsuario->ctrEditarUsuario1();
 
         ?>
 

@@ -73,10 +73,8 @@ class ModeloNotificaciones
     {
 
         $stmt = Conexion::conectar()->prepare("DELETE FROM $tabla WHERE idnotificacion = :idnotificacion");
-        var_dump($stmt);
 
         $stmt->bindParam(":idnotificacion", $datos, PDO::PARAM_INT);
-        var_dump($datos);
 
         if ($stmt->execute()) {
 
@@ -99,7 +97,30 @@ class ModeloNotificaciones
         $stmt = Conexion::conectar()->prepare("UPDATE $tabla SET leido='1' WHERE numdocumentousuario = :numdocumentousuario");
 
         $stmt->bindParam(":numdocumentousuario", $datos, PDO::PARAM_INT);
-        var_dump($datos);
+
+        if ($stmt->execute()) {
+
+            return "ok";
+
+        } else {
+
+            return "error";
+
+        }
+
+        $stmt->close();
+
+        $stmt = null;
+
+    }
+
+    // BORRAR EQUIPO
+    public static function mdlBorrarNotificacion1($tabla, $datos)
+    {
+
+        $stmt = Conexion::conectar()->prepare("DELETE FROM $tabla WHERE numdocumentousuario = :numdocumentousuario");
+
+        $stmt->bindParam(":numdocumentousuario", $datos, PDO::PARAM_INT);
 
         if ($stmt->execute()) {
 
