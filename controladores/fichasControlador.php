@@ -63,7 +63,7 @@ class ControladorFichas
                 $objReader     = PHPExcel_IOFactory::createReader($inputFileType);
                 $objPHPExcel   = $objReader->load($inputFileName);
 
-                $data = array($objPHPExcel->getActiveSheet()->toArray(null, true, true, true));
+                $data = array($objPHPExcel->getActiveSheet()->toArray("null", true, true, true));
 
                 if (count($data[0]) < 10) {
 
@@ -91,51 +91,70 @@ class ControladorFichas
                         'C'                 => "C",
                         'D'                 => "D",
                         'E'                 => "E");
+                    $validacion = false;
 
-                    if ($data[0][1][$letras['A']] == "DOCUMENTO" and $data[0][1][$letras['B']] == "FICHA" and $data[0][1][$letras['C']] == "NOMBRE" and $data[0][1][$letras['D']] == "TELEFONO" and $data[0][1][$letras['E']] == "EMAIL") {
+                    if ($data[0][1][$letras['A']] == "DOCUMENTO" and $data[0][1][$letras['B']] == "NOMBRE" and $data[0][1][$letras['C']] == "TELEFONO" and $data[0][1][$letras['D']] == "EMAIL") {
+                        for ($i = 2; $i <= count($data[0]); $i++) {
+                            if ($data[0][$i][$letras['A']] == "") {
+                                $validacion = true;
+                            }
+                            if ($data[0][$i][$letras['B']] == "") {
+                                $validacion = true;
+                            }
+                        }
+                        if (!$validacion) {
+                            $datos = array("NumeroFicha" => $_POST["nuevaFicha"],
+                                "IdAmbiente"                 => $_POST["nuevoAmbiente"],
+                                "IdPrograma"                 => $_POST["nuevoPrograma"],
+                                "FechaInicio"                => $_POST["nuevaFechaInicio"],
+                                "FechaFin"                   => $_POST["nuevaFechaFin"],
+                                "JornadaFicha"               => $_POST["nuevaJornada"]);
 
-                        $datos = array("NumeroFicha" => $_POST["nuevaFicha"],
-                            "IdAmbiente"                 => $_POST["nuevoAmbiente"],
-                            "IdPrograma"                 => $_POST["nuevoPrograma"],
-                            "FechaInicio"                => $_POST["nuevaFechaInicio"],
-                            "FechaFin"                   => $_POST["nuevaFechaFin"],
-                            "JornadaFicha"               => $_POST["nuevaJornada"]);
+                            $respuesta = ModeloFichas::mdlAgregarFichas($tabla, $datos);
+                            if ($respuesta == "ok") {
 
-                        $respuesta = ModeloFichas::mdlAgregarFichas($tabla, $datos);
-                        if ($respuesta == "ok") {
+                                $errores = 0;
+                                $letras  = array('A' => "A",
+                                    'B'                  => "B",
+                                    'C'                  => "C",
+                                    'D'                  => "D",
+                                    'E'                  => "E");
+                                // print_r($data);
 
-                            $errores = 0;
-                            $letras  = array('A' => "A",
-                                'B'                  => "B",
-                                'C'                  => "C",
-                                'D'                  => "D",
-                                'E'                  => "E");
+                                for ($i = 2; $i <= count($data[0]); $i++) {
+                                    $tablaConsulta     = "aprendiz";
+                                    $itemConsulta      = "NumDocumentoAprendiz";
+                                    $valorConsulta     = $data[0][$i][$letras['A']];
+                                    $respuestaConsulta = ModeloAprendiz::mdlConsultarAprendizFicha($tablaConsulta, $itemConsulta, $valorConsulta);
 
-                            for ($i = 2; $i <= count($data[0]); $i++) {
-                                $tablaConsulta     = "aprendiz";
-                                $itemConsulta      = "NumDocumentoAprendiz";
-                                $valorConsulta     = $data[0][$i][$letras['A']];
-                                $respuestaConsulta = ModeloAprendiz::mdlConsultarAprendizFicha($tablaConsulta, $itemConsulta, $valorConsulta);
+                                    if ($respuestaConsulta == null) {
 
-                                if ($respuestaConsulta == null) {
+                                        $tabla = "aprendiz";
 
-                                    $tabla = "aprendiz";
+                                        for ($i = 2; $i <= count($data[0]); $i++) {
+                                            $telefono = $data[0][$i][$letras['C']];
+                                            $email    = $data[0][$i][$letras['D']];
 
-                                    for ($i = 2; $i <= count($data[0]); $i++) {
+                                            if ($telefono == "null") {
+                                                $telefono = null;
+                                            }
+                                            if ($email == "null") {
+                                                $email = null;
+                                            }
 
-                                        $datos1 = array("NumeroFicha" => $_POST["nuevaFicha"],
-                                            "NumDocumentoAprendiz"        => $data[0][$i][$letras['A']],
-                                            "NombreAprendiz"              => $data[0][$i][$letras['C']],
-                                            "TelefonoAprendiz"            => $data[0][$i][$letras['D']],
-                                            "EmailAprendiz"               => $data[0][$i][$letras['E']]);
+                                            $datos1 = array("NumeroFicha" => $_POST["nuevaFicha"],
+                                                "NumDocumentoAprendiz"        => $data[0][$i][$letras['A']],
+                                                "NombreAprendiz"              => $data[0][$i][$letras['B']],
+                                                "TelefonoAprendiz"            => $telefono,
+                                                "EmailAprendiz"               => $email);
 
-                                        $respuesta2 = ModeloAprendiz::MdlIngresarAprendiz($tabla, $datos1);
+                                            $respuesta2 = ModeloAprendiz::MdlIngresarAprendiz($tabla, $datos1);
 
-                                    }
+                                        }
 
-                                    if ($respuesta2 == "ok") {
+                                        if ($respuesta2 == "ok") {
 
-                                        echo '<script>
+                                            echo '<script>
 
                                         swal({
                                           type: "success",
@@ -152,14 +171,14 @@ class ControladorFichas
                                           })
 
                                       </script>';
-                                    } else {
+                                        } else {
 
-                                        $tabla = "ficha";
-                                        $datos = $_POST["nuevaFicha"];
+                                            $tabla = "ficha";
+                                            $datos = $_POST["nuevaFicha"];
 
-                                        // $respuesta = ModeloFichas::mdlEliminarFicha($tabla, $datos);
+                                            // $respuesta = ModeloFichas::mdlEliminarFicha($tabla, $datos);
 
-                                        echo '<script>
+                                            echo '<script>
 
                                       swal({
                                           type: "error",
@@ -175,16 +194,16 @@ class ControladorFichas
                                         })
 
                                       </script>';
-                                    }
+                                        }
 
-                                } else {
-                                    $i                 = 5000;
-                                    $tablaEliminar     = "ficha";
-                                    $datosEliminar     = $_POST["nuevaFicha"];
-                                    $respuestaEliminar = ModeloFichas::mdlEliminarFicha($tablaEliminar, $datosEliminar);
+                                    } else {
+                                        $i                 = 5000;
+                                        $tablaEliminar     = "ficha";
+                                        $datosEliminar     = $_POST["nuevaFicha"];
+                                        $respuestaEliminar = ModeloFichas::mdlEliminarFicha($tablaEliminar, $datosEliminar);
 
-                                    if ($respuestaEliminar == "ok") {
-                                        echo '<script>
+                                        if ($respuestaEliminar == "ok") {
+                                            echo '<script>
                                         swal({
                                               type: "error",
                                               title: "Usuario ya registrado",
@@ -200,9 +219,31 @@ class ControladorFichas
                                             })
 
                                     </script>';
+                                        }
                                     }
                                 }
                             }
+                        } else {
+
+                            echo '<script>
+
+                                        swal({
+                                          type: "error",
+                                          title: "FALTAN CAMPOS",
+                                          text:"Hay aprendices con campos obligatiorios como número de documento o nombre vacíos, revise el archivo e intentelo nuevamente",
+                                          showConfirmButton: true,
+                                          confirmButtonText: "Cerrar",
+                                          closeOnConfirm: false
+                                          }).then((result) => {
+                                            if (result.value) {
+
+                                              window.location = "fichas";
+
+                                              }
+                                          })
+
+                                      </script>';
+
                         }
 
                     } else {
