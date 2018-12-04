@@ -189,6 +189,7 @@ $("#fi").change(function() {
     var idFicha = $(this).val();
     var datos = new FormData();
     datos.append("idFicha", idFicha);
+    
     $.ajax({
         url: "ajax/fichasAjax.php",
         method: "POST",
@@ -198,11 +199,90 @@ $("#fi").change(function() {
         processData: false,
         dataType: "json",
         success: function(respuesta) {
-            console.log("respuesta", respuesta);
+            // console.log("respuesta", respuesta);
             if (respuesta == false) {
                 $("#fi").parent().after('<div class="alert" style="height: 20px; text-align="center"><font color="#f39c12"><strong>ESTA FICHA NO SE ENCUENTRA REGISTRADA</strong></font></div>');
                 $("#fi").val("");
+            
+            }else if (respuesta != "") {
+                
+                
+                var idAmbiente = respuesta[2];
+                var datos = new FormData();
+                datos.append("idAmbiente", idAmbiente);
+                $.ajax({
+                    url: "ajax/articulosAjax.php",
+                    method: "POST",
+                    data: datos,
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    dataType: "json",
+                    success: function(respuesta) {
+                        console.log("respuesta", respuesta);
+                       
+                        // var total1 =;
+                        var fal = new Array();
+                        
+                        for (var i = 0; i < respuesta.length; i++) {
+                            var equipo = respuesta[i]["idequipo"];
+                            var datos = new FormData();   
+                            datos.append("equipo", equipo);
+
+                            var falsos = new Array();
+
+                            fal.push(falsos);
+
+                            $.ajax({
+                                url: "ajax/actasAjax.php",
+                                method: "POST",
+                                data: datos,
+                                cache: false,
+                                contentType: false,
+                                processData: false,
+                                dataType: "json",
+                                success: function(respuesta) {
+                                    
+                                    console.log("respuesta", respuesta);
+                                    if (respuesta == false) {
+                                        
+                                        falsos.push('falso');
+                                    }
+
+                                    
+
+                                    //     // $("#fi").parent().after('<div class="alert" style="height: 20px; text-align="center"><font color="#f39c12"><strong>ESTA FICHO NO TIENE ACTAS</strong></font></div>');
+                                    //     // $("#fi").val("");
+                                    
+                                }
+
+
+                            })
+                                console.log(falsos);
+                        }
+                        // console.log(fal);
+
+                        var t = 0;
+
+                        for (var i = 0; i < fal.length; i++) {
+                            
+                            t = t + 1;
+
+                        }
+
+                        if (t != 0) {
+                                 $("#fi").parent().after('<div class="alert" style="height: 20px; text-align="center"><font color="#f39c12"><strong>ESTA FICHO NO TIENE ACTAS</strong></font></div>');
+                                        $("#fi").val("");
+                        }
+
+                    }
+  
+                })
+                
             }
+
         }
+            
     })
+
 })

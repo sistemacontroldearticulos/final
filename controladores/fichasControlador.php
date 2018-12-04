@@ -44,6 +44,7 @@ class ControladorFichas
 
     public static function ctrAgregarFichas()
     {
+      // echo '<pre>'; print_r($datos); echo '</pre>';
 
         if (isset($_POST["nuevaFicha"])) {
 
@@ -110,6 +111,7 @@ class ControladorFichas
                                 "FechaFin"                   => $_POST["nuevaFechaFin"],
                                 "JornadaFicha"               => $_POST["nuevaJornada"]);
 
+                            
                             $respuesta = ModeloFichas::mdlAgregarFichas($tabla, $datos);
                             if ($respuesta == "ok") {
 

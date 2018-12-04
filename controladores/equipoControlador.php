@@ -126,6 +126,8 @@ class ControladorEquipos
                 }
               }
 
+            $actaResponsabilidadEquipo = ControladorActas::ctrEliminarActaResponsabilidadEquipo($datos);
+
                 $respuesta = ModeloEquipos::mdlBorrarEquipo($tabla, $datos);
 
                 if ($respuesta == "ok") {

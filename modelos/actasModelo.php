@@ -124,6 +124,26 @@ class ModeloActas
         $stmt -> close();
         $stmt = null;
 
+    }   
+
+    //ELIMINAR ACTA RESPONSABILIDAD EQUIPO
+    static public function mdlEliminarActaResponsabilidadEquipo($tabla, $datos){
+        
+        $stmt = Conexion :: conectar()->prepare("DELETE FROM $tabla WHERE idequipo= :idequipo");
+
+        $stmt -> bindParam(":idequipo",$datos,PDO::PARAM_INT);
+
+        if($stmt -> execute()){
+
+            return "ok";
+
+        }else{
+            return "error";
+        }
+
+        $stmt -> close();
+        $stmt = null;
+
     }
 
     //ELIMINAR ACTA RESPONSABILIDAD

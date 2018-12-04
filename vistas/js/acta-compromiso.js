@@ -102,65 +102,65 @@ $(".tablas").on("click", ".btnImprimirActaCompromiso", function(){
 })
 
 // IMPRIMIR ACTAS FICHA
-$("#fi").change(function(){
+// $("#fi").change(function(){
 
-    $(".alert").remove();
+//     $(".alert").remove();
 
-    var idFicha = $(this).val();
-    var datos = new FormData();
-    datos.append("idFicha", idFicha);
-    $.ajax({
-        url: "ajax/fichasAjax.php",
-        method: "POST",
-        data: datos,
-        cache: false,
-        contentType: false,
-        processData: false,
-        dataType: "json",
-        success: function(respuesta) {
+//     var idFicha = $(this).val();
+//     var datos = new FormData();
+//     datos.append("idFicha", idFicha);
+//     $.ajax({
+//         url: "ajax/fichasAjax.php",
+//         method: "POST",
+//         data: datos,
+//         cache: false,
+//         contentType: false,
+//         processData: false,
+//         dataType: "json",
+//         success: function(respuesta) {
 
-            var idAmbiente = respuesta[2];
-            var datos = new FormData();
-            datos.append("idAmbiente", idAmbiente);
-            $.ajax({
-                url: "ajax/articulosAjax.php",
-                method: "POST",
-                data: datos,
-                cache: false,
-                contentType: false,
-                processData: false,
-                dataType: "json",
-                success: function(respuesta) {
-                    // console.log("respuesta", respuesta.length);
+//             var idAmbiente = respuesta[2];
+//             var datos = new FormData();
+//             datos.append("idAmbiente", idAmbiente);
+//             $.ajax({
+//                 url: "ajax/articulosAjax.php",
+//                 method: "POST",
+//                 data: datos,
+//                 cache: false,
+//                 contentType: false,
+//                 processData: false,
+//                 dataType: "json",
+//                 success: function(respuesta) {
+//                     // console.log("respuesta", respuesta.length);
 
-                    for (var i = 0; i < respuesta.length; i++) {
+//                     for (var i = 0; i < respuesta.length; i++) {
 
-                        var equipo = respuesta[i]["idequipo"];
-                        var datos = new FormData();   
-                        datos.append("equipo", equipo);
-                        $.ajax({
-                            url: "ajax/actasAjax.php",
-                            method: "POST",
-                            data: datos,
-                            cache: false,
-                            contentType: false,
-                            processData: false,
-                            dataType: "json",
-                            success: function(respuesta) {
-                                console.log("respuesta", respuesta);
+//                         var equipo = respuesta[i]["idequipo"];
+//                         var datos = new FormData();   
+//                         datos.append("equipo", equipo);
+//                         $.ajax({
+//                             url: "ajax/actasAjax.php",
+//                             method: "POST",
+//                             data: datos,
+//                             cache: false,
+//                             contentType: false,
+//                             processData: false,
+//                             dataType: "json",
+//                             success: function(respuesta) {
+//                                 console.log("respuesta", respuesta);
                                 
-                                if (respuesta == false) {
+//                                 if (respuesta == false) {
 
-                                    $("#fi").parent().after('<div class="alert" style="height: 20px; text-align="center"><font color="#f39c12"><strong>ESTA FICHO NO TIENE ACTAS</strong></font></div>');
-                                    $("#fi").val("");
+//                                     $("#fi").parent().after('<div class="alert" style="height: 20px; text-align="center"><font color="#f39c12"><strong>ESTA FICHO NO TIENE ACTAS</strong></font></div>');
+//                                     $("#fi").val("");
                                    
 
-                                }
-                            }
-                        })
-                    }
-                }
-            })
-        }
-    })
-})
+//                                 }
+//                             }
+//                         })
+//                     }
+//                 }
+//             })
+//         }
+//     })
+// })

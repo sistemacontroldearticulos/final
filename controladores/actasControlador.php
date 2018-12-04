@@ -168,4 +168,37 @@ class ControladorActas
             }
         }
     }
+
+    static public function ctrEliminarActaResponsabilidadEquipo($datos){
+
+        $tabla = "acta_responsabilidad";
+
+        $respuesta = ModeloActas::mdlEliminarActaResponsabilidadEquipo($tabla, $datos);
+
+        if ($respuesta == "ok") {
+            
+            return $respuesta;
+
+        }elseif ($respuesta == "error") {
+        
+            $item = "idequipo";
+            
+            $mostrarActaResponsabilidad = ModeloActas::mdlMostrarActas($tabla, $item, $datos);
+
+            $tabla1 = "actacompromiso";
+            $datos1 = $mostrarActaResponsabilidad["idacta"];
+            
+            $eliminarActaCompromiso = ModeloActas::mdlEliminarActaCompromiso($tabla1, $datos1);
+            
+            if ($eliminarActaCompromiso == "ok") {
+                
+                $respuesta2 = ModeloActas::mdlEliminarActaResponsabilidadEquipo($tabla, $datos);
+
+                if ($respuesta2 == "ok") {
+                    
+                    return $respuesta2;
+                }
+            }
+        }
+    }
 }

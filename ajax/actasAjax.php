@@ -24,12 +24,15 @@ class AjaxActas{
 		$valor = $this->equipo;
 
 		$respuesta = ControladorActas::ctrMostrarActas($item, $valor);
-		
-		// var_dump($respuesta);
 
 		if ($respuesta) {
 			echo json_encode($respuesta);
+		}elseif (!$respuesta) {
+
+			echo json_encode($respuesta);
+			
 		}
+
 	}
 
 	//MOSTRAR ACTA
