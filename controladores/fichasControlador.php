@@ -119,7 +119,7 @@ class ControladorFichas
                                     'C'                  => "C",
                                     'D'                  => "D",
                                     'E'                  => "E");
-                                // print_r($data);
+                                print_r($data);
 
                                 for ($i = 2; $i <= count($data[0]); $i++) {
                                     $tablaConsulta     = "aprendiz";
@@ -176,24 +176,24 @@ class ControladorFichas
                                             $tabla = "ficha";
                                             $datos = $_POST["nuevaFicha"];
 
-                                            // $respuesta = ModeloFichas::mdlEliminarFicha($tabla, $datos);
+                                            $respuesta = ModeloFichas::mdlEliminarFicha($tabla, $datos);
 
                                             echo '<script>
 
-                                      swal({
-                                          type: "error",
-                                          title: "La ficha no puede ir vacía o llevar caracteres especiales!",
-                                          showConfirmButton: true,
-                                          confirmButtonText: "Cerrar",
-                                          closeOnConfirm: false
-                                          }).then((result) => {
-                                            if (result.value) {
+                                            swal({
+                                                type: "error",
+                                                title: "La ficha no puede ir vacía o llevar caracteres especiales!",
+                                                showConfirmButton: true,
+                                                confirmButtonText: "Cerrar",
+                                                closeOnConfirm: false
+                                                }).then((result) => {
+                                                  if (result.value) {
+                                                     window.location = "fichas";
 
+                                                  }
+                                              })
 
-                                            }
-                                        })
-
-                                      </script>';
+                                            </script>';
                                         }
 
                                     } else {
@@ -359,36 +359,35 @@ class ControladorFichas
             $tabla3 = "ficha";
             $datos3 = $_GET["idFicha"];
 
-            $tabla1 = "aprendiz";
-            $item1 = "numeroficha";
+            $tabla1            = "aprendiz";
+            $item1             = "numeroficha";
             $mostrarAprendices = ModeloAprendiz::mdlMostrarAprendiz($tabla1, $item1, $datos3);
-            $documentos = array();
+            $documentos        = array();
             foreach ($mostrarAprendices as $key => $value) {
-              $documento = array_push($documentos, $mostrarAprendices[$key]["numdocumentoaprendiz"]);
+                $documento = array_push($documentos, $mostrarAprendices[$key]["numdocumentoaprendiz"]);
             }
 
-
             foreach ($documentos as $key => $value) {
-              $tabla = "aprendiz";
-              $datos = $documentos[$key];
-              $item                = "numdocumentoaprendiz";
-              $actaResponsabilidad = ControladorActas::ctrEliminarActaResponsabilidad($datos);
+                $tabla               = "aprendiz";
+                $datos               = $documentos[$key];
+                $item                = "numdocumentoaprendiz";
+                $actaResponsabilidad = ControladorActas::ctrEliminarActaResponsabilidad($datos);
 
-              if ($actaResponsabilidad == "ok") {
-                  $respuesta = ModeloAprendiz::mdlBorrarAprendiz($tabla, $datos);
-              }
+                if ($actaResponsabilidad == "ok") {
+                    $respuesta = ModeloAprendiz::mdlBorrarAprendiz($tabla, $datos);
+                }
 
             }
 
             $tablaNov = "novedad";
-            $itemNov = "numeroficha";
-            $novedad =  ModeloNovedades::mdlMostrarNovedades($tablaNov, $itemNov, $datos3);
-            
+            $itemNov  = "numeroficha";
+            $novedad  = ModeloNovedades::mdlMostrarNovedades($tablaNov, $itemNov, $datos3);
+
             foreach ($novedad as $key => $value) {
-              
-              $tablaArticulo = "articulonovedad";
-              $datosArticulo = $novedad[$key]["idnovedad"];
-              $eliminarArticuloNov = ModeloNovedades::mdlBorrarArticuloNovedad($tablaArticulo, $datosArticulo);
+
+                $tablaArticulo       = "articulonovedad";
+                $datosArticulo       = $novedad[$key]["idnovedad"];
+                $eliminarArticuloNov = ModeloNovedades::mdlBorrarArticuloNovedad($tablaArticulo, $datosArticulo);
 
             }
 

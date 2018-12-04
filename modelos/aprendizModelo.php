@@ -20,8 +20,6 @@ class ModeloAprendiz
         $stmt->bindParam(":TelefonoAprendiz", $datos["TelefonoAprendiz"], PDO::PARAM_STR);
         $stmt->bindParam(":EmailAprendiz", $datos["EmailAprendiz"], PDO::PARAM_STR);
 
-        print_r($stmt);
-
         if ($stmt->execute()) {
 
             return "ok";

@@ -24,7 +24,7 @@ $(".tablas").on("click", ".btnCompromiso", function(){
             var datos = new FormData();
             datos.append("idAprendiz", idAprendiz);
              $.ajax({
-                url: "ajax/aprendiz.Ajax.php",
+                url: "ajax/aprendiz.ajax.php",
                 method: "POST",
                 data: datos,
                 cache: false,

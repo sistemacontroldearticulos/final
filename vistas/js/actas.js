@@ -102,7 +102,7 @@ $("#ficha").change(function() {
                         var datos = new FormData();
                         datos.append("ficha", ficha);
                         $.ajax({
-                            url: "ajax/aprendiz.Ajax.php",
+                            url: "ajax/aprendiz.ajax.php",
                             method: "POST",
                             data: datos,
                             cache: false,

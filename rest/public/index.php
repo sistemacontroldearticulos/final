@@ -10,19 +10,19 @@ if (PHP_SAPI == 'cli-server') {
     }
 }
 
-// function getConnection()
-// {
-//     $link = new PDO("mysql:host=88.198.24.90;dbname=inventar_proyectofinal", "inventariosadsi", "SETQDnuHgv(_");
-//        $link->exec("set names utf8");
-//        return $link;
-// }
-
 function getConnection()
 {
-    $link = new PDO("mysql:host=localhost;dbname=proyectofinal", "root", "");
+    $link = new PDO("mysql:host=88.198.24.90;dbname=inventar_proyectofinal", "inventariosadsi", "SETQDnuHgv(_");
     $link->exec("set names utf8");
     return $link;
 }
+
+// function getConnection()
+// {
+//     $link = new PDO("mysql:host=localhost;dbname=proyectofinal", "root", "");
+//     $link->exec("set names utf8");
+//     return $link;
+// }
 
 function login($response)
 {
