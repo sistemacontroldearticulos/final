@@ -1,15 +1,17 @@
 <?php
-require_once "../controladores/articuloscontrolador.php";
+require_once "../controladores/articulosControlador.php";
 require_once "../modelos/articulosModelo.php";
 
-class AjaxArticulos{
+class AjaxArticulos
+{
 
     // EDITAR ARTICULOS
     public $idArticulo;
 
-    public function ajaxEditarArticulos(){
+    public function ajaxEditarArticulos()
+    {
 
-        $item = "IdArticulo";
+        $item  = "IdArticulo";
         $valor = $this->idArticulo;
 
         $respuesta = ControladorArticulos::ctrMostrarArticulos($item, $valor);
@@ -21,9 +23,10 @@ class AjaxArticulos{
     // VALIDAR SERIAL ARTICULO
     public $serialarticulo;
 
-    public function ajaxValidarSerial(){
+    public function ajaxValidarSerial()
+    {
 
-        $item = "serialarticulo";
+        $item  = "serialarticulo";
         $valor = $this->serialarticulo;
 
         $respuesta = ControladorArticulos::ctrMostrarArticulos($item, $valor);
@@ -35,9 +38,10 @@ class AjaxArticulos{
     // VALIDAR NUMERO INVENTARIO ARTICULO
     public $numinventario;
 
-    public function ajaxValidarInventario(){
+    public function ajaxValidarInventario()
+    {
 
-        $item = "numinventariosena";
+        $item  = "numinventariosena";
         $valor = $this->numinventario;
 
         $respuesta = ControladorArticulos::ctrMostrarArticulos($item, $valor);
@@ -48,9 +52,10 @@ class AjaxArticulos{
 
     // MOSTRAR ARTICULOS AMBIENTES
     public $idambiente;
-    public function ajaxMostrarArticulosAmbiente(){
+    public function ajaxMostrarArticulosAmbiente()
+    {
 
-        $item = "idambiente";
+        $item  = "idambiente";
         $valor = $this->idambiente;
         $tabla = "articulo";
 
@@ -62,9 +67,10 @@ class AjaxArticulos{
 
     // MOSTRAR ARTICULOS EQUIPO
     public $idEquipo;
-    public function ajaxMostrarArticulosEquipo(){
+    public function ajaxMostrarArticulosEquipo()
+    {
 
-        $item = "idequipo";
+        $item  = "idequipo";
         $valor = $this->idEquipo;
         $tabla = "articulo";
 
@@ -77,41 +83,41 @@ class AjaxArticulos{
 }
 
 // EDITAR ARTICULOS
-if(isset($_POST["idArticulo"])){
+if (isset($_POST["idArticulo"])) {
 
-    $articulo = new AjaxArticulos();
-    $articulo -> idArticulo = $_POST["idArticulo"];
-    $articulo -> ajaxEditarArticulos();
+    $articulo             = new AjaxArticulos();
+    $articulo->idArticulo = $_POST["idArticulo"];
+    $articulo->ajaxEditarArticulos();
 }
 
 // VALIDAR SERIAL ARTICULO
-if(isset($_POST["serialArticulo"])){
+if (isset($_POST["serialArticulo"])) {
 
-    $articulo = new AjaxArticulos();
-    $articulo -> serialarticulo = strtoupper($_POST["serialArticulo"]);
-    $articulo -> ajaxValidarSerial();
+    $articulo                 = new AjaxArticulos();
+    $articulo->serialarticulo = strtoupper($_POST["serialArticulo"]);
+    $articulo->ajaxValidarSerial();
 }
 
 // VALIDAR NUMERO INVENTARIO ARTICULO
-if(isset($_POST["numInventario"])){
+if (isset($_POST["numInventario"])) {
 
-    $articulo = new AjaxArticulos();
-    $articulo -> numinventario = strtoupper($_POST["numInventario"]);
-    $articulo -> ajaxValidarInventario();
+    $articulo                = new AjaxArticulos();
+    $articulo->numinventario = strtoupper($_POST["numInventario"]);
+    $articulo->ajaxValidarInventario();
 }
 
 // MOSTRAR ARTICULOS AMBIENTE
-if(isset($_POST["idAmbiente"])){
+if (isset($_POST["idAmbiente"])) {
 
-    $articulo = new AjaxArticulos();
-    $articulo -> idambiente = strtoupper($_POST["idAmbiente"]);
-    $articulo -> ajaxMostrarArticulosAmbiente();
+    $articulo             = new AjaxArticulos();
+    $articulo->idambiente = strtoupper($_POST["idAmbiente"]);
+    $articulo->ajaxMostrarArticulosAmbiente();
 }
 
 // MOSTRAR ARTICULOS EQUIPO
-if(isset($_POST["idEquipo"])){
+if (isset($_POST["idEquipo"])) {
 
-    $articulo = new AjaxArticulos();
-    $articulo -> idEquipo = strtoupper($_POST["idEquipo"]);
-    $articulo -> ajaxMostrarArticulosEquipo();
+    $articulo           = new AjaxArticulos();
+    $articulo->idEquipo = strtoupper($_POST["idEquipo"]);
+    $articulo->ajaxMostrarArticulosEquipo();
 }
