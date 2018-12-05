@@ -39,7 +39,7 @@ $(".tablas").on("click", ".btnCompromiso", function(){
 
             // EQUIPO ACTA
             var idEquipo = respuesta["idequipo"];
-            console.log("idEquipo", idEquipo);
+            // console.log("idEquipo", idEquipo);
             var datos = new FormData();
             datos.append("idEquipo", idEquipo);
             $.ajax({
@@ -76,7 +76,7 @@ $(".tablas").on("click", ".btnCompromiso", function(){
                     
 
                 for (var i = 0; i < respuesta.length; i++) {
-                    console.log("respuesta", respuesta[i]["tipoarticulo"]);
+                    // console.log("respuesta", respuesta[i]["tipoarticulo"]);
     
                 var option = document.createElement("option");
                 $(option).val(respuesta[i]["idarticulo"]);

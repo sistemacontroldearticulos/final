@@ -41,8 +41,8 @@ class ControladorAprendiz{
 		                    "telefonoaprendiz"    => $_POST["nuevoTelefonoAprendiz"],
 		                    "emailaprendiz" => $_POST["nuevoEmailAprendiz"]);
 
-                // echo '<pre>'; print_r($datos); echo '</pre>';
                 $respuesta = ModeloAprendiz::mdlIngresarAprendiz($tabla, $datos);
+                echo '<pre>'; print_r($respuesta); echo '</pre>';
 
                 if ($respuesta == "ok") {
 

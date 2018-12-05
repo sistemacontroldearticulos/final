@@ -27,10 +27,6 @@ class AjaxActas{
 
 		if ($respuesta) {
 			echo json_encode($respuesta);
-		}elseif (!$respuesta) {
-
-			echo json_encode($respuesta);
-			
 		}
 
 	}

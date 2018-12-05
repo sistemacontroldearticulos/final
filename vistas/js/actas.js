@@ -47,7 +47,7 @@ $("#ficha").change(function() {
                             processData: false,
                             dataType: "json",
                             success: function(respuesta) {
-                                console.log("respuesta", respuesta);
+                                // console.log("respuesta", respuesta);
                                 
                                 //CODIGO PARA LIMPIAR SELECT DE EQUIPO CADA VEZ QUE SE CAMBIA DE FICHA
                                 $('#equipos').empty().append('<option selected="selected" value="whatever">Seleccione El Equipo</option>');
@@ -211,7 +211,7 @@ $("#fi").change(function() {
                 var datos = new FormData();
                 datos.append("idAmbiente", idAmbiente);
                 $.ajax({
-                    url: "ajax/articulosAjax.php",
+                    url: "ajax/equipoAjax.php",
                     method: "POST",
                     data: datos,
                     cache: false,
@@ -219,19 +219,21 @@ $("#fi").change(function() {
                     processData: false,
                     dataType: "json",
                     success: function(respuesta) {
-                        console.log("respuesta", respuesta);
+                        // console.log("respuesta", respuesta);
                        
-                        // var total1 =;
-                        var fal = new Array();
+                        var falsos = new Array();
+                        var positivos = new Array();
                         
                         for (var i = 0; i < respuesta.length; i++) {
                             var equipo = respuesta[i]["idequipo"];
                             var datos = new FormData();   
                             datos.append("equipo", equipo);
 
-                            var falsos = new Array();
+                            var fal = new Array();
+                            var pos = new Array();
 
-                            fal.push(falsos);
+                            falsos.push(fal);
+                            positivos.push(pos);
 
                             $.ajax({
                                 url: "ajax/actasAjax.php",
@@ -241,38 +243,38 @@ $("#fi").change(function() {
                                 contentType: false,
                                 processData: false,
                                 dataType: "json",
-                                success: function(respuesta) {
-                                    
-                                    console.log("respuesta", respuesta);
-                                    if (respuesta == false) {
+                                error: function(respuesta) {
                                         
-                                        falsos.push('falso');
-                                    }
-
+                                        fal.push('false');
                                     
-
-                                    //     // $("#fi").parent().after('<div class="alert" style="height: 20px; text-align="center"><font color="#f39c12"><strong>ESTA FICHO NO TIENE ACTAS</strong></font></div>');
-                                    //     // $("#fi").val("");
-                                    
+                                },
+                                success: function(respuesta){
+                                    // console.log("respuesta", respuesta);
+                                    pos.push('true');
                                 }
 
-
                             })
-                                console.log(falsos);
+    
                         }
-                        // console.log(fal);
 
-                        var t = 0;
+                        var mes = []; mes[0] ;
+                        console.log( mes);
 
-                        for (var i = 0; i < fal.length; i++) {
+
+                        var o = (positivos.length) -1;
+                        console.log("o", o);
+                        console.log(positivos[o]);
+
+                        if (positivos[o] === mes ) {
+
+                            // $("#fi").parent().after('<div class="alert" style="height: 20px; text-align="center"><font color="#f39c12"><strong>ESTA FICHO NO TIENE ACTAS</strong></font></div>');
+                            // $("#fi").val("");
+
+                        }else{
+                            $("#fi").parent().after('<div class="alert" style="height: 20px; text-align="center"><font color="#f39c12"><strong>ESTA FICHO NO TIENE ACTAS</strong></font></div>');
+                            $("#fi").val("");
                             
-                            t = t + 1;
 
-                        }
-
-                        if (t != 0) {
-                                 $("#fi").parent().after('<div class="alert" style="height: 20px; text-align="center"><font color="#f39c12"><strong>ESTA FICHO NO TIENE ACTAS</strong></font></div>');
-                                        $("#fi").val("");
                         }
 
                     }
