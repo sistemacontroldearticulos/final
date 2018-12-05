@@ -122,9 +122,70 @@ class ControladorActas
 
         if (isset($_POST["ficha1"]) && ($_POST["ficha1"] != "")) {
 
-            echo '<script>
-                     window.open("extensiones/tcpdf/pdf/actaFicha.php?codigo='.$_POST["ficha1"].', _blank");
-                </script>';
+
+            $tabla = "ficha";
+            $item = "numeroficha";
+            $valor = $_POST["ficha1"];
+            $respuestaFicha = Modelofichas::mdlMostrarFichas($tabla, $item, $valor);
+
+            $tabla1 = "ambiente";
+            $item1 = "idambiente";
+            $valor1 = $respuestaFicha["idambiente"]; 
+            $respuestaAmbiente = ModeloAmbientes::mdlMostrarAmbientes($tabla1, $item1, $valor1);
+
+            $tabla2 = "equipo";
+            $respuestaEquipo = ModeloEquipos::mdlMostrarEquipos1($tabla2, $item1, $valor1);
+            
+
+            $positivos = array();
+            foreach ($respuestaEquipo as $key => $value) {
+
+                $tabla3 = "acta_responsabilidad";
+                $item3 = "idequipo";
+                $valor3 = $respuestaEquipo[$key]["idequipo"]; 
+                $respuestaActas = ModeloActas::mdlMostrarActas($tabla3, $item3, $valor3);
+
+
+                if ($respuestaActas != false) {
+                    
+                    array_push($positivos, "true");
+
+                }
+
+                
+            }
+
+
+            if (empty($positivos)) {
+
+
+                echo '<script>
+
+                    swal({
+
+                        type: "error",
+                        title: "Esta ficha no tiene actas",
+                        showConfirmButton: true,
+                        confirmButtonText: "Cerrar"
+
+                    }).then(function(result){
+
+                        if(result.value){
+
+                            window.location = "actas";
+
+                        }
+
+                    });
+
+                    </script>';
+                
+            }else{
+
+                echo '<script>
+
+                         window.open("extensiones/tcpdf/pdf/actaFicha.php?codigo='.$_POST["ficha1"].', _blank");
+                    </script>';
 
 
                 echo '<script>
@@ -132,7 +193,7 @@ class ControladorActas
                         window.location = "actas";
 
                 </script>';
-            
+            } 
         }
     }
 

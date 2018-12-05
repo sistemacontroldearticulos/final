@@ -93,7 +93,7 @@ class ControladorNovedades
                             'TipoNovedad'                => $tipo,
                             'ObservacionNovedad'         => $descripcion,
                             'IdNovedad'                  => $respuesta1[0]["idnovedad"],
-                            'fotonovedad'                => "vistas/img/usuarios/default/articulo.png",
+                            'fotonovedad'                => null,
                         );
 
                         // $respuesta2 = ModeloNovedades::mdlCrearNovedadArticulo($tabla5, $datos5);
