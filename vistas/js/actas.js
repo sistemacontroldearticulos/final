@@ -34,8 +34,8 @@ $("#ficha").change(function() {
                     processData: false,
                     dataType: "json",
                     success: function(respuesta) {
-                        // console.log("respuesta", respuesta);
-                        var idAmbiente = respuesta["idambiente"];
+                        console.log("respuesta", respuesta);
+                        // var idAmbiente = respuesta["idambiente"];
                         // console.log("idAmbiente", idAmbiente);
                         var datos = new FormData();
                         datos.append("idAmbiente", idAmbiente);
@@ -206,7 +206,8 @@ $("#fi").change(function() {
                 $("#fi").parent().after('<div class="alert" style="height: 20px; text-align="center"><font color="#f39c12"><strong>ESTA FICHA NO SE ENCUENTRA REGISTRADA</strong></font></div>');
                 $("#fi").val("");
             
-            }else if (respuesta != "") {
+            }
+            // }else if (respuesta != "") {
                 
                 
                 var idAmbiente = respuesta[2];
@@ -225,11 +226,7 @@ $("#fi").change(function() {
                       
                         var falsos = new Array();
                         var positivos =[];
-                        
-                        for (var i = 0; i < respuesta.length; i++) {
-                            var equipo = respuesta[i]["idequipo"];
-                            var datos = new FormData();   
-                            datos.append("equipo", equipo);
+
 
                             $.ajax({
                                 url: "ajax/actasAjax.php",
@@ -251,34 +248,7 @@ $("#fi").change(function() {
                                     );
                                 }
 
-                            })
-    
-                        }
-
-                        var arr = Object.keys(positivos).map(function(k) { return positivos[k] });
-                        console.log(arr);
-                        
-
-
-                        if (positivos[0]=="true") {
-
-                            // $("#fi").parent().after('<div class="alert" style="height: 20px; text-align="center"><font color="#f39c12"><strong>ESTA FICHO NO TIENE ACTAS</strong></font></div>');
-                            // $("#fi").val("");
-                            console.log("SI HAY ACTAS");
-
-                        }else{
-                            // $("#fi").parent().after('<div class="alert" style="height: 20px; text-align="center"><font color="#f39c12"><strong>ESTA FICHO NO TIENE ACTAS</strong></font></div>');
-                            // $("#fi").val("");
-                            console.log("NO HAY ACTAS");
-                            
-
-                        }
-
-                    }
-  
-                })
-                
-            }
+                    
 
         }
             
