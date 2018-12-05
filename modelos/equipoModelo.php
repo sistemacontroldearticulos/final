@@ -1,11 +1,11 @@
-<?php 
+<?php
 
-	require_once "conexion.php";
+require_once "conexion.php";
 
 class ModeloEquipos
 {
-	static public function mdlCrearEquipo($tabla, $datos)
-	{
+    public static function mdlCrearEquipo($tabla, $datos)
+    {
         $stmt = Conexion::conectar()->prepare("INSERT INTO $tabla (NombreEquipo, EstadoEquipo, NumArticulosEquipo, ObservacionEquipo, NumArticulosAgregados, idambiente) VALUES (:NombreEquipo, :EstadoEquipo, :NumArticulosEquipo, :ObservacionEquipo, :NumArticulosAgregados, :idambiente )");
 
         $stmt->bindParam(":NombreEquipo", $datos["NuevoEquipo"], PDO::PARAM_STR);
@@ -30,91 +30,94 @@ class ModeloEquipos
         $stmt->close();
 
         $stmt = null;
-	}
+    }
 
     // MOSTRAR EQUIPOS
-    static public function mdlMostrarEquipos($tabla, $item, $valor){
+    public static function mdlMostrarEquipos($tabla, $item, $valor)
+    {
 
-        if($item != null){
+        if ($item != null) {
 
             $stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-            $stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+            $stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-            $stmt -> execute();
+            $stmt->execute();
 
-            return $stmt -> fetch();
+            return $stmt->fetch();
 
-        }else{
+        } else {
 
             $stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla");
 
-            $stmt -> execute();
+            $stmt->execute();
 
-            return $stmt -> fetchAll();
+            return $stmt->fetchAll();
 
         }
 
-        $stmt -> close();
+        $stmt->close();
 
         $stmt = null;
 
     }
 
     // MOSTRAR EQUIPOS ALL
-    static public function mdlMostrarEquipos1($tabla, $item, $valor){
+    public static function mdlMostrarEquipos1($tabla, $item, $valor)
+    {
 
-        if($item != null){
+        if ($item != null) {
 
             $stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-            $stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+            $stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-            $stmt -> execute();
+            $stmt->execute();
 
-            return $stmt -> fetchAll();
+            return $stmt->fetchAll();
 
-        }else{
+        } else {
 
             $stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla");
 
-            $stmt -> execute();
+            $stmt->execute();
 
-            return $stmt -> fetchAll();
+            return $stmt->fetchAll();
 
         }
 
-        $stmt -> close();
+        $stmt->close();
 
         $stmt = null;
 
     }
 
     // BORRAR EQUIPO
-    static public function mdlBorrarEquipo($tabla, $datos){
+    public static function mdlBorrarEquipo($tabla, $datos)
+    {
 
         $stmt = Conexion::conectar()->prepare("DELETE FROM $tabla WHERE IdEquipo = :IdEquipo");
 
-        $stmt -> bindParam(":IdEquipo", $datos, PDO::PARAM_INT);
+        $stmt->bindParam(":IdEquipo", $datos, PDO::PARAM_INT);
 
-        if($stmt -> execute()){
+        if ($stmt->execute()) {
 
             return "ok";
-        
-        }else{
 
-            return "error"; 
+        } else {
+
+            return "error";
 
         }
 
-        $stmt -> close();
+        $stmt->close();
 
         $stmt = null;
 
     }
 
-    static public function mdlEditarEquipo($tabla, $datos){
-        // var_dump($datos);
+    public static function mdlEditarEquipo($tabla, $datos)
+    {
 
         $stmt = Conexion::conectar()->prepare("UPDATE $tabla SET NombreEquipo=:NombreEquipo,EstadoEquipo=:EstadoEquipo,NumArticulosEquipo=:NumArticulosEquipo,ObservacionEquipo=:ObservacionEquipo,NumArticulosAgregados=:NumArticulosAgregados, idambiente=:idambiente WHERE IdEquipo=:IdEquipo");
 
@@ -126,14 +129,14 @@ class ModeloEquipos
         $stmt->bindParam(":IdEquipo", $datos["IdEquipo"], PDO::PARAM_STR);
         $stmt->bindParam(":idambiente", $datos["idambiente"], PDO::PARAM_STR);
 
-        if($stmt->execute()){
+        if ($stmt->execute()) {
 
             return "ok";
 
-        }else{
+        } else {
 
             return "error";
-        
+
         }
 
         $stmt->close();
@@ -141,5 +144,4 @@ class ModeloEquipos
 
     }
 
-    
 }

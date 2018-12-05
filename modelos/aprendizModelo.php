@@ -13,7 +13,7 @@ class ModeloAprendiz
     {
 
         $stmt = Conexion::conectar()->prepare("INSERT INTO $tabla(NumDocumentoAprendiz, NumeroFicha, NombreAprendiz, TelefonoAprendiz, EmailAprendiz) VALUES (:NumDocumentoAprendiz, :NumeroFicha, :NombreAprendiz, :TelefonoAprendiz, :EmailAprendiz)");
-
+        // var_dump($stmt);
         $stmt->bindParam(":NumDocumentoAprendiz", $datos["numdocumentoaprendiz"], PDO::PARAM_STR);
         $stmt->bindParam(":NumeroFicha", $datos["numeroficha"], PDO::PARAM_STR);
         $stmt->bindParam(":NombreAprendiz", $datos["nombreaprendiz"], PDO::PARAM_STR);

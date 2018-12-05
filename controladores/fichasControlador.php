@@ -44,7 +44,7 @@ class ControladorFichas
 
     public static function ctrAgregarFichas()
     {
-      // echo '<pre>'; print_r($datos); echo '</pre>';
+        // echo '<pre>'; print_r($datos); echo '</pre>';
 
         if (isset($_POST["nuevaFicha"])) {
 
@@ -96,10 +96,10 @@ class ControladorFichas
 
                     if ($data[0][1][$letras['A']] == "DOCUMENTO" and $data[0][1][$letras['B']] == "NOMBRE" and $data[0][1][$letras['C']] == "TELEFONO" and $data[0][1][$letras['D']] == "EMAIL") {
                         for ($i = 2; $i <= count($data[0]); $i++) {
-                            if ($data[0][$i][$letras['A']] == "") {
+                            if ($data[0][$i][$letras['A']] == "null") {
                                 $validacion = true;
                             }
-                            if ($data[0][$i][$letras['B']] == "") {
+                            if ($data[0][$i][$letras['B']] == "null") {
                                 $validacion = true;
                             }
                         }
@@ -111,7 +111,6 @@ class ControladorFichas
                                 "FechaFin"                   => $_POST["nuevaFechaFin"],
                                 "JornadaFicha"               => $_POST["nuevaJornada"]);
 
-                            
                             $respuesta = ModeloFichas::mdlAgregarFichas($tabla, $datos);
                             if ($respuesta == "ok") {
 
@@ -121,7 +120,7 @@ class ControladorFichas
                                     'C'                  => "C",
                                     'D'                  => "D",
                                     'E'                  => "E");
-                                print_r($data);
+                                // print_r($data);
 
                                 for ($i = 2; $i <= count($data[0]); $i++) {
                                     $tablaConsulta     = "aprendiz";
@@ -142,6 +141,7 @@ class ControladorFichas
                                             }
                                             if ($email == "null") {
                                                 $email = null;
+
                                             }
 
                                             $datos1 = array("NumeroFicha" => $_POST["nuevaFicha"],
@@ -152,27 +152,29 @@ class ControladorFichas
 
                                             $respuesta2 = ModeloAprendiz::MdlIngresarAprendiz($tabla, $datos1);
 
+                                            print_r($respuesta2);
+
                                         }
 
                                         if ($respuesta2 == "ok") {
 
                                             echo '<script>
 
-                                        swal({
-                                          type: "success",
-                                          title: "La ficha ha sido guardada correctamente",
-                                          showConfirmButton: true,
-                                          confirmButtonText: "Cerrar",
-                                          closeOnConfirm: false
-                                          }).then((result) => {
-                                            if (result.value) {
+                                          swal({
+                                            type: "success",
+                                            title: "La ficha ha sido guardada correctamente",
+                                            showConfirmButton: true,
+                                            confirmButtonText: "Cerrar",
+                                            closeOnConfirm: false
+                                            }).then((result) => {
+                                              if (result.value) {
 
-                                              window.location = "fichas";
+                                                window.location = "fichas";
 
-                                              }
-                                          })
+                                                }
+                                            })
 
-                                      </script>';
+                                        </script>';
                                         } else {
 
                                             $tabla = "ficha";
@@ -182,20 +184,20 @@ class ControladorFichas
 
                                             echo '<script>
 
-                                            swal({
-                                                type: "error",
-                                                title: "La ficha no puede ir vacía o llevar caracteres especiales!",
-                                                showConfirmButton: true,
-                                                confirmButtonText: "Cerrar",
-                                                closeOnConfirm: false
-                                                }).then((result) => {
-                                                  if (result.value) {
-                                                     window.location = "fichas";
+                                              swal({
+                                                  type: "error",
+                                                  title: "La ficha no puede ir vacía o llevar caracteres especiales!",
+                                                  showConfirmButton: true,
+                                                  confirmButtonText: "Cerrar",
+                                                  closeOnConfirm: false
+                                                  }).then((result) => {
+                                                    if (result.value) {
+                                                       window.location = "fichas";
 
-                                                  }
-                                              })
+                                                    }
+                                                })
 
-                                            </script>';
+                                              </script>';
                                         }
 
                                     } else {

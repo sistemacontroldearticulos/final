@@ -178,7 +178,7 @@ $("#nuevoAmbiente").change(function() {
 
             $('#nuevoEquipo').empty().append('<option selected="selected" value="whatever">Seleccionar Equipo</option>');
 
-            
+            console.log(respuesta);
 
 
             for (var i = 0; i < respuesta.length; i++) {

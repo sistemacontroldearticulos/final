@@ -40,7 +40,7 @@
 
          <tr>
 
-           <th style="width:100px">Acciones</th> 
+           <th style="width:100px">Acciones</th>
            <th style="width:10px">ID</th>
            <th>Tipo Articulo</th>
            <th>Modelo Articulo</th>
@@ -60,18 +60,18 @@
          <tbody>
            <?php
 
-            $item      = null;
-            $valor     = null;
-            $respuesta = ControladorArticulos::ctrMostrarArticulos($item, $valor);
-            // var_dump($respuesta);
+$item      = null;
+$valor     = null;
+$respuesta = ControladorArticulos::ctrMostrarArticulos($item, $valor);
+// var_dump($respuesta);
 
-            foreach ($respuesta as $key => $value) {
+foreach ($respuesta as $key => $value) {
 
-              $item    = "IdEquipo";
-              $valor   = $value["idequipo"];
-              
-              $equipos = ControladorEquipos::ctrMostrarEquipos($item, $valor);
-              echo '<tr>
+    $item  = "IdEquipo";
+    $valor = $value["idequipo"];
+
+    $equipos = ControladorEquipos::ctrMostrarEquipos($item, $valor);
+    echo '<tr>
               <td>
                             <div class="btn-group">
                                 <button title="Editar" class="btn btn-circle btn-lg btn-warning btnEditarArticulo" idArticulo="' . $value["idarticulo"] . '"  data-toggle="modal" data-target="#modalEditarArticulo">
@@ -86,25 +86,25 @@
                       <td>' . $value["modeloarticulo"] . '</td>
                       <td>' . $value["marcaarticulo"] . '</td>';
 
-                if ($value["estadoarticulo"] == "ACTIVO") {
-                    echo '<td><button class="btn btn-success btn-sm">ACTIVO</button></td>';
-                } else if ($value["estadoarticulo"] == "DAÑADO") {
-                    echo '<td><button class="btn btn-warning btn-sm">DAÑADO</button></td>';
-                } else {
-                    echo '<td><button class="btn btn-danger btn-sm">PERDIDO</button></td>';
-                }
+    if ($value["estadoarticulo"] == "ACTIVO") {
+        echo '<td><button class="btn btn-success btn-sm">ACTIVO</button></td>';
+    } else if ($value["estadoarticulo"] == "DAÑADO") {
+        echo '<td><button class="btn btn-warning btn-sm">DAÑADO</button></td>';
+    } else {
+        echo '<td><button class="btn btn-danger btn-sm">PERDIDO</button></td>';
+    }
 
-                $item  = "IdAmbiente";
-                $valor = $value["idambiente"];
+    $item  = "IdAmbiente";
+    $valor = $value["idambiente"];
 
-                $ambiente = ControladorAmbientes::ctrMostrarAmbientes($item, $valor);
-                echo '<td>' . $ambiente["nombreambiente"] . '</td>';
+    $ambiente = ControladorAmbientes::ctrMostrarAmbientes($item, $valor);
+    echo '<td>' . $ambiente["nombreambiente"] . '</td>';
 
-                $item  = "IdCategoria";
-                $valor = $value["idcategoria"];
+    $item  = "IdCategoria";
+    $valor = $value["idcategoria"];
 
-                $categoria = ControladorCategorias::ctrMostrarCategorias($item, $valor);
-                echo '<td>' . $categoria["nombrecategoria"] . '</td>
+    $categoria = ControladorCategorias::ctrMostrarCategorias($item, $valor);
+    echo '<td>' . $categoria["nombrecategoria"] . '</td>
 
                         <td>' . $equipos["nombreequipo"] . " " . $equipos["idequipo"] . '</td>
 
@@ -114,11 +114,11 @@
 
                         <td>' . $value["caracteristicaarticulo"] . '</td>
 
-                        
+
                     </tr>';
-                // var_dump($value["IdArticulo"]);
-            }
-            ?>
+    // var_dump($value["IdArticulo"]);
+}
+?>
 
         </tbody>
 
@@ -237,19 +237,19 @@
                     <option value="">Seleccionar Ambiente</option>
                       <?php
 
-                        $item  = null;
-                        $valor = null;
+$item  = null;
+$valor = null;
 
-                        $ambiente = ControladorAmbientes::ctrMostrarAmbientes($item, $valor);
+$ambiente = ControladorAmbientes::ctrMostrarAmbientes($item, $valor);
 
-                        foreach ($ambiente as $key => $value) {
+foreach ($ambiente as $key => $value) {
 
-                          echo '<option value="' . $value["idambiente"] . '">' . $value["nombreambiente"] . '</option>';
-                        }
+    echo '<option value="' . $value["idambiente"] . '">' . $value["nombreambiente"] . '</option>';
+}
 
-                      ?>
+?>
                   </select>
-                
+
                 </div>
 
               </div>
@@ -264,7 +264,7 @@
                 </span>
 
                 <input type="hidden" name="equipo" id="equipo">
-                
+
                 <select class="form-control select2 input-lg" name="nuevoEquipo" id="nuevoEquipo"onchange="equipoFuncion(this.value)" style="width: 100%">
 
                   <option value="">Seleccionar Equipo</option>
@@ -358,10 +358,10 @@ foreach ($ambiente as $key => $value) {
                 </div>
 
               </div>
-              
+
             </div>
 
-            
+
              <div class="form-group">
 
               <div class="input-group">
@@ -383,7 +383,7 @@ foreach ($ambiente as $key => $value) {
 
           <button type="button" class="btn btn-default " data-dismiss="modal">Salir</button>
 
-          <button type="submit" class="btn btn-primary">Guardar Articulo</button>
+          <button type="submit" id="btnAgregarArticulo" class="btn btn-primary">Guardar Articulo</button>
 
         </div>
 
@@ -426,7 +426,7 @@ $crearArticulo->ctrCrearArticulos();
           <div class="box-body">
 
             <div class="form-group row">
-              
+
             <!-- ENTRADA PARA EL TIPO ARTICULO -->
             <div class="col-xs-6">
 
@@ -453,7 +453,7 @@ $crearArticulo->ctrCrearArticulos();
                   <img src="vistas/img/plantilla/modal/modelo.png" width="15px">
                 </span>
 
-                <input type="text" class="form-control input-lg" name="editarModelo" id="editarModelo" min="0" placeholder="Modelo Articulo" required>
+                <input type="text" class="form-control input-lg" name="editarModelo" id="editarModelo" min="0" placeholder="Modelo Articulo">
 
               </div>
 
@@ -509,17 +509,17 @@ $crearArticulo->ctrCrearArticulos();
                    <option value="">Sin Ambiente</option>
                   <?php
 
-                    $item  = null;
-                    $valor = null;
+$item  = null;
+$valor = null;
 
-                    $ambiente = ControladorAmbientes::ctrMostrarAmbientes($item, $valor);
+$ambiente = ControladorAmbientes::ctrMostrarAmbientes($item, $valor);
 
-                    foreach ($ambiente as $key => $value) {
+foreach ($ambiente as $key => $value) {
 
-                        echo '<option value="' . $value["idambiente"] . '">' . $value["nombreambiente"] . '</option>';
-                    }
+    echo '<option value="' . $value["idambiente"] . '">' . $value["nombreambiente"] . '</option>';
+}
 
-                    ?>
+?>
                 </select>
 
               </div>
@@ -660,9 +660,9 @@ foreach ($ambiente as $key => $value) {
 
         </div>
         <?php
-          $editarArticulo = new ControladorArticulos();
-          $editarArticulo->ctrEditarArticulos();
-        ?>
+$editarArticulo = new ControladorArticulos();
+$editarArticulo->ctrEditarArticulos();
+?>
 
       </form>
 
@@ -673,7 +673,7 @@ foreach ($ambiente as $key => $value) {
 </div>
 
 <?php
-  $eliminarArticulo = new ControladorArticulos();
-  $eliminarArticulo->ctrBorrarArticulo();
+$eliminarArticulo = new ControladorArticulos();
+$eliminarArticulo->ctrBorrarArticulo();
 ?>
 

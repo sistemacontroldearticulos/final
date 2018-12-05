@@ -131,7 +131,7 @@ class ModeloArticulos
         if ($item != null) {
 
             $stmt = Conexion::conectar()->prepare("SELECT articulonovedad.*, articulo.tipoarticulo FROM $tabla
-			join articulo on (articulonovedad.idarticulo=articulo.idarticulo) WHERE $item = :$item");
+            join articulo on (articulonovedad.idarticulo=articulo.idarticulo) WHERE $item = :$item");
 
             $stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
