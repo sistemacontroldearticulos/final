@@ -80,6 +80,20 @@ class AjaxArticulos
 
     }
 
+     public $idArticuloActa;
+    public function ajaxMostrarArticulosNovedad()
+    {
+
+        $item  = "idarticulo";
+        $valor = $this->idArticuloActa;
+        $tabla = "articulonovedad";
+
+        $respuesta = ModeloArticulos::mdlMostrarArticulosEquipo1($tabla, $item, $valor);
+
+        echo json_encode($respuesta);
+
+    }
+
 }
 
 // EDITAR ARTICULOS
@@ -120,4 +134,11 @@ if (isset($_POST["idEquipo"])) {
     $articulo           = new AjaxArticulos();
     $articulo->idEquipo = strtoupper($_POST["idEquipo"]);
     $articulo->ajaxMostrarArticulosEquipo();
+}
+
+if (isset($_POST["idArticuloActa"])) {
+
+    $articulo           = new AjaxArticulos();
+    $articulo->idArticuloActa = strtoupper($_POST["idArticuloActa"]);
+    $articulo->ajaxMostrarArticulosNovedad();
 }

@@ -1,7 +1,6 @@
 //SE PASA A PONER UN SELECT PARA ESCOGER LOS APRENDICES QUE SE CARGA CON TODOS LOS APRENDICES DE LA FICHA
 //ESCOGIDA. EL SELECT SE CARGA AL FINAL DE ESTA FUNCION
 var ficha;
- 
 $("#ficha").change(function() {
     $(".alert").remove();
     var idFicha = $(this).val();
@@ -49,10 +48,8 @@ $("#ficha").change(function() {
                             dataType: "json",
                             success: function(respuesta) {
                                 // console.log("respuesta", respuesta);
-                                
                                 //CODIGO PARA LIMPIAR SELECT DE EQUIPO CADA VEZ QUE SE CAMBIA DE FICHA
                                 $('#equipos').empty().append('<option selected="selected" value="whatever">Seleccione El Equipo</option>');
-                                
                                 var indices = [];
                                 indices.push("Seleccione Equipo");
                                 indices.length = 0;
@@ -82,8 +79,6 @@ $("#ficha").change(function() {
                                         dataType: "json",
                                         success: function(respuesta) {
                                             // console.log("respuesta", respuesta);
-
-
                                             p = respuesta["nombreequipo"];
                                             k = respuesta["idequipo"];
                                             var option = document.createElement("option");
@@ -97,9 +92,7 @@ $("#ficha").change(function() {
                         })
                         //CODIGO PARA LIMPIAR SELECT DE APRENDIZ CADA VEZ QUE SE CAMBIA DE FICHA
                         $('#aprendices').empty().append('<option selected="selected" value="whatever">Seleccione el Aprendiz</option>');
-                        
                         var ficha = idFicha;
-                        
                         var datos = new FormData();
                         datos.append("ficha", ficha);
                         $.ajax({
@@ -112,12 +105,10 @@ $("#ficha").change(function() {
                             dataType: "json",
                             success: function(respuesta) {
                                 // console.log("respuesta", respuesta);
-
                                 for (var i = 0; i < respuesta.length; i++) {
                                     var option = document.createElement("option");
                                     $(option).val(respuesta[i]["numdocumentoaprendiz"]);
                                     $(option).html(respuesta[i]["nombreaprendiz"]);
-                                    
                                     $(option).appendTo("#aprendices");
                                 }
                             }
@@ -149,7 +140,6 @@ $("#equipos").change(function() {
         }
     })
 })
-
 $("#aprendices").change(function() {
     debugger;
     $(".alert").remove();
@@ -169,29 +159,20 @@ $("#aprendices").change(function() {
                 $("#aprendices").parent().after('<div class="alert" style="height: 20px; text-align="center"><font color="#f39c12"><strong>ESTE APRENDIZ SE ENCUENTRA REGISTRADO EN UN ACTA</strong></font></div>');
                 $("#aprendices").val("");
             }
-            
         }
     })
 })
-
-
 // IMPRIMIR FACTURA
-$(".tablas").on("click", ".btnImprimirActa", function(){
-
+$(".tablas").on("click", ".btnImprimirActa", function() {
     var codigo = $(this).attr("codigo");
-
-    window.open("extensiones/tcpdf/pdf/acta.php?codigo="+codigo, "_blank");
-
+    window.open("extensiones/tcpdf/pdf/acta.php?codigo=" + codigo, "_blank");
 })
-
-var validar=false;
+var validar = false;
 $("#fi").change(function() {
-    
     $(".alert").remove();
     var idFicha = $(this).val();
     var datos = new FormData();
     datos.append("idFicha", idFicha);
-    
     $.ajax({
         url: "ajax/fichasAjax.php",
         method: "POST",
@@ -205,53 +186,8 @@ $("#fi").change(function() {
             if (respuesta == false) {
                 $("#fi").parent().after('<div class="alert" style="height: 20px; text-align="center"><font color="#f39c12"><strong>ESTA FICHA NO SE ENCUENTRA REGISTRADA</strong></font></div>');
                 $("#fi").val("");
-            
             }
-            // }else if (respuesta != "") {
-                
-                
-                var idAmbiente = respuesta[2];
-                var datos = new FormData();
-                datos.append("idAmbiente", idAmbiente);
-                $.ajax({
-                    url: "ajax/equipoAjax.php",
-                    method: "POST",
-                    data: datos,
-                    cache: false,
-                    contentType: false,
-                    processData: false,
-                    dataType: "json",
-                    success: function(respuesta) {
-                        // console.log("respuesta", respuesta);
-                      
-                        var falsos = new Array();
-                        var positivos =[];
-
-
-                            $.ajax({
-                                url: "ajax/actasAjax.php",
-                                method: "POST",
-                                data: datos,
-                                cache: false,
-                                contentType: false,
-                                processData: false,
-                                dataType: "json",
-                                error: function(respuesta1)
-                                {
-                                    debugger;
-                                    validar=false;
-                                    i=5000;
-                                },
-                                success: function(respuesta1){
-                                    positivos.push(
-                                        "true ,"
-                                    );
-                                }
-
-                    
-
         }
-            
     })
-
 })
+// }else if (respuesta != "") {
