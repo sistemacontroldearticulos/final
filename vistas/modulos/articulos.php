@@ -106,7 +106,7 @@ foreach ($respuesta as $key => $value) {
     $categoria = ControladorCategorias::ctrMostrarCategorias($item, $valor);
     echo '<td>' . $categoria["nombrecategoria"] . '</td>
 
-                        <td>' . $equipos["nombreequipo"] . " " . $equipos["idequipo"] . '</td>
+                        <td>' . $equipos["nombreequipo"] . '</td>
 
                         <td>' . $value["numinventariosena"] . '</td>
 

@@ -67,7 +67,7 @@ $("#nuevoAmbiente").change(function() {
     // debugger;   
     $(".alert").remove();
     var nombreAmbiente = $(this).val();
-    console.log("nombreAmbiente", nombreAmbiente);
+    // console.log("nombreAmbiente", nombreAmbiente);
     var datos = new FormData();
     datos.append("nombreAmbiente", nombreAmbiente);
     $.ajax({
@@ -79,7 +79,7 @@ $("#nuevoAmbiente").change(function() {
         processData: false,
         dataType: "json",
         success: function(respuesta) {
-            console.log("respuesta", respuesta);
+            // console.log("respuesta", respuesta);
             if (respuesta) {
                 $("#nuevoAmbiente").parent().after('<div class="alert" style="height: 20px; text-align="center"><font color="#f39c12"><strong>ESTE AMBIENTE YA SE ENCUENTRA REGISTRADO</strong></font></div>');
                 $("#nuevoAmbiente").val("");
@@ -114,7 +114,7 @@ $("#editarAmbiente").change(function() {
         processData: false,
         dataType: "json",
         success: function(respuesta) {
-            console.log("respuesta", respuesta);
+            // console.log("respuesta", respuesta);
             // if (respuesta) {
             //     $("#nuevoAmbiente").parent().after('<div class="alert" style="height: 20px; text-align="center"><font color="#f39c12"><strong>ESTE AMBIENTE YA SE ENCUENTRA REGISTRADO</strong></font></div>');
             //     $("#nuevoAmbiente").val("");

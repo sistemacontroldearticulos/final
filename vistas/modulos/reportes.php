@@ -51,6 +51,7 @@
                 <table class="table table-bordered table-striped dt-responsive tablas">
                     <thead>
                         <tr>
+                        	<th style="width:50px">Detalles</th>
                             <th style="width:10px">#</th>
                             <th>ID Novedad</th>
                             <th>Fecha</th>
@@ -111,6 +112,15 @@
 								  $ficha = ControladorFichas::ctrMostrarFichas($item5, $valor5);
 
 									   echo'
+									   <td>
+											
+											<div class="btn-group">
+
+					                          <button title="Ver Detalles" class="btn btn-circle btn-lg btn-success btnVerDetalles btnBuscar2" data-toggle="modal" data-target="#modalVerDetalles" idNovedad="' . $value["idnovedad"] . '"><i class="fa fa-eye"></i></button>
+
+					                        </div>
+
+									   </td>
 									   <td>'.($a= $a+1).'</td>
 									   <td>'.$value["idnovedad"].'</td>
 									   <td>'.$value["fechanovedad"].'</td>
@@ -135,4 +145,178 @@
             </div>
         </div>
     </section>
+</div>
+
+
+<!-- MODAL AGREGAR ARTICULO -->
+<div id="modalVerDetalles" class="modal fade" role="dialog">
+
+  <div class="modal-dialog">
+
+    <div class="modal-content">
+
+      <form role="form" method="post" enctype="multipart/form-data">
+
+        <!-- CABEZA DEL MODAL -->
+        <div class="modal-header cabeza-modal" >
+
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+
+          <h4 class="modal-title">Detalles Reporte</h4>
+
+        </div>
+
+
+        <div class="modal-body">
+
+          <!-- CUERPO DEL MODAL -->
+          <div class="box-body">
+
+            <div class="form-group row">
+
+            	<!-- ENTRADA PARA EL INVENTARIO SENA -->
+              <div class="col-xs-12">
+
+                <div class="input-group">
+
+                  <span class="input-group-addon">
+                  <img src="vistas/img/plantilla/modal/codigo.png" width="15px">
+                </span>
+
+                  <input type="text" class="form-control input-lg" id="Rambiente" readonly>
+
+                </div>
+
+              </div>
+
+              <br>
+              <br>
+              <br>
+
+              <div class="col-xs-12">
+
+                <div class="input-group">
+
+                  <span class="input-group-addon">
+                  <img src="vistas/img/plantilla/modal/codigo.png" width="15px">
+                </span>
+
+                  <input type="text" class="form-control input-lg" id="Rusuario" readonly>
+
+                </div>
+
+              </div>
+
+              <br>
+              <br>
+              <br>
+
+
+              <!-- ENTRADA PARA EL TIPO ARTICULO -->
+              <div class="col-xs-6 ">
+
+                <div class="input-group">
+
+                  <span class="input-group-addon">
+                  <img src="vistas/img/plantilla/modal/articulos.png" width="15px">
+                </span>
+
+                  <input type="text" class="form-control input-lg" id="Rfecha" readonly>
+
+                </div>
+
+              </div>
+
+              <!-- ENTRADA PARA EL MODELO ARTICULO -->
+              <div class="col-xs-6">
+
+                <div class="input-group">
+
+                  <span class="input-group-addon">
+                  <img src="vistas/img/plantilla/modal/modelos1.png" width="15px">
+                </span>
+
+                  <input type="text" class="form-control input-lg" id="Rtipo" readonly >
+
+                </div>
+
+              </div>
+              <br>
+              <br>
+              <br>
+
+              <!-- ENTRADA PARA LA MARCA -->
+              <div class="col-xs-6">
+
+                <div class="input-group">
+
+                  <span class="input-group-addon">
+                  <img src="vistas/img/plantilla/modal/marca.png" width="15px">
+                </span>
+
+                  <input type="text" class="form-control input-lg" id="Rnombre" readonly>
+
+                </div>
+
+              </div>
+
+              <!-- ENTRADA PARA EL SERIAL ARTICULO -->
+              <div class="col-xs-6">
+
+                <div class="input-group">
+
+                  <span class="input-group-addon">
+                  <img src="vistas/img/plantilla/modal/serial1.png" width="15px">
+                </span>
+
+                  <input type="text" class="form-control input-lg" id="Rtipo" readonly>
+
+                </div>
+
+              </div>
+
+            </div>
+
+            <div class="form-group row">
+
+              <div class="col-xs-6">
+
+                <div class="input-group">
+
+                  <span class="input-group-addon">
+                  <img src="vistas/img/plantilla/modal/codigo.png" width="15px">
+                </span>
+
+                  <input type="text" class="form-control input-lg" id="Rficha" readonly>
+
+                </div>
+
+              </div>
+
+            </div>
+
+
+             <div class="form-group">
+
+              <div class="input-group">
+
+                <span class="input-group-addon">
+                  <img src="vistas/img/plantilla/modal/observaciones.png" width="15px">
+                </span>
+
+                 <textarea class="form-control rounded-5" name="nuevaCaracteristica" rows="3" placeholder="INGRESE CARACTERÍSTICAS DEL ARTICULO"></textarea>
+                 <!-- <input type="text" class="form-control input-lg" name="nuevaCaracteristica" min="0" placeholder="Ingrese la característica del artículo"> -->
+
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+      </form>
+
+    </div>
+
+  </div>
+
 </div>

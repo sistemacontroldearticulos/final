@@ -1,3 +1,28 @@
+<<<<<<< HEAD
+function duracion(sel) {
+    if (sel == "TÉCNICO") {
+        $("#nuevaDuracion").val("12 MESES");
+        $("#nuevaDuracion").prop('readonly', false);
+        $("#EditarDuracion").val("12 MESES");
+        $("#EditarDuracion").prop('readonly', false);
+    } else if (sel == "TECNÓLOGO") {
+        $("#nuevaDuracion").val("24 MESES");
+        $("#nuevaDuracion").prop('readonly', false);
+        $("#EditarDuracion").val("24 MESES");
+        $("#EditarDuracion").prop('readonly', false);
+    } else if (sel == "COMPLEMENTARIO") {
+        $("#nuevaDuracion").val("");
+        $("#nuevaDuracion").prop('readonly', false);
+        $("#EditarDuracion").val("");
+        $("#EditarDuracion").prop('readonly', false);
+    } else {
+        $("#nuevaDuracion").val("");
+        $("#nuevaDuracion").prop('readonly', false);
+        $("#EditarDuracion").val("");
+        $("#EditarDuracion").prop('readonly', false);
+    }
+}
+
 // function duracion(sel) {
 //     if (sel == "TÉCNICO") {
 //         $("#nuevaDuracion").val("12 MESES");
@@ -21,6 +46,7 @@
 //         $("#EditarDuracion").prop('readonly', true);
 //     }
 // }
+
 // SE PASA LA VALIDACION DEL PROGRAMA DIRECTAMENTE AL EVENTO DE CAMBIO DE LA FECHA
 // "var diaActual" se pasa a inicializar cada vez que se ejecuta la funcion
 function tiempo(sel) {
@@ -110,8 +136,10 @@ function tiempo1(sel) {
                 $("#editarFechaFin").prop('readonly', true);
             } else if (respuesta[3] == "COMPLEMENTARIO") {
                 $("#editarFechaFin").removeAttr('readonly');
+
             }else if (respuesta[3] == "ESPECIALIZACIÓN") {
                 $("#editarFechaFin").removeAttr('readonly');
+
             }
         }
     });
@@ -131,5 +159,15 @@ function validacion() {
     if (inicio == fin) {
         $("#editarFechaFin").parent().after('<div class="alert" style="height: 20px; text-align="center"><font color="#f39c12"><strong>LA FECHA FINAL DE UN PROGRAMA COMPLEMENTARIO NO PUEDE SER IGUAL A LA FECHA INICAL</strong></font></div>');
         $("#editarFechaFin").val("");
+    }
+}
+
+function validacion2() {
+    $(".alert").remove();
+    var inicio = $("#nuevaFechaInicio").val();
+    var fin = $("#nuevaFechaFin").val();
+    if (inicio == fin) {
+        $("#nuevaFechaFin").parent().after('<div class="alert" style="height: 20px; text-align="center"><font color="#f39c12"><strong>LA FECHA FINAL DE UN PROGRAMA COMPLEMENTARIO NO PUEDE SER IGUAL A LA FECHA INICAL</strong></font></div>');
+        $("#nuevaFechaFin").val("");
     }
 }

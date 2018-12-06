@@ -432,6 +432,7 @@ class ControladorUsuarios
             $tablaNov = "novedad";
             $itemNov = "numdocumentousuario";
             $novedad =  ModeloNovedades::mdlMostrarNovedades($tablaNov, $itemNov, $datos);
+            // echo '<pre>'; print_r($novedad); echo '</pre>';
             
             foreach ($novedad as $key => $value) {
               
@@ -440,9 +441,12 @@ class ControladorUsuarios
               $eliminarArticuloNov = ModeloNovedades::mdlBorrarArticuloNovedad($tablaArticulo, $datosArticulo);
 
             }
-
+            if ($novedad == array()) {
+                # code...
+            }else{
             $eliminarNov = ModeloNovedades::mdlBorrarNovedad($tablaNov, $novedad[0]["idnovedad"]);
-
+            // echo '<pre>'; print_r($eliminarNov); echo '</pre>';
+            }
             if ($_GET["FotoUsuario"] != "") {
 
                 unlink($_GET["FotoUsuario"]);

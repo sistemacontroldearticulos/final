@@ -55,8 +55,6 @@ class ControladorNovedades
 
                     $respuesta1 = ModeloNovedades::mdlMostrarNovedades($tabla1, $item1, $valor1);
 
-                    // var_dump($respuesta1[0]["idnovedad"]);
-
                     $arreglo = $_POST["listaArticulos"];
 
                     $array = json_decode($arreglo);

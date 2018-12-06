@@ -50,6 +50,9 @@ $(".tablas").on("click", ".btnEditarEquipo", function() {
                 dataType: "json",
                 success: function(respuesta) {
                     
+                    $(".select2-selection__rendered").val(respuesta["idambiente"]);
+                    $(".select2-selection__rendered").html(respuesta["nombreambiente"]);
+
                     $("#editarAmbienteEquipo").val(respuesta["idambiente"]);
                     $("#select2-editarAmbienteEquipo-container").val(respuesta["idambiente"]);
                     $("#select2-editarAmbienteEquipo-container").html(respuesta["nombreambiente"]);
@@ -63,8 +66,11 @@ $(".tablas").on("click", ".btnEditarEquipo", function() {
 })
 
 function equipoFuncion(sel) {
-
     $(".alert").remove();
+    $("#btnAgregarArticulo").prop('disabled', false);
+    if(sel!="whatever")
+    {
+
     $("#btnAgregarArticulo").prop('disabled', false);
     if(sel!="whatever")
     {
@@ -85,7 +91,7 @@ function equipoFuncion(sel) {
 
             if (respuesta["numarticulosagregados"] == respuesta["numarticulosequipo"]) {
                 $("#nuevoEquipo").parent().after('<div class="alert" style="height: 20px; text-align="center"><font color="#f39c12"><strong>ESTE EQUIPO YA TIENE EL TOTAL DE ARTÍCULOS ASIGNADOS</strong></font></div>');
-                $("#nuevoEquipo").html("");
+                $("#nuevoEquipo").val("");
                 $("#btnAgregarArticulo").prop('disabled', true);
             }
             // $("#editarEquipo").val(respuesta["NombreEquipo"]);
@@ -102,10 +108,16 @@ function equipoFuncion(sel) {
 }
 
 function equipoFuncion1(sel) {
+
+    $("#actualizarArticulo").prop('disabled', false);
+    if(sel!="whatever")
+    {
+    
     $(".alert").remove();
     $("#actualizarArticulo").prop('disabled', false);
     if(sel!="whatever")
     {
+
     var idEquipo = sel;
     var datos = new FormData();
     datos.append("sel", idEquipo);
@@ -119,7 +131,7 @@ function equipoFuncion1(sel) {
         dataType: "json",
         success: function(respuesta2) {
             // debugger;
-            console.log(respuesta2);
+            // console.log(respuesta2);
             // console.log(nombre);
             // $("#equipo").val(respuesta2["idequipo"]);
             // if (respuesta2["numarticulosagregados"] == respuesta2["numarticulosequipo"]) {
@@ -134,6 +146,7 @@ function equipoFuncion1(sel) {
 
                     $("#editarEquipo").parent().after('<div class="alert" style="height: 20px; text-align="center"><font color="#f39c12"><strong>ESTE EQUIPO YA TIENE EL TOTAL DE ARTÍCULOS ASIGNADOS</strong></font></div>');
                     $("#editarEquipo").html("");
+
                     $("#actualizarArticulo").prop('disabled', true);
 
                 }
@@ -161,7 +174,7 @@ $("#nuevoEquipo").change(function() {
         processData: false,
         dataType: "json",
         success: function(respuesta) {
-            console.log("respuesta", respuesta);
+            // console.log("respuesta", respuesta);
             if (respuesta) {
                 $("#nuevoEquipo").parent().after('<div class="alert" style="height: 20px; text-align="center"><font color="#f39c12"><strong>ESTE EQUIPO YA SE ENCUENTRA REGISTRADO</strong></font></div>');
                 $("#nuevoEquipo").val("");
@@ -195,7 +208,7 @@ $("#editarEquipo").change(function() {
         processData: false,
         dataType: "json",
         success: function(respuesta) {
-            console.log("respuesta", respuesta);
+            // console.log("respuesta", respuesta);
 
             cantidadArticulosAgregados = respuesta["numarticulosagregados"];
 

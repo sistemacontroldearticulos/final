@@ -92,7 +92,7 @@ foreach ($respuesta as $key => $value) {
 
                         <div class="btn-group">
 
-                          <button title="ver Novedad" class="btn btn-circle btn-lg btn-success btnVerNovedades btnBuscar2" data-toggle="modal" data-target="#modalVerNovedades" idNovedad="' . $value["idnovedad"] . '"><i class="fa fa-eye"></i></button>
+                          <button title="Ver Novedad" class="btn btn-circle btn-lg btn-success btnVerNovedades btnBuscar2" data-toggle="modal" data-target="#modalVerNovedades" idNovedad="' . $value["idnovedad"] . '"><i class="fa fa-eye"></i></button>
 
                         </div>
 

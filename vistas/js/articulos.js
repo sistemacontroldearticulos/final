@@ -1,6 +1,3 @@
-$(document).ready(function() {
-    var algo = 0;
-})
 $(".tablas").on("click", ".btnEliminarArticulo", function() {
     // debugger;
     var idArticulo = $(this).attr("idArticulo");
@@ -42,7 +39,6 @@ $(".tablas").on("click", ".btnEditarArticulo", function() {
             $("#editarMarca").val(respuesta["marcaarticulo"]);
             $("#editarInventario").val(respuesta["numinventariosena"]);
             var idAmbiente = $(this).attr("idAmbiente");
-            algo = respuesta["idambiente"];
             var datosAmbiente = new FormData();
             datosAmbiente.append("idAmbiente", respuesta["idambiente"]);
             $.ajax({
@@ -123,7 +119,7 @@ $("#nuevoSerial").change(function() {
         processData: false,
         dataType: "json",
         success: function(respuesta) {
-            console.log("respuesta", respuesta);
+            // console.log("respuesta", respuesta);
             if (respuesta) {
                 $("#nuevoSerial").parent().after('<div class="alert" style="height: 20px; text-align="center"><font color="#f39c12"><strong>ESTE SERIAL YA SE ENCUENTRA REGISTRADO</strong></font></div>');
                 $("#nuevoSerial").val("");
@@ -149,7 +145,7 @@ $("#nuevoInventario").change(function() {
         processData: false,
         dataType: "json",
         success: function(respuesta) {
-            console.log("respuesta", respuesta);
+            // console.log("respuesta", respuesta);
             if (respuesta) {
                 $("#nuevoInventario").parent().after('<div class="alert" style="height: 20px; text-align="center"><font color="#f39c12"><strong>ESTE NUMERO DE INVENTARIO YA SE ENCUENTRA REGISTRADO</strong></font></div>');
                 $("#nuevoInventario").val("");
@@ -157,14 +153,19 @@ $("#nuevoInventario").change(function() {
         }
     })
 })
+
+
 // CARGAR EQUIPOS EN ambientes
 $("#nuevoAmbiente").change(function() {
     // debugger;   
     $(".alert").remove();
+
     var idAmbiente = $(this).val();
     var datos = new FormData();
     datos.append("idAmbiente", idAmbiente);
+
     $.ajax({
+
         url: "ajax/equipoAjax.php",
         method: "POST",
         data: datos,
@@ -174,9 +175,14 @@ $("#nuevoAmbiente").change(function() {
         dataType: "json",
         success: function(respuesta) {
             // console.log("respuesta", respuesta);
+
             $('#nuevoEquipo').empty().append('<option selected="selected" value="whatever">Seleccionar Equipo</option>');
-            console.log(respuesta);
+
+            // console.log(respuesta);
+
+
             for (var i = 0; i < respuesta.length; i++) {
+
                 var option = document.createElement("option");
                 $(option).html(respuesta[i]["nombreequipo"]);
                 $(option).val(respuesta[i]["idequipo"]);
@@ -186,13 +192,18 @@ $("#nuevoAmbiente").change(function() {
         }
     })
 })
+
+
 $("#editarAmbiente").change(function() {
     // debugger;   
     $(".alert").remove();
+
     var idAmbiente = $(this).val();
     var datos = new FormData();
     datos.append("idAmbiente", idAmbiente);
+
     $.ajax({
+
         url: "ajax/equipoAjax.php",
         method: "POST",
         data: datos,
@@ -202,9 +213,14 @@ $("#editarAmbiente").change(function() {
         dataType: "json",
         success: function(respuesta) {
             // console.log("respuesta", respuesta);
+
             $('#editarEquipo').empty().append('<option selected="selected" value="whatever">Seleccionar Equipo</option>');
-            console.log(respuesta);
+
+            // console.log(respuesta);
+
+
             for (var i = 0; i < respuesta.length; i++) {
+
                 var option = document.createElement("option");
                 $(option).html(respuesta[i]["nombreequipo"]);
                 $(option).val(respuesta[i]["idequipo"]);
@@ -212,11 +228,5 @@ $("#editarAmbiente").change(function() {
                 // console.log("respuesta", respuesta[i]["nombreequipo"]);
             }
         }
-    })
-})
-$('#modalEditarArticulo').on("show.bs.modal", function() {
-    $('#modalEditarArticulo').ready(function() {
-        console.log(algo);
-        algo = 0;
     })
 })

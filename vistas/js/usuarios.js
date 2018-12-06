@@ -61,9 +61,6 @@ $(".tablas").on("click", ".btnEditarUsuario", function() {
             $("#editarPerfil1").val(respuesta["rolusuario"]);
             $("#fotoActual11").val(respuesta["fotousuario"]);
             $("#passwordActual1").val(respuesta["contraseniausuario"]);
-            if (respuesta["rolusuario"] == "ADMINISTRADOR" || respuesta["rolusuario"] == "ESPECIAL") {
-                $("#editarPrograma").prop('disabled', true);
-            }
             //////////////////////////////////////////////////////////
             var datosPrograma = new FormData();
             datosPrograma.append("idPrograma", respuesta["idprograma"]);
@@ -142,40 +139,37 @@ $(".tablas").on("click", ".btnEliminarUsuario", function() {
             window.location = "index.php?ruta=usuarios&NumDocumentoUsuario=" + NumDocumentoUsuario + "&nombreUsuario=" + NombreUsuario + "&FotoUsuario=" + FotoUsuario;
         }
     })
-})
+});
 
 function rolUsuario(sel) {
+    // debugger;
     if (sel == "Administrador" || sel == "Especial") {
-        $("#nuevoPrograma").prop('disabled', true);
+        $("#nuevoPrograma").prop('disabled',true);
+        $('#select2-nuevoPrograma-container').html("Seleccionar Programa");
         $("#nuevoPrograma").val("");
-        $("#select2-nuevoPrograma-container").html("Seleccionar Programa");
-        $("#select2-nuevoPrograma-container").val("");
-        $("#nuevoPrograma").val("Seleccionar Programa");
-        $
-    } else {
-        $("#nuevoPrograma").val("");
-        $("#select2-nuevoPrograma-container").html("Seleccionar Programa");
-        $("#select2-nuevoPrograma-container").val("");
-        $("#nuevoPrograma").val("Seleccionar Programa");
-        $("#nuevoPrograma").prop('disabled', false);
+        $('#select2-nuevoPrograma-container').val("")
+
+        console.log("algo", algo);
+    } else 
+    {
+         $("#nuevoPrograma").removeAttr('disabled');
+
     }
 }
 
 function rolUsuario2(sel) {
-    // debugger;
+    debugger;
     if (sel == "ADMINISTRADOR" || sel == "ESPECIAL") {
-        $("#editarPrograma").prop('disabled', true);
+       $("#editarPrograma").prop('disabled',true);
+        $('#select2-editarPrograma-container').html("Seleccionar Programa");
         $("#editarPrograma").val("");
-        $("#select2-editarPrograma-container").html("Seleccionar Programa");
-        $("#select2-editarPrograma-container").val("");
-        $("#editarPrograma").val("Seleccionar Programa");
-        $
-    } else {
-        $("#editarPrograma").val("");
-        $("#select2-editarPrograma-container").html("Seleccionar Programa");
-        $("#select2-editarPrograma-container").val("");
-        $("#editarPrograma").val("Seleccionar Programa");
-        $("#editarPrograma").prop('disabled', false);
+        $('#select2-editarPrograma-container').val("")
+
+        console.log("algo", algo);
+    } else 
+    {
+         $("#editarPrograma").removeAttr('disabled');
+
     }
 }
 // $(".btnEditarUsuario1").click(function(){
