@@ -54,8 +54,6 @@ $(".tablas").on("click", ".btnEditarUsuario", function() {
             // $("#editarPerfil").html(respuesta["rolusuario"]);
             $("#editarPerfil").val(respuesta["rolusuario"]);
             $("#fotoActual").val(respuesta["fotousuario"]);
-
-
             // EDITAR INSTRUCTOR O ESPECIAL
             $("#editarNombre1").html(respuesta["nombreusuario"]);
             $("#editarNombre1").val(respuesta["nombreusuario"]);
@@ -63,8 +61,10 @@ $(".tablas").on("click", ".btnEditarUsuario", function() {
             $("#editarPerfil1").val(respuesta["rolusuario"]);
             $("#fotoActual11").val(respuesta["fotousuario"]);
             $("#passwordActual1").val(respuesta["contraseniausuario"]);
+            if (respuesta["rolusuario"] == "ADMINISTRADOR" || respuesta["rolusuario"] == "ESPECIAL") {
+                $("#editarPrograma").prop('disabled', true);
+            }
             //////////////////////////////////////////////////////////
-
             var datosPrograma = new FormData();
             datosPrograma.append("idPrograma", respuesta["idprograma"]);
             $.ajax({
@@ -84,7 +84,6 @@ $(".tablas").on("click", ".btnEditarUsuario", function() {
                         $("#select2-editarPrograma-container").val(respuesta["idprograma"]);
                         $("#select2-editarPrograma-container").html(respuesta["nombreprograma"]);
                         $("#editarPrograma").val(respuesta["idprograma"]);
-
                         // EDITAR INSTRUCTOR O ESPECIAL
                         $("#editarPrograma11").val(respuesta["idprograma"]);
                         ///////////////////////////////////////////
@@ -146,19 +145,36 @@ $(".tablas").on("click", ".btnEliminarUsuario", function() {
 })
 
 function rolUsuario(sel) {
-    if (sel == "Administrador") {
+    if (sel == "Administrador" || sel == "Especial") {
         $("#nuevoPrograma").prop('disabled', true);
+        $("#nuevoPrograma").val("");
+        $("#select2-nuevoPrograma-container").html("Seleccionar Programa");
+        $("#select2-nuevoPrograma-container").val("");
+        $("#nuevoPrograma").val("Seleccionar Programa");
+        $
     } else {
+        $("#nuevoPrograma").val("");
+        $("#select2-nuevoPrograma-container").html("Seleccionar Programa");
+        $("#select2-nuevoPrograma-container").val("");
+        $("#nuevoPrograma").val("Seleccionar Programa");
         $("#nuevoPrograma").prop('disabled', false);
     }
 }
 
 function rolUsuario2(sel) {
     // debugger;
-    if (sel == "ADMINISTRADOR") {
-        $("#editarPrograma").val("");
+    if (sel == "ADMINISTRADOR" || sel == "ESPECIAL") {
         $("#editarPrograma").prop('disabled', true);
+        $("#editarPrograma").val("");
+        $("#select2-editarPrograma-container").html("Seleccionar Programa");
+        $("#select2-editarPrograma-container").val("");
+        $("#editarPrograma").val("Seleccionar Programa");
+        $
     } else {
+        $("#editarPrograma").val("");
+        $("#select2-editarPrograma-container").html("Seleccionar Programa");
+        $("#select2-editarPrograma-container").val("");
+        $("#editarPrograma").val("Seleccionar Programa");
         $("#editarPrograma").prop('disabled', false);
     }
 }
@@ -166,52 +182,9 @@ function rolUsuario2(sel) {
 //     debugger;
 //     $("#modalEditarUsuario").modal("toggle");
 // })
-$(".btnEditarUsuario1").click(function(){
+$(".btnEditarUsuario1").click(function() {
     var idUsuario = $(this).attr("NumDocumentoUsuario");
     console.log("idUsuario", idUsuario);
-
     // $('#modalEditarUsuario').modal('show');
-
-    $(".nuevoArticulo").append(
-            '<div class="row" style="padding: 5px 30px">' + 
-
-                '<div class="col-xs-6" style="padding-left:0px;padding-right:7px">' + 
-
-                    '<div class="input-group">' + 
-
-                        '<span class="input-group-addon"><button type="button" class="btn btn-danger quitarNovedad btn-xs" idArticulo="' + $("#idArticulo").val() + '"><i class="fa fa-times"></i></button></span>' + 
-
-                        '<input type="text" class="form-control agregarArticulo1" idArticulo="' + $("#idArticulo").val() + '" name="agregarArticulo" value="' + $("#agregarArticulo").val() + '" required readonly>' + 
-
-                    '</div>' +
-                '</div>' + 
-
-                '<div class="form-group col-xs-6"  style="padding-left:0px; padding-right: 0px">' + 
-
-                    '<div class="input-group">' + 
-
-                        '<span class="input-group-addon"><i class="fa fa-th"></i></span>' + 
-
-                        '<input type="text" class="form-control tipoNovedadArticulo1" name="tipoNovedadArticulo1" placeholder="Descripción" readonly value="' + $(".tipoNovedadArticulo").val() + '"required>' + 
-
-                    '</div>' + 
-                '</div> ' + 
-
-                '<br>'+
-
-                '<div class="col-xs-12" style="padding-left:0px">' + 
-
-                    '<div class="input-group">' + 
-
-                        '<input type="text" class="form-control nuevaDescripcion1" name="nuevaDescripcion" placeholder="Descripción" readonly value="' + $(".nuevaDescripcion").val() + '"required style="width:416px">' + 
-
-                        '<input type="hidden" id="articulo" name="articulo" value="' + $("#idArticulo").val() + '">' + 
-
-                    '</div>' + 
-
-                '</div>' +
-
-                '</div>' +
-
-            '</div>');
+    $(".nuevoArticulo").append('<div class="row" style="padding: 5px 30px">' + '<div class="col-xs-6" style="padding-left:0px;padding-right:7px">' + '<div class="input-group">' + '<span class="input-group-addon"><button type="button" class="btn btn-danger quitarNovedad btn-xs" idArticulo="' + $("#idArticulo").val() + '"><i class="fa fa-times"></i></button></span>' + '<input type="text" class="form-control agregarArticulo1" idArticulo="' + $("#idArticulo").val() + '" name="agregarArticulo" value="' + $("#agregarArticulo").val() + '" required readonly>' + '</div>' + '</div>' + '<div class="form-group col-xs-6"  style="padding-left:0px; padding-right: 0px">' + '<div class="input-group">' + '<span class="input-group-addon"><i class="fa fa-th"></i></span>' + '<input type="text" class="form-control tipoNovedadArticulo1" name="tipoNovedadArticulo1" placeholder="Descripción" readonly value="' + $(".tipoNovedadArticulo").val() + '"required>' + '</div>' + '</div> ' + '<br>' + '<div class="col-xs-12" style="padding-left:0px">' + '<div class="input-group">' + '<input type="text" class="form-control nuevaDescripcion1" name="nuevaDescripcion" placeholder="Descripción" readonly value="' + $(".nuevaDescripcion").val() + '"required style="width:416px">' + '<input type="hidden" id="articulo" name="articulo" value="' + $("#idArticulo").val() + '">' + '</div>' + '</div>' + '</div>' + '</div>');
 });
