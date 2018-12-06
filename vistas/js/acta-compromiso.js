@@ -95,7 +95,7 @@ $("#articulos").change(function() {
         dataType: "json",
         success: function(respuesta) {
             if (respuesta == "") {
-                $("#articulos").parent().after('<div class="alert" style="height: 50px; text-align="center"><font color="#f39c12"><strong>NO SE PUEDE CREAR EL ACTA DE COMPROMISO.<br> EL ARTÍCULO NO FUE REPORTADO ANTERIORMENTE</strong></font></div>');
+                $("#articulos").parent().after('<div class="alert" style="height: 50px; text-align="center"><font color="#f39c12"><strong>NO SE HA CREADO UNA NOVEDAD CON LA CUAL VINCULAR EL ACTA DE COMPROMISO</strong></font></div>');
                 $("#articulos").val("whatever");
             }
         }
