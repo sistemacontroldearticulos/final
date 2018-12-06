@@ -174,26 +174,50 @@ class ControladorEquipos
                         "idambiente"            => $_POST["editarAmbienteEquipo"]
                     );
 
-                    $respuesta = ModeloEquipos::mdlEditarEquipo($tabla, $datos);
+
+                    if ($datos["NumArticulosEquipo"] < $datos["NumArticulosAgregados"]) {
+                      echo '<script>
+
+                        swal({
+                            type: "error",
+                            title: "Error",
+                            text: "La cantidad de artículos del equipo debe ser mayor a la cantidad de artículos agregados actualmente.",
+                            showConfirmButton: true,
+                            confirmButtonText: "Cerrar"
+                            }).then(function(result){
+                                if (result.value) {
+
+                                window.location = "equipos";
+
+                                }
+                              })
+
+                        </script>';
+                    }else{
+
+                      $respuesta = ModeloEquipos::mdlEditarEquipo($tabla, $datos);
+
+                    }
+
 
                     if ($respuesta == "ok") {
 
-                        echo '<script>
+                      echo '<script>
 
-          swal({
-              type: "success",
-              title: "El equipo ha sido editado correctamente",
-              showConfirmButton: true,
-              confirmButtonText: "Cerrar"
-              }).then(function(result){
-                  if (result.value) {
+                        swal({
+                            type: "success",
+                            title: "El equipo ha sido editado correctamente",
+                            showConfirmButton: true,
+                            confirmButtonText: "Cerrar"
+                            }).then(function(result){
+                                if (result.value) {
 
-                  window.location = "equipos";
+                                window.location = "equipos";
 
-                  }
-                })
+                                }
+                              })
 
-          </script>';
+                        </script>';
 
                     }
 

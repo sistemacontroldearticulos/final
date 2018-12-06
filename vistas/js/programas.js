@@ -12,12 +12,12 @@ $(".tablas").on("click", ".btnEditarPrograma", function(){
         processData: false,
         dataType: "json",
         success: function(respuesta) {
-            console.log(respuesta);
+            // console.log(respuesta);
             $("#EditarPrograma").val(respuesta["nombreprograma"]);
             $("#EditarTipoPrograma").val(respuesta["tipoprograma"]);
             //$("#EditarTipoPrograma2").val(respuesta["tipoprograma"]);
-            $("#EditarDuracion").val(respuesta["duracionprograma"]);
-            $("#EditarDuracion").prop('readolny', true);
+            // $("#EditarDuracion").val(respuesta["duracionprograma"]);
+            // $("#EditarDuracion").prop('readolny', true);
             $("#idPrograma").val(respuesta["idprograma"]);
         }
     })
@@ -59,13 +59,54 @@ $("#NuevoPrograma").change(function() {
         processData: false,
         dataType: "json",
         success: function(respuesta) {
-            console.log("respuesta", respuesta);
+            // console.log("respuesta", respuesta);
             if (respuesta) {
                 $("#NuevoPrograma").parent().after('<div class="alert" style="height: 20px; text-align="center"><font color="#f39c12"><strong>ESTE PROGRAMA YA SE ENCUENTRA REGISTRADO</strong></font></div>');
                 $("#NuevoPrograma").val("");
             }
             // console.log(respuesta);
             
+        }
+    })
+})
+
+
+/*=========================
+=    VALIDAR EDITAR PROGRAMA     =
+=========================*/
+var programaAntes;
+function capturar(a) {
+    // console.log("sel",a);
+    programaAntes = a;
+    $("#EditarPrograma").removeAttr('onclick');
+}
+
+$("#EditarPrograma").change(function() {
+    
+    var programa = $(this).val();
+    $(".alert").remove();
+    var datos = new FormData();
+    datos.append("validarPrograma", programa);
+    $.ajax({
+        url: "ajax/programas.ajax.php",
+        method: "POST",
+        data: datos,
+        cache: false,
+        contentType: false,
+        processData: false,
+        dataType: "json",
+        success: function(respuesta) {
+            // console.log("respuesta", respuesta["nombreprograma"]);
+            if (programaAntes == programa.toUpperCase()) {
+            
+            }else if (respuesta["nombreprograma"] == programa.toUpperCase()){
+
+                $("#EditarPrograma").parent().after('<div class="alert" style="height: 20px; text-align="center"><font color="#f39c12"><strong>ESTE PROGRAMA YA SE ENCUENTRA REGISTRADO</strong></font></div>');
+                $("#EditarPrograma").val("");
+
+            }else{
+
+            }     
         }
     })
 })

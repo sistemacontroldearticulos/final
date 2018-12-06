@@ -204,7 +204,7 @@ MODAL EDITAR CATEGORÍA
                   <img src="vistas/img/plantilla/modal/categoria.png" width="15px">
                 </span>
 
-                <input type="text" class="form-control input-lg" name="editarCategoria" id="editarCategoria" required>
+                <input type="text" class="form-control input-lg" name="editarCategoria" id="editarCategoria" required onclick="capturar2(this.value)">
 
                  <input type="hidden"  name="idCategoria" id="idCategoria" required>
 

@@ -31,9 +31,9 @@ $(".tablas").on("click", ".btnEditarAmbiente", function() {
                 processData: false,
                 dataType: "json",
                 success: function(respuesta) {
-                    $(".select2-selection__rendered").val(respuesta["idprograma"]);
-                    $(".select2-selection__rendered").html(respuesta["nombreprograma"]);
-                    $("#idPrograma").val(respuesta["idprograma"]);
+                    $("#editarPrograma").val(respuesta["idprograma"]);
+                    $("#select2-editarPrograma-container").val(respuesta["idprograma"]);
+                    $("#select2-editarPrograma-container").html(respuesta["nombreprograma"]);
                     // $("#EditarPrograma").html(respuesta["nombreprograma"]);
                 }
             })
@@ -83,6 +83,51 @@ $("#nuevoAmbiente").change(function() {
             if (respuesta) {
                 $("#nuevoAmbiente").parent().after('<div class="alert" style="height: 20px; text-align="center"><font color="#f39c12"><strong>ESTE AMBIENTE YA SE ENCUENTRA REGISTRADO</strong></font></div>');
                 $("#nuevoAmbiente").val("");
+            }
+        }
+    })
+})
+
+/*=========================
+=    VALIDAR EDITAR AMBIENTE     =
+=========================*/
+var ambienteAntes;
+function capturar1(a) {
+    // console.log("sel",a);
+    ambienteAntes = a;
+    $("#editarAmbiente").removeAttr('onclick');
+}
+
+$("#editarAmbiente").change(function() {
+    // debugger;   
+    $(".alert").remove();
+    var nombreAmbiente = $(this).val();
+    // console.log("nombreAmbiente", nombreAmbiente);
+    var datos = new FormData();
+    datos.append("nombreAmbiente", nombreAmbiente);
+    $.ajax({
+        url: "ajax/ambientesAjax.php",
+        method: "POST",
+        data: datos,
+        cache: false,
+        contentType: false,
+        processData: false,
+        dataType: "json",
+        success: function(respuesta) {
+            console.log("respuesta", respuesta);
+            // if (respuesta) {
+            //     $("#nuevoAmbiente").parent().after('<div class="alert" style="height: 20px; text-align="center"><font color="#f39c12"><strong>ESTE AMBIENTE YA SE ENCUENTRA REGISTRADO</strong></font></div>');
+            //     $("#nuevoAmbiente").val("");
+            // }
+            if (ambienteAntes == nombreAmbiente.toUpperCase()) {
+            
+            }else if (respuesta["nombreambiente"] == nombreAmbiente.toUpperCase()){
+
+                $("#editarAmbiente").parent().after('<div class="alert" style="height: 20px; text-align="center"><font color="#f39c12"><strong>ESTE PROGRAMA YA SE ENCUENTRA REGISTRADO</strong></font></div>');
+                $("#editarAmbiente").val("");
+
+            }else{
+
             }
         }
     })

@@ -119,8 +119,8 @@
                         <div class="form-group">
                             <div class="input-group">
                                 <span class="input-group-addon">
-                  <img src="vistas/img/plantilla/modal/programa.png" width="15px">
-                </span>
+                                  <img src="vistas/img/plantilla/modal/programa.png" width="15px">
+                                </span>
                                 <select class="form-control input-lg" name="TipoPrograma" id="TipoPrograma" required onchange="duracion(this.value)">
                                     <option value="">
                                         Seleccione Tipo de Programa
@@ -133,6 +133,9 @@
                                     </option>
                                     <option value="COMPLEMENTARIO">
                                         Complementario
+                                    </option>
+                                    <option value="ESPECIALIZACIÓN">
+                                        Especialización
                                     </option>
                                 </select>
                             </div>
@@ -186,9 +189,9 @@ $crearPrograma->ctrCrearProgramas();
                         <div class="form-group">
                             <div class="input-group">
                                 <span class="input-group-addon">
-                  <img src="vistas/img/plantilla/modal/programas.png" width="15px">
-                </span>
-                                <input class="form-control input-lg" name="EditarPrograma" id="EditarPrograma" required="" type="text">
+                                  <img src="vistas/img/plantilla/modal/programas.png" width="15px">
+                                </span>
+                                <input class="form-control input-lg" name="EditarPrograma" id="EditarPrograma" required="" type="text" onclick="capturar(this.value)">
                                 </input>
                                 <input class="form-control input-lg" name="idPrograma" id="idPrograma" type="hidden">
                                 </input>
@@ -198,8 +201,8 @@ $crearPrograma->ctrCrearProgramas();
                         <div class="form-group">
                             <div class="input-group">
                                 <span class="input-group-addon">
-                  <img src="vistas/img/plantilla/modal/programa.png" width="15px">
-                </span>
+                                  <img src="vistas/img/plantilla/modal/programa.png" width="15px">
+                                </span>
                                 <select class="form-control input-lg" name="EditarTipoPrograma" id="EditarTipoPrograma" required onchange="duracion(this.value)" >
                                     <!-- <option value="" id="EditarTipoPrograma2">
                                         Selecionar Tipo de Programa
@@ -212,6 +215,9 @@ $crearPrograma->ctrCrearProgramas();
                                     </option>
                                     <option value="COMPLEMENTARIO">
                                         Complementario
+                                    </option>
+                                    <option value="ESPECIALIZACIÓN">
+                                        Especialización
                                     </option>
                                 </select>
                             </div>

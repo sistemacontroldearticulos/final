@@ -155,7 +155,57 @@ foreach ($respuesta as $key => $value) {
 
           <!-- CUERPO DEL MODAL -->
           <div class="box-body">
+            
+            <div class="form-group">
 
+                <div class="input-group">
+
+                  <span class="input-group-addon">
+                    <img src="vistas/img/plantilla/modal/ambientes.png" width="15px">
+                  </span>
+
+                  <select class="form-control select2 input-lg" name="nuevoAmbiente" id="nuevoAmbiente" style="width: 100%" required>
+                    <option value="">Seleccionar Ambiente</option>
+                      <?php
+
+                        $item  = null;
+                        $valor = null;
+
+                        $ambiente = ControladorAmbientes::ctrMostrarAmbientes($item, $valor);
+
+                        foreach ($ambiente as $key => $value) {
+
+                            echo '<option value="' . $value["idambiente"] . '">' . $value["nombreambiente"] . '</option>';
+                        }
+
+                        ?>
+                  </select>
+
+                </div>
+
+              </div>
+
+             <!-- ENTRADA PARA SELECCIONAR EQUIPO -->
+            <div class="form-group">
+
+              <div class="input-group">
+
+                <span class="input-group-addon">
+                  <img src="vistas/img/plantilla/modal/equipos.png" width="15px">
+                </span>
+
+                <input type="hidden" name="equipo" id="equipo">
+
+                <select class="form-control select2 input-lg" name="nuevoEquipo" id="nuevoEquipo"onchange="equipoFuncion(this.value)" style="width: 100%">
+
+                  <option value="">Seleccionar Equipo</option>
+      
+
+                </select>
+
+              </div>
+
+            </div>
 
             <div class="form-group row">
 
@@ -219,70 +269,6 @@ foreach ($respuesta as $key => $value) {
                   <input type="text" class="form-control input-lg" name="nuevoSerial" id="nuevoSerial" placeholder="Serial del Articulo">
 
                 </div>
-
-              </div>
-
-            </div>
-
-
-            <div class="form-group">
-
-                <div class="input-group">
-
-                  <span class="input-group-addon">
-                    <img src="vistas/img/plantilla/modal/ambientes.png" width="15px">
-                  </span>
-
-                  <select class="form-control select2 input-lg" name="nuevoAmbiente" id="nuevoAmbiente" style="width: 100%" required>
-                    <option value="">Seleccionar Ambiente</option>
-                      <?php
-
-$item  = null;
-$valor = null;
-
-$ambiente = ControladorAmbientes::ctrMostrarAmbientes($item, $valor);
-
-foreach ($ambiente as $key => $value) {
-
-    echo '<option value="' . $value["idambiente"] . '">' . $value["nombreambiente"] . '</option>';
-}
-
-?>
-                  </select>
-
-                </div>
-
-              </div>
-
-             <!-- ENTRADA PARA SELECCIONAR EQUIPO -->
-            <div class="form-group">
-
-              <div class="input-group">
-
-                <span class="input-group-addon">
-                  <img src="vistas/img/plantilla/modal/equipos.png" width="15px">
-                </span>
-
-                <input type="hidden" name="equipo" id="equipo">
-
-                <select class="form-control select2 input-lg" name="nuevoEquipo" id="nuevoEquipo"onchange="equipoFuncion(this.value)" style="width: 100%">
-
-                  <option value="">Seleccionar Equipo</option>
-                  <!-- <?php
-
-// $item  = null;
-// $valor = null;
-
-// $equipos = ControladorEquipos::ctrMostrarEquipos($item, $valor);
-
-// foreach ($equipos as $key => $value) {
-
-//     echo '<option value="' . $value["idequipo"] . '">' . $value["nombreequipo"] . '</option>';
-// }
-
-?> -->
-
-                </select>
 
               </div>
 
@@ -425,6 +411,74 @@ $crearArticulo->ctrCrearArticulos();
           <!-- CUERPO DEL MODAL -->
           <div class="box-body">
 
+            <!-- ENTRADA PARA SELECCIONAR AMBIENTE -->
+            <div class="form-group">
+
+              <div class="input-group">
+
+                <span class="input-group-addon">
+                  <img src="vistas/img/plantilla/modal/ambientes.png" width="15px">
+                </span>
+
+                <select class="form-control select2 input-lg" name="idAmbiente" id="editarAmbiente" style="width: 100%">
+
+                  <!-- <option id="editarAmbiente"></option> -->
+                   <option value="">Sin Ambiente</option>
+                  <?php
+
+                    $item  = null;
+                    $valor = null;
+
+                    $ambiente = ControladorAmbientes::ctrMostrarAmbientes($item, $valor);
+
+                    foreach ($ambiente as $key => $value) {
+
+                        echo '<option value="' . $value["idambiente"] . '">' . $value["nombreambiente"] . '</option>';
+                    }
+
+                    ?>
+                </select>
+
+              </div>
+
+            </div>
+
+             <!-- ENTRADA PARA SELECCIONAR EQUIPO -->
+            <div class="form-group">
+
+              <div class="input-group">
+
+                <span class="input-group-addon">
+                  <img src="vistas/img/plantilla/modal/equipos.png" width="15px">
+                </span>
+
+                <input type="hidden" name="equipo" id="equipo">
+
+                <select class="form-control select2 input-lg" name="idEquipo" id="editarEquipo" onchange="equipoFuncion1(this.value)" style="width: 100%">
+
+                  <!-- <option id="editarEquipo"></option> -->
+                  <option value="">Sin Equipo</option>
+                  <?php
+
+$item  = null;
+$valor = null;
+
+$equipos = ControladorEquipos::ctrMostrarEquipos($item, $valor);
+
+foreach ($equipos as $key => $value) {
+
+    echo '<option value="' . $value["idequipo"] . '">' . $value["nombreequipo"] . '</option>';
+}
+
+?>
+                </select>
+
+
+
+              </div>
+
+            </div>
+
             <div class="form-group row">
 
             <!-- ENTRADA PARA EL TIPO ARTICULO -->
@@ -494,73 +548,7 @@ $crearArticulo->ctrCrearArticulos();
 
           </div>
 
-            <!-- ENTRADA PARA SELECCIONAR AMBIENTE -->
-            <div class="form-group">
-
-              <div class="input-group">
-
-                <span class="input-group-addon">
-                  <img src="vistas/img/plantilla/modal/ambientes.png" width="15px">
-                </span>
-
-                <select class="form-control select2 input-lg" name="idAmbiente" id="editarAmbiente" style="width: 100%">
-
-                  <!-- <option id="editarAmbiente"></option> -->
-                   <option value="">Sin Ambiente</option>
-                  <?php
-
-$item  = null;
-$valor = null;
-
-$ambiente = ControladorAmbientes::ctrMostrarAmbientes($item, $valor);
-
-foreach ($ambiente as $key => $value) {
-
-    echo '<option value="' . $value["idambiente"] . '">' . $value["nombreambiente"] . '</option>';
-}
-
-?>
-                </select>
-
-              </div>
-
-            </div>
-
-             <!-- ENTRADA PARA SELECCIONAR EQUIPO -->
-            <div class="form-group">
-
-              <div class="input-group">
-
-                <span class="input-group-addon">
-                  <img src="vistas/img/plantilla/modal/equipos.png" width="15px">
-                </span>
-
-                <input type="hidden" name="equipo" id="equipo">
-
-                <select class="form-control select2 input-lg" name="idEquipo" id="editarEquipo" onchange="equipoFuncion1(this.value)" style="width: 100%">
-
-                  <!-- <option id="editarEquipo"></option> -->
-                  <option value="">Sin Equipo</option>
-                  <?php
-
-$item  = null;
-$valor = null;
-
-$equipos = ControladorEquipos::ctrMostrarEquipos($item, $valor);
-
-foreach ($equipos as $key => $value) {
-
-    echo '<option value="' . $value["idequipo"] . '">' . $value["nombreequipo"] . '</option>';
-}
-
-?>
-                </select>
-
-
-
-              </div>
-
-            </div>
+            
 
              <!-- ENTRADA PARA SELECCIONAR CATEGORIAS -->
             <div class="form-group">

@@ -324,7 +324,7 @@ MODAL EDITAR EQUIPO
                   <img src="vistas/img/plantilla/modal/equipos.png" width="15px">
                 </span>
 
-                <input type="text" class="form-control input-lg" name="editarEquipo" id="editarEquipo" placeholder="Ingrese Nombre del Equipo" required>
+                <input type="text" class="form-control input-lg" name="editarEquipo" id="editarEquipo" placeholder="Ingrese Nombre del Equipo" required onclick="capturar3(this.value)">
 
                 <input type="hidden" name="idEquipo" id="idEquipo">
 

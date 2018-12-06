@@ -1,26 +1,26 @@
-function duracion(sel) {
-    if (sel == "TÉCNICO") {
-        $("#nuevaDuracion").val("12 MESES");
-        $("#nuevaDuracion").prop('readonly', true);
-        $("#EditarDuracion").val("12 MESES");
-        $("#EditarDuracion").prop('readonly', true);
-    } else if (sel == "TECNÓLOGO") {
-        $("#nuevaDuracion").val("24 MESES");
-        $("#nuevaDuracion").prop('readonly', true);
-        $("#EditarDuracion").val("24 MESES");
-        $("#EditarDuracion").prop('readonly', true);
-    } else if (sel == "COMPLEMENTARIO") {
-        $("#nuevaDuracion").val("");
-        $("#nuevaDuracion").prop('readonly', false);
-        $("#EditarDuracion").val("");
-        $("#EditarDuracion").prop('readonly', false);
-    } else {
-        $("#nuevaDuracion").val("");
-        $("#nuevaDuracion").prop('readonly', true);
-        $("#EditarDuracion").val("");
-        $("#EditarDuracion").prop('readonly', true);
-    }
-}
+// function duracion(sel) {
+//     if (sel == "TÉCNICO") {
+//         $("#nuevaDuracion").val("12 MESES");
+//         $("#nuevaDuracion").prop('readonly', true);
+//         $("#EditarDuracion").val("12 MESES");
+//         $("#EditarDuracion").prop('readonly', true);
+//     } else if (sel == "TECNÓLOGO") {
+//         $("#nuevaDuracion").val("24 MESES");
+//         $("#nuevaDuracion").prop('readonly', true);
+//         $("#EditarDuracion").val("24 MESES");
+//         $("#EditarDuracion").prop('readonly', true);
+//     } else if (sel == "COMPLEMENTARIO") {
+//         $("#nuevaDuracion").val("");
+//         $("#nuevaDuracion").prop('readonly', false);
+//         $("#EditarDuracion").val("");
+//         $("#EditarDuracion").prop('readonly', false);
+//     } else {
+//         $("#nuevaDuracion").val("");
+//         $("#nuevaDuracion").prop('readonly', true);
+//         $("#EditarDuracion").val("");
+//         $("#EditarDuracion").prop('readonly', true);
+//     }
+// }
 // SE PASA LA VALIDACION DEL PROGRAMA DIRECTAMENTE AL EVENTO DE CAMBIO DE LA FECHA
 // "var diaActual" se pasa a inicializar cada vez que se ejecuta la funcion
 function tiempo(sel) {
@@ -109,6 +109,8 @@ function tiempo1(sel) {
                 $("#editarFechaFin").html(fecha);
                 $("#editarFechaFin").prop('readonly', true);
             } else if (respuesta[3] == "COMPLEMENTARIO") {
+                $("#editarFechaFin").removeAttr('readonly');
+            }else if (respuesta[3] == "ESPECIALIZACIÓN") {
                 $("#editarFechaFin").removeAttr('readonly');
             }
         }

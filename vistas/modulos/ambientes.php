@@ -242,7 +242,7 @@
                   <img src="vistas/img/plantilla/modal/ambientes.png" width="15px">
                 </span>
 
-                <input type="text" class="form-control input-lg" name="editarAmbiente" id="editarAmbiente"required>
+                <input type="text" class="form-control input-lg" name="editarAmbiente" id="editarAmbiente"required onclick="capturar1(this.value)">
 
                 <input type="hidden" name="idAmbiente" id="idAmbiente">
 
@@ -275,7 +275,7 @@
                   <img src="vistas/img/plantilla/modal/programas.png" width="15px">
                 </span>
 
-                <select  class="form-control select2 input-lg" name="idPrograma"  id="idPrograma"style="width: 100%" required>
+                <select  class="form-control select2 input-lg" name="idPrograma"  id="editarPrograma"style="width: 100%" required>
                 
                   <option value="" >Sin Programa</option>
                   

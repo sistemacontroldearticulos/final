@@ -66,3 +66,45 @@ $("#nuevaCategoria").change(function() {
         }
     })
 })
+
+
+/*=========================
+=    VALIDAR EDITAR CATEGORIA    =
+=========================*/
+var categoriaAntes;
+function capturar2(a) {
+    // console.log("sel",a);
+    categoriaAntes = a;
+    $("#editarCategoria").removeAttr('onclick');
+}
+
+$("#editarCategoria").change(function() {
+    // debugger;   
+    $(".alert").remove();
+    var nombreCategoria = $(this).val();
+    var datos = new FormData();
+    datos.append("nombreCategoria", nombreCategoria);
+    $.ajax({
+        url: "ajax/categoriasAjax.php",
+        method: "POST",
+        data: datos,
+        cache: false,
+        contentType: false,
+        processData: false,
+        dataType: "json",
+        success: function(respuesta) {
+            console.log("respuesta", respuesta);
+
+            if (categoriaAntes == nombreCategoria.toUpperCase()) {
+            
+            }else if (respuesta["nombrecategoria"] == nombreCategoria.toUpperCase()){
+
+                $("#editarCategoria").parent().after('<div class="alert" style="height: 20px; text-align="center"><font color="#f39c12"><strong>ESTE PROGRAMA YA SE ENCUENTRA REGISTRADO</strong></font></div>');
+                $("#editarCategoria").val("");
+
+            }else{
+
+            }   
+        }
+    })
+})
