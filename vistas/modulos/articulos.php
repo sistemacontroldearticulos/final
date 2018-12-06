@@ -664,5 +664,3 @@ $editarArticulo->ctrEditarArticulos();
 $eliminarArticulo = new ControladorArticulos();
 $eliminarArticulo->ctrBorrarArticulo();
 ?>
-
-;

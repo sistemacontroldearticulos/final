@@ -1,3 +1,6 @@
+$(document).ready(function() {
+    var algo = 0;
+})
 $(".tablas").on("click", ".btnEliminarArticulo", function() {
     // debugger;
     var idArticulo = $(this).attr("idArticulo");
@@ -39,6 +42,7 @@ $(".tablas").on("click", ".btnEditarArticulo", function() {
             $("#editarMarca").val(respuesta["marcaarticulo"]);
             $("#editarInventario").val(respuesta["numinventariosena"]);
             var idAmbiente = $(this).attr("idAmbiente");
+            algo = respuesta["idambiente"];
             var datosAmbiente = new FormData();
             datosAmbiente.append("idAmbiente", respuesta["idambiente"]);
             $.ajax({
@@ -153,19 +157,14 @@ $("#nuevoInventario").change(function() {
         }
     })
 })
-
-
 // CARGAR EQUIPOS EN ambientes
 $("#nuevoAmbiente").change(function() {
     // debugger;   
     $(".alert").remove();
-
     var idAmbiente = $(this).val();
     var datos = new FormData();
     datos.append("idAmbiente", idAmbiente);
-
     $.ajax({
-
         url: "ajax/equipoAjax.php",
         method: "POST",
         data: datos,
@@ -175,14 +174,9 @@ $("#nuevoAmbiente").change(function() {
         dataType: "json",
         success: function(respuesta) {
             // console.log("respuesta", respuesta);
-
             $('#nuevoEquipo').empty().append('<option selected="selected" value="whatever">Seleccionar Equipo</option>');
-
             console.log(respuesta);
-
-
             for (var i = 0; i < respuesta.length; i++) {
-
                 var option = document.createElement("option");
                 $(option).html(respuesta[i]["nombreequipo"]);
                 $(option).val(respuesta[i]["idequipo"]);
@@ -192,18 +186,13 @@ $("#nuevoAmbiente").change(function() {
         }
     })
 })
-
-
 $("#editarAmbiente").change(function() {
     // debugger;   
     $(".alert").remove();
-
     var idAmbiente = $(this).val();
     var datos = new FormData();
     datos.append("idAmbiente", idAmbiente);
-
     $.ajax({
-
         url: "ajax/equipoAjax.php",
         method: "POST",
         data: datos,
@@ -213,14 +202,9 @@ $("#editarAmbiente").change(function() {
         dataType: "json",
         success: function(respuesta) {
             // console.log("respuesta", respuesta);
-
             $('#editarEquipo').empty().append('<option selected="selected" value="whatever">Seleccionar Equipo</option>');
-
             console.log(respuesta);
-
-
             for (var i = 0; i < respuesta.length; i++) {
-
                 var option = document.createElement("option");
                 $(option).html(respuesta[i]["nombreequipo"]);
                 $(option).val(respuesta[i]["idequipo"]);
@@ -230,14 +214,9 @@ $("#editarAmbiente").change(function() {
         }
     })
 })
-
-$('#modalEditarArticulo').on("show.bs.modal", function(){
-
-    $('#modalEditarArticulo').ready(function(){
-
-        debugger
+$('#modalEditarArticulo').on("show.bs.modal", function() {
+    $('#modalEditarArticulo').ready(function() {
+        console.log(algo);
+        algo = 0;
     })
-
 })
-
-
