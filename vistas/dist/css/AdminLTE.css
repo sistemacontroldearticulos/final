@@ -9,7 +9,17 @@
  * Core: General Layout Style
  * -------------------------
  */
+.wwws {
+  background: #00a65a;
+}
 
+.wwwr {
+  background: #c9302c;
+}
+
+.wwwy {
+  background: #e08e0b; 
+}
 
 html,
 body {

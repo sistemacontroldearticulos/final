@@ -295,8 +295,30 @@
                                 <span class="input-group-addon">
                                     <img src="vistas/img/plantilla/iconos/fichas.png" width="15px">
                                 </span>
-                                <input class="form-control input-lg" name="ficha1" id="fi"
-                                placeholder="Ingrese Ficha" required type="number">
+
+
+                                <select class="form-control select2 input-lg" name="ficha1" id="fi" style="width: 100%" required>
+
+                                    <option value="">Seleccione Ficha</option>
+                                    
+                                    <?php
+
+                                        $item  = null;
+                                        $valor = null;
+
+                                        $mostrarFichas = ControladorFichas::ctrMostrarFichas($item, $valor);
+
+
+                                        foreach ($mostrarFichas as $key => $value) {
+
+                                            echo '<option value="' . $value["numeroficha"] . '">' . $value["numeroficha"] . '</option>';
+
+                                        }
+                                    ?>
+                                </select>
+
+                                <!-- <input class="form-control input-lg" name="ficha1" id="fi"
+                                placeholder="Ingrese Ficha" required type="number"> -->
                             </div>
                         </div>
                     </div>

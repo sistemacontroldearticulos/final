@@ -87,11 +87,11 @@ foreach ($respuesta as $key => $value) {
                       <td>' . $value["marcaarticulo"] . '</td>';
 
     if ($value["estadoarticulo"] == "ACTIVO") {
-        echo '<td><button class="btn btn-success btn-sm">ACTIVO</button></td>';
+        echo '<td><button class="btn wwws btn-sm" style="color: white;">ACTIVO</button></td>';
     } else if ($value["estadoarticulo"] == "DAÑADO") {
-        echo '<td><button class="btn btn-warning btn-sm">DAÑADO</button></td>';
+        echo '<td><button class="btn wwwy btn-sm" style="color: white;">DAÑADO</button></td>';
     } else {
-        echo '<td><button class="btn btn-danger btn-sm">PERDIDO</button></td>';
+        echo '<td><button class="btn wwwr btn-sm" style="color: white;">PERDIDO</button></td>';
     }
 
     $item  = "IdAmbiente";
@@ -664,5 +664,3 @@ $editarArticulo->ctrEditarArticulos();
 $eliminarArticulo = new ControladorArticulos();
 $eliminarArticulo->ctrBorrarArticulo();
 ?>
-
-;

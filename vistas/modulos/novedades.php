@@ -53,7 +53,6 @@
            <th>Nombre Usuario</th>
            <th>Ficha</th>
            <th>Fecha</th>
-           <th>Estado</th>
 
            <!-- <th>Ambiente</th> -->
 
@@ -110,21 +109,7 @@ foreach ($respuesta as $key => $value) {
 
                       <td>' . $value["numeroficha"] . '</td>
 
-                      <td>' . $value["fechanovedad"] . '</td>';
-
-    if ($value["estado"] != 0) {
-
-        echo '<td><button class="btn btn-success btn-xs ">Activado</button></td>';
-
-    } else {
-
-        echo '<td><button class="btn btn-danger btn-xs ">Desactivado</button></td>';
-
-    }
-
-    // <td>'.$value["estado"].'</td>
-
-    echo '
+                      <td>' . $value["fechanovedad"] . '</td>
 
                     </tr>';
 }

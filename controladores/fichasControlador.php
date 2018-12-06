@@ -113,7 +113,8 @@ class ControladorFichas
                                 print_r($datos);
 
                             $respuesta = ModeloFichas::mdlAgregarFichas($tabla, $datos);
-                            if ($respuesta == "ok") {
+                            if ($respuesta == "ok") 
+                            {
 
                                 $errores = 0;
                                 $letras  = array('A' => "A",

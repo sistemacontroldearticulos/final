@@ -91,11 +91,11 @@
 
                   if($value["estadoequipo"]=="ACTIVADO")
                     {
-                      echo '<td><button class="btn btn-success btn-sm">Activado</button></td>';
+                      echo '<td><button class="btn wwws btn-sm" style="color: white;">Activado</button></td>';
                     }
                     else if($value["estadoequipo"]=="DESACTIVADO")
                     {
-                      echo '<td><button class="btn btn-danger btn-sm">Desactivado</button></td>';
+                      echo '<td><button class="btn wwwr btn-sm" style="color: white;">Desactivado</button></td>';
                     }
 
                   echo '
