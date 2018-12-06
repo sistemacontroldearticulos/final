@@ -19,11 +19,29 @@
    <section class="content">
 
     <div class="row">
+
+      <?php 
+        if ($_SESSION["RolUsuario"] == "INSTRUCTOR" || $_SESSION["RolUsuario"] == "ESPECIAL") {
+
+          echo '<div class="col-lg-12">
+ <div class="box box-success">
+
+             <div class="box-header">
+
+             <h1>BIENVENID@ ' .$_SESSION["NombreUsuario"].' A SISTEMA CONTROL DE ARTICULOS.</h1>
+
+             </div>
+
+             </div>
+</div>';
+        }
+
+       ?>
       
       <?php 
-
+       if ($_SESSION["RolUsuario"] == "ADMINISTRADOR"){
         include "inicio/cajas-superiores.php";
-
+      }
       ?>
 
     </div>
@@ -32,9 +50,9 @@
       <div class="col-lg-12">
       
         <?php 
-
+           if ($_SESSION["RolUsuario"] == "ADMINISTRADOR"){         
           include "inicio/grafico-novedades.php";
-
+          }
         ?>
       </div>
     </div>
@@ -49,8 +67,13 @@
     $daniados = ModeloArticulos::daniado();
     
   ?>
+  <?php 
 
-  <section class="content">
+    if ($_SESSION["RolUsuario"] == "ADMINISTRADOR"){
+
+
+    
+  echo'<section class="content">
 
       <div class="box">
 
@@ -80,11 +103,11 @@
 
             <div class="col-lg-4 col-xs-6">
               <div class="info-box bg-green">
-                <span class="info-box-icon" onclick="location.href='articulos'"><i class="fa fa-thumbs-o-up"></i></span>
+                <span class="info-box-icon" onclick="location.href=articulos"><i class="fa fa-thumbs-o-up"></i></span>
 
                 <div class="info-box-content">
                   <span class="info-box-text">Activos</span>
-                  <span class="info-box-number"><?php echo $activos[0]?></span>
+                  <span class="info-box-number">'; echo $activos[0]; echo'</span>
 
                   <div class="progress">
                     <div class="progress-bar" style="width: 70%"></div>
@@ -96,11 +119,11 @@
 
            <div class="col-lg-4 col-xs-6">
               <div class="info-box bg-yellow">
-                <span class="info-box-icon" onclick="location.href='articulos'"><i class="fa fa-bolt"></i></span>
+                <span class="info-box-icon" onclick="location.href=articulos"><i class="fa fa-bolt"></i></span>
 
                 <div class="info-box-content">
                   <span class="info-box-text">Dañados</span>
-                  <span class="info-box-number"><?php echo $daniados[0]?></span>
+                  <span class="info-box-number">'; echo $daniados[0]; echo'</span>
 
                   <div class="progress">
                     <div class="progress-bar" style="width: 70%"></div>
@@ -112,11 +135,11 @@
 
            <div class="col-lg-4 col-xs-6">
               <div class="info-box bg-red">
-                <span class="info-box-icon" onclick="location.href='articulos'"><i class="fa fa-thumbs-o-down"></i></span>
+                <span class="info-box-icon" onclick="location.href="articulos"><i class="fa fa-thumbs-o-down"></i></span>
 
                 <div class="info-box-content">
                   <span class="info-box-text">Perdidos</span>
-                  <span class="info-box-number"><?php echo $perdidos[0]?></span>
+                  <span class="info-box-number">'; echo $perdidos[0]; echo'</span>
 
                   <div class="progress">
                     <div class="progress-bar" style="width: 70%"></div>
@@ -131,18 +154,20 @@
 
 
     <div class="row">
-      <div class="col-lg-12">
+      <div class="col-lg-12">';
       
-        <?php 
-
+       
           include "inicio/reportes-ambientes.php";
-
-        ?>
-      </div>
+          
+    
+      echo '</div>
 
     </div>
 
-  </section>
+  </section>';
+
+  }
+   ?>
 </div>
 
 

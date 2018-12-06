@@ -5,7 +5,7 @@
 		<!-- LOGO MINI -->
 		<span class="logo-mini">
 
-			<img src="vistas/img/plantilla/LOGO_PEQUENIO_INICIALES.png" class="img-responsive" style="padding:6px 0px 0px 0px;">
+			<img src="vistas/img/plantilla/logo_vacio.png" class="img-responsive" style="padding:6px 0px 0px 0px;">
 
 		</span>
 

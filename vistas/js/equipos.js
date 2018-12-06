@@ -49,7 +49,7 @@ $(".tablas").on("click", ".btnEditarEquipo", function() {
                 processData: false,
                 dataType: "json",
                 success: function(respuesta) {
-                    console.log(respuesta);
+                    
                     $(".select2-selection__rendered").val(respuesta["idambiente"]);
                     $(".select2-selection__rendered").html(respuesta["nombreambiente"]);
                     $("#editarAmbienteEquipo").val(respuesta["idambiente"]);
@@ -63,6 +63,9 @@ $(".tablas").on("click", ".btnEditarEquipo", function() {
 })
 
 function equipoFuncion(sel) {
+    $("#btnAgregarArticulo").prop('disabled', false);
+    if(sel!="whatever")
+    {
     $(".alert").remove();
     var idEquipo = sel;
     var datos = new FormData();
@@ -78,9 +81,11 @@ function equipoFuncion(sel) {
         success: function(respuesta) {
             // debugger;
             $("#equipo").val(respuesta["idequipo"]);
+
             if (respuesta["numarticulosagregados"] == respuesta["numarticulosequipo"]) {
                 $("#nuevoEquipo").parent().after('<div class="alert" style="height: 20px; text-align="center"><font color="#f39c12"><strong>ESTE EQUIPO YA TIENE EL TOTAL DE ARTÍCULOS ASIGNADOS</strong></font></div>');
                 $("#nuevoEquipo").val("");
+                $("#btnAgregarArticulo").prop('disabled', true);
             }
             // $("#editarEquipo").val(respuesta["NombreEquipo"]);
             // $("#idEquipo").val(respuesta["IdEquipo"]);
@@ -91,11 +96,15 @@ function equipoFuncion(sel) {
             // console.log(respuesta);
         }
     })
+    }
+    
 }
 
 function equipoFuncion1(sel) {
     $("#actualizarArticulo").prop('disabled', false);
-    $(".alert").remove();
+    if(sel!="whatever")
+    {
+        $(".alert").remove();
     var idEquipo = sel;
     var datos = new FormData();
     datos.append("sel", idEquipo);
@@ -121,12 +130,16 @@ function equipoFuncion1(sel) {
             } else {
                 $("#equipo").val(respuesta2["idequipo"]);
                 if (respuesta2["numarticulosagregados"] == respuesta2["numarticulosequipo"]) {
-                    $("#editarEquipo").parent().parent().after('<div class="alert alert-warning">Este equipo ya tiene el total de artículos asignados</div>');
+
+                    $("#editarEquipo").parent().after('<div class="alert" style="height: 20px; text-align="center"><font color="#f39c12"><strong>ESTE EQUIPO YA TIENE EL TOTAL DE ARTÍCULOS ASIGNADOS</strong></font></div>');
                     $("#actualizarArticulo").prop('disabled', true);
+
                 }
             }
         }
     })
+    }
+    
 }
 /*=========================
 =    VALIDAR EQUIPO    =

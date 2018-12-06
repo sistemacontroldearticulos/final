@@ -33,8 +33,8 @@ $("#ficha").change(function() {
                     processData: false,
                     dataType: "json",
                     success: function(respuesta) {
-                        console.log("respuesta", respuesta);
-                        // var idAmbiente = respuesta["idambiente"];
+                        // console.log("respuesta", respuesta);
+                        var idAmbiente = respuesta["idambiente"];
                         // console.log("idAmbiente", idAmbiente);
                         var datos = new FormData();
                         datos.append("idAmbiente", idAmbiente);

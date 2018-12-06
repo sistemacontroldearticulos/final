@@ -193,7 +193,12 @@ class ControladorActas
                         window.location = "actas";
 
                 </script>';
-            } 
+            }
+
+
+            
+
+            
         }
     }
 

@@ -4,7 +4,7 @@ require_once "conexion.php";
 class ModeloFichas{ 
 
 	static public function mdlAgregarFichas($tabla, $datos){
-        // echo '<pre>'; print_r($datos); echo '</pre>';
+        echo '<pre>'; print_r($datos); echo '</pre>';
 
         
 		$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla (NumeroFicha, IdPrograma, IdAmbiente, FechaInicio, FechaFin, JornadaFicha) VALUES (:NumeroFicha, :IdPrograma, :IdAmbiente, :FechaInicio, :FechaFin, :JornadaFicha)");

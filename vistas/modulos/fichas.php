@@ -374,7 +374,7 @@ MODAL EDITAR FICHA
 
                 <span class="input-group-addon"><i class="fa fa-th"></i></span>
 
-                <select class="form-control select2 input-lg" name="idPrograma" id="editarPrograma" style="width: 100%" onchange="activarFechas1()">
+                <select class="form-control input-lg" name="idPrograma" id="editarPrograma" onchange="activarFechas1()">
 
 
                   <?php
@@ -466,7 +466,8 @@ foreach ($mostrarAmbientes as $key => $value) {
 
                 <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
 
-                <input type="text" class="form-control input-lg" id="editarFechaFin" name="editarFechaFin" disabled placeholder="Ingrese Fecha Fin" data-inputmask="'alias': 'mm/dd/yyyy'" data-mask required onchange="validacion()">
+                <input type="text" class="form-control input-lg" id="editarFechaFin" name="editarFechaFin" readonly placeholder="Ingrese Fecha Fin" data-inputmask="'alias': 'mm/dd/yyyy'" data-mask required onchange="validacion()">
+                <input type="hidden" id="valorEditarFecha">
 
               </div>
 

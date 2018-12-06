@@ -44,7 +44,7 @@ class ControladorFichas
 
     public static function ctrAgregarFichas()
     {
-      // echo '<pre>'; print_r($datos); echo '</pre>';
+        // echo '<pre>'; print_r($datos); echo '</pre>';
 
         if (isset($_POST["nuevaFicha"])) {
 
@@ -85,7 +85,7 @@ class ControladorFichas
                         })
 
                 </script>';
-                    # code...
+                    
                 } else {
                     $letras = array('A' => "A",
                         'B'                 => "B",
@@ -94,12 +94,12 @@ class ControladorFichas
                         'E'                 => "E");
                     $validacion = false;
 
-                    if ($data[0][1][$letras['A']] == "DOCUMENTO" and $data[0][1][$letras['B']] == "NOMBRE" and $data[0][1][$letras['C']] == "TELEFONO" and $data[0][1][$letras['D']] == "EMAIL") {
+                    if ($data[0][1][$letras['A']] == "DOCUMENTO" and $data[0][1][$letras['B']] == "NOMBRE" and $data[0][1][$letras['C']] == "TELEFONO" and $data[0][1][$letras['D']] == "EMAIL" or $data[0][1][$letras['A']] == "DOCUMENTO " or $data[0][1][$letras['B']] == "NOMBRE " or $data[0][1][$letras['C']] == "TELEFONO " or $data[0][1][$letras['D']] == "EMAIL ") {
                         for ($i = 2; $i <= count($data[0]); $i++) {
-                            if ($data[0][$i][$letras['A']] == "") {
+                            if ($data[0][$i][$letras['A']] == "null") {
                                 $validacion = true;
                             }
-                            if ($data[0][$i][$letras['B']] == "") {
+                            if ($data[0][$i][$letras['B']] == "null") {
                                 $validacion = true;
                             }
                         }
@@ -110,8 +110,8 @@ class ControladorFichas
                                 "FechaInicio"                => $_POST["nuevaFechaInicio"],
                                 "FechaFin"                   => $_POST["nuevaFechaFin"],
                                 "JornadaFicha"               => $_POST["nuevaJornada"]);
+                                print_r($datos);
 
-                            
                             $respuesta = ModeloFichas::mdlAgregarFichas($tabla, $datos);
                             if ($respuesta == "ok") {
 
@@ -121,7 +121,7 @@ class ControladorFichas
                                     'C'                  => "C",
                                     'D'                  => "D",
                                     'E'                  => "E");
-                                print_r($data);
+                               
 
                                 for ($i = 2; $i <= count($data[0]); $i++) {
                                     $tablaConsulta     = "aprendiz";
@@ -300,7 +300,8 @@ class ControladorFichas
                 $tabla = "ficha";
 
                 $jornada = strtoupper($_POST["editarJornada"]);
-                // $fechaInicio=($_POST["editarFechaInicio"],$formato);
+                
+                var_dump($_POST["editarFechaFin"]);
 
                 $datos = array("NumeroFicha" => $_POST["editarFicha"],
                     "IdAmbiente"                 => $_POST["idAmbiente"],

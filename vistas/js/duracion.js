@@ -109,7 +109,7 @@ function tiempo1(sel) {
                 $("#editarFechaFin").html(fecha);
                 $("#editarFechaFin").prop('readonly', true);
             } else if (respuesta[3] == "COMPLEMENTARIO") {
-                $("#editarFechaFin").removeAttr('disabled');
+                $("#editarFechaFin").removeAttr('readonly');
             }
         }
     });

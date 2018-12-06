@@ -32,8 +32,11 @@ $(".tablas").on("click", ".btnEditarFicha", function(){
                 processData: false,
                 dataType: "json",
                 success: function(respuesta) {
+                    console.log("respuesta", respuesta);
+                    
                     $("#editarPrograma").val(respuesta["idprograma"]);
-                    // $("#editarPrograma").html(respuesta["nombreprograma"]);
+                    // $(".select2-selection__rendered").val(respuesta["idprograma"]);
+                    // $(".select2-selection__rendered").html(respuesta["nombreprograma"]);
                 }
             })
             var idAmbiente = $(this).attr("idAmbiente");
@@ -49,8 +52,12 @@ $(".tablas").on("click", ".btnEditarFicha", function(){
                 dataType: "json",
                 success: function(respuesta) {
                     console.log("respuesta", respuesta);
-                    $("#editarAmbiente").val(respuesta["idambiente"]);
+                    // $("#editarAmbiente").val(respuesta["idambiente"]);
                     // $("#editarAmbiente").html(respuesta["nombreambiente"]);
+                    $("#editarAmbiente").val(respuesta["idambiente"]);
+                    $(".select2-selection__rendered").val(respuesta["idambiente"]);
+                    $(".select2-selection__rendered").html(respuesta["nombreambiente"]);
+
                 }
             })
         }

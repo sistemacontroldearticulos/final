@@ -3,7 +3,7 @@
 class ControladorArticulos
 {
     // CREAR ARTICULO
-    static public function ctrCrearArticulos()
+    public static function ctrCrearArticulos()
     {
         if (isset($_POST["nuevoTipo"])) {
             if (preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["nuevoTipo"])) {
@@ -15,7 +15,7 @@ class ControladorArticulos
                 $nuevaCaracteristica = strtoupper($_POST["nuevaCaracteristica"]);
                 $idEquipo            = $_POST["nuevoEquipo"];
 
-                if ($idEquipo == "") {
+                if ($idEquipo == "whatever") {
                     $idEquipo = null;
                 }
 
@@ -31,7 +31,6 @@ class ControladorArticulos
                     $nuevaCaracteristica = null;
                 }
 
-
                 $tabla = "articulo";
                 $datos = array("TipoArticulo" => $nuevoTipo,
                     "MarcaArticulo"               => $nuevaMarca,
@@ -44,23 +43,26 @@ class ControladorArticulos
                     "CaracteristicaArticulo"      => $nuevaCaracteristica,
                     "IdEquipo"                    => $idEquipo,
                 );
+                print_r($idEquipo);
+                if ($idEquipo != null) {
+                    $tablaEquipo = "equipo";
+                    $valorEquipo = $_POST["equipo"];
+                    $itemEquipo  = "IdEquipo";
 
-                $tablaEquipo = "equipo";
-                $valorEquipo = $_POST["equipo"];
-                $itemEquipo  = "IdEquipo";
+                    $equipo    = ModeloEquipos::mdlMostrarEquipos($tablaEquipo, $itemEquipo, $valorEquipo);
+                    $agregados = $equipo["numarticulosagregados"] + 1;
 
-                $equipo    = ModeloEquipos::mdlMostrarEquipos($tablaEquipo, $itemEquipo, $valorEquipo);
-                $agregados = $equipo["numarticulosagregados"] + 1;
+                    $datosEquipo = array("IdEquipo" => $equipo["idequipo"],
+                        "NuevoEquipo"                   => $equipo["nombreequipo"],
+                        "NuevoEstado"                   => $equipo["estadoequipo"],
+                        "NuevaObservacion"              => $equipo["observacionequipo"],
+                        "NumArticulosEquipo"            => $equipo["numarticulosequipo"],
+                        "NumArticulosAgregados"         => $agregados,
+                        "idambiente"                    => $equipo["idambiente"],
+                    );
 
-                $datosEquipo = array("IdEquipo"              => $equipo["idequipo"],
-                    "NuevoEquipo"           => $equipo["nombreequipo"],
-                    "NuevoEstado"           => $equipo["estadoequipo"],
-                    "NuevaObservacion"      => $equipo["observacionequipo"],
-                    "NumArticulosEquipo"    => $equipo["numarticulosequipo"],
-                    "NumArticulosAgregados" => $agregados,
-                );
-
-                $respuestaAmbiente2 = ModeloEquipos::mdlEditarEquipo($tablaEquipo, $datosEquipo);
+                    $respuestaAmbiente2 = ModeloEquipos::mdlEditarEquipo($tablaEquipo, $datosEquipo);
+                }
 
                 $respuesta = ModeloArticulos::mdlCrearArticulo($tabla, $datos);
 
@@ -112,8 +114,7 @@ class ControladorArticulos
         }
     }
 
-
-    static public function ctrMostrarArticulos($item, $valor)
+    public static function ctrMostrarArticulos($item, $valor)
     {
 
         $tabla = "articulo";
@@ -124,17 +125,17 @@ class ControladorArticulos
 
     }
 
-    static public function ctrBorrarArticulo(){
+    public static function ctrBorrarArticulo()
+    {
 
         if (isset($_GET["idArticulo"])) {
 
             $valor = $_GET["idArticulo"];
             $tabla = "articulonovedad";
-            $item = "idarticulo";
+            $item  = "idarticulo";
 
             $respuesta = ModeloArticulos::mdlMostrarArticulos($tabla, $item, $valor);
             // var_dump($respuesta);
-
 
             if ($respuesta == false) {
                 $tabla = "articulo";
@@ -147,8 +148,7 @@ class ControladorArticulos
                 $valorEquipo = $articulo["idequipo"];
                 $itemEquipo  = "IdEquipo";
 
-                $equipo    = ModeloEquipos::mdlMostrarEquipos($tablaEquipo, $itemEquipo, $valorEquipo);
-
+                $equipo = ModeloEquipos::mdlMostrarEquipos($tablaEquipo, $itemEquipo, $valorEquipo);
 
                 $agregados = $equipo["numarticulosagregados"] - 1;
 
@@ -160,12 +160,13 @@ class ControladorArticulos
                     "NuevaObservacion"      => $equipo["observacionequipo"],
                     "NumArticulosEquipo"    => $equipo["numarticulosequipo"],
                     "NumArticulosAgregados" => $agregados,
+                    "idAmbiente"            => $equipo["idambiente"],
                 );
 
                 $respuestaAmbiente2 = ModeloEquipos::mdlEditarEquipo($tablaEquipo, $datosEquipo);
 
                 $respuesta = ModeloArticulos::mdlBorrarArticulos($tabla, $datos);
-    // var_dump($respuesta);            
+                // var_dump($respuesta);
                 if ($respuesta == "ok") {
 
                     echo '<script>
@@ -185,7 +186,7 @@ class ControladorArticulos
 
                      </script>';
                 }
-            }else{
+            } else {
                 echo '<script>
 
                      swal({
@@ -203,15 +204,15 @@ class ControladorArticulos
                                  })
 
                      </script>';
-            }           
+            }
         }
     }
 
     // EDITAR ARTICULO
-    static public function ctrEditarArticulos()
+    public static function ctrEditarArticulos()
     {
         if (isset($_POST["editarTipo"])) {
-            if (preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["editarTipo"]) && preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["editarMarca"])) {
+            if (preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["editarTipo"])) {
                 $editarTipo           = strtoupper($_POST["editarTipo"]);
                 $editarMarca          = strtoupper($_POST["editarMarca"]);
                 $editarModelo         = strtoupper($_POST["editarModelo"]);
@@ -270,6 +271,7 @@ class ControladorArticulos
                         "NuevaObservacion"      => $registroEquipoViejo["observacionequipo"],
                         "NumArticulosEquipo"    => $registroEquipoViejo["numarticulosequipo"],
                         "NumArticulosAgregados" => $agregados1,
+                        "idambiente"            => $registroEquipoViejo["idambiente"],
                     );
                     $respuestaEquipo1 = ModeloEquipos::mdlEditarEquipo($tablaEquipo, $datosEquipo1);
 
@@ -286,6 +288,7 @@ class ControladorArticulos
                         "NuevaObservacion"      => $registroEquipoNuevo["observacionequipo"],
                         "NumArticulosEquipo"    => $registroEquipoNuevo["numarticulosequipo"],
                         "NumArticulosAgregados" => $agregados2,
+                        "idambiente"            => $registroEquipoNuevo["idambiente"],
                     );
 
                     $respuestaEquipo2 = ModeloEquipos::mdlEditarEquipo($tablaEquipo, $datosEquipo2);
@@ -341,7 +344,7 @@ class ControladorArticulos
         }
     }
 
-    static public function ctrMostrarArticuloNovedad($item, $valor)
+    public static function ctrMostrarArticuloNovedad($item, $valor)
     {
 
         $tabla = "articulonovedad";

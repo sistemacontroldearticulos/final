@@ -35,11 +35,11 @@ class ControladorAprendiz{
                 $tabla = "aprendiz";
                 $nombreAprendiz = strtoupper($_POST["nuevoAprendiz"]);
      
-                $datos = array("numdocumentoaprendiz" => $_POST["nuevoDocumentoAprendiz"],
-		                    "numeroficha"           => $_GET["ficha"],
-		                    "nombreaprendiz"      => $nombreAprendiz,
-		                    "telefonoaprendiz"    => $_POST["nuevoTelefonoAprendiz"],
-		                    "emailaprendiz" => $_POST["nuevoEmailAprendiz"]);
+                $datos = array("NumDocumentoAprendiz" => $_POST["nuevoDocumentoAprendiz"],
+		                    "NumeroFicha"           => $_GET["ficha"],
+		                    "NombreAprendiz"      => $nombreAprendiz,
+		                    "TelefonoAprendiz"    => $_POST["nuevoTelefonoAprendiz"],
+		                    "EmailAprendiz" => $_POST["nuevoEmailAprendiz"]);
 
                 $respuesta = ModeloAprendiz::mdlIngresarAprendiz($tabla, $datos);
                 echo '<pre>'; print_r($respuesta); echo '</pre>';
