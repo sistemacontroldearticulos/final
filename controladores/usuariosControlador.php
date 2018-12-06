@@ -339,7 +339,7 @@ class ControladorUsuarios
 
                 // var_dump($datos["RolUsuario"]);
 
-                if ($datos["RolUsuario"] != "ADMINISTRADOR" && $datos["IdPrograma"] == null) {
+                if ($datos["RolUsuario"] != "ADMINISTRADOR" || $datos["RolUsuario"]!="ESPECIAL" && $datos["IdPrograma"] == null) {
 
                     echo '<script>
 
@@ -449,6 +449,7 @@ class ControladorUsuarios
                 rmdir('vistas/img/usuarios/' . $_GET["NumDocumentoUsuario"]);
 
             }
+            
             $respuesta = ModeloUsuarios::mdlBorrarUsuario($tabla, $datos);
 
             if ($respuesta == "ok") {

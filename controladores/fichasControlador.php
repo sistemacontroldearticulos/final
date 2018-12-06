@@ -211,8 +211,8 @@ class ControladorFichas
                                             echo '<script>
                                         swal({
                                               type: "error",
-                                              title: "Usuario ya registrado",
-                                              text: "Hay usuarios que ya se encuentran registrados en otra ficha revise el archivo!",
+                                              title: "Aprendiz ya registrado",
+                                              text: "Hay aprendices que ya se encuentran registrados en otra ficha revise el archivo!",
                                               showConfirmButton: true,
                                               confirmButtonText: "Cerrar",
                                               closeOnConfirm: false
