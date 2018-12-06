@@ -230,3 +230,14 @@ $("#editarAmbiente").change(function() {
         }
     })
 })
+
+$('#modalEditarArticulo').on("show.bs.modal", function(){
+
+    $('#modalEditarArticulo').ready(function(){
+
+        debugger
+    })
+
+})
+
+

@@ -420,7 +420,7 @@ $crearArticulo->ctrCrearArticulos();
                   <img src="vistas/img/plantilla/modal/ambientes.png" width="15px">
                 </span>
 
-                <select class="form-control select2 input-lg" name="idAmbiente" id="editarAmbiente" style="width: 100%">
+                <select class="form-control input-lg" name="idAmbiente" id="editarAmbiente" style="width: 100%" required>
 
                   <!-- <option id="editarAmbiente"></option> -->
                    <option value="">Sin Ambiente</option>
