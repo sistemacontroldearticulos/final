@@ -665,3 +665,4 @@ $eliminarArticulo = new ControladorArticulos();
 $eliminarArticulo->ctrBorrarArticulo();
 ?>
 
+;
