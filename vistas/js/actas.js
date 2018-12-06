@@ -1,6 +1,7 @@
 //SE PASA A PONER UN SELECT PARA ESCOGER LOS APRENDICES QUE SE CARGA CON TODOS LOS APRENDICES DE LA FICHA
 //ESCOGIDA. EL SELECT SE CARGA AL FINAL DE ESTA FUNCION
 var ficha;
+ 
 $("#ficha").change(function() {
     $(".alert").remove();
     var idFicha = $(this).val();
@@ -183,8 +184,9 @@ $(".tablas").on("click", ".btnImprimirActa", function(){
 
 })
 
-
+var validar=false;
 $("#fi").change(function() {
+    
     $(".alert").remove();
     var idFicha = $(this).val();
     var datos = new FormData();
@@ -208,86 +210,45 @@ $("#fi").change(function() {
             // }else if (respuesta != "") {
                 
                 
-            //     var idAmbiente = respuesta[2];
-            //     var datos = new FormData();
-            //     datos.append("idAmbiente", idAmbiente);
-            //     $.ajax({
-            //         url: "ajax/equipoAjax.php",
-            //         method: "POST",
-            //         data: datos,
-            //         cache: false,
-            //         contentType: false,
-            //         processData: false,
-            //         dataType: "json",
-            //         success: function(respuesta) {
-            //             // console.log("respuesta", respuesta);
-                       
-            //             var falsos = new Array();
-            //             var positivos = new Array();
-                        
-            //             for (var i = 0; i < respuesta.length; i++) {
-            //                 var equipo = respuesta[i]["idequipo"];
-            //                 var datos = new FormData();   
-            //                 datos.append("equipo", equipo);
-
-            //                 var fal = new Array();
-            //                 var pos = new Array();
-
-            //                 falsos.push(fal);
-            //                 positivos.push(pos);
-
-            //                 $.ajax({
-            //                     url: "ajax/actasAjax.php",
-            //                     method: "POST",
-            //                     data: datos,
-            //                     cache: false,
-            //                     contentType: false,
-            //                     processData: false,
-            //                     dataType: "json",
-            //                     error: function(respuesta) {
-                                        
-            //                             fal.push('false');
-                                    
-            //                     },
-            //                     success: function(respuesta){
-            //                         // console.log("respuesta", respuesta);
-            //                         pos.push('true');
-            //                     }
-
-            //                 })
-    
-            //             }
-
-            //             console.log("positivos", positivos);
-
-            //             var mes = Array();
-            //             console.log( mes);
-
-            //             var algo = positivos.filter((e , i) => i == 0 || i == positivos.length-1);
-            //             console.log("algo", algo);
+                var idAmbiente = respuesta[2];
+                var datos = new FormData();
+                datos.append("idAmbiente", idAmbiente);
+                $.ajax({
+                    url: "ajax/equipoAjax.php",
+                    method: "POST",
+                    data: datos,
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    dataType: "json",
+                    success: function(respuesta) {
+                        // console.log("respuesta", respuesta);
+                      
+                        var falsos = new Array();
+                        var positivos =[];
 
 
-            //             var o = (positivos.length) -1;
-            //             console.log(positivos[o]);
+                            $.ajax({
+                                url: "ajax/actasAjax.php",
+                                method: "POST",
+                                data: datos,
+                                cache: false,
+                                contentType: false,
+                                processData: false,
+                                dataType: "json",
+                                error: function(respuesta1)
+                                {
+                                    debugger;
+                                    validar=false;
+                                    i=5000;
+                                },
+                                success: function(respuesta1){
+                                    positivos.push(
+                                        "true ,"
+                                    );
+                                }
 
-            //             // if (positivos[o] != mes ) {
-
-            //             //     // $("#fi").parent().after('<div class="alert" style="height: 20px; text-align="center"><font color="#f39c12"><strong>ESTA FICHO NO TIENE ACTAS</strong></font></div>');
-            //             //     // $("#fi").val("");
-
-            //             //     console.log("");
-
-            //             // }else{
-
-                            
-
-            //             // }
-
-            //         }
-  
-            //     })
-                
-            // }
+                    
 
         }
             

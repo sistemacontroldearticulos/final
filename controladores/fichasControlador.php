@@ -121,7 +121,7 @@ class ControladorFichas
                                     'C'                  => "C",
                                     'D'                  => "D",
                                     'E'                  => "E");
-                               
+
 
                                 for ($i = 2; $i <= count($data[0]); $i++) {
                                     $tablaConsulta     = "aprendiz";
@@ -142,6 +142,7 @@ class ControladorFichas
                                             }
                                             if ($email == "null") {
                                                 $email = null;
+
                                             }
 
                                             $datos1 = array("NumeroFicha" => $_POST["nuevaFicha"],
@@ -152,27 +153,29 @@ class ControladorFichas
 
                                             $respuesta2 = ModeloAprendiz::MdlIngresarAprendiz($tabla, $datos1);
 
+                                            print_r($respuesta2);
+
                                         }
 
                                         if ($respuesta2 == "ok") {
 
                                             echo '<script>
 
-                                        swal({
-                                          type: "success",
-                                          title: "La ficha ha sido guardada correctamente",
-                                          showConfirmButton: true,
-                                          confirmButtonText: "Cerrar",
-                                          closeOnConfirm: false
-                                          }).then((result) => {
-                                            if (result.value) {
+                                          swal({
+                                            type: "success",
+                                            title: "La ficha ha sido guardada correctamente",
+                                            showConfirmButton: true,
+                                            confirmButtonText: "Cerrar",
+                                            closeOnConfirm: false
+                                            }).then((result) => {
+                                              if (result.value) {
 
-                                              window.location = "fichas";
+                                                window.location = "fichas";
 
-                                              }
-                                          })
+                                                }
+                                            })
 
-                                      </script>';
+                                        </script>';
                                         } else {
 
                                             $tabla = "ficha";
@@ -182,20 +185,20 @@ class ControladorFichas
 
                                             echo '<script>
 
-                                            swal({
-                                                type: "error",
-                                                title: "La ficha no puede ir vacía o llevar caracteres especiales!",
-                                                showConfirmButton: true,
-                                                confirmButtonText: "Cerrar",
-                                                closeOnConfirm: false
-                                                }).then((result) => {
-                                                  if (result.value) {
-                                                     window.location = "fichas";
+                                              swal({
+                                                  type: "error",
+                                                  title: "La ficha no puede ir vacía o llevar caracteres especiales!",
+                                                  showConfirmButton: true,
+                                                  confirmButtonText: "Cerrar",
+                                                  closeOnConfirm: false
+                                                  }).then((result) => {
+                                                    if (result.value) {
+                                                       window.location = "fichas";
 
-                                                  }
-                                              })
+                                                    }
+                                                })
 
-                                            </script>';
+                                              </script>';
                                         }
 
                                     } else {
