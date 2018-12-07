@@ -529,10 +529,12 @@ class ControladorUsuarios
                     "FotoUsuario"                        => $_POST["fotoActual11"],
                     "IdPrograma"                         => $_POST["editarPrograma1"]);
 
+                // echo '<pre>'; print_r($datos); echo '</pre>';
 
-                $respuesta = ModeloUsuarios::mdlEditarUsuario($tablaEditar, $datos);
+                $respuesta333 = ModeloUsuarios::mdlEditarUsuario($tablaEditar, $datos);
+                echo '<pre>'; print_r($respuesta); echo '</pre>';
 
-                if ($respuesta == "ok") {
+                if ($respuesta333 == "ok") {
 
                     echo '<script>
 

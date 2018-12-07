@@ -48,7 +48,7 @@ class ControladorReportes{
 
 			// ARCHIVO DE EXCEL
 
-			$Name = $_GET["reporte"].'.xls';
+			$Name = $_GET["reporte"].'.xlsx';
 
 			header('Expires: 0');
 			header('Cache-control: private');
