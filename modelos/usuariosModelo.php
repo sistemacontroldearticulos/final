@@ -74,14 +74,15 @@ class ModeloUsuarios
     static public function mdlEditarUsuario($tabla, $datos){
 
        $stmt = Conexion::conectar()->prepare("UPDATE $tabla SET NombreUsuario = :NombreUsuario, ContraseniaUsuario = :ContraseniaUsuario, RolUsuario = :RolUsuario, FotoUsuario = :FotoUsuario, IdPrograma=:IdPrograma WHERE NumDocumentoUsuario = :NumDocumentoUsuario");
+    
        
        $stmt -> bindParam(":NombreUsuario", $datos["NombreUsuario"], PDO::PARAM_STR); 
        $stmt -> bindParam(":ContraseniaUsuario", $datos["ContraseniaUsuario"], PDO::PARAM_STR); 
        $stmt -> bindParam(":RolUsuario", $datos["RolUsuario"], PDO::PARAM_STR); 
-       $stmt -> bindParam(":NombreUsuario", $datos["NombreUsuario"], PDO::PARAM_STR); 
        $stmt -> bindParam(":FotoUsuario", $datos["FotoUsuario"], PDO::PARAM_STR); 
        $stmt -> bindParam(":IdPrograma", $datos["IdPrograma"], PDO::PARAM_STR); 
        $stmt -> bindParam(":NumDocumentoUsuario", $datos["NumDocumentoUsuario"], PDO::PARAM_INT); 
+       echo '<pre>'; print_r($datos); echo '</pre>';
 
        if($stmt -> execute()){
 
