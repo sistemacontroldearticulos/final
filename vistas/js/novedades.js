@@ -36,10 +36,50 @@ $(".btnBuscar1").click(function() {
                         processData: false,
                         dataType: "json",
                         success: function(respuesta) {
-                            if (respuesta["idprograma"] != idPrograma) {
-                                $("#nuevaFicha1").parent().after('<div class="alert" style="height: 20px; text-align="center"><font color="#f39c12"><strong>USTED NO SE ENCUENTRA REGISTRADO EN ESTE PROGRAMA</strong></font></div>');
-                                $("#nuevaFicha1").val("");
-                                $("#nuevoAmbiente1").val("")
+                            console.log(respuesta);
+                            debugger;
+                            if (respuesta["rolusuario"] == "INSTRUCTOR") {
+                                if (respuesta["idprograma"] != idPrograma) {
+                                    $("#nuevaFicha1").parent().after('<div class="alert" style="height: 20px; text-align="center"><font color="#f39c12"><strong>USTED NO SE ENCUENTRA REGISTRADO EN ESTE PROGRAMA</strong></font></div>');
+                                    $("#nuevaFicha1").val("");
+                                    $("#nuevoAmbiente1").val("")
+                                } else {
+                                    var idAmbiente1 = respuestaFichas["idambiente"];
+                                    var datosAmbiente1 = new FormData();
+                                    $("#idAmbiente2").val(respuestaFichas["idambiente"]);
+                                    var idAmbiente = respuestaFichas["idambiente"];
+                                    datosAmbiente1.append("idAmbiente", idAmbiente);
+                                    $.ajax({
+                                        url: "ajax/ambientesAjax.php",
+                                        method: "POST",
+                                        data: datosAmbiente1,
+                                        cache: false,
+                                        contentType: false,
+                                        processData: false,
+                                        dataType: "json",
+                                        success: function(respuesta) {
+                                            // console.log(respuesta["nombreambiente"]);
+                                            $("#nuevoAmbiente1").val(respuesta["nombreambiente"]);
+                                            $(".inputAmbiente").val(respuesta["nombreambiente"]);
+                                            var e = $.Event("keyup", {
+                                                keyCode: 13
+                                            });
+                                            $('.inputAmbiente').focus();
+                                            $('.inputAmbiente').trigger(e);
+                                        }
+                                    });
+                                    datosAmbiente1.append("idAmbiente1", idAmbiente1);
+                                    $.ajax({
+                                        url: "ajax/ambientesAjax.php",
+                                        method: "POST",
+                                        data: datosAmbiente1,
+                                        cache: false,
+                                        contentType: false,
+                                        processData: false,
+                                        dataType: "json",
+                                        success: function(respuesta) {}
+                                    })
+                                }
                             } else {
                                 var idAmbiente1 = respuestaFichas["idambiente"];
                                 var datosAmbiente1 = new FormData();
