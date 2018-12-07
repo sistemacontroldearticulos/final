@@ -324,13 +324,15 @@ class ControladorUsuarios
 
                 }
 
+              
+
                 $editarNombre = strtoupper($_POST["editarNombre"]);
                 $editarPerfil = strtoupper($_POST["editarPerfil"]);
+                $programa=$_POST["editarPrograma"];
 
-                if ($_POST["editarPrograma"] == "") {
+                if ($programa == "") {
+                    
                     $programa = null;
-                } else {
-                    $programa = $_POST["editarPrograma"];
                 }
                 // print_r($programa);
 
@@ -341,9 +343,9 @@ class ControladorUsuarios
                     "FotoUsuario"                        => $ruta,
                     "IdPrograma"                         => $programa);
 
-                // var_dump($datos["RolUsuario"]);
+                
 
-                if ($datos["RolUsuario"] != "ADMINISTRADOR" || $datos["RolUsuario"]!="ESPECIAL" && $datos["IdPrograma"] == null) {
+                if ($datos["RolUsuario"]=="INSTRUCTOR" && $datos["IdPrograma"] == null) {
 
                     echo '<script>
 

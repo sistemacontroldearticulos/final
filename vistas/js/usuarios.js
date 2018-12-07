@@ -53,6 +53,14 @@ $(".tablas").on("click", ".btnEditarUsuario", function() {
             $("#editarDocumento").val(respuesta["numdocumentousuario"]);
             // $("#editarPerfil").html(respuesta["rolusuario"]);
             $("#editarPerfil").val(respuesta["rolusuario"]);
+            if (respuesta["rolusuario"] == "ADMINISTRADOR" || respuesta["rolusuario"] == "ESPECIAL") {
+                $("#editarPrograma").prop('disabled', true);
+                $('#select2-editarPrograma-container').html("Seleccionar Programa");
+                $("#editarPrograma").val("");
+                $('#select2-editarPrograma-container').val("")
+            } else {
+                $("#editarPrograma").removeAttr('disabled');
+            }
             $("#fotoActual").val(respuesta["fotousuario"]);
             // EDITAR INSTRUCTOR O ESPECIAL
             $("#editarNombre1").html(respuesta["nombreusuario"]);
@@ -77,13 +85,9 @@ $(".tablas").on("click", ".btnEditarUsuario", function() {
                     if (respuesta == false) {
                         $("#editarPrograma").prop('disabled', true)
                     } else {
-                        // $("#editarPrograma").html(respuesta["nombreprograma"]);
+                        $("#editarPrograma").val(respuesta["idprograma"]);
                         $("#select2-editarPrograma-container").val(respuesta["idprograma"]);
                         $("#select2-editarPrograma-container").html(respuesta["nombreprograma"]);
-                        $("#editarPrograma").val(respuesta["idprograma"]);
-                        // EDITAR INSTRUCTOR O ESPECIAL
-                        $("#editarPrograma11").val(respuesta["idprograma"]);
-                        ///////////////////////////////////////////
                     }
                 }
             })
@@ -144,32 +148,26 @@ $(".tablas").on("click", ".btnEliminarUsuario", function() {
 function rolUsuario(sel) {
     // debugger;
     if (sel == "Administrador" || sel == "Especial") {
-        $("#nuevoPrograma").prop('disabled',true);
+        $("#nuevoPrograma").prop('disabled', true);
         $('#select2-nuevoPrograma-container').html("Seleccionar Programa");
         $("#nuevoPrograma").val("");
         $('#select2-nuevoPrograma-container').val("")
-
         console.log("algo", algo);
-    } else 
-    {
-         $("#nuevoPrograma").removeAttr('disabled');
-
+    } else {
+        $("#nuevoPrograma").removeAttr('disabled');
     }
 }
 
 function rolUsuario2(sel) {
     debugger;
     if (sel == "ADMINISTRADOR" || sel == "ESPECIAL") {
-       $("#editarPrograma").prop('disabled',true);
+        $("#editarPrograma").prop('disabled', true);
         $('#select2-editarPrograma-container').html("Seleccionar Programa");
         $("#editarPrograma").val("");
         $('#select2-editarPrograma-container').val("")
-
         console.log("algo", algo);
-    } else 
-    {
-         $("#editarPrograma").removeAttr('disabled');
-
+    } else {
+        $("#editarPrograma").removeAttr('disabled');
     }
 }
 // $(".btnEditarUsuario1").click(function(){
