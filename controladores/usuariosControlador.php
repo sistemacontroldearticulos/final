@@ -532,7 +532,7 @@ class ControladorUsuarios
                 // echo '<pre>'; print_r($datos); echo '</pre>';
 
                 $respuesta333 = ModeloUsuarios::mdlEditarUsuario($tablaEditar, $datos);
-                echo '<pre>'; print_r($respuesta); echo '</pre>';
+                // echo '<pre>'; print_r($respuesta); echo '</pre>';
 
                 if ($respuesta333 == "ok") {
 

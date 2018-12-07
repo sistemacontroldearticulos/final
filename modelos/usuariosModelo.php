@@ -78,7 +78,6 @@ class ModeloUsuarios
        $stmt -> bindParam(":NombreUsuario", $datos["NombreUsuario"], PDO::PARAM_STR); 
        $stmt -> bindParam(":ContraseniaUsuario", $datos["ContraseniaUsuario"], PDO::PARAM_STR); 
        $stmt -> bindParam(":RolUsuario", $datos["RolUsuario"], PDO::PARAM_STR); 
-       $stmt -> bindParam(":NombreUsuario", $datos["NombreUsuario"], PDO::PARAM_STR); 
        $stmt -> bindParam(":FotoUsuario", $datos["FotoUsuario"], PDO::PARAM_STR); 
        $stmt -> bindParam(":IdPrograma", $datos["IdPrograma"], PDO::PARAM_STR); 
        $stmt -> bindParam(":NumDocumentoUsuario", $datos["NumDocumentoUsuario"], PDO::PARAM_INT); 
