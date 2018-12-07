@@ -49,10 +49,8 @@ $(".tablas").on("click", ".btnEditarEquipo", function() {
                 processData: false,
                 dataType: "json",
                 success: function(respuesta) {
-                    
                     $(".select2-selection__rendered").val(respuesta["idambiente"]);
                     $(".select2-selection__rendered").html(respuesta["nombreambiente"]);
-
                     $("#editarAmbienteEquipo").val(respuesta["idambiente"]);
                     $("#select2-editarAmbienteEquipo-container").val(respuesta["idambiente"]);
                     $("#select2-editarAmbienteEquipo-container").html(respuesta["nombreambiente"]);
@@ -68,93 +66,66 @@ $(".tablas").on("click", ".btnEditarEquipo", function() {
 function equipoFuncion(sel) {
     $(".alert").remove();
     $("#btnAgregarArticulo").prop('disabled', false);
-    if(sel!="whatever")
-    {
-
-    $("#btnAgregarArticulo").prop('disabled', false);
-    if(sel!="whatever")
-    {
-    var idEquipo = sel;
-    var datos = new FormData();
-    datos.append("sel", idEquipo);
-    $.ajax({
-        url: "ajax/equipoAjax.php",
-        method: "POST",
-        data: datos,
-        cache: false,
-        contentType: false,
-        processData: false,
-        dataType: "json",
-        success: function(respuesta) {
-            // debugger;
-            $("#equipo").val(respuesta["idequipo"]);
-
-            if (respuesta["numarticulosagregados"] == respuesta["numarticulosequipo"]) {
-                $("#nuevoEquipo").parent().after('<div class="alert" style="height: 20px; text-align="center"><font color="#f39c12"><strong>ESTE EQUIPO YA TIENE EL TOTAL DE ARTÍCULOS ASIGNADOS</strong></font></div>');
-                $("#nuevoEquipo").val("");
-                $("#btnAgregarArticulo").prop('disabled', true);
-            }
-            // $("#editarEquipo").val(respuesta["NombreEquipo"]);
-            // $("#idEquipo").val(respuesta["IdEquipo"]);
-            // $("#editarEstado").val(respuesta["EstadoEquipo"]);
-            // // $("#editarEstado").html(respuesta["EstadoEquipo"]);
-            // $("#editarCantidad").val(respuesta["NumArticulosEquipo"]);
-            // $("#editarObservacion").val(respuesta["ObservacionEquipo"]);
-            // console.log(respuesta);
+    if (sel != "whatever") {
+        $("#btnAgregarArticulo").prop('disabled', false);
+        if (sel != "whatever") {
+            var idEquipo = sel;
+            var datos = new FormData();
+            datos.append("sel", idEquipo);
+            $.ajax({
+                url: "ajax/equipoAjax.php",
+                method: "POST",
+                data: datos,
+                cache: false,
+                contentType: false,
+                processData: false,
+                dataType: "json",
+                success: function(respuesta) {
+                    // debugger;
+                    $("#equipo").val(respuesta["idequipo"]);
+                    if (respuesta["numarticulosagregados"] == respuesta["numarticulosequipo"]) {
+                        $("#nuevoEquipo").parent().after('<div class="alert" style="height: 20px; text-align="center"><font color="#f39c12"><strong>ESTE EQUIPO YA TIENE EL TOTAL DE ARTÍCULOS ASIGNADOS</strong></font></div>');
+                        $("#nuevoEquipo").val("");
+                        $("#btnAgregarArticulo").prop('disabled', true);
+                    }
+                }
+            })
         }
-    })
     }
-    
 }
 
 function equipoFuncion1(sel) {
-
     $("#actualizarArticulo").prop('disabled', false);
-    if(sel!="whatever")
-    {
-    
-    $(".alert").remove();
-    $("#actualizarArticulo").prop('disabled', false);
-    if(sel!="whatever")
-    {
-
-    var idEquipo = sel;
-    var datos = new FormData();
-    datos.append("sel", idEquipo);
-    $.ajax({
-        url: "ajax/equipoAjax.php",
-        method: "POST",
-        data: datos,
-        cache: false,
-        contentType: false,
-        processData: false,
-        dataType: "json",
-        success: function(respuesta2) {
-            // debugger;
-            // console.log(respuesta2);
-            // console.log(nombre);
-            // $("#equipo").val(respuesta2["idequipo"]);
-            // if (respuesta2["numarticulosagregados"] == respuesta2["numarticulosequipo"]) {
-            //     $("#editarEquipo").parent().parent().after('<div class="alert alert-warning">Este equipo ya tiene el total de artículos asignados</div>');
-            //     $("#actualizarArticulo").prop('disabled', true);
-            // }
-            if (respuesta2 == false) {
-                $("#editarEquipo").val("");
-            } else {
-                $("#equipo").val(respuesta2["idequipo"]);
-                if (respuesta2["numarticulosagregados"] == respuesta2["numarticulosequipo"]) {
-
-                    $("#editarEquipo").parent().after('<div class="alert" style="height: 20px; text-align="center"><font color="#f39c12"><strong>ESTE EQUIPO YA TIENE EL TOTAL DE ARTÍCULOS ASIGNADOS</strong></font></div>');
-                    $("#editarEquipo").html("");
-
-                    $("#actualizarArticulo").prop('disabled', true);
-
+    if (sel != "whatever") {
+        $(".alert").remove();
+        $("#actualizarArticulo").prop('disabled', false);
+        if (sel != "whatever") {
+            var idEquipo = sel;
+            var datos = new FormData();
+            datos.append("sel", idEquipo);
+            $.ajax({
+                url: "ajax/equipoAjax.php",
+                method: "POST",
+                data: datos,
+                cache: false,
+                contentType: false,
+                processData: false,
+                dataType: "json",
+                success: function(respuesta2) {
+                    if (respuesta2 == false) {
+                        $("#editarEquipo").val("");
+                    } else {
+                        $("#equipo").val(respuesta2["idequipo"]);
+                        if (respuesta2["numarticulosagregados"] == respuesta2["numarticulosequipo"]) {
+                            $("#editarEquipo").parent().after('<div class="alert" style="height: 20px; text-align="center"><font color="#f39c12"><strong>ESTE EQUIPO YA TIENE EL TOTAL DE ARTÍCULOS ASIGNADOS</strong></font></div>');
+                            $("#editarEquipo").html("");
+                            $("#actualizarArticulo").prop('disabled', true);
+                        }
+                    }
                 }
-            }
+            })
         }
-    })
     }
-    
 }
 /*=========================
 =    VALIDAR EQUIPO    =
@@ -182,12 +153,11 @@ $("#nuevoEquipo").change(function() {
         }
     })
 })
-
 /*=========================
 =    VALIDAR EDITAR EQUIPO    =
 =========================*/
-
 var equipoAntes;
+
 function capturar3(a) {
     // console.log("sel",a);
     equipoAntes = a;
@@ -209,20 +179,11 @@ $("#editarEquipo").change(function() {
         dataType: "json",
         success: function(respuesta) {
             // console.log("respuesta", respuesta);
-
             cantidadArticulosAgregados = respuesta["numarticulosagregados"];
-
-            if (equipoAntes == nombreEquipo.toUpperCase()) {
-            
-            }else if (respuesta["nombreequipo"] == nombreEquipo.toUpperCase()){
-
+            if (equipoAntes == nombreEquipo.toUpperCase()) {} else if (respuesta["nombreequipo"] == nombreEquipo.toUpperCase()) {
                 $("#editarEquipo").parent().after('<div class="alert" style="height: 20px; text-align="center"><font color="#f39c12"><strong>ESTE EQUIPO YA SE ENCUENTRA REGISTRADO</strong></font></div>');
                 $("#editarEquipo").val("");
-
-            }else{
-
-            }  
+            } else {}
         }
     })
 })
-

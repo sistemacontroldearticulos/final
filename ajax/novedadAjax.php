@@ -9,6 +9,7 @@ require_once "../modelos/novedadesModelo.php";
 class AjaxNovedad{
 
 	public $idNovedad;
+	
 
 	public function ajaxMostrarNovedad(){
 
@@ -21,11 +22,30 @@ class AjaxNovedad{
 
 	}
 
-}
 
-if ($_POST["id"]) {
+	public $idNovedad1;
+	public function ajaxMostrarNovedad1(){
+
+		$item = "idnovedad";
+		$valor = $this->idNovedad1;
+		$tabla="novedad";
+		$respuesta = ControladorNovedades::ctrMostrarNovedades1($tabla,$item, $valor);
+
+		echo json_encode($respuesta);
+
+	}
+
+}
+if(isset($_POST["id"])){
 	
 	$novedad = new AjaxNovedad();
 	$novedad -> idNovedad = $_POST["id"];
 	$novedad -> ajaxMostrarNovedad();
+}
+
+if(isset($_POST["idNovedad"])){
+	
+	$novedad = new AjaxNovedad();
+	$novedad -> idNovedad1 = $_POST["idNovedad"];
+	$novedad -> ajaxMostrarNovedad1();
 }

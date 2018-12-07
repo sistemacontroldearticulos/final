@@ -49,29 +49,47 @@ $(".btnBuscar").click(function() {
         dataType: "json",
         success: function(respuesta) {
             // console.log("respuesta", respuesta);
-            if (respuesta == false) {
-                $("#nuevaFicha1").parent().after('<div class="alert" style="height: 20px; text-align="center"><font color="#f39c12"><strong>ESTA FICHA NO ESTA REGISTRADA EN LA BASE DE DATOS</strong></font></div>');
-                $("#nuevaFicha1").val("");
-            } else if (respuesta["idambiente"] == null) {
-                $("#nuevaFicha1").parent().after('<div class="alert" style="height: 20px; text-align="center"><font color="#f39c12"><strong>LA FICHA INGRESADA NO ESTÁ ASIGNADA A NINGÚN AMBIENTE</strong></font></div>');
-                $("#nuevaFicha1").val("");
-            } else {
-                var idAmbiente = respuesta["idambiente"];
-                var datosAmbiente = new FormData();
-                datosAmbiente.append("idAmbiente", idAmbiente);
-                $.ajax({
-                    url: "ajax/ambientesAjax.php",
-                    method: "POST",
-                    data: datosAmbiente,
-                    cache: false,
-                    contentType: false,
-                    processData: false,
-                    dataType: "json",
-                    success: function(respuesta) {
-                        console.log("TIENE AMBIENTE");
-                    }
-                })
+            var idPrograma=respuesta["idprograma"];
+            var datosPrograma = new FormData();
+        datosPrograma.append("idPrograma", idPrograma);
+        $.ajax({
+            url: "ajax/usuarios.ajax.php",
+            method: "POST",
+            data: datosPrograma,
+            cache: false,
+            contentType: false,
+            processData: false,
+            dataType: "json",
+            success: function(respuesta) 
+            {
+                console.log("respuesta", respuesta);
+            //     if (respuesta == false) {
+            //     $("#nuevaFicha1").parent().after('<div class="alert" style="height: 20px; text-align="center"><font color="#f39c12"><strong>ESTA FICHA NO ESTA REGISTRADA EN LA BASE DE DATOS</strong></font></div>');
+            //     $("#nuevaFicha1").val("");
+            // }else if (respuesta["idambiente"] == null) {
+            //     $("#nuevaFicha1").parent().after('<div class="alert" style="height: 20px; text-align="center"><font color="#f39c12"><strong>LA FICHA INGRESADA NO ESTÁ ASIGNADA A NINGÚN AMBIENTE</strong></font></div>');
+            //     $("#nuevaFicha1").val("");
+            // } else {
+            //     var idAmbiente = respuesta["idambiente"];
+            //     var datosAmbiente = new FormData();
+            //     datosAmbiente.append("idAmbiente", idAmbiente);
+            //     $.ajax({
+            //         url: "ajax/ambientesAjax.php",
+            //         method: "POST",
+            //         data: datosAmbiente,
+            //         cache: false,
+            //         contentType: false,
+            //         processData: false,
+            //         dataType: "json",
+            //         success: function(respuesta) {
+            //             console.log("TIENE AMBIENTE");
+            //         }
+            //     })
+            // }
             }
+        })
+
+            
         }
     });
 });
@@ -301,7 +319,7 @@ $(".btnBuscar2").click(function() {
         processData: false,
         dataType: "json",
         success: function(respuesta) {
-            console.log(respuesta);
+            // console.log(respuesta);
             $(".tablaModalArticulos td").remove();
             for (var i = 0; i < respuesta.length; i++) {
                 if (respuesta[i]["fotonovedad"] == null || respuesta[i]["fotonovedad"] == "") {

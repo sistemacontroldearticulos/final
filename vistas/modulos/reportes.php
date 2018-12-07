@@ -27,13 +27,32 @@
 	                    </span>
 	                </button>
 
+
+                  <select class="form-control select2 input-sm" name="ambienteFiltro" id="ambienteFiltro" style="width: 30%;" >
+                    <option value="">Seleccionar Ambiente</option>
+                    <?php
+
+                        $item  = null;
+                        $valor = null;
+
+                        $ambiente = ControladorAmbientes::ctrMostrarAmbientes($item, $valor);
+
+                        foreach ($ambiente as $key => $value) {
+
+                            echo '<option value="' . $value["idambiente"] . '">' . $value["nombreambiente"] . '</option>';
+                        }
+
+                        ?>
+                  </select>
+
 	                <?php 
 
 	                if (isset($_GET["fechaInicial"])) {
 
-	                	echo '<a href="vistas/modulos/descargar-reporte.php?reporte=reporte&fechaInicial='.$_GET["fechaInicial"].'&fechaFinal='.$_GET["fechaFinal"].'">';
+	                	echo '<a href="vistas/modulos/descargar-reporte.php?reporte=reporte&fechaInicial='.$_GET["fechaInicial"].'&fechaFinal='.$_GET["fechaFinal"].'&ambiente='.$_GET["ambiente"].'">';
 
-	                }else{
+	                }
+                  else{
 
 	                	echo '<a href="vistas/modulos/descargar-reporte.php?reporte=reporte">';
 	                
@@ -69,16 +88,18 @@
 
 							$fechaInicial = $_GET["fechaInicial"];
 							$fechaFinal   = $_GET["fechaFinal"];
+              $idAmbiente =$_GET["ambiente"];
 
 						} else {
 
 
 							$fechaInicial = null;
 							$fechaFinal   = null;
+              $idAmbiente =null;
 
 						}
 
-                        $respuesta = ControladorReportes::ctrRangoFechasReportes($fechaInicial, $fechaFinal);
+                        $respuesta = ControladorReportes::ctrRangoFechasReportes($fechaInicial, $fechaFinal, $idAmbiente);
 						
 						
 						if($respuesta != null){
@@ -175,33 +196,30 @@
             <div class="form-group row">
 
             	<!-- ENTRADA PARA EL INVENTARIO SENA -->
-              <div class="col-xs-12">
+              <div class="col-xs-6 ">
 
                 <div class="input-group">
 
                   <span class="input-group-addon">
-                  <img src="vistas/img/plantilla/modal/codigo.png" width="15px">
+                  <img src="vistas/img/plantilla/modal/articulos.png" width="15px">
                 </span>
 
-                  <input type="text" class="form-control input-lg" id="Rambiente" readonly>
+                  <input type="text" class="form-control input-lg" id="ReporteFecha" readonly>
 
                 </div>
 
               </div>
 
-              <br>
-              <br>
-              <br>
-
-              <div class="col-xs-12">
+              <!-- ENTRADA PARA EL MODELO ARTICULO -->
+              <div class="col-xs-6">
 
                 <div class="input-group">
 
                   <span class="input-group-addon">
-                  <img src="vistas/img/plantilla/modal/codigo.png" width="15px">
+                  <img src="vistas/img/plantilla/modal/modelos1.png" width="15px">
                 </span>
 
-                  <input type="text" class="form-control input-lg" id="Rusuario" readonly>
+                  <input type="text" class="form-control input-lg" id="ReporteAmbiente" readonly >
 
                 </div>
 
@@ -221,7 +239,7 @@
                   <img src="vistas/img/plantilla/modal/articulos.png" width="15px">
                 </span>
 
-                  <input type="text" class="form-control input-lg" id="Rfecha" readonly>
+                  <input type="text" class="form-control input-lg" id="ReporteArticulo" readonly>
 
                 </div>
 
@@ -236,7 +254,7 @@
                   <img src="vistas/img/plantilla/modal/modelos1.png" width="15px">
                 </span>
 
-                  <input type="text" class="form-control input-lg" id="Rtipo" readonly >
+                  <input type="text" class="form-control input-lg" id="ReporteTipo" readonly >
 
                 </div>
 
@@ -254,7 +272,7 @@
                   <img src="vistas/img/plantilla/modal/marca.png" width="15px">
                 </span>
 
-                  <input type="text" class="form-control input-lg" id="Rnombre" readonly>
+                  <input type="text" class="form-control input-lg" id="ReporteFicha" readonly>
 
                 </div>
 
@@ -269,34 +287,14 @@
                   <img src="vistas/img/plantilla/modal/serial1.png" width="15px">
                 </span>
 
-                  <input type="text" class="form-control input-lg" id="Rtipo" readonly>
+                  <input type="text" class="form-control input-lg" id="ReporteUsuario" readonly>
 
                 </div>
 
               </div>
 
             </div>
-
-            <div class="form-group row">
-
-              <div class="col-xs-6">
-
-                <div class="input-group">
-
-                  <span class="input-group-addon">
-                  <img src="vistas/img/plantilla/modal/codigo.png" width="15px">
-                </span>
-
-                  <input type="text" class="form-control input-lg" id="Rficha" readonly>
-
-                </div>
-
-              </div>
-
-            </div>
-
-
-             <div class="form-group">
+            <div class="form-group">
 
               <div class="input-group">
 
@@ -304,12 +302,26 @@
                   <img src="vistas/img/plantilla/modal/observaciones.png" width="15px">
                 </span>
 
-                 <textarea class="form-control rounded-5" name="nuevaCaracteristica" rows="3" placeholder="INGRESE CARACTERÍSTICAS DEL ARTICULO"></textarea>
+                 <textarea class="form-control rounded-5" name="nuevaCaracteristica" id="ReporteCaracteristica"
+                 readonly rows="3" placeholder="INGRESE CARACTERÍSTICAS DEL ARTICULO"></textarea>
                  <!-- <input type="text" class="form-control input-lg" name="nuevaCaracteristica" min="0" placeholder="Ingrese la característica del artículo"> -->
 
               </div>
 
             </div>
+
+             <div class="form-group">
+
+
+              <img src="vistas/img/usuarios/default/anonymous.png" id="ReporteImagen"class="img-thumbnail previsualizar" width="150px">
+
+
+        </div>
+
+
+
+
+             
           </div>
         </div>
 
@@ -319,4 +331,10 @@
 
   </div>
 
+</div>
+
+<div id="popUp" class="modal">
+  <span class="close">&times;</span>
+  <img class="modal-content" id="img01">
+  <div id="caption"></div>
 </div>

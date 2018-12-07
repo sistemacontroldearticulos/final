@@ -39,6 +39,19 @@ class AjaxUsuarios{
 
     }
 
+    public $idPrograma;
+
+    public function ajaxValidaPrograma(){
+
+        
+        $valor = $this->idPrograma;
+
+        $respuesta = ControladorUsuarios::ctrValidarPrograma($valor);
+
+        echo $respuesta;
+
+    }
+
 }
 
 /*=============================================
@@ -63,6 +76,15 @@ if(isset($_POST["ValidarDocumento"])){
     $valDocumento -> ValidarDocumento = $_POST["ValidarDocumento"];
 
     $valDocumento -> ajaxValidarDococumento();
+}
+
+if(isset($_POST["idPrograma"])){
+
+    $valDocumento = new AjaxUsuarios();
+
+    $valDocumento -> idPrograma = $_POST["idPrograma"];
+
+    $valDocumento -> ajaxValidaPrograma();
 }
 
 

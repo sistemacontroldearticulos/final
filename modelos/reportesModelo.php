@@ -32,16 +32,34 @@ class ModeloReportes
     }
 
     // RANGO FECHAS
-    public static function mdlRangoFechasReportes($tabla, $fechaInicial, $fechaFinal)
+    public static function mdlRangoFechasReportes($tabla, $fechaInicial, $fechaFinal, $idAmbiente)
+    
     {
+        
 
         if ($fechaInicial == null) {
-
-            $stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla");
+            if($idAmbiente=="")
+            {
+                $stmt = Conexion::conectar()->prepare("SELECT *  FROM $tabla");
 
             $stmt->execute();
 
             return $stmt -> fetchAll();
+            }
+            else
+            {
+                $stmt = Conexion::conectar()->prepare("SELECT novedad.*, ambiente.idambiente  FROM $tabla
+                    join ficha on (novedad.numeroficha=ficha.numeroficha)
+                    join ambiente on (ambiente.idambiente=ficha.idambiente)
+                    where ambiente.idAmbiente=$idAmbiente");
+
+            $stmt->execute();
+            echo '<pre>'; print_r($stmt); echo '</pre>';
+
+            return $stmt -> fetchAll();
+            }
+
+            
 
 
         } else if ($fechaInicial == $fechaFinal) {
@@ -54,12 +72,28 @@ class ModeloReportes
                 $day1 = (string)$dia1;
                 $fechaini = $anio1 . '-' . $mes1 . '-' . '0'.$day1;
             }
-
-            $stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE fechanovedad like '%$fechaini%'");
+            if($idAmbiente=="")
+            {
+                $stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE fechanovedad like '%$fechaini%'");
 
             $stmt->execute();
 
             return $stmt->fetchAll();
+            }
+            else
+            {
+                $stmt = Conexion::conectar()->prepare("SELECT novedad.*, ambiente.idambiente  FROM $tabla 
+                    join ficha on (novedad.numeroficha=ficha.numeroficha)
+                    join ambiente on (ambiente.idambiente=ficha.idambiente)
+                    WHERE fechanovedad like '%$fechaini%' and ambiente.idAmbiente=$idAmbiente");
+
+            $stmt->execute();
+
+            return $stmt->fetchAll();
+              
+            }
+
+            
 
         }  else {
 
@@ -82,11 +116,28 @@ class ModeloReportes
                 $fechafin = $anio2 . '-' . $mes2 . '-' . '0'.$day2;
             }
 
-            $stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE fechanovedad BETWEEN '$fechaini' AND '$fechafin'");
+            if($idAmbiente=="")
+            {
+                $stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE fechanovedad BETWEEN '$fechaini' AND '$fechafin'");
 
-            $stmt->execute();
+                $stmt->execute();
 
-            return $stmt->fetchAll();
+                return $stmt->fetchAll();
+            }
+            else
+
+            {
+                $stmt = Conexion::conectar()->prepare("SELECT novedad.*,ambiente.idambiente FROM $tabla
+                    join ficha on (novedad.numeroficha=ficha.numeroficha)
+                    join ambiente on (ambiente.idambiente=ficha.idambiente)
+                    WHERE fechanovedad BETWEEN '$fechaini' AND '$fechafin'  and ambiente.idAmbiente=$idAmbiente");
+
+                $stmt->execute();
+
+                return $stmt->fetchAll();
+            }
+
+            
 
         }
 

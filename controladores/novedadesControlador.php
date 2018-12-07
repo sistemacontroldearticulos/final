@@ -207,4 +207,13 @@ class ControladorNovedades
 
     }
 
+        public static function ctrMostrarNovedades1($tabla,$item, $valor)
+    {
+
+        $respuesta = ModeloNovedades::mdlMostrarNovedades1($tabla, $item, $valor);
+
+        return $respuesta;
+
+    }
+
 }

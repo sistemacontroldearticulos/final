@@ -158,4 +158,31 @@ class ModeloNovedades
 
     }
 
+     public static function mdlMostrarNovedades1($tabla, $item, $valor)
+    {
+
+        if ($item != null) {
+            $stmt = Conexion::conectar()->prepare("SELECT articulo.tipoarticulo, articulonovedad.tiponovedad, ambiente.nombreambiente, novedad.numeroficha, usuario.nombreusuario,articulonovedad.fotonovedad,articulonovedad.observacionnovedad, novedad.fechanovedad FROM $tabla join articulonovedad on (articulonovedad.idnovedad=novedad.idnovedad) Join articulo on (articulonovedad.idarticulo=articulo.idarticulo) join ficha on (novedad.numeroficha=ficha.numeroficha) join ambiente on(ficha.idambiente=ambiente.idambiente) join usuario on (novedad.numdocumentousuario=usuario.numdocumentousuario) WHERE novedad.$item=:$item");
+            
+
+            $stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
+           
+
+            $stmt->execute();
+
+            return $stmt->fetch();
+
+        } else {
+            $stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla");
+
+            $stmt->execute();
+
+            return $stmt->fetchAll();
+        }
+
+        $stmt->close();
+
+        $stmt->null();
+    }
+
 }

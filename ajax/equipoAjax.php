@@ -29,7 +29,6 @@ class AjaxEquipo
         $respuesta = ControladorEquipos::ctrMostrarEquipos($item, $valor);
 
 		echo json_encode($respuesta);
-
     }
     // VALIDAR EQUIPO
     public $nombreequipo;

@@ -86,13 +86,36 @@ function tiempo(sel) {
                 $("#nuevaFechaFin").val(fecha);
                 $("#nuevaFechaFin").html(fecha);
                 $("#nuevaFechaFin").prop('readonly', true);
+            } else if (respuesta[3] == "ESPECIALIZACIÓN") {
+                diaActual = new Date(sel);
+                console.log(diaActual);
+                var day = diaActual.getDate();
+                var month = diaActual.getMonth()+7;
+                var year = diaActual.getFullYear();
+
+               
+                fecha = month + '/' + day + '/' + year;
+                $("#nuevaFechaFin").val(fecha);
+                $("#nuevaFechaFin").html(fecha);
+                $("#nuevaFechaFin").prop('readonly', true);
+            } else
+            {
+                $("#nuevaFechaFin").val("");
+                $("#nuevaFechaFin").html("");
+                $("#nuevaFechaFin").prop('readonly', false);
+                $("#nuevaFechaFin").removeAttr('disabled');
+
             }
         }
     });
 }
 // LOS INPUT DE LAS FECHAS AL CARGAR EL MODAL ESTAN DESACTIVADOS, SE ACTIVAN AL ESCOGER PROGRAMA
 function activarFechas() {
-    debugger;
+
+    $("#nuevaFechaFin").val("");
+    $("#nuevaFechaFin").html("");
+    $("#nuevaFechaInicio").val("");
+    $("#nuevaFechaInicio").html("");
     $("#nuevaFechaFin").removeAttr('disabled');
     $("#nuevaFechaInicio").removeAttr('disabled');
 }

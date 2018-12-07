@@ -1,3 +1,4 @@
+var algo;
 $(".tablas").on("click", ".btnEliminarArticulo", function() {
     // debugger;
     var idArticulo = $(this).attr("idArticulo");
@@ -230,3 +231,37 @@ $("#editarAmbiente").change(function() {
         }
     })
 })
+
+$('#modalEditarArticulo').on('shown.bs.modal', function () {
+    var idAmbiente= $("#editarAmbiente").val();
+    // console.log("$(\"#editarAmbiente\")", $("#editarAmbiente").val());
+    var datos = new FormData();
+    datos.append("idAmbiente", idAmbiente);
+    $.ajax({
+
+        url: "ajax/equipoAjax.php",
+        method: "POST",
+        data: datos,
+        cache: false,
+        contentType: false,
+        processData: false,
+        dataType: "json",
+        success: function(respuesta) {
+            // console.log("respuesta", respuesta);
+
+            $('#editarEquipo').empty().append('<option selected="selected" value="whatever">Seleccionar Equipo</option>');
+
+            // console.log(respuesta);
+
+
+            for (var i = 0; i < respuesta.length; i++) {
+
+                var option = document.createElement("option");
+                $(option).html(respuesta[i]["nombreequipo"]);
+                $(option).val(respuesta[i]["idequipo"]);
+                $(option).appendTo("#editarEquipo");
+                // console.log("respuesta", respuesta[i]["nombreequipo"]);
+            }
+        }
+    })
+});

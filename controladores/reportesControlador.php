@@ -15,11 +15,11 @@ class ControladorReportes{
 	}
 
 	// RANGO DE FECHAS
-	static public function ctrRangoFechasReportes($fechaInicial, $fechaFinal){
+	static public function ctrRangoFechasReportes($fechaInicial, $fechaFinal, $idAmbiente){
 
 		$tabla = "novedad";
 
-		$respuesta = ModeloReportes::mdlRangoFechasReportes($tabla, $fechaInicial, $fechaFinal);
+		$respuesta = ModeloReportes::mdlRangoFechasReportes($tabla, $fechaInicial, $fechaFinal, $idAmbiente);
 		
 		return $respuesta;
 		
@@ -33,8 +33,9 @@ class ControladorReportes{
 			$tabla = "novedad";
 			
 			if (isset($_GET["fechaInicial"])) {
-
-				$respuesta = ModeloReportes::mdlRangoFechasReportes($tabla, $_GET["fechaInicial"], $_GET["fechaFinal"]);
+			
+				$respuesta = ModeloReportes::mdlRangoFechasReportes($tabla, $_GET["fechaInicial"], $_GET["fechaFinal"], $_GET["ambiente"]);
+				
 				
 			}else{
 

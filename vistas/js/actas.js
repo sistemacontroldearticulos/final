@@ -208,43 +208,6 @@ $("#fi").change(function() {
             
             }
 
-                var idAmbiente = respuesta[2];
-                var datos = new FormData();
-                datos.append("idAmbiente", idAmbiente);
-                $.ajax({
-                    url: "ajax/equipoAjax.php",
-                    method: "POST",
-                    data: datos,
-                    cache: false,
-                    contentType: false,
-                    processData: false,
-                    dataType: "json",
-                    success: function(respuesta) {
-                        // console.log("respuesta", respuesta);
-                      
-                        var falsos = new Array();
-                        var positivos =[];
-
-
-                            $.ajax({
-                                url: "ajax/actasAjax.php",
-                                method: "POST",
-                                data: datos,
-                                cache: false,
-                                contentType: false,
-                                processData: false,
-                                dataType: "json",
-                                error: function(respuesta1)
-                                {
-                                    debugger;
-                                    validar=false;
-                                    i=5000;
-                                },
-                                success: function(respuesta1){
-                                    positivos.push(
-                                        "true ,"
-                                    );
-                                }
         }
             
     })

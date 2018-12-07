@@ -32,6 +32,7 @@ class ControladorUsuarios
                     $_SESSION["RolUsuario"]          = $respuesta["rolusuario"];
                     $_SESSION["FotoUsuario"]         = $respuesta["fotousuario"];
 
+
                     // var_dump($_SESSION["NombreUsuario"] );
 
                     echo '<script>
@@ -201,6 +202,23 @@ class ControladorUsuarios
         $respuesta = ModeloUsuarios::mdlMostrarUsuarios($tabla, $item, $valor);
 
         return $respuesta;
+    }
+
+    static public function ctrValidarPrograma($valor)
+    {
+        $rol=$_SESSION["NombreUsuario"];
+        echo '<pre>'; print_r($_SESSION["RolUsuario"]); echo '</pre>';
+        // if($_SESSION["RolUsuario"]!="ADMINISTRADOR" || $_SESSION["RolUsuario"]!="ESPECIAL")
+        // {
+        //     if($valor==$_SESSION["IdPrograma"])
+        //     {
+        //         return true;
+        //     }
+        //     else
+        //     {
+        //         return false;
+        //     }
+        // }
     }
 
     /*=============================================
