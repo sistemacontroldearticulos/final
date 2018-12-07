@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 function duracion(sel) {
     if (sel == "TÉCNICO") {
         $("#nuevaDuracion").val("12 MESES");
@@ -92,7 +92,7 @@ function tiempo(sel) {
 }
 // LOS INPUT DE LAS FECHAS AL CARGAR EL MODAL ESTAN DESACTIVADOS, SE ACTIVAN AL ESCOGER PROGRAMA
 function activarFechas() {
-    // debugger;
+    debugger;
     $("#nuevaFechaFin").removeAttr('disabled');
     $("#nuevaFechaInicio").removeAttr('disabled');
 }
@@ -123,7 +123,7 @@ function tiempo1(sel) {
                 var year = diaActual.getFullYear() + 1;
                 fecha = month + '/' + day + '/' + year;
                 $("#editarFechaFin").val(fecha);
-                $("#editarFechaFin").prop('readonly', true);
+               
             } else if (respuesta[3] == "TECNÓLOGO") {
                 diaActual = new Date(sel);
                 console.log(diaActual);
@@ -133,12 +133,12 @@ function tiempo1(sel) {
                 fecha = month + '/' + day + '/' + year;
                 $("#editarFechaFin").val(fecha);
                 $("#editarFechaFin").html(fecha);
-                $("#editarFechaFin").prop('readonly', true);
+            
             } else if (respuesta[3] == "COMPLEMENTARIO") {
-                $("#editarFechaFin").removeAttr('readonly');
+                
 
             }else if (respuesta[3] == "ESPECIALIZACIÓN") {
-                $("#editarFechaFin").removeAttr('readonly');
+                
 
             }
         }

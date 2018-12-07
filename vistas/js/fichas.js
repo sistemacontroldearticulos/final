@@ -2,6 +2,8 @@
 =            EDITAR FICHAS                  =
 =============================================*/
 $(".tablas").on("click", ".btnEditarFicha", function(){
+    $("#editarFechaInicio").removeAttr('disabled');
+    $("#editarFechaFin").removeAttr('readonly');
     var idFicha = $(this).attr("idFicha");
     var datos = new FormData();
     datos.append("idFicha", idFicha);

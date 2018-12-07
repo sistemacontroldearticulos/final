@@ -389,6 +389,9 @@ class ControladorFichas
             $tablaNov = "novedad";
             $itemNov  = "numeroficha";
             $novedad  = ModeloNovedades::mdlMostrarNovedades($tablaNov, $itemNov, $datos3);
+             if($novedad!=null)
+            {
+            
 
             foreach ($novedad as $key => $value) {
 
@@ -397,10 +400,14 @@ class ControladorFichas
                 $eliminarArticuloNov = ModeloNovedades::mdlBorrarArticuloNovedad($tablaArticulo, $datosArticulo);
 
             }
+           
+              $eliminarNov = ModeloNovedades::mdlBorrarNovedad($tablaNov, $novedad[0]["idnovedad"]);
+            }
+            
 
-            $eliminarNov = ModeloNovedades::mdlBorrarNovedad($tablaNov, $novedad[0]["idnovedad"]);
 
             $respuesta2 = ModeloFichas::mdlEliminarFicha($tabla3, $datos3);
+            
             if ($respuesta2 == "ok") {
                 echo '<script>
 
