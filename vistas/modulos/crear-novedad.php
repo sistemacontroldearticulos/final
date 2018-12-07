@@ -108,7 +108,7 @@
 
           <div class="box-footer">
 
-            <button type="submit" class="btn btn-primary pull-right">Crear Novedad</button>
+            <button disabled id="btnCrearNovedad"type="submit" class="btn btn-primary pull-right">Crear Novedad</button>
 
           </div>
 
