@@ -1,128 +1,88 @@
 var algo = false;
-
-function ficha(sel) {
-    var idFicha1 = sel;
-    console.log("idFicha1", idFicha1);
-    
-    if (idFicha1 == "") {
-        $("#nuevaFicha1").val("");
-    }else{
-
-    var datosFichas = new FormData();
-    datosFichas.append("sel", idFicha1);
-    $.ajax({
-        url: "ajax/fichasAjax.php",
-        method: "POST",
-        data: datosFichas,
-        cache: false,
-        contentType: false,
-        processData: false,
-        dataType: "json",
-        success: function(respuesta) {
-            console.log("respuesta", respuesta);
-
-            if (respuesta == false) {
-                $("#nuevaFicha1").parent().after('<div class="alert" style="height: 20px; text-align="center"><font color="#f39c12"><strong>ESTA FICHA NO ESTA REGISTRADA EN LA BASE DE DATOS</strong></font></div>');
-                $("#nuevaFicha1").val("");
-            }else if (respuesta["idambiente"] == null) {
-                $("#nuevaFicha1").parent().after('<div class="alert" style="height: 20px; text-align="center"><font color="#f39c12"><strong>LA FICHA INGRESADA NO ESTÁ ASIGNADA A NINGÚN AMBIENTE</strong></font></div>');
-                $("#nuevaFicha1").val("");
-
-            }
-            var idAmbiente = respuesta["idambiente"];
-            var datosAmbiente = new FormData();
-            datosAmbiente.append("idAmbiente", idAmbiente);
-            $.ajax({
-                url: "ajax/ambientesAjax.php",
-                method: "POST",
-                data: datosAmbiente,
-                cache: false,
-                contentType: false,
-                processData: false,
-                dataType: "json",
-                success: function(respuesta) {
-                    // console.log("respuesta", respuesta);
-                    $("#nuevoAmbiente1").val(respuesta["nombreambiente"]);
-                }
-            });
-        }
-    });
-}
-}
 // $(".tablas").on("click", ".btnBuscar", function(){
 //$(".tablas").on("click", ".btnBuscar1", function(){
 $(".btnBuscar1").click(function() {
     $(".alert").remove();
     var idFicha = $("#nuevaFicha1").val();
-    var datosFichas = new FormData();
-    datosFichas.append("idFicha", idFicha);
-    $.ajax({
-        url: "ajax/fichasAjax.php",
-        method: "POST",
-        data: datosFichas,
-        cache: false,
-        contentType: false,
-        processData: false,
-        dataType: "json",
-        success: function(respuestaFichas) {
-            var idPrograma = respuestaFichas["idprograma"];
-            console.log("idPrograma", idPrograma);
-            var documento = $("#numeroProgramaValidacion").val()
-            var datosUsuario = new FormData();
-            datosUsuario.append("documento", documento);
-            $.ajax({
-                url: "ajax/usuarios.ajax.php",
-                method: "POST",
-                data: datosUsuario,
-                cache: false,
-                contentType: false,
-                processData: false,
-                dataType: "json",
-                success: function(respuesta) {
-                    if (respuesta["idprograma"] != idPrograma) {
-                        $("#nuevaFicha1").parent().after('<div class="alert" style="height: 20px; text-align="center"><font color="#f39c12"><strong>USTED NO SE ENCUENTRA REGISTRADO EN ESTE PROGRAMA</strong></font></div>');
-                        $("#nuevaFicha1").val("");
-                        $("#nuevoAmbiente1").val("")
-                    } else {
-                        var idAmbiente1 = respuestaFichas["idambiente"];
-                        var datosAmbiente1 = new FormData();
-                        $("#idAmbiente2").val(respuestaFichas["idambiente"]);
-                        var idAmbiente = respuestaFichas["idambiente"];
-                        datosAmbiente1.append("idAmbiente", idAmbiente);
-                        $.ajax({
-                            url: "ajax/ambientesAjax.php",
-                            method: "POST",
-                            data: datosAmbiente1,
-                            cache: false,
-                            contentType: false,
-                            processData: false,
-                            dataType: "json",
-                            success: function(respuesta) {
-                                // console.log(respuesta["nombreambiente"]);
-                                $(".inputAmbiente").val(respuesta["nombreambiente"]);
-                                var e = $.Event("keyup", {
-                                    keyCode: 13
+    if (idFicha == "") {
+        $("#nuevaFicha1").val("");
+    } else {
+        var datosFichas = new FormData();
+        datosFichas.append("idFicha", idFicha);
+        $.ajax({
+            url: "ajax/fichasAjax.php",
+            method: "POST",
+            data: datosFichas,
+            cache: false,
+            contentType: false,
+            processData: false,
+            dataType: "json",
+            success: function(respuestaFichas) {
+                if (respuestaFichas == false) {
+                    $("#nuevaFicha1").parent().after('<div class="alert" style="height: 20px; text-align="center"><font color="#f39c12"><strong>ESTA FICHA NO ESTA REGISTRADA EN LA BASE DE DATOS</strong></font></div>');
+                    $("#nuevaFicha1").val("");
+                } else {
+                    var idPrograma = respuestaFichas["idprograma"];
+                    console.log("idPrograma", idPrograma);
+                    var documento = $("#numeroProgramaValidacion").val()
+                    var datosUsuario = new FormData();
+                    datosUsuario.append("documento", documento);
+                    $.ajax({
+                        url: "ajax/usuarios.ajax.php",
+                        method: "POST",
+                        data: datosUsuario,
+                        cache: false,
+                        contentType: false,
+                        processData: false,
+                        dataType: "json",
+                        success: function(respuesta) {
+                            if (respuesta["idprograma"] != idPrograma) {
+                                $("#nuevaFicha1").parent().after('<div class="alert" style="height: 20px; text-align="center"><font color="#f39c12"><strong>USTED NO SE ENCUENTRA REGISTRADO EN ESTE PROGRAMA</strong></font></div>');
+                                $("#nuevaFicha1").val("");
+                                $("#nuevoAmbiente1").val("")
+                            } else {
+                                var idAmbiente1 = respuestaFichas["idambiente"];
+                                var datosAmbiente1 = new FormData();
+                                $("#idAmbiente2").val(respuestaFichas["idambiente"]);
+                                var idAmbiente = respuestaFichas["idambiente"];
+                                datosAmbiente1.append("idAmbiente", idAmbiente);
+                                $.ajax({
+                                    url: "ajax/ambientesAjax.php",
+                                    method: "POST",
+                                    data: datosAmbiente1,
+                                    cache: false,
+                                    contentType: false,
+                                    processData: false,
+                                    dataType: "json",
+                                    success: function(respuesta) {
+                                        // console.log(respuesta["nombreambiente"]);
+                                        $("#nuevoAmbiente1").val(respuesta["nombreambiente"]);
+                                        $(".inputAmbiente").val(respuesta["nombreambiente"]);
+                                        var e = $.Event("keyup", {
+                                            keyCode: 13
+                                        });
+                                        $('.inputAmbiente').focus();
+                                        $('.inputAmbiente').trigger(e);
+                                    }
                                 });
-                                $('.inputAmbiente').focus();
-                                $('.inputAmbiente').trigger(e);
+                                datosAmbiente1.append("idAmbiente1", idAmbiente1);
+                                $.ajax({
+                                    url: "ajax/ambientesAjax.php",
+                                    method: "POST",
+                                    data: datosAmbiente1,
+                                    cache: false,
+                                    contentType: false,
+                                    processData: false,
+                                    dataType: "json",
+                                    success: function(respuesta) {}
+                                })
                             }
-                        });
-                        datosAmbiente1.append("idAmbiente1", idAmbiente1);
-                        $.ajax({
-                            url: "ajax/ambientesAjax.php",
-                            method: "POST",
-                            data: datosAmbiente1,
-                            cache: false,
-                            contentType: false,
-                            processData: false,
-                            dataType: "json",
-                            success: function(respuesta) {}
-                        })
-                    }
+                        }
+                    })
                 }
-            })
-        }
-    })
+            }
+        })
+    }
 })
 var table = $('.tablaArticulos').DataTable({
     "ajax": "ajax/datatable-articulosAjax.php",
