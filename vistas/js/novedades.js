@@ -2,6 +2,12 @@ var algo = false;
 
 function ficha(sel) {
     var idFicha1 = sel;
+    console.log("idFicha1", idFicha1);
+    
+    if (idFicha1 == "") {
+        $("#nuevaFicha1").val("");
+    }else{
+
     var datosFichas = new FormData();
     datosFichas.append("sel", idFicha1);
     $.ajax({
@@ -13,7 +19,16 @@ function ficha(sel) {
         processData: false,
         dataType: "json",
         success: function(respuesta) {
-            // console.log("respuesta", respuesta);
+            console.log("respuesta", respuesta);
+
+            if (respuesta == false) {
+                $("#nuevaFicha1").parent().after('<div class="alert" style="height: 20px; text-align="center"><font color="#f39c12"><strong>ESTA FICHA NO ESTA REGISTRADA EN LA BASE DE DATOS</strong></font></div>');
+                $("#nuevaFicha1").val("");
+            }else if (respuesta["idambiente"] == null) {
+                $("#nuevaFicha1").parent().after('<div class="alert" style="height: 20px; text-align="center"><font color="#f39c12"><strong>LA FICHA INGRESADA NO ESTÁ ASIGNADA A NINGÚN AMBIENTE</strong></font></div>');
+                $("#nuevaFicha1").val("");
+
+            }
             var idAmbiente = respuesta["idambiente"];
             var datosAmbiente = new FormData();
             datosAmbiente.append("idAmbiente", idAmbiente);
@@ -32,6 +47,7 @@ function ficha(sel) {
             });
         }
     });
+}
 }
 // $(".tablas").on("click", ".btnBuscar", function(){
 $(".btnBuscar").click(function() {

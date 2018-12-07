@@ -165,11 +165,12 @@
 
 				</a>
 
-			</li>
+			</li>';
+			}
 
-			
-
-			<li class="treeview">
+				
+			if($_SESSION["RolUsuario"] == "INSTRUCTOR" || $_SESSION["RolUsuario"] == "ADMINISTRADOR" ){
+			echo '<li class="treeview">
 
 				<a href="#">
 
