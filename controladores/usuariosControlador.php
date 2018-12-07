@@ -522,12 +522,19 @@ class ControladorUsuarios
 
                 $tablaEditar = "usuario";
 
+                if ($_POST["editarPrograma1"] == "") {
+                    $programa = null;
+                } else {
+                    $programa = $_POST["editarPrograma1"];
+                }
+                //
+
                 $datos = array("NumDocumentoUsuario" => $_POST["editarDocumento1"],
                     "NombreUsuario"                      => $editarNombre,
                     "ContraseniaUsuario"                 => $encriptar,
                     "RolUsuario"                         => $_POST["editarPerfil1"],
                     "FotoUsuario"                        => $_POST["fotoActual11"],
-                    "IdPrograma"                         => $_POST["editarPrograma1"]);
+                    "IdPrograma"                         => $programa);
 
                 // echo '<pre>'; print_r($datos); echo '</pre>';
 
