@@ -1,11 +1,11 @@
 <?php
-
 class ControladorUsuarios
 {
 
     /*=============================================
     INGRESO DE USUARIO
     =============================================*/
+    
 
     static public function ctrIngresoUsuario()
     {
@@ -31,9 +31,11 @@ class ControladorUsuarios
                     $_SESSION["ContraseniaUsuario"]  = $respuesta["contraseniausuario"];
                     $_SESSION["RolUsuario"]          = $respuesta["rolusuario"];
                     $_SESSION["FotoUsuario"]         = $respuesta["fotousuario"];
+                    
+                   
 
 
-                    // var_dump($_SESSION["NombreUsuario"] );
+                    // var_dump($_SESSION["RolUsuario"] );
 
                     echo '<script>
 
@@ -204,23 +206,7 @@ class ControladorUsuarios
         return $respuesta;
     }
 
-    static public function ctrValidarPrograma($valor)
-    {
-        $rol=$_SESSION["NombreUsuario"];
-        echo '<pre>'; print_r($_SESSION["RolUsuario"]); echo '</pre>';
-        // if($_SESSION["RolUsuario"]!="ADMINISTRADOR" || $_SESSION["RolUsuario"]!="ESPECIAL")
-        // {
-        //     if($valor==$_SESSION["IdPrograma"])
-        //     {
-        //         return true;
-        //     }
-        //     else
-        //     {
-        //         return false;
-        //     }
-        // }
-    }
-
+    
     /*=============================================
     EDITAR USUARIO
     =============================================*/
@@ -572,3 +558,4 @@ class ControladorUsuarios
     }
 
 }
+
