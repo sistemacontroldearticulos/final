@@ -216,4 +216,23 @@ class ControladorNovedades
 
     }
 
+    static public function ctrValidarPrograma($valor1, $valor2)
+    {
+        
+       
+       echo '<pre>'; print_r($valor1); echo '</pre>';
+        // if($_SESSION["RolUsuario"]!="ADMINISTRADOR" || $_SESSION["RolUsuario"]!="ESPECIAL")
+        // {
+        //     if($valor==$_SESSION["IdPrograma"])
+        //     {
+        //         return true;
+        //     }
+        //     else
+        //     {
+        //         return false;
+        //     }
+        // }
+    }
+
+
 }

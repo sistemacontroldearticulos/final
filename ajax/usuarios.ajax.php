@@ -1,6 +1,7 @@
 <?php 
 
 require_once "../controladores/usuariosControlador.php";
+require_once "../controladores/novedadesControlador.php";
 require_once "../modelos/usuariosModelo.php";
 
 class AjaxUsuarios{
@@ -39,16 +40,18 @@ class AjaxUsuarios{
 
     }
 
-    public $idPrograma;
+    public $NumDocumentoUsuario;
 
     public function ajaxValidaPrograma(){
 
-        
-        $valor = $this->idPrograma;
 
-        $respuesta = ControladorUsuarios::ctrValidarPrograma($valor);
 
-        echo $respuesta;
+        $item = "NumDocumentoUsuario";
+        $valor = $this->NumDocumentoUsuario;
+
+        $respuesta = ControladorUsuarios::ctrMostrarUsuarios($item, $valor);
+
+        echo json_encode($respuesta);
 
     }
 
@@ -78,11 +81,12 @@ if(isset($_POST["ValidarDocumento"])){
     $valDocumento -> ajaxValidarDococumento();
 }
 
-if(isset($_POST["idPrograma"])){
+if(isset($_POST["documento"])){
 
-    $valDocumento = new AjaxUsuarios();
+   $valDocumento = new AjaxUsuarios();
 
-    $valDocumento -> idPrograma = $_POST["idPrograma"];
+    $valDocumento -> NumDocumentoUsuario = $_POST["documento"];
+    
 
     $valDocumento -> ajaxValidaPrograma();
 }

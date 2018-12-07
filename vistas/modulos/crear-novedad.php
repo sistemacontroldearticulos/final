@@ -26,6 +26,7 @@
       <!--=====================================
       el formulario
       ======================================-->
+      <input type="hidden" id="numeroProgramaValidacion" value="<?php echo $_SESSION["NumDocumentoUsuario"]; ?>">
 
       <div class="col-lg-5 col-xs-12">
 
@@ -70,7 +71,7 @@
 
                     <input type="number" class="form-control input-lg" id="nuevaFicha1" name="nuevaFicha1" placeholder="Ingrese numero de ficha"  required>
 
-                     <span  class="input-group-addon btnBuscar btnBuscar1"><button title="Buscar Ficha" type="button" class="btn btn-primary btn-sm" onclick="ficha(nuevaFicha1.value)"><i class="fa fa-search"></i></button></span>
+                     <span  class="input-group-addon btnBuscar btnBuscar1"><button title="Buscar Ficha" type="button" class="btn btn-primary btn-sm" x="<?php echo $_SESSION["IdPrograma"]; ?>"onclick="ficha(nuevaFicha1.value)"><i class="fa fa-search"></i></button></span>
 
                   </div>
 
