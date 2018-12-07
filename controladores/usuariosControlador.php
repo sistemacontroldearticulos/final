@@ -46,7 +46,7 @@ class ControladorUsuarios
                 } else {
 
                     echo '<br>
-                    <div class="alert alert-danger">Error al ingresar usuario vuelve a intentarlo</div>';
+                    <div class="alert alert-danger">EL USUARIO NO SE ENCUENTRA REGISTRADO EN EL SISTEMA</div>';
 
                 }
 
