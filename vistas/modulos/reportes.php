@@ -20,12 +20,6 @@
         <div class="box">
             <div class="box-header with-border">
             	
-	                <button type="button" class="btn btn-primary pull-left " id="daterange-btn">
-	                    <span>
-	                        <i class="fa fa-calendar"></i> Rango de Fechas
-	                        <i class="fa fa-caret-down"></i>
-	                    </span>
-	                </button>
 
 
                   <select class="form-control select2 input-sm" name="ambienteFiltro" id="ambienteFiltro" style="width: 30%;" >
@@ -45,6 +39,12 @@
                         ?>
                   </select>
 
+	                <button type="button" class="btn btn-primary " id="daterange-btn" style="height: 45px;">
+	                    <span>
+	                        <i class="fa fa-calendar"></i> Rango de Fechas
+	                        <i class="fa fa-caret-down"></i>
+	                    </span>
+	                </button>
 	                <?php 
 
 	                if (isset($_GET["fechaInicial"])) {
@@ -60,7 +60,7 @@
 
 	                ?>
 	                
-	                	<button class="btn btn-success pull-right">
+	                	<button class="btn btn-success pull-right" style="height: 45px;">
 		                    Descargar Reporte en Excel
 		                </button>
 	                </a>
