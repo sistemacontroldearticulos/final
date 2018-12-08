@@ -95,7 +95,7 @@ $("#editarCategoria").change(function() {
         success: function(respuesta) {
             console.log("respuesta", respuesta);
 
-            if (categoriaAntes == nombreCategoria.toUpperCase()) {
+            if (categoriaAntes.toUpperCase() == nombreCategoria.toUpperCase()) {
             
             }else if (respuesta["nombrecategoria"] == nombreCategoria.toUpperCase()){
 

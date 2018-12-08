@@ -337,7 +337,7 @@ foreach ($ambiente as $key => $value) {
                     <option value="">Seleccionar Estado</option>
                     <option value="ACTIVO">Activo</option>
                     <option value="DAÑADO">Dañado</option>
-                    <option value="PERDIDO">Perdido</option>
+                    
 
                   </select>
 
@@ -613,7 +613,6 @@ foreach ($ambiente as $key => $value) {
                   <!-- <option id="editarEstado">Selecionar Estado</option> -->
                   <option value="ACTIVO">Activo</option>
                   <option value="DAÑADO">Dañado</option>
-                  <option value="PERDIDO">Perdido</option>
 
                 </select>
 

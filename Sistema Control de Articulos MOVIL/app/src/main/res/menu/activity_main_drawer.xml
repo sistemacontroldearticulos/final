@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <item android:title="NOVEDADES">
+        <menu>
+            <item
+                android:id="@+id/crearNovedad"
+                android:icon="@drawable/crear_novedad"
+                android:title="Crear Novedad" />
+            <item
+                android:id="@+id/historialNovedad"
+                android:icon="@drawable/historial_novedad"
+                android:title="Historial de Novedades" />
+        </menu>
+    </item>
+
+    <item android:title="ACTAS DE RESPONSABILIDAD">
+        <menu>
+            <item
+                android:id="@+id/crearActa"
+                android:icon="@drawable/crear_acta"
+                android:title="Crear Acta" />
+            <item
+                android:id="@+id/historialActas"
+                android:icon="@drawable/historial_novedad"
+                android:title="Historial de Actas" />
+        </menu>
+    </item>
+
+    <item android:title="">
+        <menu>
+    
+            <item
+                    android:id="@+id/configuracion"
+                    android:icon="@drawable/ajustes"
+                    android:title="Cambiar Contraseña" />
+    
+            <item
+                    android:id="@+id/acercaDe"
+                    android:icon="@drawable/about"
+                    android:title="Acerca De " />
+
+            <item
+                android:id="@+id/cerrarSesion"
+                android:icon="@drawable/logout"
+                android:title="Cerrar Sesión" />
+
+        </menu>
+
+
+    </item>
+
+
+
+</menu>

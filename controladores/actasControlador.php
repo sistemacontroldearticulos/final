@@ -76,7 +76,7 @@ class ControladorActas
             
             $datos = array("idacta_responsabilidad" => $_POST["idActaResponsabilidad"],
                             "fechacreacion" => $fecha,
-                            "fechalimite" => $_POST["fechaActa"],
+                            "fechalimite" => null,
                             "idarticulo" => $_POST["articulos"]);
 
             

@@ -34,7 +34,7 @@
                             <th>Nombre Instructor</th>
                             <th>Nombre Aprendiz</th>
                             <th>Fecha Creacion</th>
-                            <th>Fecha Limite</th>
+                            
                         </tr>
                     </thead>
                     <tbody>
@@ -85,7 +85,7 @@
                             echo '<td>'.$usuario["nombreusuario"].'</td>
                             <td>'.$mostrarAprendiz[0]["nombreaprendiz"].'</td>
                             <td>'.$value["fechacreacion"].'</td>
-                            <td>'.$value["fechalimite"].'</td>
+                            
                             
                           </tr>';
                           

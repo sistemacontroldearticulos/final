@@ -93,7 +93,7 @@
                 </div>
 
                 <!-- AGREGAR ARTICULO A LA NOVEDADA -->
-                <div class="form-group row nuevoArticulo">
+                <div id="divArticulos" class="form-group row nuevoArticulo">
 
 
 

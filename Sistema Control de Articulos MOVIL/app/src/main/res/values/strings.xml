@@ -1,0 +1,37 @@
+<resources>
+	<string name="app_name">Sistema Control de Articulos</string>
+	<string name="title_activity_main">MainActivity</string>
+	<string name="navigation_drawer_open">Open navigation drawer</string>
+	<string name="navigation_drawer_close">Close navigation drawer</string>
+	<string name="nav_header_title">Android Studio</string>
+	<string name="nav_header_subtitle">android.studio@android.com</string>
+	<string name="nav_header_desc">Navigation header</string>
+	<string name="action_settings">Settings</string>
+	
+	<!-- TODO: Remove or change this placeholder text -->
+	<string name="hello_blank_fragment">Hello blank fragment</string>
+	<string name="Salir">SALIR</string>
+	<string name="IniciarSesion">INICIAR SESIÓN</string>
+	<string name="CrearNovedad">CREAR NOVEDAD</string>
+	<string name="VerArticulos">Ver Articulos Agregados</string>
+	<string name="EnviarNovedad">Enviar Novedad</string>
+	<string name="Nombres">
+        Nare López \n
+        Karen Benavides \n
+        Melany Cobo \n
+        Julián Bolaños\n
+        Daniel Rojas</string>
+	<string name="Nombres2">Julian Bolaños \n
+        Daniel Rojas</string>
+	<string name="Cancelar">Cancelar</string>
+	<string name="AgregarArtículo">Agregar Artículo</string>
+	<string name="Aceptar">Aceptar</string>
+	<string name="CrearActa">Crear Acta de Responsabilidad</string>
+	<string name="btnCrearActa">Crear Acta</string>
+	
+	<string-array name="tipoNovedadSpinner">
+		<item>Tipo de Novedad</item>
+		<item>PERDIDO</item>
+		<item>DAÑADO</item>
+	</string-array>
+</resources>

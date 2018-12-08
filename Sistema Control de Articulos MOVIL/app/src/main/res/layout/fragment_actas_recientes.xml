@@ -1,0 +1,99 @@
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/actas1"
+    android:background="@drawable/fondo"
+
+    tools:context="com.proyecto.aplicacion.NovedadesRecientes">
+
+
+    <EditText
+        android:id="@+id/txtFechaActasDesde"
+        android:layout_width="134dp"
+        android:layout_height="31dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="4dp"
+        android:background="#11000000"
+        android:drawableLeft="@drawable/calendar"
+        android:ems="0"
+        android:focusable="false"
+        android:hint="dd/mm/aaaa"
+        android:textAlignment="center"
+        android:textColor="#ffffff"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/txtFechaActasHasta"
+        android:layout_width="134dp"
+        android:layout_height="31dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="8dp"
+        android:background="#11000000"
+        android:drawableLeft="@drawable/calendar"
+        android:ems="0"
+        android:focusable="false"
+        android:hint="dd/mm/aaaa"
+        android:textAlignment="center"
+        android:textColor="#ffffff"
+        app:layout_constraintEnd_toStartOf="@+id/btnFiltroActas"
+        app:layout_constraintHorizontal_bias="0.75"
+        app:layout_constraintStart_toEndOf="@+id/txtFechaActasDesde"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
+        android:id="@+id/btnFiltroActas"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="12dp"
+        android:background="#11000000"
+        android:src="@drawable/lupa"
+        app:layout_constraintBottom_toTopOf="@+id/recyclerActas"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
+
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recyclerActas"
+        android:layout_width="match_parent"
+        android:layout_height="407dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtFechaActasDesde">
+
+    </android.support.v7.widget.RecyclerView>
+    
+    
+    <Button
+            android:id="@+id/btnActualizarActas"
+            android:layout_width="204dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:background="@drawable/botones_gradient"
+            android:text="Refrescar lista de Actas"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/recyclerActas"/>
+
+    <ProgressBar
+        android:id="@+id/progresBarActas"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@+id/recyclerActas"
+        app:layout_constraintEnd_toEndOf="@+id/recyclerActas"
+        app:layout_constraintStart_toStartOf="@+id/recyclerActas"
+        app:layout_constraintTop_toTopOf="@+id/recyclerActas"/>
+
+</android.support.constraint.ConstraintLayout>

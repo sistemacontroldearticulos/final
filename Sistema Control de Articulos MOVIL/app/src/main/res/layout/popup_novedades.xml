@@ -1,0 +1,102 @@
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+  <android.support.constraint.ConstraintLayout
+      android:id="@+id/layoutNovedades"
+      android:layout_width="330dp"
+      android:layout_height="match_parent"
+      android:layout_marginStart="8dp"
+      android:layout_marginTop="8dp"
+      android:layout_marginEnd="8dp"
+      android:layout_marginBottom="8dp"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toTopOf="parent">
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recyclerViewArticulos"
+        android:layout_width="366dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tabla_cuerpo"></android.support.v7.widget.RecyclerView>
+
+    <TableLayout
+        android:id="@+id/tabla_cuerpo"
+        android:layout_width="320dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+      <TableRow
+          android:id="@+id/tableRow1"
+          android:layout_width="wrap_content"
+          android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/txtArticulo"
+            android:layout_width="80dp"
+            android:layout_height="match_parent"
+            android:background="@drawable/cell_shape"
+            android:padding="5dp"
+            android:text="ARTÍCULO"
+            android:textAlignment="center"
+            android:textColor="#000"
+            android:textSize="14dp"></TextView>
+
+        <TextView
+            android:id="@+id/txtTipoNovedad"
+            android:layout_width="80dp"
+            android:layout_height="match_parent"
+            android:background="@drawable/cell_shape"
+            android:padding="5dp"
+            android:text="NOVEDAD"
+            android:textAlignment="center"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="#000"
+
+            android:textSize="14dp"></TextView>
+
+        <TextView
+            android:id="@+id/txtEquipo"
+            android:layout_width="73dp"
+            android:layout_height="match_parent"
+            android:background="@drawable/cell_shape"
+            android:padding="5dp"
+            android:text="EQUIPO"
+            android:textAlignment="center"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="#000"
+            android:textSize="14dp"></TextView>
+
+        <TextView
+
+            android:id="@+id/txtJornada"
+            android:layout_width="85dp"
+            android:layout_height="match_parent"
+            android:background="@drawable/cell_shape"
+            android:padding="5dp"
+            android:text="JORNADA"
+            android:textAlignment="center"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="#000"
+            android:textSize="14dp"></TextView>
+
+
+      </TableRow>
+    </TableLayout>
+  </android.support.constraint.ConstraintLayout>
+
+</android.support.constraint.ConstraintLayout>

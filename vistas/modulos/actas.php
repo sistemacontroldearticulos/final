@@ -240,16 +240,6 @@
                                 </select> 
                             </div>
                         </div>
-
-                        <div class="form-group">
-                            <div class="input-group">
-
-                            <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-
-                            <input type="text" class="form-control input-lg" name="fechaActa" placeholder="Ingrese Fecha Limite" data-inputmask="'alias': 'mm/dd/yyyy'" data-mask  required>
-
-                          </div>
-                        </div>
                        
                     </div>
                 </div>
